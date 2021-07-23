@@ -1,0 +1,59 @@
+---
+title: "Applied Machine Learning with R"
+subtitle: ""
+author: "
+      <a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:1em;'></i>
+      </a>
+      <a href='https://therbootcamp.github.io/AML_2020AMLD/'>
+        <i class='fas fa-clock' style='font-size:1em;' ></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: 1em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: 1em;'></i>
+      </a>
+      <a href='https://therbootcamp.github.io/AML_2020AMLD/'>
+        <font style='font-style:normal;font-size:20px;padding-left:5px'>The R Bootcamp @ AMLD</font>
+      </a>
+      <br>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style= 'height:16.7px;vertical-align:baseline'/><font style='font-style:normal;font-size:20px;padding-left:9.3px'>January 2020</font>
+      "
+output:
+  html_document:
+    css: index.css
+    self_contained: no
+---
+
+<br>
+
+### Preparations
+
+Before attending, please...
+
+- go through the [**installation instructions**](https://therbootcamp.github.io/AML_2020AMLD/installation/instructions.html). 
+
+- fill out this [**survey**](https://docs.google.com/forms/d/e/1FAIpQLSf9CO6tehkFG7hQElxXBmCZvEnV-4aGTiqmGAmTpie1eG7rnQ/viewform?usp=sf_link).
+
+
+<br>
+
+### Materials 
+
+|  | Day 1 |
+|:--|:-------------|
+|0| [Intro](_sessions/Introduction/Introduction.html)  | 
+|1| [Intro to R](_sessions/Intro2R/Intro2R.html) | 
+|2| [Fitting](_sessions/Fitting/Fitting.html), [practical](_sessions/Fitting/Fitting_practical.html) | 
+|3| [Prediction](_sessions/Prediction/Prediction.html), [practical](_sessions/Prediction/Prediction_practical.html) | 
+|4| [Tuning](_sessions/Tuning/Tuning.html), [practical](_sessions/Tuning/Tuning_practical.html) | 
+|5| [Wrap-up](_sessions/Wrapup/Wrapup.html) | 
+<br>
+
+
+### Schedule
+
+<p align="left"><br>
+    <img border="0" alt="Schedule" src="https://raw.githubusercontent.com/therbootcamp/AML_2020AMLD/master/_sessions/Introduction/image/schedule.png" style="width:360px">
+</p>

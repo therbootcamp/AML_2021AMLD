@@ -1,0 +1,30 @@
+# Site settings
+title: TheRBootcamp
+description: We Teach R.
+# baseurl: "/particle" # the subpath of your site, e.g. /blog
+# url: "localhost:3000" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
+
+# User settings
+username: TheRBootcamp
+user_description: We teach R.
+user_title: R you ready?
+email: therbootcamp@gmail.com
+twitter_username: therbootcamp
+github_username:  therbootcamp
+
+include: ['_sessions', '_tutorials','_materials','_sessions/_css','_sessions/_image']
+
+# Google-analytics
+google-analytics:
+  id: "UA-98354683-1"
+
+exclude: ['package.json', 'src' , 'node_modules']
+
+#url:
+#baseurl: ""
+#
+#permalink: /:title/
+# Use the following plug-ins
+#gems:
+#  - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
+#  - jekyll-feed # Create an Atom feed using the official Jekyll feed gem

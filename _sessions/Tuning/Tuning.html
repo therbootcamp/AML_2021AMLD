@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Tuning</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Applied Machine Learning with R   The R Bootcamp @ AMLD" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Tuning
+### Applied Machine Learning with R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp @ AMLD </a> <br> <a href='https://therbootcamp.github.io/AML_2020AMLD/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### January 2020
+
+---
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;
+  &lt;span style="text-align:center"&gt;
+    &lt;span&gt; 
+      &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/&gt;
+    &lt;/span&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;span style="padding-left:82px"&gt; 
+        &lt;font color="#7E7E7E"&gt;
+          www.therbootcamp.com
+        &lt;/font&gt;
+      &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;font color="#7E7E7E"&gt;
+      Applied Machine Learning with R @ AMLD  | January 2020
+      &lt;/font&gt;
+    &lt;/a&gt;
+    &lt;/span&gt;
+  &lt;/div&gt; 
+
+---
+
+
+
+
+
+
+
+
+
+
+.pull-left4[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+# Fighting overfitting
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;When a model &lt;high&gt;fits the training data too well&lt;/high&gt; on the expense of its performance in prediction, this is called overfitting.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Just because model A is better than model B in training, does not mean it will be better in testing! Extremely flexible models are &lt;high&gt;'wolves in sheep's clothing'&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;But is there nothing we can do?.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+]
+
+
+.pull-right55[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/wolf_complex.png"&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;adapted from &lt;a href=""&gt;victoriarollison.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Tuning parameters
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Machine learning models are equipped with tuning parameters that &lt;high&gt; control model complexity&lt;high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;These tuning parameters can be identified using a &lt;high&gt;validation set&lt;/high&gt; created from the traning data.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Algorithm:
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;1 - Create separate test set.&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;2 - Fit model using various tuning parameters.&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;3 - Select tuning leading to best prediction on validation set.&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;4 - Refit model to entire training set (training + validation).&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+]
+
+.pull-right45[
+
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/validation.png" height=430px&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Resampling methods
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Resampling methods automatize and generalize model tuning.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+  &lt;col width="30%"&gt;
+  &lt;col width="70%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Method&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;k-fold cross-validation&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Splits the data in k-pieces, use &lt;high&gt;each piece once&lt;/high&gt; as the validation set, while using the other one for training. 
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Bootstrap&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    For &lt;i&gt;B&lt;/i&gt; bootstrap rounds &lt;high&gt;sample&lt;/high&gt; from the data &lt;high&gt;with replacement&lt;/high&gt; and split the data in training and validation set.  
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;/table&gt;
+]
+
+.pull-right5[
+
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/resample1.png"&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Resampling methods
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Resampling methods automatize and generalize model tuning.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+  &lt;col width="30%"&gt;
+  &lt;col width="70%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Method&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;k-fold cross-validation&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Splits the data in k-pieces, use &lt;high&gt;each piece once&lt;/high&gt; as the validation set, while using the other one for training. 
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Bootstrap&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    For &lt;i&gt;B&lt;/i&gt; bootstrap rounds &lt;high&gt;sample&lt;/high&gt; from the data &lt;high&gt;with replacement&lt;/high&gt; and split the data in training and validation set.  
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;/table&gt;
+]
+
+.pull-right5[
+
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/resample2.png"&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Resampling methods
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Resampling methods automatize and generalize model tuning.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+  &lt;col width="30%"&gt;
+  &lt;col width="70%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Method&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;k-fold cross-validation&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Splits the data in k-pieces, use &lt;high&gt;each piece once&lt;/high&gt; as the validation set, while using the other one for training. 
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Bootstrap&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    For &lt;i&gt;B&lt;/i&gt; bootstrap rounds &lt;high&gt;sample&lt;/high&gt; from the data &lt;high&gt;with replacement&lt;/high&gt; and split the data in training and validation set.  
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;/table&gt;
+]
+
+.pull-right5[
+
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/resample3.png"&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+class: center, middle
+
+&lt;high&gt;&lt;h1&gt;Regression&lt;/h1&gt;&lt;/high&gt;
+
+&lt;font color = "gray"&gt;&lt;h1&gt;Decision Trees&lt;/h1&gt;&lt;/font&gt;
+
+&lt;font color = "gray"&gt;&lt;h1&gt;Random Forests&lt;/h1&gt;&lt;/font&gt;
+
+
+---
+
+# Regularized regression
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Penalizes regression loss for having large &lt;font style="font-size:22px"&gt;&amp;beta&lt;/font&gt;; values using the &lt;high&gt;lambda &amp;lambda; tuning parameter&lt;/high&gt; and one of several penalty functions.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+$$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $$
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Name&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Function&lt;/b&gt;
+  &lt;/td&gt; 
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Lasso&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    |&amp;beta;&lt;sub&gt;j&lt;/sub&gt;|
+  &lt;/td&gt; 
+  &lt;td bgcolor="white"&gt;
+    Penalize by the &lt;high&gt;absolute&lt;/high&gt; regression weights.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Ridge&lt;/i&gt;    
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &amp;beta;&lt;sub&gt;j&lt;/sub&gt;&lt;sup&gt;2&lt;/sup&gt;
+  &lt;/td&gt;  
+  &lt;td bgcolor="white"&gt;
+    Penalize by the &lt;high&gt;squared&lt;/high&gt; regression weights.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Elastic net&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    |&amp;beta;&lt;sub&gt;j&lt;/sub&gt;| + &amp;beta;&lt;sub&gt;j&lt;/sub&gt;&lt;sup&gt;2&lt;/sup&gt;
+  &lt;/td&gt; 
+  &lt;td bgcolor="white"&gt;
+    Penalize by Lasso and Ridge penalties.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+
+]
+
+
+.pull-right45[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/bonsai.png"&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://www.mallorcazeitung.es/leben/2018/05/02/bonsai-liebhaber-mallorca-kunst-lebenden/59437.html"&gt;mallorcazeitung.es&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+
+.pull-left45[
+
+# Regularized regression
+
+&lt;p style="padding-top:1px"&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Ridge&lt;/b&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;By penalizing the most extreme &amp;beta;s most strongly, Ridge leads to (relatively) more &lt;high&gt;uniform &amp;beta;s&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Lasso&lt;/b&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;By penalizing all &amp;beta;s equally, irrespective of magnitude, Lasso drives some &amp;beta;s to 0 resulting effectively in &lt;high&gt;automatic feature selection&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+]
+
+.pull-right45[
+
+&lt;br&gt;
+
+&lt;p align = "center"&gt;
+&lt;font style="font-size:40"&gt;&lt;i&gt;Ridge&lt;/i&gt;&lt;/font&gt;&lt;br&gt;
+  &lt;img src="image/ridge.png" height=210px&gt;&lt;br&gt;
+  &lt;font style="font-size:10px"&gt;from &lt;a href="https://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf"&gt;James et al. (2013) ISLR&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+&lt;p align = "center"&gt;
+&lt;font style="font-size:40"&gt;&lt;i&gt;Lasso&lt;/i&gt;&lt;/font&gt;&lt;br&gt;
+    &lt;img src="image/lasso.png" height=210px&gt;&lt;br&gt;
+    &lt;font style="font-size:10px"&gt;from &lt;a href="https://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf"&gt;James et al. (2013) ISLR&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+
+---
+
+# Regularized regression
+
+
+.pull-left4[
+
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;To fit Lasso or Ridge penalized regression in R, use &lt;mono&gt;method = "glmnet"&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Specify the &lt;high&gt;type of penalty&lt;/high&gt; and the &lt;high&gt;penalty weight&lt;/high&gt; using the &lt;mono&gt;tuneGrid&lt;/mono&gt; argument.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Parameter&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;alpha = 1&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Regression with Lasso penalty.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;alpha = 0&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Regression with Ridge penalty.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;lambda&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+  Regularization penalty weight.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+
+]
+
+.pull-right45[
+
+
+```r
+# Train ridge regression
+train(form = criterion ~ .,
+      data = data_train,
+      method = "glmnet",  
+      trControl = ctrl,
+      tuneGrid = 
+        expand.grid(alpha = 0,   # Ridge 
+                    lambda = 1)) # Lambda
+
+# Train lasso regression
+train(form = criterion ~ .,
+      data = data_train,
+      method = "glmnet",  
+      trControl = ctrl,
+      tuneGrid = 
+        expand.grid(alpha = 1,   # Lasso 
+                    lambda = 1)) # Lambda
+```
+
+]
+
+
+---
+
+class: center, middle
+
+&lt;font color = "gray"&gt;&lt;h1&gt;Regression&lt;/h1&gt;&lt;/font&gt;
+
+&lt;high&gt;&lt;h1&gt;Decision Trees&lt;/h1&gt;&lt;/high&gt;
+
+&lt;font color = "gray"&gt;&lt;h1&gt;Random Forests&lt;/h1&gt;&lt;/font&gt;
+
+---
+
+# Decision trees
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Decision trees have a &lt;high&gt;complexity parameter&lt;/high&gt; called &lt;high&gt;cp&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p style="padding-top:3px"&gt;&lt;/p&gt;
+
+$$
+\large
+`\begin{split}
+Loss = &amp; Impurity\,+\\
+&amp;cp*(n\:terminal\:nodes)\\
+\end{split}`
+$$
+&lt;p style="padding-top:3px"&gt;&lt;/p&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Parameter&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    Small &lt;mono&gt;cp&lt;/mono&gt;, e.g., &lt;mono&gt;cp&lt;.01&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Low penalty leading to &lt;high&gt;complex trees&lt;/high&gt;.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    Large &lt;mono&gt;cp&lt;/mono&gt;, e.g., &lt;mono&gt;cp&lt;.20&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Large penalty leading to &lt;high&gt;simple trees&lt;/high&gt;.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+
+.pull-right5[
+
+&lt;p align = "center"&gt;
+  &lt;img src="image/cp.png"&gt;
+&lt;/p&gt;
+
+
+]
+
+
+---
+
+# Decision trees
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Decision trees have a &lt;high&gt;complexity parameter&lt;/high&gt; called &lt;high&gt;cp&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;p style="padding-top:3px"&gt;&lt;/p&gt;
+
+$$
+\large
+`\begin{split}
+Loss = &amp; Impurity\,+\\
+&amp;cp*(n\:terminal\:nodes)\\
+\end{split}`
+$$
+&lt;p style="padding-top:3px"&gt;&lt;/p&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Parameter&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    Small &lt;mono&gt;cp&lt;/mono&gt;, e.g., &lt;mono&gt;cp&lt;.01&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Low penalty leading to &lt;high&gt;complex trees&lt;/high&gt;.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    Large &lt;mono&gt;cp&lt;/mono&gt;, e.g., &lt;mono&gt;cp&lt;.20&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Large penalty leading to &lt;high&gt;simple trees&lt;/high&gt;.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+# Decision tree with a defined cp = .01
+train(form = income ~ .,
+      data = baselers,
+      method = "rpart",  # Decision Tree
+      trControl = ctrl,
+      tuneGrid = 
+        expand.grid(cp = .01)) # cp
+
+# Decision tree with a defined cp = .2
+train(form = income ~ .,
+      data = baselers,
+      method = "rpart",  # Decision Tree
+      trControl = ctrl,
+      tuneGrid = 
+        expand.grid(cp = .2)) # cp
+```
+
+]
+
+---
+
+class: center, middle
+
+&lt;font color = "gray"&gt;&lt;h1&gt;Regression&lt;/h1&gt;&lt;/font&gt;
+
+&lt;font color = "gray"&gt;&lt;h1&gt;Decision Trees&lt;/h1&gt;&lt;/font&gt;
+
+&lt;high&gt;&lt;h1&gt;Random Forests&lt;/h1&gt;&lt;/high&gt;
+
+
+---
+
+# Random Forest
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Random Forests have a &lt;high&gt;diversity parameter&lt;/high&gt; called &lt;mono&gt;mtry&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Technically, this controls how many features are randomly considered at each split of the trees..&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Parameter&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    Small &lt;mono&gt;mtry&lt;/mono&gt;, e.g., &lt;mono&gt;mtry = 1&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;high&gt;Diverse forest.&lt;/high&gt; In a way, less complex.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    Large &lt;mono&gt;mtry&lt;/mono&gt;, e.g., &lt;mono&gt;mtry&gt;5&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;high&gt;Similar forest.&lt;/high&gt; In a way, more complex.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right5[
+
+&lt;p align = "center"&gt;
+  &lt;img src="image/mtry_parameter.png"&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Random Forest
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Random Forests have a &lt;high&gt;diversity parameter&lt;/high&gt; called &lt;mono&gt;mtry&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Technically, this controls how many features are randomly considered at each split of the trees.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Parameter&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    Small &lt;mono&gt;mtry&lt;/mono&gt;, e.g., &lt;mono&gt;mtry = 1&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;high&gt;Diverse forest.&lt;/high&gt; In a way, less complex.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    Large &lt;mono&gt;mtry&lt;/mono&gt;, e.g., &lt;mono&gt;mtry&gt;5&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;high&gt;Similar forest.&lt;/high&gt; In a way, more complex.
+  &lt;/td&gt; 
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+# Random forest with a defined mtry = 2
+train(form = income ~ .,
+      data = baselers,
+      method = "rf",  # Random forest
+      trControl = ctrl,
+      tuneGrid = 
+        expand.grid(mtry = 2)) # mtry
+
+# Random forest with a defined mtry = 5
+train(form = income ~ .,
+      data = baselers,
+      method = "rf",  # Random forest
+      trControl = ctrl,
+      tuneGrid = 
+        expand.grid(mtry = 5)) # mtry
+```
+
+]
+
+
+
+
+
+---
+class: center,  middle
+
+&lt;br&gt;&lt;br&gt;
+
+# Parameter tuning with k-fold cross-validation with `caret`
+
+&lt;img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+.pull-left45[
+
+# &lt;i&gt;k&lt;/i&gt;-fold cross validation for Ridge and Lasso
+
+&lt;p style="padding-top:1px"&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Goal&lt;/b&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Use 10-fold cross-validation to identify &lt;high&gt;optimal regularization parameters&lt;/high&gt; for a regression model.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Using&lt;/b&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;font style="font-size:22px"&gt;&lt;mono&gt;&amp;alpha;	&amp;isin; 0, .5., 1&lt;/mono&gt;&lt;/font&gt; and &lt;font style="font-size:22px"&gt;&lt;mono&gt;&amp;lambda;	&amp;isin; 1, 2., ..., 100&lt;/mono&gt;&lt;/font&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+
+.pull-right45[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;p align = "center"&gt;
+  &lt;img src="image/lasso_process.png" height=460px&gt;
+&lt;/p&gt;
+
+
+]
+
+
+
+---
+
+# &lt;mono&gt;trainControl()&lt;/mono&gt;
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Specify the use of k-fold cross-validation using the &lt;mono&gt;trainControl()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Argument&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;method&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    The resampling method, use &lt;mono&gt;"cv"&lt;/mono&gt; for cross validation.
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;number&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    The number of folds.
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;/table&gt;
+
+
+]
+
+.pull-right5[
+
+
+```r
+# Specify 10 fold cross-validation
+ctrl_cv &lt;- trainControl(method = "cv",
+                        number = 10)
+
+# Predict income using glmnet
+glmnet_mod &lt;- train(form = income ~ .,
+                    data = baselers,
+                    method = "glmnet",  
+                    trControl = ctrl_cv)
+```
+
+]
+
+---
+
+# &lt;mono&gt;tuneGrid&lt;/mono&gt;
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Specify the tuning parameter values to consider using the &lt;high&gt;&lt;mono&gt;tuneGrid&lt;/mono&gt;&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;tuneGrid&lt;/mono&gt; expects a &lt;high&gt;list or data frame&lt;/high&gt; as input.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;high&gt;Parameter combinations&lt;/high&gt; can be easily created using &lt;mono&gt;expand.grid&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+# Specify 10 fold cross-validation
+ctrl_cv &lt;- trainControl(method = "cv",
+                        number = 10)
+
+# Predict income using glmnet
+glmnet_mod &lt;- train(form = income ~ .,
+                    data = baselers,
+                    method = "glmnet",  
+                    trControl = ctrl_cv,
+                    tuneGrid = expand.grid(
+                      alpha = c(0, .5, 1),
+                      lambda = 1:100))
+```
+
+]
+
+
+---
+
+.pull-left4[
+
+# &lt;i&gt;k&lt;/i&gt;-Fold Cross validation
+
+&lt;p style="padding-top:1px"&gt;&lt;/p&gt;
+
+
+```r
+# Print summary information
+glmnet_mod
+```
+
+&lt;br&gt;
+
+At the end...
+
+`RMSE was used to select the optimal model using the smallest value.
+The final values used for the model were alpha = 1 and lambda = 27.`
+
+
+]
+
+.pull-right5[
+
+&lt;br&gt;
+
+
+```
+glmnet 
+
+1000 samples
+  19 predictor
+
+No pre-processing
+Resampling: Cross-Validated (10 fold) 
+Summary of sample sizes: 900, 901, 900, 901, 901, 899, ... 
+Resampling results across tuning parameters:
+
+  alpha  lambda  RMSE  Rsquared  MAE  
+  0.0      1     1047  0.8614    823.3
+  0.0      2     1047  0.8614    823.3
+  0.0      3     1047  0.8614    823.3
+  0.0      4     1047  0.8614    823.3
+  0.0      5     1047  0.8614    823.3
+  0.0      6     1047  0.8614    823.3
+  0.0      7     1047  0.8614    823.3
+  0.0      8     1047  0.8614    823.3
+  0.0      9     1047  0.8614    823.3
+  0.0     10     1047  0.8614    823.3
+  0.0     11     1047  0.8614    823.3
+  0.0     12     1047  0.8614    823.3
+```
+
+]
+
+---
+
+# &lt;i&gt;k&lt;/i&gt;-Fold Cross validation
+
+.pull-left4[
+
+
+```r
+# Visualise tuning error curve
+plot(glmnet_mod)
+```
+
+&lt;br&gt;
+
+At the end...
+
+`RMSE was used to select the optimal model using the smallest value.
+The final values used for the model were alpha = 1 and lambda = 27.`
+
+
+]
+
+.pull-right5[
+
+&lt;img src="Tuning_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+.pull-left35[
+
+# Final model
+
+
+```r
+# Model coefficients for best 
+#   alpha and lambda
+coef(glmnet_mod$finalModel,
+     glmnet_mod$bestTune$lambda)
+```
+]
+
+.pull-right5[
+
+&lt;br&gt;
+
+
+```
+25 x 1 sparse Matrix of class "dgCMatrix"
+                                       1
+(Intercept)                     462.1958
+id                                .     
+sexmale                           .     
+age                             116.1387
+height                            1.8865
+weight                            .     
+educationobligatory_school        .     
+educationSEK_II                   .     
+educationSEK_III                  1.1857
+confessionconfessionless          3.9774
+confessionevangelical-reformed    .     
+confessionmuslim                  .     
+confessionother                   .     
+children                        -21.0502
+happiness                      -128.5448
+fitness                           .     
+food                              2.3193
+alcohol                          22.2351
+tattoos                         -24.8320
+rhine                             0.4256
+```
+
+]
+
+---
+
+# Model comparison
+
+.pull-left35[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Compare the prediction performance of several models with &lt;mono&gt;resamples()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;The &lt;mono&gt;summary()&lt;/mono&gt; of this object will print 'prediction' error statistics from cross-validation during training. This is your &lt;high&gt;estimate of future prediction performance&lt;/high&gt;!&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right55[
+
+
+```r
+# Simple competitor model
+glm_mod &lt;-  train(form = income ~ .,
+                  data = baselers,  
+                  method = "glm",
+                  trControl = ctrl_cv)
+
+# Determine prediction statistics 
+resamples_mod &lt;- resamples(
+  list(glmnet = glmnet_mod,
+       glm = glm_mod))
+
+# Print result summary
+summary(resamples_mod)
+```
+
+]
+
+---
+
+.pull-left35[
+
+# Model comparison
+
+&lt;p style="padding-top:1px"&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Compare the prediction performance of several models with &lt;mono&gt;resamples()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;The &lt;mono&gt;summary()&lt;/mono&gt; of this object will print 'prediction' error statistics from cross-validation during training. This is your &lt;high&gt;estimate of future prediction performance&lt;/high&gt;!&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right55[
+
+&lt;br&gt;&lt;br&gt;
+
+
+```
+
+Call:
+summary.resamples(object = resamples_mod)
+
+Models: glmnet, glm 
+Number of resamples: 10 
+
+MAE 
+        Min. 1st Qu. Median  Mean 3rd Qu.  Max. NA's
+glmnet 743.1   761.2  818.3 807.8   836.7 891.7    0
+glm    734.8   777.7  801.6 812.8   844.5 892.2    0
+
+RMSE 
+        Min. 1st Qu. Median Mean 3rd Qu. Max. NA's
+glmnet 936.5   990.3   1042 1028    1076 1098    0
+glm    950.7  1008.9   1016 1034    1063 1128    0
+
+Rsquared 
+         Min. 1st Qu. Median   Mean 3rd Qu.   Max. NA's
+glmnet 0.8386  0.8440 0.8582 0.8638  0.8865 0.9021    0
+glm    0.8268  0.8549 0.8694 0.8624  0.8740 0.8825    0
+```
+
+]
+
+
+---
+class: middle, center
+
+&lt;h1&gt;&lt;a href=https://therbootcamp.github.io/AML_2020AMLD/_sessions/Tuning/Tuning_practical.html&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

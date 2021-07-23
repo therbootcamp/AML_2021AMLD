@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Introduction</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Applied Machine Learning with R   The R Bootcamp" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introduction
+### Applied Machine Learning with R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp </a> <br> <a href='https://therbootcamp.github.io/AML_2020AMLD/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### January 2020
+
+---
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;
+  &lt;span style="text-align:center"&gt;
+    &lt;span&gt; 
+      &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/&gt;
+    &lt;/span&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;span style="padding-left:82px"&gt; 
+        &lt;font color="#7E7E7E"&gt;
+          www.therbootcamp.com
+        &lt;/font&gt;
+      &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;font color="#7E7E7E"&gt;
+       Applied Machine Learning with R | January 2020
+      &lt;/font&gt;
+    &lt;/a&gt;
+    &lt;/span&gt;
+  &lt;/div&gt; 
+
+---
+
+class: middle, center
+
+
+
+
+
+---
+
+# What is machine learning?
+
+.pull-left45[
+
+&lt;b&gt;Machine learning is&lt;/b&gt;...
+
+&lt;p style="padding-left:20px"&gt;
+
+...a &lt;high&gt;field of artificial intelligence&lt;/high&gt;...&lt;br&gt;&lt;br&gt; 
+
+...that uses &lt;high&gt;statistical techniques&lt;/high&gt;... &lt;br&gt;&lt;br&gt;
+
+...to allow computer systems to &lt;high&gt;"learn"&lt;/high&gt;,...&lt;br&gt;&lt;br&gt;
+
+...i.e., to progressively &lt;high&gt;improve performance&lt;/high&gt; on a specific task...&lt;br&gt;&lt;br&gt;
+
+...from small or large amounts of &lt;high&gt;data&lt;/high&gt;,... &lt;br&gt;&lt;br&gt;
+
+....&lt;high&gt;without being explicitly programmed&lt;/high&gt;....&lt;br&gt;&lt;br&gt;
+
+....with the goal to &lt;high&gt;discover structure&lt;/high&gt; or &lt;/high&gt;improve decision making and predictions&lt;/high&gt;.
+
+&lt;/p&gt;
+
+
+]
+
+
+.pull-right45[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/ml_robot.jpg" height=380px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://medium.com/@dkwok94/machine-learning-for-my-grandma-ca242e97ef62"&gt;medium.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+]
+
+---
+
+# ML's origin
+
+&lt;div align="center"&gt;
+&lt;iframe width="800" height="450" src="https://www.youtube.com/embed/cNxadbrN_aI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+---
+
+# Easy to confuse
+
+.pull-left45[
+
+&lt;font style="font-size:24px"&gt;&lt;b&gt;AI&lt;/b&gt;&lt;/font&gt; is &lt;high&gt;intelligence demonstrated by machines&lt;/high&gt;, in contrast to the natural intelligence displayed by humans and animals.
+
+&lt;font style="font-size:24px"&gt;&lt;b&gt;Statistics&lt;/b&gt;&lt;/font&gt; is a &lt;high&gt;branch of mathematics&lt;/high&gt; dealing with data collection, organization, analysis, interpretation and presentation.
+
+&lt;font style="font-size:24px"&gt;&lt;b&gt;Big Data&lt;/b&gt;&lt;/font&gt; deals with data sets that are &lt;high&gt;too large or complex&lt;/high&gt; to be dealt with by traditional data-processing application software.
+
+&lt;font style="font-size:24px"&gt;&lt;b&gt;Data Science&lt;/b&gt;&lt;/font&gt; is a multi-disciplinary field that uses scientific methods, processes, algorithms and systems to &lt;high&gt;extract knowledge and insights&lt;/high&gt; from structured and unstructured data.
+
+
+]
+
+.pull-right45[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/areas.png" height=390px&gt;&lt;br&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Data-driven decisions
+
+.pull-left5[
+
+&lt;p&gt;
+&lt;font style="font-size:24px;"&gt;&lt;b&gt;Predicting Heart Attacks&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+
+You are an intake nurse at an emergency room.&lt;br&gt;&lt;br2&gt;
+
+A patient comes in complaining of chest pain and thinks he is having a heart attack&lt;br&gt;&lt;br2&gt;
+
+&lt;high&gt;&lt;i&gt;How do you decide whether or not the patient is really having a heart attack?&lt;/i&gt;&lt;/high&gt;&lt;br&gt;&lt;br&gt;&lt;br2&gt;
+
+&lt;font style="font-size:24px"&gt;&lt;b&gt;Predicting Sales&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+
+You are an analyst at a retail corporation.&lt;br&gt;&lt;br2&gt;
+
+The executive team is considering whether or not to open a new retail location in Basel.&lt;br&gt;&lt;br2&gt;
+
+&lt;high&gt;&lt;i&gt;How can you predict what the sales of the new store would be?&lt;/i&gt;&lt;/high&gt;
+&lt;/p&gt;
+]
+
+.pull-right4[
+
+
+&lt;p align = "center"&gt;
+&lt;img src="image/chestpain.jpg" height=180px width=260px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://medium.com/@dkwok94/machine-learning-for-my-grandma-ca242e97ef62"&gt;medium.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/storefront.jpg" height=180px width=260px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://thirdmanrecords.com/locations/detroit-storefront"&gt;thirdmanrecords.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+&lt;p align = "center"&gt;
+&lt;img src="image/trump_gut_statement.jpg"&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="cnn.com"&gt;cnn.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+---
+
+# Can we trust our intuition?
+
+.pull-left45[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/gigi.jpg" width=310px height=412px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://www.amazon.co.uk/Gut-Feelings-Better-Decision-Making/dp/0141015918"&gt;amazon.uk&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+.pull-right45[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/chestpain_quote.png" height=180px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://medium.com/@dkwok94/machine-learning-for-my-grandma-ca242e97ef62"&gt;medium.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/storefront_quote.png" height=180px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://thirdmanrecords.com/locations/detroit-storefront"&gt;thirdmanrecords.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Problems with intuition
+
+.pull-left45[
+
+&lt;b&gt;Intuition&lt;/b&gt;...
+
+&lt;p align="center" style="padding-left:100px;padding-right:100px"&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;font style="font-size:40px"&gt;&lt;i&gt;What problems arise from trusting one's intuition?&lt;/i&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+]
+
+.pull-right45[
+
+
+&lt;p align = "center"&gt;
+&lt;img src="image/chestpain_quote.png" height=180px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://medium.com/@dkwok94/machine-learning-for-my-grandma-ca242e97ef62"&gt;medium.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/storefront_quote.png" height=180px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://thirdmanrecords.com/locations/detroit-storefront"&gt;thirdmanrecords.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Problems with intuition
+
+.pull-left45[
+
+&lt;b&gt;Intuition&lt;/b&gt;...
+
+&lt;p style="padding-left:20px"&gt;
+...might not tell you anything about &lt;high&gt;how the prediction&lt;/high&gt; has been made.&lt;br&gt;&lt;br&gt;
+
+...could be based on &lt;high&gt;reasons other than accuracy&lt;/high&gt;, e.g., self protection.&lt;br&gt;&lt;br&gt;
+
+...impossible to know if &lt;high&gt;critical information is being ignored&lt;/high&gt;.&lt;br&gt;&lt;br&gt;
+
+...is &lt;high&gt;difficult to reproduce&lt;/high&gt; and rarely permits rigorous evaluation.&lt;br&gt;&lt;br&gt;
+
+...can always be &lt;high&gt;defended in hindsight&lt;/high&gt;.
+&lt;/p&gt;
+]
+
+.pull-right45[
+
+
+&lt;p align = "center"&gt;
+&lt;img src="image/chestpain_quote.png" height=180px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://medium.com/@dkwok94/machine-learning-for-my-grandma-ca242e97ef62"&gt;medium.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/storefront_quote.png" height=180px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://thirdmanrecords.com/locations/detroit-storefront"&gt;thirdmanrecords.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+
+---
+
+# Machine learning is data-driven
+
+.pull-left45[
+
+&lt;b&gt;Data-driven, ML-based heart rate prediction&lt;/b&gt;
+
+Based on &lt;high&gt;data&lt;/high&gt; from past patients &lt;high&gt;at this hospital&lt;/high&gt;, a &lt;high&gt;regression model&lt;/high&gt;, using the patient's &lt;high&gt;age, cholesterol level, and ecg&lt;/high&gt;, &lt;high&gt;predicts&lt;/high&gt; the probability that this patient is having a heart attack is only &lt;high&gt;45%&lt;/high&gt;.
+
+&lt;p align = "center"&gt;
+&lt;img src="image/heartdisease_data_ss.jpg"&gt;
+&lt;/p&gt;
+
+
+] 
+
+.pull-right45[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/chestpain_quote_ml.png" height=180px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://medium.com/@dkwok94/machine-learning-for-my-grandma-ca242e97ef62"&gt;medium.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/storefront_quote_ml.png" height=180px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://thirdmanrecords.com/locations/detroit-storefront"&gt;thirdmanrecords.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+] 
+
+
+
+---
+
+# Benefits of ML
+
+.pull-left45[
+
+&lt;b&gt;Machine learning &lt;i&gt;algorithms&lt;/i&gt;&lt;/b&gt;....
+
+&lt;p align="center" style="padding-left:100px;padding-right:100px"&gt;
+  &lt;br&gt;&lt;br&gt;&lt;br&gt;
+  &lt;font style="font-size:40px"&gt;&lt;i&gt;What are benefits of machine learning?&lt;/i&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+] 
+
+.pull-right45[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/chestpain_quote_ml.png" height=180px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://medium.com/@dkwok94/machine-learning-for-my-grandma-ca242e97ef62"&gt;medium.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/storefront_quote_ml.png" height=180px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://thirdmanrecords.com/locations/detroit-storefront"&gt;thirdmanrecords.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+] 
+
+---
+
+# Benefits of ML
+
+.pull-left45[
+
+&lt;b&gt;Machine learning &lt;i&gt;algorithms&lt;/i&gt;&lt;/b&gt;....
+
+&lt;p style="padding-left:20px"&gt;
+...can integrate all available &lt;high&gt;data&lt;/high&gt;.&lt;br&gt;&lt;br&gt;
+
+...make &lt;high&gt;explicit, reproducible, and quantitative&lt;/high&gt; predictions of variables of interest.&lt;br&gt;&lt;br&gt;
+
+...can tell you &lt;high&gt;which variables are important&lt;/high&gt; and which are not.&lt;br&gt;&lt;br&gt;
+
+...can give you &lt;high&gt;probability estimates&lt;/high&gt;, and estimated errors, rather than single decisions or point estimates.&lt;br&gt;&lt;br&gt;
+
+...can reveal &lt;high&gt;novel insights&lt;/high&gt; about your data.&lt;br&gt;&lt;br&gt;
+
+...can be &lt;high&gt;automated&lt;/high&gt;.
+&lt;/p&gt;
+
+] 
+
+.pull-right45[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/chestpain_quote_ml.png" height=180px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://medium.com/@dkwok94/machine-learning-for-my-grandma-ca242e97ef62"&gt;medium.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/storefront_quote_ml.png" height=180px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://thirdmanrecords.com/locations/detroit-storefront"&gt;thirdmanrecords.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+] 
+
+
+---
+
+.pull-left3[
+
+# Types of machine learning tasks
+
+There are many types of machine learning tasks, each of which call for different models.
+
+&lt;high&gt;We will focus on supervised machine learning&lt;/high&gt;.
+
+]
+
+.pull-right65[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/mltypes.png" height=500px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="image/mltypes.png"&gt;amazonaws.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+]
+
+
+
+---
+
+# Data terminology
+
+
+.pull-left5[
+&lt;p&gt;
+&lt;table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px"&gt;
+
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Term&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Definition&lt;/b&gt;
+  &lt;/td&gt;  
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Example&lt;/b&gt;
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Case&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+   A specific &lt;high&gt;observation&lt;/high&gt; of data.
+  &lt;/td&gt;  
+  &lt;td bgcolor="white"&gt;
+   A patient, a site, etc.
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Feature&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+   An measurable &lt;high&gt;property&lt;/high&gt; of cases. Also called predictors. 
+  &lt;/td&gt;  
+  &lt;td bgcolor="white"&gt;
+   Age, temperature, country, etc.
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Criterion&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+   The &lt;high&gt;feature&lt;/high&gt; that you want to &lt;high&gt;predict&lt;/high&gt;.
+  &lt;/td&gt;  
+  &lt;td bgcolor="white"&gt;
+   Heart attack, sales, etc.
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Data&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+   Typically &lt;high&gt;rectangular&lt;/high&gt; representation of cases (rows) and features (columns).
+  &lt;/td&gt;  
+  &lt;td bgcolor="white"&gt;
+   &lt;mono&gt;.csv&lt;/mono&gt;, &lt;mono&gt;.xls&lt;/mono&gt;, &lt;mono&gt;.sav&lt;/mono&gt;, etc.
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/p&gt;
+]
+
+
+.pull-right4[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/terminology.png"&gt;&lt;br&gt;
+&lt;/p&gt;
+
+]
+
+
+
+---
+
+# Supervised learning
+
+.pull-left5[
+
+The &lt;high&gt;dominant type&lt;/high&gt; of machine learning.  
+
+Supervised learning uses &lt;high&gt;labeled data&lt;/high&gt; to learn &lt;high&gt;a model&lt;/high&gt; that relates the criterion to the features.  
+
+&lt;br&gt;
+&lt;u&gt;Verbal model&lt;/u&gt;
+
+&lt;font style="font-size:24px"&gt;&lt;mono&gt;if cp (chest pain) is not a (asymptomatic) and age is larger than 60 then high probability of hearth attack, otherwise low probability.&lt;/mono&gt;&lt;/font&gt;
+
+
+
+
+]
+
+.pull-right4[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/supervised.png"&gt;&lt;br&gt;
+&lt;/p&gt;
+]
+
+---
+
+# 3 key (supervised) models
+
+&lt;p align = "center" style="padding-top:20px"&gt;
+&lt;img src="image/models.png"&gt;&lt;br&gt;
+&lt;/p&gt;
+
+
+---
+
+# 2 types of supervised problems
+
+.pull-left5[
+
+There are two types of supervised learning problems that can often be approached using the same model.
+
+&lt;font style="font-size:24px"&gt;&lt;b&gt;Regression&lt;/b&gt;&lt;/font&gt;
+
+Regression problems involve the &lt;high&gt;prediction of a quantitative feature&lt;/high&gt;. 
+
+E.g., predicting the cholesterol level as a function of age. 
+
+&lt;font style="font-size:24px"&gt;&lt;b&gt;Classification&lt;/b&gt;&lt;/font&gt;
+
+Classification problems involve the &lt;high&gt;prediction of a categorical feature&lt;/high&gt;.   
+
+E.g., predicting the origin of chest pain as a function of age and heart attack risk. 
+
+
+
+]
+
+.pull-right4[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/twotypes.png" height=440px&gt;&lt;br&gt;
+&lt;/p&gt;
+
+]
+
+
+---
+
+# Unsupervised learning
+
+.pull-left5[
+
+Analyzes the relationships among cases (&lt;high&gt;clustering&lt;/high&gt;) or among features (&lt;high&gt;dimensionality reduction&lt;/high&gt;) to &lt;high&gt;discover structures&lt;/high&gt; such as groups or meta-features. 
+
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px"&gt;
+
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Approach&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt;  
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Example&lt;/b&gt;
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Clustering&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+   Analyze distances between cases to identify &lt;high&gt;clusters of homogeneous cases&lt;/high&gt;.
+  &lt;/td&gt;  
+  &lt;td bgcolor="white"&gt;
+   Types of customers or patients.
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Dimension-&lt;br&gt;ality reduction&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+   Analyze correlations between features to identify &lt;high&gt;higher order features&lt;/high&gt;. 
+  &lt;/td&gt;  
+  &lt;td bgcolor="white"&gt;
+   Dimensions of personality or user experience.
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;/table&gt;
+
+
+
+]
+
+.pull-right4[
+
+
+&lt;p align = "center" height=380px&gt;
+&lt;img src="image/iris_kmeans.png" height=400px&gt;&lt;br&gt;
+&lt;/p&gt;
+
+]
+
+
+
+---
+
+# Reinforcement learning
+
+.pull-left5[
+
+&lt;high&gt;Learns iteratively&lt;/high&gt; from minimal supervision provided by &lt;high&gt;performance feedback&lt;/high&gt;.   
+
+RL is closely &lt;high&gt;related to psychological theories of learning&lt;/high&gt;. 
+
+&lt;u&gt;Examples&lt;/u&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+  &lt;col width="30%"&gt;
+  &lt;col width="70%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Application&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Model fitting&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+   Iteratively &lt;high&gt;change model parameters&lt;/high&gt; to improve prediction.  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Robot movements&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+   Iteratively &lt;high&gt;change movement&lt;/high&gt; patterns to increase pancake-catch probability.  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Games&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+   Iteratively &lt;high&gt;change controller input&lt;/high&gt; patterns to improve Mario Kart racing time.  
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right4[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/roboarm.gif" width=320px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://giphy.com/explore/reinforcement-learning"&gt;giphy.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/mariokart.gif" width=320px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://blogs.nvidia.com/blog/2017/04/14/tensorkart-ai-mario-kart/"&gt;nvidia.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+
+---
+
+# Reinforcement learning
+
+.pull-left5[
+
+&lt;high&gt;Learns iteratively&lt;/high&gt; from minimal supervision provided by &lt;high&gt;performance feedback&lt;/high&gt;.   
+
+RL is closely &lt;high&gt;related to psychological theories of learning&lt;/high&gt;. 
+
+&lt;u&gt;Examples&lt;/u&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+  &lt;col width="30%"&gt;
+  &lt;col width="70%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Application&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Model fitting&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+   Iteratively &lt;high&gt;change model parameters&lt;/high&gt; to improve prediction.  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Robot movements&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+   Iteratively &lt;high&gt;change movement&lt;/high&gt; patterns to increase pancake-catch probability.  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Games&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+   Iteratively &lt;high&gt;change controller input&lt;/high&gt; patterns to improve Mario Kart racing time.  
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right4[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;iframe width=550px height=310px src="https://www.youtube.com/embed/tXlM99xPQC8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+]
+
+
+---
+
+# Machine learning is more than algorithms
+
+&lt;p align = "center"&gt;
+&lt;img src="image/mlsteps.png" height=440px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://www.houseofbots.com/images/news/11493/cover.png"&gt;houseofbots.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+
+---
+class: middle, center
+
+&lt;h1&gt;&lt;a href=https://therbootcamp.github.io/ML_2019Oct/index.html&gt;Schedule&lt;/a&gt;&lt;/h1&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

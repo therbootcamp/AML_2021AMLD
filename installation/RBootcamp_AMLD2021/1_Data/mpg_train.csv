@@ -1,0 +1,101 @@
+manufacturer,model,displ,year,cyl,drv,cty,hwy,fl,class
+dodge,ram 1500 pickup 4wd,5.7,2008,8,4,13,17,r,pickup
+dodge,durango 4wd,4.7,2008,8,4,13,17,r,suv
+jeep,grand cherokee 4wd,5.7,2008,8,4,13,18,r,suv
+audi,a4 quattro,3.1,2008,6,4,17,25,p,compact
+honda,civic,2,2008,4,f,21,29,p,subcompact
+hyundai,sonata,2.4,2008,4,f,21,30,r,midsize
+toyota,camry,3.5,2008,6,f,19,28,r,midsize
+ford,f150 pickup 4wd,4.2,1999,6,4,14,17,r,pickup
+jeep,grand cherokee 4wd,3.7,2008,6,4,15,19,r,suv
+dodge,caravan 2wd,3,1999,6,f,17,24,r,minivan
+mercury,mountaineer 4wd,4.6,2008,8,4,13,19,r,suv
+toyota,corolla,1.8,2008,4,f,28,37,r,compact
+dodge,durango 4wd,5.7,2008,8,4,13,18,r,suv
+ford,f150 pickup 4wd,5.4,1999,8,4,11,15,r,pickup
+subaru,impreza awd,2.5,1999,4,4,19,26,r,subcompact
+nissan,altima,3.5,2008,6,f,19,26,p,midsize
+dodge,caravan 2wd,3.8,1999,6,f,15,22,r,minivan
+ford,explorer 4wd,4,1999,6,4,14,17,r,suv
+volkswagen,jetta,2,2008,4,f,21,29,p,compact
+nissan,maxima,3,1999,6,f,19,25,r,midsize
+hyundai,sonata,3.3,2008,6,f,19,28,r,midsize
+nissan,pathfinder 4wd,3.3,1999,6,4,15,17,r,suv
+volkswagen,jetta,2,1999,4,f,21,29,r,compact
+pontiac,grand prix,5.3,2008,8,f,16,25,p,midsize
+volkswagen,jetta,2.8,1999,6,f,17,24,r,compact
+chevrolet,malibu,3.5,2008,6,f,18,29,r,midsize
+subaru,forester awd,2.5,1999,4,4,18,24,r,suv
+toyota,camry,2.4,2008,4,f,21,31,r,midsize
+hyundai,sonata,2.5,1999,6,f,18,26,r,midsize
+dodge,dakota pickup 4wd,5.2,1999,8,4,11,15,r,pickup
+honda,civic,1.6,1999,4,f,28,33,r,subcompact
+toyota,camry solara,2.4,2008,4,f,21,31,r,compact
+dodge,ram 1500 pickup 4wd,5.2,1999,8,4,11,15,r,pickup
+toyota,camry solara,3,1999,6,f,18,26,r,compact
+volkswagen,new beetle,2,1999,4,f,21,29,r,subcompact
+toyota,4runner 4wd,4,2008,6,4,16,20,r,suv
+volkswagen,gti,2,1999,4,f,19,26,r,compact
+volkswagen,new beetle,2.5,2008,5,f,20,28,r,subcompact
+toyota,corolla,1.8,1999,4,f,24,30,r,compact
+chevrolet,corvette,6.2,2008,8,r,16,26,p,2seater
+dodge,ram 1500 pickup 4wd,4.7,2008,8,4,12,16,r,pickup
+subaru,impreza awd,2.2,1999,4,4,19,26,r,subcompact
+nissan,maxima,3.5,2008,6,f,19,25,p,midsize
+volkswagen,gti,2,2008,4,f,22,29,p,compact
+volkswagen,gti,2.8,1999,6,f,17,24,r,compact
+ford,mustang,4,2008,6,r,17,26,r,subcompact
+volkswagen,jetta,2.5,2008,5,f,21,29,r,compact
+subaru,impreza awd,2.2,1999,4,4,21,26,r,subcompact
+volkswagen,new beetle,2,1999,4,f,19,26,r,subcompact
+toyota,toyota tacoma 4wd,3.4,1999,6,4,15,19,r,pickup
+volkswagen,passat,2.8,1999,6,f,18,26,p,midsize
+chevrolet,malibu,3.6,2008,6,f,17,26,r,midsize
+dodge,caravan 2wd,3.3,2008,6,f,17,24,r,minivan
+dodge,dakota pickup 4wd,3.7,2008,6,4,14,18,r,pickup
+honda,civic,1.8,2008,4,f,24,36,c,subcompact
+dodge,caravan 2wd,3.8,1999,6,f,15,21,r,minivan
+chevrolet,c1500 suburban 2wd,5.7,1999,8,r,13,17,r,suv
+dodge,caravan 2wd,3.3,1999,6,f,16,22,r,minivan
+honda,civic,1.8,2008,4,f,25,36,r,subcompact
+toyota,toyota tacoma 4wd,4,2008,6,4,16,20,r,pickup
+ford,explorer 4wd,4,2008,6,4,13,19,r,suv
+hyundai,sonata,2.4,2008,4,f,21,31,r,midsize
+toyota,camry solara,2.2,1999,4,f,21,27,r,compact
+hyundai,tiburon,2,1999,4,f,19,26,r,subcompact
+ford,expedition 2wd,5.4,1999,8,r,11,17,r,suv
+toyota,camry,3,1999,6,f,18,26,r,midsize
+ford,expedition 2wd,5.4,2008,8,r,12,18,r,suv
+ford,expedition 2wd,4.6,1999,8,r,11,17,r,suv
+toyota,4runner 4wd,3.4,1999,6,4,15,17,r,suv
+toyota,camry solara,2.4,2008,4,f,22,31,r,compact
+dodge,ram 1500 pickup 4wd,4.7,2008,8,4,13,17,r,pickup
+dodge,dakota pickup 4wd,4.7,2008,8,4,14,19,r,pickup
+toyota,toyota tacoma 4wd,2.7,2008,4,4,17,22,r,pickup
+pontiac,grand prix,3.8,1999,6,f,16,26,p,midsize
+toyota,4runner 4wd,3.4,1999,6,4,15,19,r,suv
+toyota,toyota tacoma 4wd,3.4,1999,6,4,15,17,r,pickup
+lincoln,navigator 2wd,5.4,1999,8,r,11,16,p,suv
+hyundai,tiburon,2.7,2008,6,f,17,24,r,subcompact
+land rover,range rover,4,1999,8,4,11,15,p,suv
+audi,a4 quattro,3.1,2008,6,4,15,25,p,compact
+toyota,toyota tacoma 4wd,2.7,1999,4,4,16,20,r,pickup
+ford,mustang,3.8,1999,6,r,18,25,r,subcompact
+toyota,land cruiser wagon 4wd,5.7,2008,8,4,13,18,r,suv
+volkswagen,jetta,2,1999,4,f,19,26,r,compact
+audi,a4,2.8,1999,6,f,18,26,p,compact
+ford,f150 pickup 4wd,4.6,1999,8,4,13,16,r,pickup
+hyundai,sonata,2.4,1999,4,f,18,26,r,midsize
+toyota,4runner 4wd,2.7,1999,4,4,16,20,r,suv
+dodge,caravan 2wd,3.3,2008,6,f,11,17,e,minivan
+toyota,camry,2.2,1999,4,f,21,29,r,midsize
+volkswagen,gti,2,1999,4,f,21,29,r,compact
+chevrolet,k1500 tahoe 4wd,5.7,1999,8,4,11,15,r,suv
+dodge,dakota pickup 4wd,3.9,1999,6,4,13,17,r,pickup
+dodge,durango 4wd,5.9,1999,8,4,11,15,r,suv
+jeep,grand cherokee 4wd,4.7,2008,8,4,9,12,e,suv
+dodge,dakota pickup 4wd,4.7,2008,8,4,9,12,e,pickup
+dodge,ram 1500 pickup 4wd,5.2,1999,8,4,11,16,r,pickup
+audi,a6 quattro,4.2,2008,8,4,16,23,p,midsize
+audi,a4,2.8,1999,6,f,16,26,p,compact
+honda,civic,1.8,2008,4,f,26,34,r,subcompact

@@ -1,0 +1,271 @@
+---
+title: "Wrap up"
+author: "Applied Machine Learning with R<br>
+  <a href='https://therbootcamp.github.io'>
+    The R Bootcamp @ AMLD
+  </a>
+  <br>
+  <a href='https://therbootcamp.github.io/AML_2020AMLD/'>
+    <i class='fas fa-clock' style='font-size:.9em;'></i>
+  </a>&#8239; 
+  <a href='https://therbootcamp.github.io'>
+    <i class='fas fa-home' style='font-size:.9em;' ></i>
+  </a>&#8239;
+  <a href='mailto:therbootcamp@gmail.com'>
+    <i class='fas fa-envelope' style='font-size: .9em;'></i>
+  </a>&#8239;
+  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+    <i class='fab fa-linkedin' style='font-size: .9em;'></i>
+  </a>"
+date: "January 2020"
+output:
+  xaringan::moon_reader:
+    css: ["default", "baselrbootcamp.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+layout: true
+
+<div class="my-footer">
+  <span style="text-align:center">
+    <span> 
+      <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/>
+    </span>
+    <a href="https://therbootcamp.github.io/">
+      <span style="padding-left:82px"> 
+        <font color="#7E7E7E">
+          www.therbootcamp.com
+        </font>
+      </span>
+    </a>
+    <a href="https://therbootcamp.github.io/">
+      <font color="#7E7E7E">
+      Applied Machine Learning with R @ AMLD  | January 2020
+      </font>
+    </a>
+    </span>
+  </div> 
+
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+# see: https://github.com/yihui/xaringan
+# install.packages("xaringan")
+# see: 
+# https://github.com/yihui/xaringan/wiki
+# https://github.com/gnab/remark/wiki/Markdown
+options(width=110)
+options(digits = 4)
+```
+
+
+.pull-left45[
+<br><br><br><br><br>
+#  Hello Machine Learners!
+
+You've got the essentials of Machine Learning covered!
+
+]
+
+.pull-right4[
+
+<img src="image/schedule.png" height="580" align="center">
+]
+
+
+---
+
+# Books
+
+Here is a very incomplete series of good books. They are ordered by complexity, beginning with user-friendly books on <high>machine learning</high> and <high>data science</high> in R and ending with books focusing on the more <high>advanced topics of the R language</high>.
+
+
+<table width="100%" style="cellspacing:0; cellpadding:0; border:none;">
+
+  <tr>    
+
+    <td>
+  <a href="http://appliedpredictivemodeling.com/"><img border="0" alt="W3Schools" src="http://static1.squarespace.com/static/51156277e4b0b8b2ffe11c00/t/51157487e4b0b8b2ffe16829/1509217882069/?format=1500w" height="180" ></a>
+  </td>
+  
+      <td>
+  <a href="http://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf"><img border="0" alt="W3Schools" src="https://images-na.ssl-images-amazon.com/images/I/41EaH4W9LVL._SX332_BO1,204,203,200_.jpg" height="180" ></a>
+  </td>
+  
+        <td>
+  <a href="https://www.manning.com/books/deep-learning-with-r"><img border="0" alt="W3Schools" src="https://images-na.ssl-images-amazon.com/images/I/51h5d4dYaoL._SX396_BO1,204,203,200_.jpg" height="180" ></a>
+  </td>
+
+  
+  <td>
+  <a href="https://www.tidytextmining.com/"><img border="0" alt="W3Schools" src="https://www.tidytextmining.com/images/cover.png" height="180" ></a>
+  </td>
+  
+  <td>
+  <a href="https://www.orellfuessli.ch/shop/home/artikeldetails/ID35367941.html?ProvID=10917736&gclid=Cj0KCQiAg_HhBRDNARIsAGHLV5238Q26gQmFttHRnYGjcAhz4CslStb-3qBegvuZS5gnCpWSLNlQvF0aAgfOEALw_wcB"><img border="0" alt="W3Schools" src="https://assets.thalia.media/img/35367941-00-00.jpg" height="180" ></a>
+  </td>
+  
+  </tr>
+  
+
+  <tr style="background-color:#ffffff">
+
+    <td> 
+  <a href="http://r4ds.had.co.nz/"><img border="0" alt="W3Schools" src="http://r4ds.had.co.nz/cover.png" height="180"></a>
+  </td>
+
+  <td>
+  <a href="https://covers.oreillystatic.com/images/0636920028574/cat.gif"><img border="0" alt="W3Schools" src="https://covers.oreillystatic.com/images/0636920028574/cat.gif" height="180"></a>
+  </td>
+
+        <td>
+  <a href="https://csgillespie.github.io/efficientR/"><img border="0" alt="W3Schools" src="https://csgillespie.github.io/efficientR/figures/f0_web.png" height="180" ></a>
+  </td>
+
+  <td>
+  <a href="www.rcpp.org/"><img border="0" alt="W3Schools" src="http://t3.gstatic.com/images?q=tbn:ANd9GcSO9T6JQYtpQgcaCXudbqMB-fnvTjGowsnmeh9-BQku3zveR4-J" height="180" ></a>
+  </td>
+  
+  
+  <td>
+  <a href="http://adv-r.had.co.nz/"><img border="0" alt="W3Schools" src="https://images.tandf.co.uk/common/jackets/amazon/978146658/9781466586963.jpg" height="180" ></a>
+  </td>
+
+
+  </tr>
+  
+
+
+</table>
+<br>
+
+
+---
+
+.pull-left4[
+
+# Websites
+
+The web is a great place to learn about R. 
+
+<font size = 4><i>Best begin your journey with:</i></font>
+
+[Google](www.google.com). Just be sure to add *r* to the the search query. 
+
+<br>
+
+<font size = 4><i>Then you will be redirected to one of two pages</i></font>
+
+[R-bloggers](www.r-bloggers.com) is a website on which R users inform each other on the newest developments.
+
+[Stackoverflow](www.r-bloggers.com) is a website on which R users exchange problems and solutions to problems. Try post something yourself. You will be amazed by the turnaround. 
+
+
+]
+
+.pull-right5[
+<p align="left" style="padding: 0 0px"><br><br><br><br><br><br>
+    <a href="https://www.google.com/"><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/google.png" height="100"></a><br><br><br><br2>
+    <a href="https://www.r-bloggers.com/"><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rbloggers.png" height="105" style="margin-bottom:10px"></a><br>
+  <a href="https://stackoverflow.com/"><img border="0" alt="W3Schools" src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/stackoverflow.png" height="105"></a>
+</p>
+]
+
+
+
+---
+
+
+# Upcoming courses
+
+
+<table class="tg"  style="cellspacing:0; cellpadding:0; border:none; width=100%">
+<col width=25%>
+<col width=25%>
+<col width=25%>
+<col width=25%>
+<tr valign="top">
+  <td>
+    <p align="center">
+      <a class="project-link" href="https://therbootcamp.github.io/en/#courses" align="center">
+      <font style="font-size:20px;weight:700"><br>Explorative Data Analysis with R</font><br>
+      <br>
+      <img src="https://therbootcamp.github.io/img/courses/1.png" height="230px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
+      <high>2 days, February 14/15, 2020</high><br><br><br>
+    </p>
+  </td>
+  <td style="padding-right:5px;padding-left:5px">
+    <p align="center">
+      <a class="project-link" href="https://therbootcamp.github.io/en/#courses" align="center">
+      <font style="font-size:20px;weight:700"><br>Statistics with R<br></font><br>
+      <br>
+      <img src="https://therbootcamp.github.io/img/courses/2.png" height="230px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
+      <high>2 days, March 13/14, 2020</high><br><br><br>
+      </a>
+    </p>
+  </td>
+  <td style="padding-right:5px;padding-left:5px">
+    <p align="center">
+      <a class="project-link" href="https://therbootcamp.github.io/en/#courses" align="center">
+      <font style="font-size:20px;weight:700"><br>Machine Learning with R</font><br>
+      <br>
+      <img src="https://therbootcamp.github.io/img/courses/3.png" height="230px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
+      <high>2 days, May 15/16, 2020</high><br><br><br>
+      </a>
+    </p>
+  </td>
+  <td style="padding-right:5px;padding-left:5px">
+    <p align="center">
+      <a class="project-link" href="https://therbootcamp.github.io/en/#courses" align="center">
+      <font style="font-size:20px;weight:700"><br>Reporting with R<br></font><br>
+      <br>
+      <img src="https://therbootcamp.github.io/img/courses/4.png" height="230px" style="border-radius:50%;border:10px solid #E9ECEF"></img><br><br>
+      <high>2 days, June 5/6, 2020</high><br><br><br>
+      </a>
+    </p>
+  </td>
+  </tr>
+
+
+---
+
+.pull-left45[
+# Please give us feedback
+<br><br>
+
+<p align = "center">
+  <img src="image/feedback.png" height=350px></img><br>
+  <font style="font-size:10px">from <a href="https://cdn-images-1.medium.com/max/1600/1*5OZNYAfzDZfM1lwJBZEuHQ.png">medium.com</a></font>
+</p>
+
+]
+
+.pull-right45[
+
+<p align="center"><br><br><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfdnUHQeBj5c-4xG0VW4Sr1TSqKz8fxYUW5SX_yjSyrvhQzGA/viewform?embedded=true" width="430" height="550">Wird geladen...</iframe></p>
+
+
+]
+
+---
+class: center, middle
+
+<table class="tg"  style="cellspacing:0; cellpadding:0; border:none; width=100%">
+<tr>
+<td>
+<img src="image/sticker.png" height=280px></img>
+</td>
+<td>
+<font style="font-size:80px;font-family:'Yanone Kaffeesatz'">Thank you!</font>
+</td>
+</tr>
+</table>
+
+<!-- <a href="http://i.imgur.com/PgtvQar.png"><font size=5>Here is an R Joke.</font></a><br><br> -->
+<!-- <font size=5>And now one more thing</font>... -->

@@ -1,0 +1,80 @@
+---
+title: "Applied Machine Learning with R"
+subtitle: ""
+author: "<a href='https://therbootcamp.github.io'>
+        <i class='fas fa-home' style='font-size:1em;'></i>
+      </a>
+      <a href='https://therbootcamp.github.io/AML_2020AMLD/'>
+        <i class='fas fa-clock' style='font-size:1em;' ></i>
+      </a>
+      <a href='mailto:therbootcamp@gmail.com'>
+        <i class='fas fa-envelope' style='font-size: 1em;'></i>
+      </a>
+      <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
+        <i class='fab fa-linkedin' style='font-size: 1em;'></i>
+      </a>
+      <a href='https://therbootcamp.github.io/EDA_2019CSS/'>
+        <font style='font-style:normal;font-size:20px;padding-left:5px'>The R Bootcamp @ AMLD</font>
+      </a>
+      <br>
+      <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style= 'height:16.7px;vertical-align:baseline'/><font style='font-style:normal;font-size:20px;padding-left:9.3px'>January 2020</font>
+      "
+output:
+  html_document:
+    css: index.css
+    self_contained: no
+---
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = 'center',
+                      echo = FALSE, 
+                      eval = FALSE, 
+                      warning = FALSE,
+                      message = FALSE)
+
+options(digits = 3)
+```
+
+## Installation instructions
+
+This is a step by step guide to set you up for the *Applied Machine Learning with R* [course](https://appliedmldays.org/workshops/applied-machine-learning-with-r) taught at the [AMLD 2020](https://appliedmldays.org/) by [The R Bootcamp](https://therbootcamp.github.io/). For the course we will need *R*, *RStudio*, some *R packages*, as well as the datasets.
+
+### R
+
+First we have to install R. Go to https://cran.r-project.org/ and select the appropriate R version for your operating system. Download R and follow the installation guide.
+
+#### Additional Software
+
+##### Windows
+
+If you have a windows operating system, you will also have to download and install *Rtools*. To this end, go to https://cran.r-project.org/bin/windows/Rtools/, download *Rtools35.exe* and install it. Alternatively, you can directly download it via this link: https://cran.r-project.org/bin/windows/Rtools/Rtools35.exe.
+
+##### Mac
+
+If you work on a Mac OS, you need to install gfortran 6.1, and clang-7. To do so, visit this page https://cran.r-project.org/bin/macosx/tools/ and download and install these two.
+
+
+### RStudio
+
+Now, let's install RStudio. To this end, go to https://rstudio.com/products/rstudio/download/ and select the appropriate *RStudio Desktop* installer for your OS and install it.
+
+### Packages
+
+Finally, we'll have to install a couple of packages that we will work with. To this end, open RStudio and enter the following code in the console panel (it is a tab labelled with *Console*):
+
+```{r eval = FALSE, echo = TRUE}
+source('https://tinyurl.com/rq9cp92')
+```
+
+If you are prompted whether you want to install packages from source, just type *n* and hit enter. This is safer (i.e. may avoid problems during package installation).
+
+You will receive a final report from the script, telling you whether the necessary packages could be installed.
+
+## Materials
+
+The last step is to download the materials via this [link](https://therbootcamp.github.io/ML_2019Oct/_sessions/amld/RBootcamp_AMLD2020.zip) and to unzip and locate the folder somewhere you will be comfortable working with during the course.
+
+That's it. See you at the course!

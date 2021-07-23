@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Prediction</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Applied Machine Learning with R   The R Bootcamp @ AMLD" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Prediction
+### Applied Machine Learning with R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp @ AMLD </a> <br> <a href='https://therbootcamp.github.io/AML_2020AMLD/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### January 2020
+
+---
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;
+  &lt;span style="text-align:center"&gt;
+    &lt;span&gt; 
+      &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png" height=14 style="vertical-align: middle"/&gt;
+    &lt;/span&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;span style="padding-left:82px"&gt; 
+        &lt;font color="#7E7E7E"&gt;
+          www.therbootcamp.com
+        &lt;/font&gt;
+      &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a href="https://therbootcamp.github.io/"&gt;
+      &lt;font color="#7E7E7E"&gt;
+      Applied Machine Learning with R @ AMLD  | January 2020
+      &lt;/font&gt;
+    &lt;/a&gt;
+    &lt;/span&gt;
+  &lt;/div&gt; 
+
+---
+
+
+
+
+
+
+# Predict hold-out data
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Model performance must be evaluated as true prediction on an &lt;high&gt;unseen data set&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;The unseen data set can be &lt;high&gt;naturally&lt;/high&gt; occurring, e.g., using 2019 stock prizes to evaluate a model fit using 2018 stock prizes.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;More commonly unseen data is created by &lt;high&gt;splitting the available data&lt;/high&gt; into a training set and a test set.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+
+.pull-right45[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/testdata.png" height=430px&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Why do we separate training from testing?
+
+&lt;br&gt;&lt;br&gt;
+
+.pull-left45[
+
+
+&lt;high&gt;Training data&lt;/high&gt;
+&lt;br&gt;
+
+
+| id|sex | age|fam_history |smoking | criterion|
+|--:|:---|---:|:-----------|:-------|---------:|
+|  1|f   |  45|No          |TRUE    |         0|
+|  2|m   |  43|No          |FALSE   |         0|
+|  3|f   |  40|Yes         |FALSE   |         1|
+|  4|f   |  51|Yes         |TRUE    |         1|
+|  5|m   |  44|Yes         |FALSE   |         0|
+
+]
+
+.pull-right45[
+
+
+&lt;high&gt; Test data&lt;/high&gt;
+&lt;br&gt;
+
+
+| id|sex | age|fam_history |smoking |criterion |
+|--:|:---|---:|:-----------|:-------|:---------|
+| 91|f   |  51|No          |FALSE   |?         |
+| 92|m   |  47|No          |TRUE    |?         |
+| 93|f   |  39|Yes         |TRUE    |?         |
+| 94|f   |  51|Yes         |TRUE    |?         |
+| 95|f   |  50|No          |TRUE    |?         |
+
+]
+
+
+---
+
+.pull-left4[
+
+&lt;br&gt;&lt;br&gt;
+# Overfitting
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Occurs when a model &lt;high&gt;fits data too closely&lt;/high&gt; and therefore &lt;high&gt;fails to reliably predict&lt;/high&gt; future observations.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;In other words, overfitting occurs when a model &lt;high&gt;'mistakes' random noise for a predictable signal&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;More &lt;high&gt;complex models&lt;/high&gt; are more &lt;high&gt;prone to overfitting&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+]
+
+
+.pull-right5[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/overfitting.png"&gt;
+&lt;/p&gt;
+
+]
+
+
+---
+
+# Overfitting
+
+&lt;img src="Prediction_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+# Training
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Training a model means to &lt;high&gt;fit the model&lt;/high&gt; to data by finding the parameter combination that &lt;high&gt;minizes some error function&lt;/high&gt;, e.g., mean squared error (MSE).&lt;/span&gt;&lt;/li&gt;&lt;br&gt;&lt;br&gt;
+&lt;/ul&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/training_flow.png" height=350px&gt;
+&lt;/p&gt;
+
+---
+
+# Test
+
+&lt;ul style="margin-bottom:-20px"&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;To test a model means to &lt;high&gt;evaluate the prediction error&lt;/high&gt; for a fitted model, i.e., for a &lt;high&gt;fixed parameter combination&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;&lt;br&gt;
+&lt;/ul&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/testing_flow.png" height=350px&gt;
+&lt;/p&gt;
+
+
+---
+class: center, middle
+
+# Two new models enter the ring...
+
+---
+class: center, middle
+
+&lt;font color = "gray"&gt;&lt;h1&gt;Regression&lt;/h1&gt;&lt;/font&gt;
+
+&lt;high&gt;&lt;h1&gt;Decision Trees&lt;/h1&gt;&lt;/high&gt;
+
+&lt;font color = "gray"&gt;&lt;h1&gt;Random Forests&lt;/h1&gt;&lt;/font&gt;
+
+---
+
+# CART
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;CART is short for &lt;high&gt;Classification and Regression Trees&lt;/high&gt;, which are often just called &lt;high&gt;Decision trees&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;In &lt;a href="https://en.wikipedia.org/wiki/Decision_tree"&gt;decision trees&lt;/a&gt;, the criterion is modeled as a &lt;high&gt;sequence of logical TRUE or FALSE questions&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;&lt;br&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/tree.png"&gt;
+&lt;/p&gt;
+]
+
+---
+
+# Classificiation trees
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Classification trees (and regression trees) are created using a relatively simple &lt;high&gt;three-step algorithm&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Algorithm:
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;1 - &lt;high&gt;Split&lt;/high&gt; nodes to maximize &lt;b&gt;purity gain&lt;/b&gt; (e.g., Gini gain).&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;2 - &lt;high&gt;Repeat&lt;/high&gt; until pre-defined threshold (e.g., &lt;mono&gt;minsplit&lt;/mono&gt;) splits are no longer possible.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;3 - &lt;high&gt;Prune&lt;/high&gt; tree to reasonable size.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/tree.png"&gt;
+&lt;/p&gt;
+]
+
+---
+
+# Node splitting
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Classification trees attempt to &lt;high&gt;minize node impurity&lt;/high&gt; using, e.g., the &lt;high&gt;Gini coefficient&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+`$$\large Gini(S) = 1 - \sum_j^kp_j^2$$`
+
+&lt;ul&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Nodes are &lt;high&gt;split&lt;/high&gt; using the variable and split value that &lt;high&gt;maximizes Gini gain&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+`$$Gini \; gain = Gini(S) - Gini(A,S)$$`
+
+&lt;p style="padding:0;margin:0" align="center"&gt;with&lt;/p&gt;
+
+`$$Gini(A, S) = \sum \frac{n_i}{n}Gini(S_i)$$`
+
+]
+
+
+.pull-right45[
+
+
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/splitting.png"&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Pruning trees
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Classification trees are &lt;high&gt;pruned&lt;/high&gt; back such that every split has a purity gain of at least &lt;high&gt;&lt;mono&gt;cp&lt;/mono&gt;&lt;/high&gt;, with &lt;mono&gt;cp&lt;/mono&gt; often set to &lt;mono&gt;.01&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Minimize:&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
+
+$$
+\large
+`\begin{split}
+Loss = &amp; Impurity\,+\\
+&amp;cp*(n\:terminal\:nodes)\\
+\end{split}`
+$$
+
+]
+
+.pull-right45[
+
+
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/splitting.png"&gt;
+&lt;/p&gt;
+
+]
+---
+
+# Regression trees
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Trees can also be used to perform regression tasks. Instead of impurity, regression trees attempt to &lt;high&gt;minimize within-node variance&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+&lt;/ul&gt;
+
+`$$\large SSE = \sum_{i \in S_1}(y_i - \bar{y}_1)^2+\sum_{i \in S_2}(y_i - \bar{y}_2)^2$$`
+
+&lt;ul&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Algorithm:
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;1 - &lt;high&gt;Split&lt;/high&gt; nodes to maximize &lt;b&gt;homogeneity gain&lt;/b&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;2 - &lt;high&gt;Repeat&lt;/high&gt; until pre-defined threshold (e.g., &lt;mono&gt;minsplit&lt;/mono&gt;) splits are no longe possible.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;3 - &lt;high&gt;Prune&lt;/high&gt; tree to reasonable size.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+
+
+.pull-right45[
+
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/splitting_regr.png"&gt;
+&lt;/p&gt;
+
+
+]
+
+
+---
+
+# CART in &lt;mono&gt;caret&lt;/mono&gt;
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Fit &lt;high&gt;decision trees&lt;/high&gt; in &lt;mono&gt;caret&lt;/mono&gt; using &lt;mono&gt;method = "rpart"&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;caret&lt;/mono&gt; will &lt;high&gt;choose automatically&lt;/high&gt; whether to use classification or regression trees depending on whether the criterion is a &lt;mono&gt;factor&lt;/mono&gt; or not.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+
+```r
+# Fit a decision tree predicting default
+
+train(form = default ~ .,
+      data = Loans,
+      method = "rpart", # Decision Tree
+      trControl = ctrl)
+
+# Fit a decision tree predicting income
+
+train(form = income ~ .,
+      data = baselers,
+      method = "rpart", # Decision Tree
+      trControl = ctrl)
+```
+
+
+]
+
+
+
+---
+class: center, middle
+
+&lt;font color = "gray"&gt;&lt;h1&gt;Regression&lt;/h1&gt;&lt;/font&gt;
+
+&lt;font color = "gray"&gt;&lt;h1&gt;Decision Trees&lt;/h1&gt;&lt;/font&gt;
+
+&lt;high&gt;&lt;h1&gt;Random Forests&lt;/h1&gt;&lt;/high&gt;
+
+---
+
+.pull-left45[
+
+# Random Forest
+
+&lt;p style="padding-top:1px"&gt;&lt;/p&gt;
+
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;In &lt;a href="https://en.wikipedia.org/wiki/Random_forest"&gt;Random Forest&lt;/a&gt;, the criterion is modeled as the &lt;high&gt;aggregate prediction of a large number of decision trees&lt;/high&gt; each based on different features.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Algorithm:
+  &lt;br&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;1 - &lt;high&gt;Repeat&lt;/high&gt; &lt;i&gt;n&lt;/i&gt; times&lt;/span&gt;&lt;/li&gt;
+    &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1 - &lt;high&gt;Resample&lt;/high&gt; data&lt;br&gt; 
+    &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;2 - &lt;high&gt;Grow&lt;/high&gt; non-pruned decision tree&lt;br&gt;
+    &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Each split &lt;high&gt;consider only &lt;i&gt;m&lt;/i&gt;&lt;br&gt;
+    &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;features&lt;/high&gt;
+    &lt;li&gt;&lt;span&gt;2 - &lt;high&gt;Average&lt;/high&gt; fitted values.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;/ul&gt;
+  &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+&lt;br&gt;
+
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/rf.png"&gt;
+&lt;/p&gt;
+
+
+]
+
+---
+
+# Random Forest
+
+.pull-left45[
+
+&lt;p style="padding-top:1px"&gt;&lt;/p&gt;
+
+
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Random forests make use of important machine learning elements, &lt;high&gt;resampling&lt;/high&gt; and &lt;high&gt;averaging&lt;/high&gt; that together are also referred to as &lt;high&gt;bagging&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+  &lt;col width="30%"&gt;
+  &lt;col width="70%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Element&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Resampling&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Creates new data sets that vary in their composition thereby &lt;high&gt;deemphasizing idiosyncracies&lt;/high&gt; of the available data. 
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;i&gt;Averaging&lt;/i&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Combining predictions typically &lt;high&gt;evens out idiosyncracies&lt;/high&gt; of the models created from single data sets.   
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;/table&gt;
+]
+
+
+.pull-right45[
+
+&lt;p align = "center" style="padding-top:0px"&gt;
+&lt;img src="image/tree_crowd.png"&gt;
+&lt;/p&gt;
+
+
+]
+
+
+
+---
+
+
+# Random forests in &lt;mono&gt;caret&lt;/mono&gt;
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Fit &lt;high&gt;decision trees&lt;/high&gt; in &lt;mono&gt;caret&lt;/mono&gt; using &lt;mono&gt;method = "rf"&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Just like CART, random forests can be used for &lt;high&gt;classification or regression&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;mono&gt;caret&lt;/mono&gt; will &lt;high&gt;choose automatically&lt;/high&gt; whether to use classification or regression trees depending on whether the crition is a &lt;mono&gt;factor&lt;/mono&gt; or not.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+
+```r
+# Fit a decision tree predicting default
+
+train(form = default ~ .,
+      data = Loans,
+      method = "rf", # Decision Tree
+      trControl = ctrl)
+
+# Fit a decision tree predicting income
+
+train(form = income ~ .,
+      data = baselers,
+      method = "rf", # Decision Tree
+      trControl = ctrl)
+```
+
+
+]
+
+
+
+---
+class: center,  middle
+
+&lt;br&gt;&lt;br&gt;
+
+# Evaluating model predictions with &lt;mono&gt;caret&lt;/mono&gt;
+
+&lt;img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+
+
+
+
+---
+
+# &lt;mono&gt;createDataPartition()&lt;/mono&gt;
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Use &lt;mono&gt;createDataPartition()&lt;/mono&gt; to &lt;high&gt;split a dataset&lt;/high&gt; into separate training and test datasets.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+  &lt;col width="30%"&gt;
+  &lt;col width="70%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Argument&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;y&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    The criterion. Used to create a &lt;high&gt;balanced split&lt;/high&gt;.  
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;p&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    The &lt;high&gt;proportion of data&lt;/high&gt; going into the training set. Often &lt;mono&gt;.8&lt;/mono&gt; or &lt;mono&gt;.5&lt;/mono&gt;.    
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;/table&gt;
+
+
+]
+
+.pull-right5[
+
+
+```r
+# Set the randomisation seed to get the 
+#  same results each time
+set.seed(100)
+
+# Get indices for training
+index &lt;- 
+  createDataPartition(y = baselers$income,
+                             p = .8,
+                             list = FALSE)
+
+# Create training data
+baselers_train &lt;- baselers %&gt;% 
+  slice(index)
+
+# Create test data
+baselers_test &lt;- baselers %&gt;% 
+  slice(-index)
+```
+
+
+]
+
+
+
+
+---
+
+# &lt;mono&gt;predict(, newdata)&lt;/mono&gt;
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;To &lt;high&gt;test model predictions&lt;/high&gt; with &lt;mono&gt;caret&lt;/mono&gt;, all you need to do is get a vector of predictions from a new dataframe &lt;mono&gt;newdata&lt;/mono&gt; using the &lt;mono&gt;predict()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+  &lt;col width="30%"&gt;
+  &lt;col width="70%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Argument&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;object&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;caret&lt;/mono&gt; fit object.  
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;newdata&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Test data sest. Must contain same features as provided in &lt;mono&gt;object&lt;/mono&gt;.    
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+# Fit model to training data
+mod &lt;- train(form = income ~ .,
+             method = "glm",
+             data = baselers_train)
+
+# Get fitted values (for training data)
+mod_fit &lt;- predict(mod)
+
+# Predictions for NEW data_test data!
+mod_pred &lt;- predict(mod, 
+                    newdata = baselers_test)
+
+# Evaluate prediction results
+postResample(pred = mod_pred, 
+             obs = baselers_test$income)
+```
+
+]
+
+
+---
+class: middle, center
+
+&lt;h1&gt;&lt;a href=https://therbootcamp.github.io/AML_2020AMLD/_sessions/Prediction/Prediction_practical.html&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

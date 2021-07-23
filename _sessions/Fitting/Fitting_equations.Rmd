@@ -1,0 +1,10 @@
+---
+title: "Untitled"
+author: "Nathaniel Phillips"
+date: "1/13/2019"
+output: html_document
+---
+
+
+
+$$\large MSE = \frac{1}{n}\sum_{t=1}^{n}(obs - Y)^{2}$$

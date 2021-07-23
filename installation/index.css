@@ -1,0 +1,80 @@
+@import url(https://use.fontawesome.com/releases/v5.6.3/css/all.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+.my-table {
+  font-size:20px;
+  font-family: 'Droid-serif';
+  border-spacing:6px 4px;
+  line-height: 1.2;
+  }
+
+.my-table th {
+  font-size:16px;
+  font-weight:400;
+  width: 100;
+  text-align: right;
+  vertical-align: top;
+  padding: 4px 4px;
+  }
+
+.my-table td {
+  font-weight:300;
+  vertical-align: top;
+  padding: 4px 4px;
+}
+
+.td-special {
+  font-weight:300;
+  font-style: italic;
+}
+
+.td-special-blue {
+  font-weight:300;
+  font-style: italic;
+  background-color:#7FBDF7;
+  color:#ffffff;
+  border: 4px solid #ffffff;
+}
+
+.td-special-grey {
+  font-weight:300;
+  font-style: italic;
+  background-color:#DDDEE0;
+  color:#ffffff;
+  border: 4px solid #ffffff;
+}
+
+.td-red {
+  background-color:#F8716F;
+  color:#ffffff;
+  border: 4px solid #ffffff;
+}
+
+.td-grey {
+  background-color:#626870;
+  color:#ffffff;
+  border: 4px solid #ffffff;
+}
+
+
+
+.cont {
+        font-weight:300;
+	font-size:10px;
+	line-height: 1.1;
+    margin-top: 4px;
+}
+
+.sub {
+        font-weight:400;
+}
+
+e {
+        font-weight: 900;
+}
+
+r {
+ /*       font-weight: 900; */
+        color: #FF3A2A;
+}
