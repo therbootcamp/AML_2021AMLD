@@ -4,7 +4,7 @@ author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
       <font style='font-style:normal'>Applied Machine Learning with R</font><br>
-      <a href='https://therbootcamp.github.io/AML_2020AMLD/'>
+      <a href='https://therbootcamp.github.io/AML_2021AMLD/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
       <a href='https://therbootcamp.github.io'>
@@ -52,13 +52,13 @@ options(digits = 3)
 
 ## Overview
 
-In this practical, you'll practice the basics of fitting and exploring regression models in R using the `caret` package.
+In this practical, you'll practice the basics of fitting and exploring regression models in R using the `tidymodels` package.
 
 By the end of this practical you will know how to:
 
 1. Fit a regression model to training data.
 2. Explore your fit object with generic functions.
-3. Evaluate the model's fitting performance using accuracy measures such as MSE and MAE.
+3. Evaluate the model's fitting performance using accuracy measures such as RMSE and MAE.
 4. Explore the effects of adding additional features.
 
 
@@ -66,7 +66,7 @@ By the end of this practical you will know how to:
 
 ### A - Setup
 
-1. Open your `RBootcamp_AMLD2020` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data file(s) listed in the `Datasets` section are in your `1_Data` folder
+1. Open your `RBootcamp_AMLD2021` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data file(s) listed in the `Datasets` section are in your `1_Data` folder
 
 ```{r}
 # Done!
@@ -83,42 +83,44 @@ By the end of this practical you will know how to:
 ```{r, echo = TRUE, message = FALSE}
 # Load packages necessary for this script
 library(tidyverse)
-library(caret)
+library(tidymodels)
+tidymodels_prefer() # to resolve common conflicts
 ```
 
 ```{r, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
 # Load packages necessary for this practical
 library(tidyverse)
-library(caret)
+library(tidymodels)
+tidymodels_prefer() # to resolve common conflicts
 ```
 
-4. For this practical, we'll use a dataset of 388 U.S. Colleges. The data is stored in `college_train.csv`. Using the following template, load the dataset into R as `college_train`:
+4. For this practical, we'll use a dataset of airbnbs in Berlin. The data is stored in `airbnb.csv`. Using the following template, load the dataset into R as `airbnb`:
 
 ```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
-# Load in college_train.csv data as college_train
-college_train <- read_csv(file = "1_Data/college_train.csv")
+# Load in airbnb.csv data as airbnb
+airbnb <- read_csv(file = "1_Data/airbnb.csv")
 ```
 
 ```{r, eval = TRUE, echo = FALSE}
-college_train <- read_csv(file = "1_Data/college_train.csv")
+airbnb <- read_csv(file = "1_Data/airbnb.csv")
 ```
 
 5. Take a look at the first few rows of the dataset by printing it to the console.
 
 ```{r}
-college_train
+airbnb
 ```
 
 6. Print the numbers of rows and columns using the `dim()` function.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Print number of rows and columns of college_train
+# Print number of rows and columns of airbnb
 dim(XXX)
 ```
 
 ```{r}
-# Print number of rows and columns of college_train
-dim(college_train)
+# Print number of rows and columns of airbnb
+dim(airbnb)
 ```
 
 7. Open the dataset in a new window using `View()`. How does it look?
@@ -127,589 +129,721 @@ dim(college_train)
 View(XXX)
 ```
 
-8. Before starting to model the data, we need to do a little bit of data cleaning. Specifically, we need to convert all character columns to factors: Do this by running the following code:
+8. Familiarize yourself with the names of the dataset by looking at the feature names using `names()`.
+
+```{r, echo = TRUE, eval = FALSE}
+# Print column names of airbnb
+names(XXX)
+```
+
+```{r}
+# Print column names of airbnb
+names(airbnb)
+```
+
+9. Before starting to model the data, we need to do a little bit of data cleaning. Given the names of the data and the description in the *Datasets* tab, which do you think could be excluded?
+
+```{r}
+# apartment_id and host_id do not contain information that will help in the modeling
+# process, as they provide (almost) unique identifiers for a given apartment and
+# thus don't contain generalizable information.
+# longitude and latitude are already more or less covered in the "neighbourhood"
+# and "district" variables.
+```
+
+10. Let's remove the variables we won't need in the analyses. Also, the `cleening_fee` is currently a string, because of the \$ sign in front of the numbers. Let's change this to create a numeric variable. 
 
 ```{r, echo = TRUE}
 # Convert character to factor
-college_train <- college_train %>%
-          mutate_if(is.character, factor)
+airbnb <- 
+  airbnb %>%
+  select(-ends_with(c("_id", "itude"))) %>% 
+  mutate(cleaning_fee = as.numeric(gsub("$", "", cleaning_fee, fixed = TRUE)))
 ```
 
-### B - Determine sampling procedure
+### B - Set up the model
 
-In `caret`, we define the computational nuances of training using the `trainControl()` function. Because we're learning the basics of fitting, we'll set `method = "none"` for now. (Note that you would almost never do this for a real prediction task, you'll see why later!)
+1. In this practical we will use a linear regression to predict the price of airbnbs. To be able to do so in `tidymodels`, we first have to set up our model. We do this by specifying (a) the model type, (b) the enginge we want to use, and (c) whether we are working on a regression or a classification problem. To do so, ...
 
-```{r echo = TRUE}
-# Set training resampling method to "none"
-ctrl_none <- trainControl(method = "none") 
-```
-
-### C - Fit a regression model
-
-1. Using the code below, fit a regression model predicting graduation rate (`Grad.Rate`) as a function of one feature: `PhD` (percent of faculty with PhDs). Save the result as an object `Grad.Rate_glm`. Specifically,...
-
-- set the `form` argument to `Grad.Rate ~ PhD`.
-- set the `data` argument to your training data `college_train`.
-- set the `method` argument to `"glm"` for regression.
-- set the `trControl` argument to `ctrl_none`, the object you created previously.
+- set the model type to `linear_reg()`.
+- specify the engine using `set_engine(XXX)`, with the engine `"lm"`.
+- specify, that the problem type with `set_mode(XXX)` to `"regression"`.
+- add all these function calls together using the `%>%` operator.
+- save the model specification as `lm_model`.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Grad.Rate_glm: Regression Model
-Grad.Rate_glm <- train(form = XX ~ XX,
-                       data = XX,
-                       method = "XX",
-                       trControl = XX)
+# set up our model
+lm_model <- 
+  XXX() %>% 
+  XXX(XXX) %>% 
+  XXX(XXX)
 ```
-
 
 ```{r}
-# Grad.Rate_glm: Regression Model
-Grad.Rate_glm <- train(form = Grad.Rate ~ PhD,
-                       data = college_train,
-                       method = "glm",
-                       trControl = ctrl_none)
+# set up our model
+lm_model <- 
+  linear_reg() %>% 
+  set_engine("lm") %>% 
+  set_mode("regression")
 ```
 
-2. Explore the fitted model using the `summary()`.
+2. Take a look at your model by printing `lm_model`.
+
+```{r}
+# print lm_model
+lm_model
+```
+
+3. Using `translate()` we can view the function that will be called to fit our model. Arguments not yet specified (and thus, at this point, unknown), will be shown as `missing_arg()`. Use `translate()` and pass `lm_model` as argument.
+
+```{r}
+# view the underlying function used to fit the model
+translate(lm_model)
+```
+
+### C - Set up the recipe
+
+1. In the previous section, we defined what model to fit. By specifying a `recipe`, we specify (a) what to predict, (b) how to predict it (the features), (c) how to prepare our data. Create your first recipe called `airbnb_recipe`, by adding a formula to specify that we want to predict `price` with the number of people it can accommodate (`accommodates`):
+
+- set the formula to `price ~ accommodates`
+- set the data to `airbnb`
 
 ```{r, echo = TRUE, eval = FALSE}
-# Show summary information from the regression model
-summary(XXX)
+# create basic recipe
+airbnb_recipe <- recipe(XXX ~ XXX, data = XXX)
 ```
 
 ```{r}
-# Show summary information from the regression model
-summary(Grad.Rate_glm)
+# create basic recipe
+airbnb_recipe <- recipe(price ~ accommodates, data = airbnb)
 ```
 
-3. Look at the results, how do you interpret the regression coefficients? What is the general relationship between PhD and graduation rates? Does this make sense?
+2. Print the created recipe.
 
 ```{r}
-# For every increase of one in PhD (the percent of faculty with a PhD), the expected graduation rate increases by 0.33
+airbnb_recipe
 ```
 
 
-### D - Evaluate accuracy
+### D - Fit a regression model
 
-1. Now it's time to evaluate the model's fitted values! Use the following code to save the fitted values as `glm_fitted`. 
+1. Now we can finally specify our model `workflow` in which we bring the model specification and recipe together, to then fit our model. To do so
+
+- create an object called `lm_workflow`.
+- call the `workflow()` function, to initiate the workflow.
+- add the `airbnb_recipe` using the `add_recipe()` function.
+- add the `lm_model` model specification using the `add_model()` function.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Get fitted values from the Grad.Rate_glm model and save as glm_fitted
-glm_fitted <- predict(XXX)
+# lm workflow 
+lm_workflow <- 
+  XXX() %>% 
+  XXX(XXX) %>% 
+  XXX(XXX)
 ```
 
 ```{r}
-# Get fitted values from the model and save as glm_fitted
-glm_fitted <- predict(Grad.Rate_glm)
+# lm workflow 
+lm_workflow <- 
+  workflow() %>% 
+  add_recipe(airbnb_recipe) %>% 
+  add_model(lm_model)
 ```
 
-2. Plot the distribution of your `glm_fitted` object using the code below - what are these values? Do they look reasonable? That is, are they in the range of what you expect the criterion to be?
-
-```{r, echo = TRUE}
-# Plot glm_fitted
-hist(XXX)
-```
+2. Print the `lm_workflow` object to view a summary of how the modeling will be done.
 
 ```{r}
-# Yes, values appear to be within 40 and 80, which is what we expect from the truth population.
+lm_workflow
 ```
 
-3. Now it's time to compare your model fits to the true values. We'll start by defining the vector `criterion` as the actual graduation rates.
-
-```{r, echo = TRUE, eval = TRUE}
-# Define criterion as Grad.Rate
-criterion <- college_train$Grad.Rate
-```
-
-4. Let's quantify our model's fitting results. To do this, we'll use the `postResample()` function, with the fitted values as the prediction, and the criterion as the observed values.
-
-Specifically,
-
-- set the `pred` argument to `glm_fitted` (your fitted values).
-- set the `obs` argument to `criterion` (a vector of the criterion values).
+3. Now it's time to actually fit the model with the `fit()` function. Pass the `lm_workflow` into the fit function and save it as `price_lm`. Also we have to provide the data to the fit function, by specifying the `data` argument. Set `data = airbnb`.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Regression Fitting Accuracy
-postResample(pred = XXX,   # Fitted values 
-             obs = XXX)  # criterion values
+# Fit the regression model
+price_lm <-
+  XXX %>% 
+  XXX(XXX = XXX)
 ```
 
 ```{r}
-# Regression Fitting Accuracy
-postResample(pred = glm_fitted,   # Fitted values 
-             obs = criterion)  # criterion values
+# Fit the regression model
+price_lm <-
+  lm_workflow %>% 
+  fit(airbnb)
 ```
 
-5. You'll see three values here. The easiest to understand is MAE which stands for "Mean Absolute Error" -- in other words, "on average how far are the predictions from the true values?" A value of 0 means perfect prediction, so small values are good! How do you interpret these results?
+4. Print the `price_lm` object.
 
 ```{r}
-# On average, the model fits are 12.8633 away from the true values.
-#  Whether this is 'good' or not depends on you :)
+price_lm
 ```
 
-6. Now we're ready to do some plotting. But first, we need to re-organise the data a bit. Use the code below to create two dataframes:
-  - `accuracy` - Raw absolute errors
-  - `accuracy_agg` - Aggregate (i.e.; mean) absolute errors
+5. While this showed us the two parameters, the output is not very informative. To obtain a more detailed output, you can use the `tidy()` function on the `price_lm` object.
 
-```{r, echo = TRUE}
-# accuracy - a dataframe of raw absolute errors
-accuracy <- tibble(criterion = criterion,
-                   Regression = glm_fitted) %>%
-                gather(model, prediction, -criterion) %>%
-                # Add error measures
-                mutate(ae = abs(prediction - criterion))
 
-# accuracy_agg - Dataframe of aggregate errors
-accuracy_agg <- accuracy %>%
-                  group_by(model) %>%
-                  summarise(mae = mean(ae))   # Calculate MAE (mean absolute error)
+```{r}
+# Fit the regression model
+tidy(price_lm)
 ```
 
-7. Print the `accuracy` and `accuracy_agg` objects to see how they look.
+6. Take a look at the parameter values. How do you interpret these values?
+
+```{r}
+# For every additional person a flat accommodates, the price of an airbnb is
+# predicted to rise by 18$s.
+```
+
+
+
+### E - Evaluate accuracy
+
+1. Now it's time to evaluate the model's fitted values! Use the `predict()` function to extract the model predictions. This returns them as a column named `.pred`. Then, using `bind_cols()` add the true values.
 
 ```{r, echo = TRUE, eval = FALSE}
-accuracy
-accuracy_agg
+# generate predictions
+lm_pred <-
+  XXX %>% 
+  predict(new_data = airbnb) %>% 
+  bind_cols(airbnb %>% select(price))
 ```
 
 ```{r}
-head(accuracy) # Just printing the first few rows
-
-head(accuracy_agg)
+# generate predictions
+lm_pred <-
+  price_lm %>% 
+  predict(new_data = airbnb) %>% 
+  bind_cols(airbnb %>% select(price))
 ```
 
-8. Using the code below, create a scatterplot showing the relationship between the true criterion values and the model fits.
+2. Take a look at the `lm_pred` object and make sure you understand the meaning of these variables.
 
-```{r, out.width = "60%", echo = TRUE, eval = FALSE}
-# Plot A) Scatterplot of criterion versus predictions
-ggplot(data = accuracy,
-       aes(x = criterion, y = prediction)) +
-  geom_point(alpha = .2) +
-  geom_abline(slope = 1, intercept = 0) +
+```{r}
+# The first variable, .pred,  was created in the call to the predict() function. 
+# It contains the predicted prices. The second variable, price, contains the 
+# actual prices from our dataset.
+```
+
+
+3. Using the following code, plot the fitted against the true value, to judge how well our model performed. What do you think, is this performance good or bad?
+
+```{r, echo = TRUE, eval = FALSE}
+# use the lm_pred object to generate the plot
+ggplot(lm_pred, aes(x = .pred, y = price)) + 
+  # Create a diagonal line:
+  geom_abline(lty = 2) + 
+  # Add data points:
+  geom_point(alpha = 0.5) + 
   labs(title = "Regression: One Feature",
        subtitle = "Line indicates perfect performance",
-       x = "True Graduation Rates",
-       y = "Fitted Graduation Rates") +
-  xlim(0, 120) + 
-  ylim(0, 120)
+       x = "Predicted Airbnb Prices in $",
+       y = "True Airbnb Prices in $") +
+  # Scale and size the x- and y-axis uniformly:
+  coord_obs_pred()
 ```
-
-9. Look at the plot, how do you interpret this? Do you think the model did well or not in fitting the graduation rates?
 
 ```{r}
-# No the model is not great, values do not fall very closely to the black diagonal line.
+# The points do not fall on the line, which indicates
+# a poor model fit.
 ```
 
-10. Let's create a new violin plot showing the distribution of absolute errors of the model.
+4. Let's quantify our model's fitting results. In a regression-problem setting, the `metrics()` function returns the MAE, RMSE, and the $R^2$ of a model. Compute these indices by passing the `price` variable as `truth` and the `.pred` variable as `estimate` to the `metrics()` function.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Plot B) Violin plot of absolute errors
-ggplot(data = accuracy, 
-       aes(x = model, y = ae, fill = model)) + 
-  geom_violin() + 
-  geom_jitter(width = .05, alpha = .2) +
-  labs(title = "Distributions of Fitting Absolute Errors",
-       subtitle = "Numbers indicate means",
-       x = "Model",
-       y = "Absolute Error") +
-  guides(fill = FALSE) +
-  annotate(geom = "label", 
-           x = accuracy_agg$model, 
-           y = accuracy_agg$mae, 
-           label = round(accuracy_agg$mae, 2))
+# evaluate performance
+XXX(lm_pred, truth = XXX, estimate = XXX)
 ```
-
-11. What does the plot show you about the model fits? On average, how far away were the model fits from the true values?
 
 ```{r}
-# On average, the model fits are 12.86 away from the true criterion values.
-#  However, there is also quite a bit of variability
+# evaluate performance
+metrics(lm_pred, truth = price, estimate = .pred)
 ```
 
-### E - Add more features
+5. How do you interpret these values?
 
-So far we have only used one feature (`PhD`), to predict `Grad.Rate`. Let's try again, but now we'll use a total of four features: 
+```{r}
+# On average, the model commits a prediction error of 34.9 when predicting the 
+# price of an airbnb. The large difference between the MAE and the RMSE indicates
+# That the prediction errors vary very strongly. This is also apparent in the 
+# plot we created before.
+# The R^2 value is 0.0458, that is, only about 5% of the variation in the data
+# can be captured by our model.
+```
 
-- `PhD` - the percent of faculty with a PhD.
-- `Room.Board` - room and board costs.
-- `Terminal` - percent of faculty with a terminal degree.
-- `S.F.Ratio` - student to faculty ratio.
+### F - Add more features
 
-1. Using the same steps as above, create a regression model `Grad.Rate_glm` which predicts `Grad.Rate` using all 4 features (you can also call it something else if you want to save your original model!). Specifically,...
+So far we have only used one feature (`accommodates`), to predict `price`. Let's try again, but now we'll use a total of four features: 
 
-- set the `form` argument to `Grad.Rate ~ PhD + Room.Board + Terminal + S.F.Ratio`.
-- set the `data` argument to your training data `college_train`.
-- set the `method` argument to `"glm"` for regression.
-- set the `trControl` argument to `ctrl_none`.
+- `accommodates` - the number of people the airbnb accommodates.
+- `room_type`` - type of the room (e.g., "Loft" or "Apartment").
+- `bedrooms` - number of bedrooms.
+- `bathrooms` - number of bathrooms.
+
+1. To do this, we will have to update our `lm_recipe`. Specifically, we want to add the three new features to the formula, and add a pre-processing step: creating dummy variables out of the categorical `room_type` variable. Update the recipe from C1, by extending the formula, and by adding `step_dummy(all_nominal_predictors())` as pre-processing step.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Grad.Rate_glm: Regression Model
-Grad.Rate_glm <- train(form = XXX ~ XXX + XXX + XXX + XXX,
-                       data = XXX,
-                       method = "XXX",
-                       trControl = XXX)
+# updated recipe
+airbnb_recipe <- 
+  recipe(XXX ~ XXX + XXX + XXX + XXX, data = XXX) %>% 
+  XXX(XXX())
 ```
 
 ```{r}
-# Grad.Rate_glm: Regression Model
-Grad.Rate_glm <- train(form = Grad.Rate ~ PhD + Room.Board + Terminal + S.F.Ratio,
-                       data = college_train,
-                       method = "glm",
-                       trControl = ctrl_none)
+# updated recipe
+airbnb_recipe <- 
+  recipe(price ~ accommodates + room_type + bedrooms + bathrooms,
+                        data = airbnb) %>% 
+  step_dummy(all_nominal_predictors())
 ```
 
-2. Explore your model using `summary()`. Which features seem to be important? Tip: set the first argument to `Grad.Rate_glm`.
+2. Update the recipe in the workflow using the `update_recipe()` function. Pass the new `airbnb_recipe` to `update_recipe()`.
 
 ```{r, echo = TRUE, eval = FALSE}
-summary(XXX)
+# update lm workflow with new recipe
+lm_workflow <- 
+  lm_workflow 
+  XXX(XXX) %>% 
 ```
 
 ```{r}
-summary(Grad.Rate_glm)
+# update lm workflow with new recipe
+lm_workflow <- 
+  lm_workflow %>% 
+  update_recipe(airbnb_recipe)
 ```
 
-3. Save the model's fitted values as a new object `glm_fitted`. I.e., set the first argument of `predict()` to your `Grad.Rate_glm` model.
+3. Print the `lm_workflow` object to view a summary of how the modeling will be done. The recipe should now be updated, which you can see by the new section *Preprocessor*.
+
+```{r}
+lm_workflow
+```
+
+3. Refit the model as you have done above, and call it `price_lm`.
+
+```{r}
+# Fit the regression model
+price_lm <-
+  lm_workflow %>% 
+  fit(airbnb)
+```
+
+4. Using the `tidy()` function on the `price_lm` object, take a look at the parameter estimates.
+
+
+```{r}
+# Fit the regression model
+tidy(price_lm)
+```
+
+5. Using the `predict()` function, to extract the model predictions and bind them together with the true values using `bind_cols()`.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Save new model fits
-glm_fitted <- predict(XXX)
+# generate predictions
+lm_pred <-
+  XXX %>% 
+  XXX(XXX) %>% 
+  XXX(airbnb %>% select(price))
 ```
 
 ```{r}
-# Save new model fits
-glm_fitted <- predict(Grad.Rate_glm)
+# generate predictions
+lm_pred <-
+  price_lm %>% 
+  predict(new_data = airbnb) %>% 
+  bind_cols(airbnb %>% select(price))
 ```
 
-4. By comparing the model fits to the true criterion values using `postResample()` calculate the Mean Absolute Error (MAE) of your new model that uses 4 features. How does this compare to your previous model that only used 1 feature? Specifically,...
 
-- set the `pred` argument to `glm_fitted`, your model fits.
-- set the `obs` argument to `criterion`, a vector of the true criterion values.
+6. Using the following code, plot the fitted against the true value, to judge how well our model performed. What do you think, is this performance good or bad? And how does it compare to the model with only one feature we fitted before?
 
 ```{r, echo = TRUE, eval = FALSE}
-# New model fitting accuracy
-postResample(pred = XXX,   # Fitted values 
-             obs = XXX)  # criterion values
-```
-
-```{r}
-# New model fitting accuracy
-postResample(pred = glm_fitted,   # Fitted values 
-             obs = criterion)  # criterion values
-```
-
-```{r}
-# The new MAE value is 11.779, it's better (smaller) than the previous model, but still not great (in my opinion)
-```
-
-5. (Optional). Create a scatter plot showing the relationship between your new model fits and the true values. How does this plot compare to your previous one?
-
-```{r, out.width = "60%"}
-# accuracy: a dataframe of raw absolute errors
-accuracy <- tibble(criterion = criterion,
-                   Regression = glm_fitted) %>%
-                gather(model, prediction, -criterion) %>%
-  
-  # Add error measures
-  mutate(ae = abs(prediction - criterion))
-
-# accuracy_agg: Dataframe of aggregate errors
-accuracy_agg <- accuracy %>%
-                  group_by(model) %>%
-                  summarise(mae = mean(ae))   # Calculate MAE (mean absolute error)
-
-# Plot A) Scatterplot of criterion versus predictions
-ggplot(data = accuracy,
-       aes(x = criterion, y = prediction)) +
-  geom_point(alpha = .2) +
-  geom_abline(slope = 1, intercept = 0) +
-  labs(title = "Regression: Four Features",
+# use the lm_pred object to generate the plot
+ggplot(lm_pred, aes(x = .pred, y = price)) + 
+  # Create a diagonal line:
+  geom_abline(lty = 2) + 
+  # Add data points:
+  geom_point(alpha = 0.5) + 
+  labs(title = "Regression: One Feature",
        subtitle = "Line indicates perfect performance",
-       x = "True Graduation Rates",
-       y = "Fitted Graduation Rates") +
-  xlim(0, 120) + 
-  ylim(0, 120)
+       x = "Predicted Airbnb Prices in $",
+       y = "True Airbnb Prices in $") +
+  # Scale and size the x- and y-axis uniformly:
+  coord_obs_pred()
 ```
-
-6. (Optional). Create a violin plot showing the distribution of absolute errors. How does this compare to your previous one?
 
 ```{r}
-# Plot B) Violin plot of absolute errors
-ggplot(data = accuracy, 
-       aes(x = model, y = ae, fill = model)) + 
-  geom_violin() + 
-  geom_jitter(width = .05, alpha = .2) +
-  labs(title = "Distributions of Fitting Absolute Errors",
-       subtitle = "Numbers indicate means",
-       x = "Model",
-       y = "Absolute Error") +
-  guides(fill = FALSE) +
-  annotate(geom = "label", 
-           x = accuracy_agg$model, 
-           y = accuracy_agg$mae, 
-           label = round(accuracy_agg$mae, 2))
+# The model seems to do a little better than before, but the points still do not
+# really fall on the line, which indicates a poor model fit.
 ```
 
-### F - Use all features
+7. Using the `metrics()` function, evaluate the model performance. Pass it the `price` variable as `truth` and the `.pred` variable as `estimate`.
+
+```{r, echo = TRUE, eval = FALSE}
+# evaluate performance
+XXX(lm_pred, truth = XXX, estimate = XXX)
+```
+
+```{r}
+# evaluate performance
+metrics(lm_pred, truth = price, estimate = .pred)
+
+```
+
+8. How do you interpret these values? How do they compare to the ones you obtained previously?
+
+```{r}
+# On average, the model commits a prediction error of 35.7 when predicting the 
+# price of an airbnb. This is even larger than with only the one predictor.
+# The large difference between the MAE and the RMSE indicates
+# that the prediction errors vary very strongly. This is also apparent in the 
+# plot we created before.
+# The R^2 value is 0.124, that is, about 12% of the variation in the data
+# can be captured by our model, which is more than twice of what the model with
+# only one feature explained.
+```
+
+
+### G - Use all features
 
 Alright, now it's time to use all features available!
 
-1. Using the same steps as above, create a regression model `Grad.Rate_glm` which predicts `Grad.Rate` using *all* features in the dataset. Specifically,...
-
-- set the `form` argument to `Grad.Rate ~ .`.
-- set the `data` argument to the training data `college_train`.
-- set the `method` argument to `"glm"` for regression.
-- set the `trControl` argument to `ctrl_none`.
+1. Update the formula of the `lm_recipe` and set it to `price ~ .` The `.` indicates that all available variables that are not outcomes should be used as features.
 
 ```{r, echo = TRUE, eval = FALSE}
-Grad.Rate_glm <- train(form = XXX ~ .,
-                       data = XXX,
-                       method = "glm",
-                       trControl = XXX)
+# updated recipe
+airbnb_recipe <- 
+  recipe(XXX ~ XXX, data = XXX) %>% 
+  step_dummy(all_nominal_predictors())
 ```
 
 ```{r}
-Grad.Rate_glm <- train(form = Grad.Rate ~ .,
-                       data = college_train,
-                       method = "glm",
-                       trControl = ctrl_none)
+# updated recipe
+airbnb_recipe <- 
+  recipe(price ~ ., data = airbnb) %>% 
+  step_dummy(all_nominal_predictors())
 ```
 
-2. Explore your model using `summary()`, which features seem to be important?
+
+2. Update the recipe in the workflow using the `update_recipe()` function. Pass the new `airbnb_recipe` to `update_recipe()`.
 
 ```{r, echo = TRUE, eval = FALSE}
-summary(XXX)
+# update lm workflow with new recipe
+lm_workflow <- 
+  lm_workflow 
+  XXX(XXX) %>% 
 ```
 
 ```{r}
-summary(Grad.Rate_glm)
+# update lm workflow with new recipe
+lm_workflow <- 
+  lm_workflow %>% 
+  update_recipe(airbnb_recipe)
 ```
 
-3. Save the model's fitted values as a new object `glm_fitted`.
+3. Refit the model as you have done above, and call it `price_lm`.
+
+```{r}
+# Fit the regression model
+price_lm <-
+  lm_workflow %>% 
+  fit(airbnb)
+```
+
+4. Using the `tidy()` function on the `price_lm` object, take a look at the parameter estimates.
+
+
+```{r}
+# Fit the regression model
+tidy(price_lm)
+```
+
+5. Using the `predict()` function, to extract the model predictions and bind them together with the true values using `bind_cols()`.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Save new model fits
-glm_fitted <- predict(XXX)
+# generate predictions
+lm_pred <-
+  XXX %>% 
+  XXX(XXX) %>% 
+  XXX(airbnb %>% select(price))
 ```
 
 ```{r}
-# Save new model fits
-glm_fitted <- predict(Grad.Rate_glm)
+# generate predictions
+lm_pred <-
+  price_lm %>% 
+  predict(new_data = airbnb) %>% 
+  bind_cols(airbnb %>% select(price))
 ```
 
-4. What is the Mean Absolute Error (MAE) of your new model that uses 17 features? How does this compare to your previous model that only used 1 feature?
 
-```{r}
+6. Using the following code, plot the fitted against the true value, to judge how well our model performed. What do you think, is this performance good or bad? And how does it compare to the model with only one feature we fitted before?
 
-# New model fitting accuracy
-postResample(pred = glm_fitted,   # Fitted values 
-             obs = criterion)  # criterion values
-```
-
-5. (Optional). Create a scatter plot showing the relationship between your new model fits and the true values. How does this plot compare to your previous one?
-
-```{r, out.width = "60%"}
-# accuracy: a dataframe of raw absolute errors
-accuracy <- tibble(criterion = criterion,
-                   Regression = glm_fitted) %>%
-                gather(model, prediction, -criterion) %>%
-  
-  # Add error measures
-  mutate(ae = abs(prediction - criterion))
-
-# accuracy_agg: Dataframe of aggregate errors
-accuracy_agg <- accuracy %>%
-                  group_by(model) %>%
-                  summarise(mae = mean(ae))   # Calculate MAE (mean absolute error)
-
-# Plot A) Scatterplot of criterion versus predictions
-
-ggplot(data = accuracy,
-       aes(x = criterion, y = prediction)) +
-  geom_point(alpha = .2) +
-  geom_abline(slope = 1, intercept = 0) +
-  labs(title = "Regression: All Features",
+```{r, echo = TRUE, eval = FALSE}
+# use the lm_pred object to generate the plot
+ggplot(lm_pred, aes(x = .pred, y = price)) + 
+  # Create a diagonal line:
+  geom_abline(lty = 2) + 
+  # Add data points:
+  geom_point(alpha = 0.5) + 
+  labs(title = "Regression: One Feature",
        subtitle = "Line indicates perfect performance",
-       x = "True Graduation Rates",
-       y = "Fitted Graduation Rates") +
-  xlim(0, 120) + 
-  ylim(0, 120)
+       x = "Predicted Airbnb Prices in $",
+       y = "True Airbnb Prices in $") +
+  # Scale and size the x- and y-axis uniformly:
+  coord_obs_pred()
 ```
 
-6. (Optional). Create a violin plot showing the distribution of absolute errors. How does this compare to your previous one?
+```{r}
+# Even with all predictors, the model seems to have some issues.
+```
+
+7. Using the `metrics` function, evaluate the model performance. Pass it the `price` variable as `truth` and the `.pred` variable as `estimate`.
+
+```{r, echo = TRUE, eval = FALSE}
+# evaluate performance
+XXX(lm_pred, truth = XXX, estimate = XXX)
+```
 
 ```{r}
-# Plot B) Violin plot of absolute errors
-ggplot(data = accuracy, 
-       aes(x = model, y = ae, fill = model)) + 
-  geom_violin() + 
-  geom_jitter(width = .05, alpha = .2) +
-  labs(title = "Distributions of Fitting Absolute Errors",
-       subtitle = "Numbers indicate means",
-       x = "Model",
-       y = "Absolute Error") +
-  guides(fill = FALSE) +
-  annotate(geom = "label", 
-           x = accuracy_agg$model, 
-           y = accuracy_agg$mae, 
-           label = round(accuracy_agg$mae, 2))
+# evaluate performance
+metrics(lm_pred, truth = price, estimate = .pred)
+
+```
+
+8. How do you interpret these values? How do they compare to the ones you obtained previously?
+
+```{r}
+# On average, the model commits a prediction error of 37.9 when predicting the 
+# price of an airbnb. This is again larger than with only the one predictor.
+# The large difference between the MAE and the RMSE indicates
+# that the prediction errors vary very strongly. This is also apparent in the 
+# plot we created before.
+# The R^2 value is 0.196, that is, about 20% of the variation in the data
+# can be captured by our model.
 ```
 
 ### Classification
 
-### G - Make sure your criterion is a factor!
+### H - Make sure your criterion is a factor!
 
-Now it's time to do a classification task! Recall that in a classification task, we are predicting a category, not a continuous number. In this task, we'll predict whether or not a college is Private or Public, this is stored as the variable `college_train$Private`.
+Now it's time to do a classification task! Recall that in a classification task, we are predicting a category, not a continuous number. In this task, we'll predict whether or not a host is a superhost (these are experienced hosts that meet a [set of criteria](https://www.airbnb.com/help/article/829/how-do-i-become-a-superhost?_set_bev_on_new_domain=1629269796_MjI5MzcwYTI5MDVm&locale=en)). Whether or not a host is a superhost is stored in the variable `host_superhost`.
 
-1. In order to do classification training with `caret`, all you need to do is make sure that the criterion is coded as a factor. To test whether it is coded as a factor, you can look at its `class` as follows.
+1. In order to do classification training, we have to ensure that the criterion is coded as a `factor`. To test whether it is coded as a factor, you can look at its `class` as follows.
 
 ```{r, echo = TRUE}
-# Look at the class of the variable Private, should be a factor!
-class(college_train$Private)
+# Look at the class of the variable host_superhost, should be a factor!
+class(airbnb$host_superhost)
 ```
 
-2. Now, we'll save the Private column as a new object called `criterion`.
+2. The `host_superhost` variable is of class `logical`. Therefore, we have to change it to `factor`. **Important note**: In binary classification tasks, the **first** factor level will be chosen as positive. We therefore explicitly specify, that `TRUE` be the first level.
 
 ```{r, echo = TRUE}
 # Define criterion as college_train$Private
-criterion <- college_train$Private
+airbnb <-
+  airbnb %>% 
+  mutate(host_superhost = factor(host_superhost, levels = c(TRUE, FALSE)))
 ```
 
-### H - Fit a classification model
-
-1. Using `train()`, create `Private_glm`, a regression model predicting the variable `Private`. Specifically,...
-
-- set the `form` argument to `Private ~ .`.
-- set the `data` argument to the training data `college_train`.
-- set the `method` argument to `"glm"`.
-- set the `trControl` argument to `ctrl_none`.
+3. Check again, whether `host_superhost` is now a factor, and check whether the order of the levels is as intended using `levels()` (the order should be `"TRUE", "FALSE"`).
 
 ```{r, echo = TRUE, eval = FALSE}
-# Fit regression model predicting Private
-Private_glm <- train(form = XXX ~ .,
-                     data = XXX,
-                     method = "XXX",
-                     trControl = XXX)
+XXX(airbnb$host_superhost)
+XXX(airbnb$host_superhost)
+```
+
+```{r}
+class(airbnb$host_superhost)
+levels(airbnb$host_superhost)
+
+```
+
+### I - Fit a classification model
+
+1. Given that we now want to predict a new variable (`host_superhost`) with a new model (a logistic regression), we need to update both our model and our recipe. Create a new model called `logistic_model`, with the model type `logistic_reg`, the engine `"glm"`, and mode `"classification"`.
+
+```{r, echo = TRUE, eval = FALSE}
+# create a logistic regression model 
+XXX_model <-
+  XXX() %>% 
+  set_XXX(XXX) %>% 
+  set_XXX(XXX)
 ```
 
 
 ```{r}
-# Fit regression model predicting private
-Private_glm <- train(form = Private ~ .,
-                     data = college_train,
-                     method = "glm",
-                     trControl = ctrl_none)
+# create a logistic regression model 
+logistic_model <-
+  logistic_reg() %>% 
+  set_engine("glm") %>% 
+  set_mode("classification")
 ```
 
-2. Explore the `Private_glm` object using the `summary()` function. 
+2. Print the `logistic_model` object. Using `translate()`, check out the underlying function that will be used to fit the model.
+
+```{r}
+logistic_model
+translate(logistic_model)
+```
+
+3. Specify the new recipe. Specifically...
+
+- set the formula to `host_superhost ~ .`, to use all possible features
+- add `step_dummy(all_nominal_predictors())` to pre-process nominal features
+- call the new object `logistic_recipe`
 
 
 ```{r, echo = TRUE, eval = FALSE}
-# Explore the Private_glm object
-summary(XXX)
+# create new recipe
+XXX <- 
+  XXX(XXX, data = XXX) %>% 
+  XXX(XXX())
 ```
 
 ```{r}
-# Show summary information from the regression model
-summary(Private_glm)
+# create new recipe
+logistic_recipe <- 
+  recipe(host_superhost ~ ., data = airbnb) %>% 
+  step_dummy(all_nominal_predictors())
 ```
 
-3. Look at the results, how do you interpret the regression coefficients? Which features seem important in predicting whether a school is private or not?
+4. Print the new recipe.
 
 ```{r}
-# Looking at the z statistics, Outstate, Enroll and S.F.Ratio (...) have quite large z-statistics
+logistic_recipe
 ```
 
-### I - Access classification model accuracy
+5. Create a new workflow called `logistic_workflow`, where you add the `logistic_model` and the `logistic_recipe` together.
 
-1. Now it's time to save the model's fitted values! Do this by running the following code to save the fitted values as `glm_fitted`.
+```{r}
+# create logistic_workflow 
+logistic_workflow <- 
+  workflow() %>% 
+  add_recipe(logistic_recipe) %>% 
+  add_model(logistic_model)
+```
+
+5. Print and check out the new workflow.
+
+```{r}
+logistic_workflow
+```
+
+6. Fit the model using `fit()`. Save the result as 
+
+```{r}
+# Fit the logistic regression model
+superhost_glm <-
+  logistic_workflow %>% 
+  fit(airbnb)
+```
+
+
+### J - Assess model performance
+
+1. Now it's time to evaluate the classification models' performance. We can again use the `metrics()` function to do so. First, we again create a dataset containing the predicted and true values. This time, we call the `predict()` function twice: once to obtain the predicted classes, and once to obtain the probabilities, with which the classes are predicted.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Get fitted values from the Private_glm object
-glm_fitted <- predict(XXX)
+logistic_pred <- 
+  predict(superhost_glm, airbnb, type = "prob") %>% 
+  bind_cols(predict(superhost_glm, airbnb)) %>% 
+  bind_cols(airbnb %>% select(host_superhost))
 ```
 
 ```{r}
 # Get fitted values from the Private_glm object
-glm_fitted <- predict(Private_glm)
+logistic_pred <- 
+  predict(superhost_glm, airbnb, type = "prob") %>% 
+  bind_cols(predict(superhost_glm, airbnb)) %>% 
+  bind_cols(airbnb %>% select(host_superhost))
 ```
 
-2. Plot the values of your `glm_fitted` object - what are these values? Do they look reasonable?
+2. Take a look at the `logistic_pred` object and make sure you understand what the variables mean.
 
 ```{r}
-# Plot glm_fitted
-plot(glm_fitted)
+# The first two variables contain the predicted class probabilities and were
+# created from the first call to predict(), where type = "prob" was used.
+# The third variable, .pred_class, contains the predicted class. If the .pred_TRUE
+# variable in a given row was >=.5, this will be TRUE, otherwise it will be FALSE.
+# Finally, the last variable, host_superhost, contains the true values.
 ```
 
-3. Now it's time to calculate model accuracy. To do this, we will use a new function called `confusionMatrix()`. This function compares model predictions to a `reference` (in our case, the criterion, and returns several summary statistics). In the code below, we'll use `glm_fitted` as the model predictions, and our already defined `criterion` vector as the reference (aka, truth). Specifically,...
 
-- set the `data` argument to your `glm_fitted` values.
-- set the `reference` argument to the `criterion` values.
+3. Now, get the confusion matrix using the `conf_mat()` function and passing it the `host_superhost` variable as `truth`, and th `.pred_class` variable as `estimate`. Just by looking at the confusion matrix, do you think the model is doing well?
 
-```{r, eval = FALSE, echo = TRUE}
-# Show accuracy of glm_fitted versus the true criterion values
-confusionMatrix(data = XXX,      # This is the prediction!
-                reference = XXX) # This is the truth!
+```{r, echo = TRUE, eval = FALSE}
+XXX(logistic_pred, truth = XXX, estimate = XXX)
 ```
-
 
 ```{r}
-# Show accuracy of glm_fitted versus the true values
-confusionMatrix(data = glm_fitted,        # This is the prediction!
-                reference = criterion) # This is the truth!
+conf_mat(logistic_pred, truth = host_superhost, estimate = .pred_class)
 ```
 
-4. Look at the results, what is the overall accuracy of the model? How do you interpret this?
+4. Let's look at different performance metrics. Use the `metrics()` function, with exactly the same arguments as you used in the call to `conf_mat()` before, to obtain the accuracy and the kappa statistic (a chance-corrected measure of agreement between model prediction and true value).
 
 ```{r}
-# The overall accuracy is 0.942. Across all cases, the model fits the true class values 94.2% of the time.
+metrics(logistic_pred, truth = host_superhost, estimate = .pred_class)
 ```
 
+5. How do you interpret these values? Do you think the model performs well?
 
-5. To visualize the accuracy of your classification models, use the following code to create a bar plot.
-
-```{r echo = TRUE}
-# Get overall accuracy from regression model
-glm_accuracy <- confusionMatrix(data =  glm_fitted,  
-                                reference = criterion)$overall[1]
-
-# Combine results into one table
-accuracy <- tibble(Regression = glm_accuracy) %>%
-              gather(model, accuracy)
-
-
-# Plot the results!
-ggplot(accuracy, aes(x = model, y = accuracy, fill = model)) + 
-  geom_bar(stat = "identity") +
-  labs(title = "Is a college private or public?",
-       subtitle = "Fitting classification accuracy",
-       y = "Overall Accuracy") +
-  ylim(c(0, 1)) +
-  annotate(geom = "label", 
-           x = accuracy$model, 
-           y = accuracy$accuracy, 
-           label = round(accuracy$accuracy, 2))
+```{r}
+logistic_pred %>% 
+  pull(host_superhost) %>% 
+  table() %>% 
+  prop.table() %>% 
+  round(2)
+# Just by predicting always FALSE, the model could reach an accuracy of 68%.
+# By using all the features available, the model can do about 10 percentage points
+# better than that. According to some, completely arbitrary, guidelines, the 
+# kappa value of .48 can be considered moderate or fair to good.
+# Whether such values are acceptable depends on the use case.
 ```
 
+6. The metrics we just looked at are based on the class predictions. We can also obtain additional metrics based on the predicted probabilities of class membership. Use the same code as in the last task, but add the name of the column containing the predictied *positive* class probability (`.pred_TRUE`) as an unnamed, fourth argument:
+
+```{r, echo = TRUE, eval = FALSE}
+XXX(logistic_pred, truth = XXX, estimate = XXX, XXX)
+```
+
+```{r}
+metrics(logistic_pred, truth = host_superhost, estimate = .pred_class, .pred_TRUE)
+```
+
+7. What does the `roc_auc` value indicate?
+
+```{r}
+# It indicates the area under the curve (AUC) of the receiver operator
+# characteristic (ROC) curve. A value of 1 would be perfect, indicating that both 
+# sensitivity and specificity simultaneously take perfect values.
+```
+
+8. To plot the ROC curve, we can use the `roc_curve()` function, to create sensitivity and specificity values of different cut-offs, and pass this into the `autoplot()` function, to plot the curve. Add the `host_superhost` column as `truth`, and the `.pred_TRUE` column as third, unnamed argument, to the `roc_curve()` function and plot the curve.
+
+```{r, echo = TRUE, eval = FALSE}
+XXX(logistic_pred, truth = XXX, XXX) %>% 
+  autoplot()
+```
+
+```{r}
+roc_curve(logistic_pred, truth = host_superhost, .pred_TRUE) %>% 
+  autoplot()
+```
 
 ## Examples
 
 ```{r, eval = FALSE, echo = TRUE}
 # Fitting and evaluating a regression model ------------------------------------
 
-# Step 0: Load packages-----------
+# Step 0: Load packages---------------------------------------------------------
 library(tidyverse)    # Load tidyverse for dplyr and tidyr
-library(caret)        # For ML mastery 
+library(tidymodels)   # For ML mastery 
+tidymodels_prefer()   # To resolve common conflicts
 
-# Step 1: Load and Clean, and Explore Training data ----------------------
+# Step 1: Load and Clean, and Explore Training data ----------------------------
 
 # I'll use the mpg dataset from the dplyr package in this example
 #  no need to load an external dataset
 data_train <- read_csv("1_Data/mpg_train.csv")
-
-# Convert all characters to factor
-#  Some ML models require factors
-data_train <- data_train %>%
-  mutate_if(is.character, factor)
 
 # Explore training data
 data_train        # Print the dataset
@@ -717,83 +851,67 @@ View(data_train)  # Open in a new spreadsheet-like window
 dim(data_train)   # Print dimensions
 names(data_train) # Print the names
 
-# Step 2: Define training control parameters -------------
+# Step 2: Define model ---------------------------------------------------------
 
-# In this case, I will set method = "none" to fit to 
-#  the entire dataset without any fancy methods
-#  such as cross-validation
-train_control <- trainControl(method = "none") 
+# The model definition defines what kind of model we want to use and how to
+# fit it
+lm_model <- 
+  linear_reg() %>%        # Specify model type
+  set_engine("lm") %>%    # Specify engine (often package name) to use
+  set_mode("regression")  # Specify whether it's a regressio or classification
+                          #  problem.
 
-# Step 3: Train model: -----------------------------
-#   Criterion: hwy
-#   Features: year, cyl, displ, trans
+# Step 3: Define recipe --------------------------------------------------------
 
-# Regression
-hwy_glm <- train(form = hwy ~ year + cyl + displ + trans,
-                 data = data_train,
-                 method = "glm",
-                 trControl = train_control)
+# The recipe defines what to predict with what, and how to pre-process the data
+lm_recipe <- 
+  recipe(hwy ~ year + cyl + displ + trans,  # Specify formula
+         data = data_train) %>%             # Specify the data
+  step_dummy(all_nominal_predictors())      # Dummy code all categorical predictors
 
-# Look at summary information
-summary(hwy_glm)
+# Step 4: Define workflow ------------------------------------------------------
 
-# Step 4: Access fit ------------------------------
+# The workflow combines model and recipe, so that we can fit the model
+lm_workflow <- 
+  workflow() %>%             # Initialize workflow
+  add_model(lm_model) %>%    # Add the model to the workflow
+  add_recipe(lm_recipe)      # Add the recipe to the workflow
 
-# Save fitted values
-glm_fitted <- predict(hwy_glm)
+# Step 5: Fit the model --------------------------------------------------------
 
-# Define data_train$hwy as the true criterion
-criterion <- data_train$hwy
+hwy_lm <- 
+  lm_workflow %>%   # Use the specified workflow
+  fit(data_train)   # Fit the model on the specified data
 
-# Regression Fitting Accuracy
-postResample(pred = glm_fitted, 
-             obs = criterion)
+tidy(hwy_lm)        # Look at summary information
 
-#     RMSE Rsquared      MAE 
-# 3.246182 0.678465 2.501346 
+# Step 6: Assess fit -----------------------------------------------------------
 
-# On average, the model fits are 2.8 away from the true
-#  criterion values
+# Save model predictions and observed values
+lm_fitted <- 
+  hwy_lm %>%               # Model from which to extract predictions
+  predict(data_train) %>%  # Obtain predictions, based on entered data (in this
+                           #  case, these predictions are not out-of-sample)
+  bind_cols(data_train %>% select(hwy))  # Extract observed/true values
 
-# Step 5: Visualise Accuracy -------------------------
-
-# Tidy competition results
-accuracy <- tibble(criterion = criterion,
-                   Regression = glm_fitted) %>%
-               gather(model, prediction, -criterion) %>%
-  
-  # Add error measures
-  mutate(se = prediction - criterion,
-         ae = abs(prediction - criterion))
+# Obtain performance metrics
+metrics(lm_fitted, truth = hwy, estimate = .pred)
 
 
-# Calculate summaries
-accuracy_agg <- accuracy %>%
-                  group_by(model) %>%
-                  summarise(mae = mean(ae))   # Calculate MAE (mean absolute error)
+# Step 7: Visualize Accuracy ---------------------------------------------------
 
-# Plot A) Scatterplot of criterion versus predictions
-ggplot(data = accuracy,
-       aes(x = criterion, y = prediction, col = model)) +
-  geom_point(alpha = .2) +
-  geom_abline(slope = 1, intercept = 0) +
-  labs(title = "Predicting mpg$hwy",
-       subtitle = "Black line indicates perfect performance")
-
-# Plot B) Violin plot of absolute errors
-ggplot(data = accuracy, 
-       aes(x = model, y = ae, fill = model)) + 
-  geom_violin() + 
-  geom_jitter(width = .05, alpha = .2) +
-  labs(title = "Distributions of Fitting Absolute Errors",
-       subtitle = "Numbers indicate means",
-       x = "Model",
-       y = "Absolute Error") +
-  guides(fill = FALSE) +
-  annotate(geom = "label", 
-           x = accuracy_agg$model, 
-           y = accuracy_agg$mae, 
-           label = round(accuracy_agg$mae, 2))
+# use the lm_fitted object to generate the plot
+ggplot(lm_fitted, aes(x = .pred, y = hwy)) + 
+  # Create a diagonal line:
+  geom_abline(lty = 2) + 
+  # Add data points:
+  geom_point(alpha = 0.5) + 
+  labs(title = "Regression: Four Features",
+       subtitle = "Line indicates perfect performance",
+       x = "Predicted hwy",
+       y = "True hwy") +
+  # Scale and size the x- and y-axis uniformly:
+  coord_obs_pred()
 ```
 
 
@@ -801,37 +919,53 @@ ggplot(data = accuracy,
 
 ```{r, eval = TRUE, message = FALSE, echo = FALSE}
 library(tidyverse)
-library(ggthemes)
+library(tidymodels)
 ```
 
 |File  |Rows | Columns |
 |:----|:-----|:------|
-|[college_train.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36)| 1000 | 21|
+|[airbnb.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36)| 1000 | 21|
 
-- The `college_train` data are taken from the `College` dataset in the `ISLR` package. They contain statistics for a large number of US Colleges from the 1995 issue of US News and World Report.
+- The `airbnb` data are taken from the `College` dataset in the `ISLR` package. They contain statistics for a large number of US Colleges from the 1995 issue of US News and World Report.
 
-#### Variable description of `college_train`
+#### Variable description of `airbnb`
 
 | Name | Description |
 |:-------------|:-------------------------------------|
-| `Private` | A factor with levels No and Yes indicating private or public university. |
-| `Apps` | Number of applications received.  |
-| `Accept` | Number of applications accepted. |
-| `Enroll` | Number of new students enrolled. |
-| `Top10perc` | Pct. new students from top 10% of H.S. class. |
-| `Top25perc` | Pct. new students from top 25% of H.S. class. |
-| `F.Undergrad` | Number of fulltime undergraduates. |
-| `P.Undergrad` | Number of parttime undergraduates. |
-| `Outstate` | Out-of-state tuition. |
-| `Room.Board` | Room and board costs. |
-| `Books` | Estimated book costs. |
-| `Personal` | Estimated personal spending. |
-| `PhD` | Pct. of faculty with Ph.D.'s. |
-| `Terminal` | Pct. of faculty with terminal degree. |
-| `S.F.Ratio` | Student/faculty ratio. |
-| `perc.alumni` | Pct. alumni who donate. |
-| `Expend` | Instructional expenditure per student. |
-| `Grad.Rate` | Graduation rate. |
+|apartment_id| Apartment id|
+|price| Price per night (in \$s)|
+|date| When apartment was added to Airbnb |
+|room_type| Appartement, Loft, House, etc.|
+|accommodates| Number of people the airbnb accommodates |
+|bedrooms| Number of bedrooms |
+|bathrooms| Number of bathrooms |
+|cleaning_fee| Amount of cleaning fee (in \$s) |
+|availability_90_days| How many of the following 90 days the airbnb is available |
+|neighbourhood| The neighbourhood the Airbnb is located in |
+|district| The district the Airbnb is located in |
+|latitude| latitude|
+|longitude| longitude |
+|host_id| Host id |
+|host_since| Experience of the hosts |
+|host_respons_time| Host average response time|
+|host_response_rate| Host response rate |
+|host_superhost| Whether host is a superhost TRUE/FALSE |
+|host_listings_count| Number of listings the host has |
+|review_scores_rating| Overall rating [0, 100]|
+|review_scores_accuracy| Accuracy of information rating [0, 10] |
+|review_scores_cleanliness| Cleanliness rating  [0, 10]|
+|review_scores_checkin| Check in rating [0, 10] |
+|review_scores_communication| Communication rating [0, 10] |
+|review_scores_location| Location rating [0, 10] |
+|review_scores_value| Value rating [0, 10] |
+|kitchen| Kitchen available TRUE/FALSE |
+|wifi| Wifi available TRUE/FALSE |
+|tv| TV available TRUE/FALSE |
+|coffe_machine| Coffee machine available TRUE/FALSE|
+|dishwasher| Dishwasher available TRUE/FALSE|
+|terrace| Terrace/balcony available TRUE/FALSE|
+|bathtub| Bathtub available TRUE/FALSE|
+|check_in_24h| 24h Check-In available TRUE/FALSE|
 
 
 ## Functions
@@ -841,26 +975,35 @@ library(ggthemes)
 |Package| Installation|
 |:------|:------|
 |`tidyverse`|`install.packages("tidyverse")`|
-|`caret`|`install.packages("caret")`|
+|`tidymodels`|`install.packages("tidymodels")`|
 
 ### Functions
 
 | Function| Package | Description |
 |:---|:------|:---------------------------------------------|
-| `trainControl()`|`caret`|    Define modelling control parameters| 
-| `train()`|`caret`|    Train a model|
-| `predict(object, newdata)`|`base`|    Predict the criterion values of `newdata` based on `object`|
-| `postResample()`|`caret`|   Calculate aggregate model performance in regression tasks|
-| `confusionMatrix()`|`caret`|   Calculate aggregate model performance in classification tasks| 
+| `read_csv()`|`tidyverse`|    Read in data| 
+| `mutate()`|`tidyverse`|    Manipulate or create columns| 
+| `bind_cols()`|`tidyverse`|    Bind columns together and return a tibble| 
+| `linear_reg()`/`logistic_reg()`|`tidymodels`|    Initialize linear/logistic regression model| 
+| `set_engine()`|`tidymodels`|    Specify which engine to use for the modeling (e.g., "lm" to use `stats::lm()`, or "stan" to use `rstanarm::stan_lm()`)| 
+| `set_mode()`|`tidymodels`|    Specify whether it's a regression or classification problem| 
+| `recipe()`|`tidymodels`|    Initialize recipe| 
+| `step_dummy()`|`tidymodels`|    pre-process data into dummy variables| 
+| `workflow()`|`tidymodels`|   Initialize workflow| 
+| `add_recipe()`|`tidymodels`|   Add recipe to workflow|
+| `update_recipe()`|`tidymodels`|   Update workflow with a new recipe|
+| `add_model()`|`tidymodels`|   Add model to workflow| 
+| `fit()`|`tidymodels`|   Fit model| 
+| `tidy()`|`tidymodels`|   Show model parameters| 
+| `predict()`|`tidymodels`|   Create model predictions based on specified data| 
+| `metrics()`|`tidymodels`|   Evaluate model performance| 
+| `conf_mat()`|`tidymodels`|   Create confusion matrix| 
+| `roc_curve()`|`tidymodels`|   Calculate sensitivity and specificity with different thresholds for ROC-curve| 
+| `autoplot()`|`tidymodels`|   Plot methods for different objects such as those created from `roc_curve()` to plot the ROC-curve| 
+
 
 
 ## Resources
 
-### Cheatsheet
-
-<figure>
-<center>
-<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf">
-  <img src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet.png" alt="Trulli" style="width:70%"></a><br>
- <font style="font-size:10px"> from <a href= "https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</figcaption">github.com/rstudio</a></font>
-</figure>
+- [**tidymodels webpage**](https://www.tidymodels.org/): Can be used as cheat sheet. Also has some tutorials.
+- The, not yet completed, book [**Tidymodeling with R**](https://www.tmwr.org): More detailed introduction into the `tidymodels` framework.

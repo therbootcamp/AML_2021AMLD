@@ -13,22 +13,36 @@
 
 <title>Fitting</title>
 
+<script src="Fitting_practical_files/header-attrs-2.10/header-attrs.js"></script>
 <script src="Fitting_practical_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="Fitting_practical_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="Fitting_practical_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="Fitting_practical_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="Fitting_practical_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="Fitting_practical_files/navigation-1.1/tabsets.js"></script>
 <link href="Fitting_practical_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="Fitting_practical_files/highlightjs-9.12.0/highlight.js"></script>
 
-<style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -41,32 +55,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 <link rel="stylesheet" href="practical.css" type="text/css" />
 
@@ -77,10 +66,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -97,6 +82,9 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
@@ -109,7 +97,6 @@ summary {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -173,7 +160,7 @@ summary {
 
 
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -183,7 +170,7 @@ summary {
 <col width='10%'>
 <tr style="border:none">
 <td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
-<font style='font-style:normal'>Applied Machine Learning with R</font><br> <a href='https://therbootcamp.github.io/AML_2020AMLD/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>The R Bootcamp @ AMLD</font> </a>
+<font style='font-style:normal'>Applied Machine Learning with R</font><br> <a href='https://therbootcamp.github.io/AML_2021AMLD/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>The R Bootcamp @ AMLD</font> </a>
 </td>
 <td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
 <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
@@ -198,15 +185,15 @@ summary {
 <img width="100%" src="image/fitting_dirk.001.png" margin=0><br> <font style="font-size:10px">adapted from <a href="https://xkcd.com/">xkcd.com</a></font>
 </p>
 <div id="section" class="section level1 tabset">
-<h1></h1>
+<h1 class="tabset"></h1>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
-<p>In this practical, you’ll practice the basics of fitting and exploring regression models in R using the <code>caret</code> package.</p>
+<p>In this practical, you’ll practice the basics of fitting and exploring regression models in R using the <code>tidymodels</code> package.</p>
 <p>By the end of this practical you will know how to:</p>
 <ol style="list-style-type: decimal">
 <li>Fit a regression model to training data.</li>
 <li>Explore your fit object with generic functions.</li>
-<li>Evaluate the model’s fitting performance using accuracy measures such as MSE and MAE.</li>
+<li>Evaluate the model’s fitting performance using accuracy measures such as RMSE and MAE.</li>
 <li>Explore the effects of adding additional features.</li>
 </ol>
 </div>
@@ -215,336 +202,352 @@ summary {
 <div id="a---setup" class="section level3">
 <h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
-<li><p>Open your <code>RBootcamp_AMLD2020</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data file(s) listed in the <code>Datasets</code> section are in your <code>1_Data</code> folder</p></li>
+<li><p>Open your <code>RBootcamp_AMLD2021</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data file(s) listed in the <code>Datasets</code> section are in your <code>1_Data</code> folder</p></li>
 <li><p>Open a new R script and save it as a new file called <code>Fitting_practical.R</code> in the <code>2_Code</code> folder.</p></li>
 <li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
 </ol>
 <pre class="r"><code># Load packages necessary for this script
 library(tidyverse)
-library(caret)</code></pre>
+library(tidymodels)
+tidymodels_prefer() # to resolve common conflicts</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>For this practical, we’ll use a dataset of 388 U.S. Colleges. The data is stored in <code>college_train.csv</code>. Using the following template, load the dataset into R as <code>college_train</code>:</li>
+<li>For this practical, we’ll use a dataset of airbnbs in Berlin. The data is stored in <code>airbnb.csv</code>. Using the following template, load the dataset into R as <code>airbnb</code>:</li>
 </ol>
-<pre class="r"><code># Load in college_train.csv data as college_train
-college_train &lt;- read_csv(file = &quot;1_Data/college_train.csv&quot;)</code></pre>
+<pre class="r"><code># Load in airbnb.csv data as airbnb
+airbnb &lt;- read_csv(file = &quot;1_Data/airbnb.csv&quot;)</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li><p>Take a look at the first few rows of the dataset by printing it to the console.</p></li>
 <li><p>Print the numbers of rows and columns using the <code>dim()</code> function.</p></li>
 </ol>
-<pre class="r"><code># Print number of rows and columns of college_train
+<pre class="r"><code># Print number of rows and columns of airbnb
 dim(XXX)</code></pre>
 <ol start="7" style="list-style-type: decimal">
 <li>Open the dataset in a new window using <code>View()</code>. How does it look?</li>
 </ol>
 <pre class="r"><code>View(XXX)</code></pre>
 <ol start="8" style="list-style-type: decimal">
-<li>Before starting to model the data, we need to do a little bit of data cleaning. Specifically, we need to convert all character columns to factors: Do this by running the following code:</li>
+<li>Familiarize yourself with the names of the dataset by looking at the feature names using <code>names()</code>.</li>
+</ol>
+<pre class="r"><code># Print column names of airbnb
+names(XXX)</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li><p>Before starting to model the data, we need to do a little bit of data cleaning. Given the names of the data and the description in the <em>Datasets</em> tab, which do you think could be excluded?</p></li>
+<li><p>Let’s remove the variables we won’t need in the analyses. Also, the <code>cleening_fee</code> is currently a string, because of the $ sign in front of the numbers. Let’s change this to create a numeric variable.</p></li>
 </ol>
 <pre class="r"><code># Convert character to factor
-college_train &lt;- college_train %&gt;%
-          mutate_if(is.character, factor)</code></pre>
+airbnb &lt;- 
+  airbnb %&gt;%
+  select(-ends_with(c(&quot;_id&quot;, &quot;itude&quot;))) %&gt;% 
+  mutate(cleaning_fee = as.numeric(gsub(&quot;$&quot;, &quot;&quot;, cleaning_fee, fixed = TRUE)))</code></pre>
 </div>
-<div id="b---determine-sampling-procedure" class="section level3">
-<h3>B - Determine sampling procedure</h3>
-<p>In <code>caret</code>, we define the computational nuances of training using the <code>trainControl()</code> function. Because we’re learning the basics of fitting, we’ll set <code>method = &quot;none&quot;</code> for now. (Note that you would almost never do this for a real prediction task, you’ll see why later!)</p>
-<pre class="r"><code># Set training resampling method to &quot;none&quot;
-ctrl_none &lt;- trainControl(method = &quot;none&quot;) </code></pre>
-</div>
-<div id="c---fit-a-regression-model" class="section level3">
-<h3>C - Fit a regression model</h3>
+<div id="b---set-up-the-model" class="section level3">
+<h3>B - Set up the model</h3>
 <ol style="list-style-type: decimal">
-<li>Using the code below, fit a regression model predicting graduation rate (<code>Grad.Rate</code>) as a function of one feature: <code>PhD</code> (percent of faculty with PhDs). Save the result as an object <code>Grad.Rate_glm</code>. Specifically,…</li>
+<li>In this practical we will use a linear regression to predict the price of airbnbs. To be able to do so in <code>tidymodels</code>, we first have to set up our model. We do this by specifying (a) the model type, (b) the enginge we want to use, and (c) whether we are working on a regression or a classification problem. To do so, …</li>
 </ol>
 <ul>
-<li>set the <code>form</code> argument to <code>Grad.Rate ~ PhD</code>.</li>
-<li>set the <code>data</code> argument to your training data <code>college_train</code>.</li>
-<li>set the <code>method</code> argument to <code>&quot;glm&quot;</code> for regression.</li>
-<li>set the <code>trControl</code> argument to <code>ctrl_none</code>, the object you created previously.</li>
+<li>set the model type to <code>linear_reg()</code>.</li>
+<li>specify the engine using <code>set_engine(XXX)</code>, with the engine <code>"lm"</code>.</li>
+<li>specify, that the problem type with <code>set_mode(XXX)</code> to <code>"regression"</code>.</li>
+<li>add all these function calls together using the <code>%&gt;%</code> operator.</li>
+<li>save the model specification as <code>lm_model</code>.</li>
 </ul>
-<pre class="r"><code># Grad.Rate_glm: Regression Model
-Grad.Rate_glm &lt;- train(form = XX ~ XX,
-                       data = XX,
-                       method = &quot;XX&quot;,
-                       trControl = XX)</code></pre>
+<pre class="r"><code># set up our model
+lm_model &lt;- 
+  XXX() %&gt;% 
+  XXX(XXX) %&gt;% 
+  XXX(XXX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Explore the fitted model using the <code>summary()</code>.</li>
-</ol>
-<pre class="r"><code># Show summary information from the regression model
-summary(XXX)</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Look at the results, how do you interpret the regression coefficients? What is the general relationship between PhD and graduation rates? Does this make sense?</li>
+<li><p>Take a look at your model by printing <code>lm_model</code>.</p></li>
+<li><p>Using <code>translate()</code> we can view the function that will be called to fit our model. Arguments not yet specified (and thus, at this point, unknown), will be shown as <code>missing_arg()</code>. Use <code>translate()</code> and pass <code>lm_model</code> as argument.</p></li>
 </ol>
 </div>
-<div id="d---evaluate-accuracy" class="section level3">
-<h3>D - Evaluate accuracy</h3>
+<div id="c---set-up-the-recipe" class="section level3">
+<h3>C - Set up the recipe</h3>
 <ol style="list-style-type: decimal">
-<li>Now it’s time to evaluate the model’s fitted values! Use the following code to save the fitted values as <code>glm_fitted</code>.</li>
+<li>In the previous section, we defined what model to fit. By specifying a <code>recipe</code>, we specify (a) what to predict, (b) how to predict it (the features), (c) how to prepare our data. Create your first recipe called <code>airbnb_recipe</code>, by adding a formula to specify that we want to predict <code>price</code> with the number of people it can accommodate (<code>accommodates</code>):</li>
 </ol>
-<pre class="r"><code># Get fitted values from the Grad.Rate_glm model and save as glm_fitted
-glm_fitted &lt;- predict(XXX)</code></pre>
+<ul>
+<li>set the formula to <code>price ~ accommodates</code></li>
+<li>set the data to <code>airbnb</code></li>
+</ul>
+<pre class="r"><code># create basic recipe
+airbnb_recipe &lt;- recipe(XXX ~ XXX, data = XXX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Plot the distribution of your <code>glm_fitted</code> object using the code below - what are these values? Do they look reasonable? That is, are they in the range of what you expect the criterion to be?</li>
+<li>Print the created recipe.</li>
 </ol>
-<pre class="r"><code># Plot glm_fitted
-hist(XXX)</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Now it’s time to compare your model fits to the true values. We’ll start by defining the vector <code>criterion</code> as the actual graduation rates.</li>
+</div>
+<div id="d---fit-a-regression-model" class="section level3">
+<h3>D - Fit a regression model</h3>
+<ol style="list-style-type: decimal">
+<li>Now we can finally specify our model <code>workflow</code> in which we bring the model specification and recipe together, to then fit our model. To do so</li>
 </ol>
-<pre class="r"><code># Define criterion as Grad.Rate
-criterion &lt;- college_train$Grad.Rate</code></pre>
+<ul>
+<li>create an object called <code>lm_workflow</code>.</li>
+<li>call the <code>workflow()</code> function, to initiate the workflow.</li>
+<li>add the <code>airbnb_recipe</code> using the <code>add_recipe()</code> function.</li>
+<li>add the <code>lm_model</code> model specification using the <code>add_model()</code> function.</li>
+</ul>
+<pre class="r"><code># lm workflow 
+lm_workflow &lt;- 
+  XXX() %&gt;% 
+  XXX(XXX) %&gt;% 
+  XXX(XXX)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Print the <code>lm_workflow</code> object to view a summary of how the modeling will be done.</p></li>
+<li><p>Now it’s time to actually fit the model with the <code>fit()</code> function. Pass the <code>lm_workflow</code> into the fit function and save it as <code>price_lm</code>. Also we have to provide the data to the fit function, by specifying the <code>data</code> argument. Set <code>data = airbnb</code>.</p></li>
+</ol>
+<pre class="r"><code># Fit the regression model
+price_lm &lt;-
+  XXX %&gt;% 
+  XXX(XXX = XXX)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Let’s quantify our model’s fitting results. To do this, we’ll use the <code>postResample()</code> function, with the fitted values as the prediction, and the criterion as the observed values.</li>
+<li><p>Print the <code>price_lm</code> object.</p></li>
+<li><p>While this showed us the two parameters, the output is not very informative. To obtain a more detailed output, you can use the <code>tidy()</code> function on the <code>price_lm</code> object.</p></li>
+<li><p>Take a look at the parameter values. How do you interpret these values?</p></li>
 </ol>
-<p>Specifically,</p>
-<ul>
-<li>set the <code>pred</code> argument to <code>glm_fitted</code> (your fitted values).</li>
-<li>set the <code>obs</code> argument to <code>criterion</code> (a vector of the criterion values).</li>
-</ul>
-<pre class="r"><code># Regression Fitting Accuracy
-postResample(pred = XXX,   # Fitted values 
-             obs = XXX)  # criterion values</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li><p>You’ll see three values here. The easiest to understand is MAE which stands for “Mean Absolute Error” – in other words, “on average how far are the predictions from the true values?” A value of 0 means perfect prediction, so small values are good! How do you interpret these results?</p></li>
-<li>Now we’re ready to do some plotting. But first, we need to re-organise the data a bit. Use the code below to create two dataframes:</li>
+</div>
+<div id="e---evaluate-accuracy" class="section level3">
+<h3>E - Evaluate accuracy</h3>
+<ol style="list-style-type: decimal">
+<li>Now it’s time to evaluate the model’s fitted values! Use the <code>predict()</code> function to extract the model predictions. This returns them as a column named <code>.pred</code>. Then, using <code>bind_cols()</code> add the true values.</li>
 </ol>
-<ul>
-<li><code>accuracy</code> - Raw absolute errors</li>
-<li><code>accuracy_agg</code> - Aggregate (i.e.; mean) absolute errors</li>
-</ul>
-<pre class="r"><code># accuracy - a dataframe of raw absolute errors
-accuracy &lt;- tibble(criterion = criterion,
-                   Regression = glm_fitted) %&gt;%
-                gather(model, prediction, -criterion) %&gt;%
-                # Add error measures
-                mutate(ae = abs(prediction - criterion))
-
-# accuracy_agg - Dataframe of aggregate errors
-accuracy_agg &lt;- accuracy %&gt;%
-                  group_by(model) %&gt;%
-                  summarise(mae = mean(ae))   # Calculate MAE (mean absolute error)</code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li>Print the <code>accuracy</code> and <code>accuracy_agg</code> objects to see how they look.</li>
+<pre class="r"><code># generate predictions
+lm_pred &lt;-
+  XXX %&gt;% 
+  predict(new_data = airbnb) %&gt;% 
+  bind_cols(airbnb %&gt;% select(price))</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Take a look at the <code>lm_pred</code> object and make sure you understand the meaning of these variables.</p></li>
+<li><p>Using the following code, plot the fitted against the true value, to judge how well our model performed. What do you think, is this performance good or bad?</p></li>
 </ol>
-<pre class="r"><code>accuracy
-accuracy_agg</code></pre>
-<ol start="8" style="list-style-type: decimal">
-<li>Using the code below, create a scatterplot showing the relationship between the true criterion values and the model fits.</li>
-</ol>
-<pre class="r"><code># Plot A) Scatterplot of criterion versus predictions
-ggplot(data = accuracy,
-       aes(x = criterion, y = prediction)) +
-  geom_point(alpha = .2) +
-  geom_abline(slope = 1, intercept = 0) +
+<pre class="r"><code># use the lm_pred object to generate the plot
+ggplot(lm_pred, aes(x = .pred, y = price)) + 
+  # Create a diagonal line:
+  geom_abline(lty = 2) + 
+  # Add data points:
+  geom_point(alpha = 0.5) + 
   labs(title = &quot;Regression: One Feature&quot;,
        subtitle = &quot;Line indicates perfect performance&quot;,
-       x = &quot;True Graduation Rates&quot;,
-       y = &quot;Fitted Graduation Rates&quot;) +
-  xlim(0, 120) + 
-  ylim(0, 120)</code></pre>
-<ol start="9" style="list-style-type: decimal">
-<li><p>Look at the plot, how do you interpret this? Do you think the model did well or not in fitting the graduation rates?</p></li>
-<li><p>Let’s create a new violin plot showing the distribution of absolute errors of the model.</p></li>
+       x = &quot;Predicted Airbnb Prices in $&quot;,
+       y = &quot;True Airbnb Prices in $&quot;) +
+  # Scale and size the x- and y-axis uniformly:
+  coord_obs_pred()</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Let’s quantify our model’s fitting results. In a regression-problem setting, the <code>metrics()</code> function returns the MAE, RMSE, and the <span class="math inline">\(R^2\)</span> of a model. Compute these indices by passing the <code>price</code> variable as <code>truth</code> and the <code>.pred</code> variable as <code>estimate</code> to the <code>metrics()</code> function.</li>
 </ol>
-<pre class="r"><code># Plot B) Violin plot of absolute errors
-ggplot(data = accuracy, 
-       aes(x = model, y = ae, fill = model)) + 
-  geom_violin() + 
-  geom_jitter(width = .05, alpha = .2) +
-  labs(title = &quot;Distributions of Fitting Absolute Errors&quot;,
-       subtitle = &quot;Numbers indicate means&quot;,
-       x = &quot;Model&quot;,
-       y = &quot;Absolute Error&quot;) +
-  guides(fill = FALSE) +
-  annotate(geom = &quot;label&quot;, 
-           x = accuracy_agg$model, 
-           y = accuracy_agg$mae, 
-           label = round(accuracy_agg$mae, 2))</code></pre>
-<ol start="11" style="list-style-type: decimal">
-<li>What does the plot show you about the model fits? On average, how far away were the model fits from the true values?</li>
+<pre class="r"><code># evaluate performance
+XXX(lm_pred, truth = XXX, estimate = XXX)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>How do you interpret these values?</li>
 </ol>
 </div>
-<div id="e---add-more-features" class="section level3">
-<h3>E - Add more features</h3>
-<p>So far we have only used one feature (<code>PhD</code>), to predict <code>Grad.Rate</code>. Let’s try again, but now we’ll use a total of four features:</p>
+<div id="f---add-more-features" class="section level3">
+<h3>F - Add more features</h3>
+<p>So far we have only used one feature (<code>accommodates</code>), to predict <code>price</code>. Let’s try again, but now we’ll use a total of four features:</p>
 <ul>
-<li><code>PhD</code> - the percent of faculty with a PhD.</li>
-<li><code>Room.Board</code> - room and board costs.</li>
-<li><code>Terminal</code> - percent of faculty with a terminal degree.</li>
-<li><code>S.F.Ratio</code> - student to faculty ratio.</li>
+<li><code>accommodates</code> - the number of people the airbnb accommodates.</li>
+<li>`room_type`` - type of the room (e.g., “Loft” or “Apartment”).</li>
+<li><code>bedrooms</code> - number of bedrooms.</li>
+<li><code>bathrooms</code> - number of bathrooms.</li>
 </ul>
 <ol style="list-style-type: decimal">
-<li>Using the same steps as above, create a regression model <code>Grad.Rate_glm</code> which predicts <code>Grad.Rate</code> using all 4 features (you can also call it something else if you want to save your original model!). Specifically,…</li>
+<li>To do this, we will have to update our <code>lm_recipe</code>. Specifically, we want to add the three new features to the formula, and add a pre-processing step: creating dummy variables out of the categorical <code>room_type</code> variable. Update the recipe from C1, by extending the formula, and by adding <code>step_dummy(all_nominal_predictors())</code> as pre-processing step.</li>
 </ol>
-<ul>
-<li>set the <code>form</code> argument to <code>Grad.Rate ~ PhD + Room.Board + Terminal + S.F.Ratio</code>.</li>
-<li>set the <code>data</code> argument to your training data <code>college_train</code>.</li>
-<li>set the <code>method</code> argument to <code>&quot;glm&quot;</code> for regression.</li>
-<li>set the <code>trControl</code> argument to <code>ctrl_none</code>.</li>
-</ul>
-<pre class="r"><code># Grad.Rate_glm: Regression Model
-Grad.Rate_glm &lt;- train(form = XXX ~ XXX + XXX + XXX + XXX,
-                       data = XXX,
-                       method = &quot;XXX&quot;,
-                       trControl = XXX)</code></pre>
+<pre class="r"><code># updated recipe
+airbnb_recipe &lt;- 
+  recipe(XXX ~ XXX + XXX + XXX + XXX, data = XXX) %&gt;% 
+  XXX(XXX())</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Explore your model using <code>summary()</code>. Which features seem to be important? Tip: set the first argument to <code>Grad.Rate_glm</code>.</li>
+<li>Update the recipe in the workflow using the <code>update_recipe()</code> function. Pass the new <code>airbnb_recipe</code> to <code>update_recipe()</code>.</li>
 </ol>
-<pre class="r"><code>summary(XXX)</code></pre>
+<pre class="r"><code># update lm workflow with new recipe
+lm_workflow &lt;- 
+  lm_workflow 
+  XXX(XXX) %&gt;% </code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Save the model’s fitted values as a new object <code>glm_fitted</code>. I.e., set the first argument of <code>predict()</code> to your <code>Grad.Rate_glm</code> model.</li>
+<li><p>Print the <code>lm_workflow</code> object to view a summary of how the modeling will be done. The recipe should now be updated, which you can see by the new section <em>Preprocessor</em>.</p></li>
+<li><p>Refit the model as you have done above, and call it <code>price_lm</code>.</p></li>
+<li><p>Using the <code>tidy()</code> function on the <code>price_lm</code> object, take a look at the parameter estimates.</p></li>
+<li><p>Using the <code>predict()</code> function, to extract the model predictions and bind them together with the true values using <code>bind_cols()</code>.</p></li>
 </ol>
-<pre class="r"><code># Save new model fits
-glm_fitted &lt;- predict(XXX)</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>By comparing the model fits to the true criterion values using <code>postResample()</code> calculate the Mean Absolute Error (MAE) of your new model that uses 4 features. How does this compare to your previous model that only used 1 feature? Specifically,…</li>
+<pre class="r"><code># generate predictions
+lm_pred &lt;-
+  XXX %&gt;% 
+  XXX(XXX) %&gt;% 
+  XXX(airbnb %&gt;% select(price))</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Using the following code, plot the fitted against the true value, to judge how well our model performed. What do you think, is this performance good or bad? And how does it compare to the model with only one feature we fitted before?</li>
 </ol>
-<ul>
-<li>set the <code>pred</code> argument to <code>glm_fitted</code>, your model fits.</li>
-<li>set the <code>obs</code> argument to <code>criterion</code>, a vector of the true criterion values.</li>
-</ul>
-<pre class="r"><code># New model fitting accuracy
-postResample(pred = XXX,   # Fitted values 
-             obs = XXX)  # criterion values</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li><p>(Optional). Create a scatter plot showing the relationship between your new model fits and the true values. How does this plot compare to your previous one?</p></li>
-<li><p>(Optional). Create a violin plot showing the distribution of absolute errors. How does this compare to your previous one?</p></li>
+<pre class="r"><code># use the lm_pred object to generate the plot
+ggplot(lm_pred, aes(x = .pred, y = price)) + 
+  # Create a diagonal line:
+  geom_abline(lty = 2) + 
+  # Add data points:
+  geom_point(alpha = 0.5) + 
+  labs(title = &quot;Regression: One Feature&quot;,
+       subtitle = &quot;Line indicates perfect performance&quot;,
+       x = &quot;Predicted Airbnb Prices in $&quot;,
+       y = &quot;True Airbnb Prices in $&quot;) +
+  # Scale and size the x- and y-axis uniformly:
+  coord_obs_pred()</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Using the <code>metrics()</code> function, evaluate the model performance. Pass it the <code>price</code> variable as <code>truth</code> and the <code>.pred</code> variable as <code>estimate</code>.</li>
+</ol>
+<pre class="r"><code># evaluate performance
+XXX(lm_pred, truth = XXX, estimate = XXX)</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>How do you interpret these values? How do they compare to the ones you obtained previously?</li>
 </ol>
 </div>
-<div id="f---use-all-features" class="section level3">
-<h3>F - Use all features</h3>
+<div id="g---use-all-features" class="section level3">
+<h3>G - Use all features</h3>
 <p>Alright, now it’s time to use all features available!</p>
 <ol style="list-style-type: decimal">
-<li>Using the same steps as above, create a regression model <code>Grad.Rate_glm</code> which predicts <code>Grad.Rate</code> using <em>all</em> features in the dataset. Specifically,…</li>
+<li>Update the formula of the <code>lm_recipe</code> and set it to <code>price ~ .</code> The <code>.</code> indicates that all available variables that are not outcomes should be used as features.</li>
 </ol>
-<ul>
-<li>set the <code>form</code> argument to <code>Grad.Rate ~ .</code>.</li>
-<li>set the <code>data</code> argument to the training data <code>college_train</code>.</li>
-<li>set the <code>method</code> argument to <code>&quot;glm&quot;</code> for regression.</li>
-<li>set the <code>trControl</code> argument to <code>ctrl_none</code>.</li>
-</ul>
-<pre class="r"><code>Grad.Rate_glm &lt;- train(form = XXX ~ .,
-                       data = XXX,
-                       method = &quot;glm&quot;,
-                       trControl = XXX)</code></pre>
+<pre class="r"><code># updated recipe
+airbnb_recipe &lt;- 
+  recipe(XXX ~ XXX, data = XXX) %&gt;% 
+  step_dummy(all_nominal_predictors())</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Explore your model using <code>summary()</code>, which features seem to be important?</li>
+<li>Update the recipe in the workflow using the <code>update_recipe()</code> function. Pass the new <code>airbnb_recipe</code> to <code>update_recipe()</code>.</li>
 </ol>
-<pre class="r"><code>summary(XXX)</code></pre>
+<pre class="r"><code># update lm workflow with new recipe
+lm_workflow &lt;- 
+  lm_workflow 
+  XXX(XXX) %&gt;% </code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Save the model’s fitted values as a new object <code>glm_fitted</code>.</li>
+<li><p>Refit the model as you have done above, and call it <code>price_lm</code>.</p></li>
+<li><p>Using the <code>tidy()</code> function on the <code>price_lm</code> object, take a look at the parameter estimates.</p></li>
+<li><p>Using the <code>predict()</code> function, to extract the model predictions and bind them together with the true values using <code>bind_cols()</code>.</p></li>
 </ol>
-<pre class="r"><code># Save new model fits
-glm_fitted &lt;- predict(XXX)</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li><p>What is the Mean Absolute Error (MAE) of your new model that uses 17 features? How does this compare to your previous model that only used 1 feature?</p></li>
-<li><p>(Optional). Create a scatter plot showing the relationship between your new model fits and the true values. How does this plot compare to your previous one?</p></li>
-<li><p>(Optional). Create a violin plot showing the distribution of absolute errors. How does this compare to your previous one?</p></li>
+<pre class="r"><code># generate predictions
+lm_pred &lt;-
+  XXX %&gt;% 
+  XXX(XXX) %&gt;% 
+  XXX(airbnb %&gt;% select(price))</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Using the following code, plot the fitted against the true value, to judge how well our model performed. What do you think, is this performance good or bad? And how does it compare to the model with only one feature we fitted before?</li>
+</ol>
+<pre class="r"><code># use the lm_pred object to generate the plot
+ggplot(lm_pred, aes(x = .pred, y = price)) + 
+  # Create a diagonal line:
+  geom_abline(lty = 2) + 
+  # Add data points:
+  geom_point(alpha = 0.5) + 
+  labs(title = &quot;Regression: One Feature&quot;,
+       subtitle = &quot;Line indicates perfect performance&quot;,
+       x = &quot;Predicted Airbnb Prices in $&quot;,
+       y = &quot;True Airbnb Prices in $&quot;) +
+  # Scale and size the x- and y-axis uniformly:
+  coord_obs_pred()</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Using the <code>metrics</code> function, evaluate the model performance. Pass it the <code>price</code> variable as <code>truth</code> and the <code>.pred</code> variable as <code>estimate</code>.</li>
+</ol>
+<pre class="r"><code># evaluate performance
+XXX(lm_pred, truth = XXX, estimate = XXX)</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>How do you interpret these values? How do they compare to the ones you obtained previously?</li>
 </ol>
 </div>
 <div id="classification" class="section level3">
 <h3>Classification</h3>
 </div>
-<div id="g---make-sure-your-criterion-is-a-factor" class="section level3">
-<h3>G - Make sure your criterion is a factor!</h3>
-<p>Now it’s time to do a classification task! Recall that in a classification task, we are predicting a category, not a continuous number. In this task, we’ll predict whether or not a college is Private or Public, this is stored as the variable <code>college_train$Private</code>.</p>
+<div id="h---make-sure-your-criterion-is-a-factor" class="section level3">
+<h3>H - Make sure your criterion is a factor!</h3>
+<p>Now it’s time to do a classification task! Recall that in a classification task, we are predicting a category, not a continuous number. In this task, we’ll predict whether or not a host is a superhost (these are experienced hosts that meet a <a href="https://www.airbnb.com/help/article/829/how-do-i-become-a-superhost?_set_bev_on_new_domain=1629269796_MjI5MzcwYTI5MDVm&amp;locale=en">set of criteria</a>). Whether or not a host is a superhost is stored in the variable <code>host_superhost</code>.</p>
 <ol style="list-style-type: decimal">
-<li>In order to do classification training with <code>caret</code>, all you need to do is make sure that the criterion is coded as a factor. To test whether it is coded as a factor, you can look at its <code>class</code> as follows.</li>
+<li>In order to do classification training, we have to ensure that the criterion is coded as a <code>factor</code>. To test whether it is coded as a factor, you can look at its <code>class</code> as follows.</li>
 </ol>
-<pre class="r"><code># Look at the class of the variable Private, should be a factor!
-class(college_train$Private)</code></pre>
+<pre class="r"><code># Look at the class of the variable host_superhost, should be a factor!
+class(airbnb$host_superhost)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Now, we’ll save the Private column as a new object called <code>criterion</code>.</li>
+<li>The <code>host_superhost</code> variable is of class <code>logical</code>. Therefore, we have to change it to <code>factor</code>. <strong>Important note</strong>: In binary classification tasks, the <strong>first</strong> factor level will be chosen as positive. We therefore explicitly specify, that <code>TRUE</code> be the first level.</li>
 </ol>
 <pre class="r"><code># Define criterion as college_train$Private
-criterion &lt;- college_train$Private</code></pre>
+airbnb &lt;-
+  airbnb %&gt;% 
+  mutate(host_superhost = factor(host_superhost, levels = c(TRUE, FALSE)))</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Check again, whether <code>host_superhost</code> is now a factor, and check whether the order of the levels is as intended using <code>levels()</code> (the order should be <code>"TRUE", "FALSE"</code>).</li>
+</ol>
+<pre class="r"><code>XXX(airbnb$host_superhost)
+XXX(airbnb$host_superhost)</code></pre>
 </div>
-<div id="h---fit-a-classification-model" class="section level3">
-<h3>H - Fit a classification model</h3>
+<div id="i---fit-a-classification-model" class="section level3">
+<h3>I - Fit a classification model</h3>
 <ol style="list-style-type: decimal">
-<li>Using <code>train()</code>, create <code>Private_glm</code>, a regression model predicting the variable <code>Private</code>. Specifically,…</li>
+<li>Given that we now want to predict a new variable (<code>host_superhost</code>) with a new model (a logistic regression), we need to update both our model and our recipe. Create a new model called <code>logistic_model</code>, with the model type <code>logistic_reg</code>, the engine <code>"glm"</code>, and mode <code>"classification"</code>.</li>
+</ol>
+<pre class="r"><code># create a logistic regression model 
+XXX_model &lt;-
+  XXX() %&gt;% 
+  set_XXX(XXX) %&gt;% 
+  set_XXX(XXX)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Print the <code>logistic_model</code> object. Using <code>translate()</code>, check out the underlying function that will be used to fit the model.</p></li>
+<li><p>Specify the new recipe. Specifically…</p></li>
 </ol>
 <ul>
-<li>set the <code>form</code> argument to <code>Private ~ .</code>.</li>
-<li>set the <code>data</code> argument to the training data <code>college_train</code>.</li>
-<li>set the <code>method</code> argument to <code>&quot;glm&quot;</code>.</li>
-<li>set the <code>trControl</code> argument to <code>ctrl_none</code>.</li>
+<li>set the formula to <code>host_superhost ~ .</code>, to use all possible features</li>
+<li>add <code>step_dummy(all_nominal_predictors())</code> to pre-process nominal features</li>
+<li>call the new object <code>logistic_recipe</code></li>
 </ul>
-<pre class="r"><code># Fit regression model predicting Private
-Private_glm &lt;- train(form = XXX ~ .,
-                     data = XXX,
-                     method = &quot;XXX&quot;,
-                     trControl = XXX)</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>Explore the <code>Private_glm</code> object using the <code>summary()</code> function.</li>
-</ol>
-<pre class="r"><code># Explore the Private_glm object
-summary(XXX)</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Look at the results, how do you interpret the regression coefficients? Which features seem important in predicting whether a school is private or not?</li>
+<pre class="r"><code># create new recipe
+XXX &lt;- 
+  XXX(XXX, data = XXX) %&gt;% 
+  XXX(XXX())</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Print the new recipe.</p></li>
+<li><p>Create a new workflow called <code>logistic_workflow</code>, where you add the <code>logistic_model</code> and the <code>logistic_recipe</code> together.</p></li>
+<li><p>Print and check out the new workflow.</p></li>
+<li><p>Fit the model using <code>fit()</code>. Save the result as</p></li>
 </ol>
 </div>
-<div id="i---access-classification-model-accuracy" class="section level3">
-<h3>I - Access classification model accuracy</h3>
+<div id="j---assess-model-performance" class="section level3">
+<h3>J - Assess model performance</h3>
 <ol style="list-style-type: decimal">
-<li>Now it’s time to save the model’s fitted values! Do this by running the following code to save the fitted values as <code>glm_fitted</code>.</li>
+<li>Now it’s time to evaluate the classification models’ performance. We can again use the <code>metrics()</code> function to do so. First, we again create a dataset containing the predicted and true values. This time, we call the <code>predict()</code> function twice: once to obtain the predicted classes, and once to obtain the probabilities, with which the classes are predicted.</li>
 </ol>
 <pre class="r"><code># Get fitted values from the Private_glm object
-glm_fitted &lt;- predict(XXX)</code></pre>
+logistic_pred &lt;- 
+  predict(superhost_glm, airbnb, type = &quot;prob&quot;) %&gt;% 
+  bind_cols(predict(superhost_glm, airbnb)) %&gt;% 
+  bind_cols(airbnb %&gt;% select(host_superhost))</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Plot the values of your <code>glm_fitted</code> object - what are these values? Do they look reasonable?</p></li>
-<li><p>Now it’s time to calculate model accuracy. To do this, we will use a new function called <code>confusionMatrix()</code>. This function compares model predictions to a <code>reference</code> (in our case, the criterion, and returns several summary statistics). In the code below, we’ll use <code>glm_fitted</code> as the model predictions, and our already defined <code>criterion</code> vector as the reference (aka, truth). Specifically,…</p></li>
+<li><p>Take a look at the <code>logistic_pred</code> object and make sure you understand what the variables mean.</p></li>
+<li><p>Now, get the confusion matrix using the <code>conf_mat()</code> function and passing it the <code>host_superhost</code> variable as <code>truth</code>, and th <code>.pred_class</code> variable as <code>estimate</code>. Just by looking at the confusion matrix, do you think the model is doing well?</p></li>
 </ol>
-<ul>
-<li>set the <code>data</code> argument to your <code>glm_fitted</code> values.</li>
-<li>set the <code>reference</code> argument to the <code>criterion</code> values.</li>
-</ul>
-<pre class="r"><code># Show accuracy of glm_fitted versus the true criterion values
-confusionMatrix(data = XXX,      # This is the prediction!
-                reference = XXX) # This is the truth!</code></pre>
+<pre class="r"><code>XXX(logistic_pred, truth = XXX, estimate = XXX)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li><p>Look at the results, what is the overall accuracy of the model? How do you interpret this?</p></li>
-<li><p>To visualize the accuracy of your classification models, use the following code to create a bar plot.</p></li>
+<li><p>Let’s look at different performance metrics. Use the <code>metrics()</code> function, with exactly the same arguments as you used in the call to <code>conf_mat()</code> before, to obtain the accuracy and the kappa statistic (a chance-corrected measure of agreement between model prediction and true value).</p></li>
+<li><p>How do you interpret these values? Do you think the model performs well?</p></li>
+<li><p>The metrics we just looked at are based on the class predictions. We can also obtain additional metrics based on the predicted probabilities of class membership. Use the same code as in the last task, but add the name of the column containing the predictied <em>positive</em> class probability (<code>.pred_TRUE</code>) as an unnamed, fourth argument:</p></li>
 </ol>
-<pre class="r"><code># Get overall accuracy from regression model
-glm_accuracy &lt;- confusionMatrix(data =  glm_fitted,  
-                                reference = criterion)$overall[1]
-
-# Combine results into one table
-accuracy &lt;- tibble(Regression = glm_accuracy) %&gt;%
-              gather(model, accuracy)
-
-
-# Plot the results!
-ggplot(accuracy, aes(x = model, y = accuracy, fill = model)) + 
-  geom_bar(stat = &quot;identity&quot;) +
-  labs(title = &quot;Is a college private or public?&quot;,
-       subtitle = &quot;Fitting classification accuracy&quot;,
-       y = &quot;Overall Accuracy&quot;) +
-  ylim(c(0, 1)) +
-  annotate(geom = &quot;label&quot;, 
-           x = accuracy$model, 
-           y = accuracy$accuracy, 
-           label = round(accuracy$accuracy, 2))</code></pre>
+<pre class="r"><code>XXX(logistic_pred, truth = XXX, estimate = XXX, XXX)</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li><p>What does the <code>roc_auc</code> value indicate?</p></li>
+<li><p>To plot the ROC curve, we can use the <code>roc_curve()</code> function, to create sensitivity and specificity values of different cut-offs, and pass this into the <code>autoplot()</code> function, to plot the curve. Add the <code>host_superhost</code> column as <code>truth</code>, and the <code>.pred_TRUE</code> column as third, unnamed argument, to the <code>roc_curve()</code> function and plot the curve.</p></li>
+</ol>
+<pre class="r"><code>XXX(logistic_pred, truth = XXX, XXX) %&gt;% 
+  autoplot()</code></pre>
 </div>
 </div>
 <div id="examples" class="section level2">
 <h2>Examples</h2>
 <pre class="r"><code># Fitting and evaluating a regression model ------------------------------------
 
-# Step 0: Load packages-----------
+# Step 0: Load packages---------------------------------------------------------
 library(tidyverse)    # Load tidyverse for dplyr and tidyr
-library(caret)        # For ML mastery 
+library(tidymodels)   # For ML mastery 
+tidymodels_prefer()   # To resolve common conflicts
 
-# Step 1: Load and Clean, and Explore Training data ----------------------
+# Step 1: Load and Clean, and Explore Training data ----------------------------
 
 # I&#39;ll use the mpg dataset from the dplyr package in this example
 #  no need to load an external dataset
 data_train &lt;- read_csv(&quot;1_Data/mpg_train.csv&quot;)
-
-# Convert all characters to factor
-#  Some ML models require factors
-data_train &lt;- data_train %&gt;%
-  mutate_if(is.character, factor)
 
 # Explore training data
 data_train        # Print the dataset
@@ -552,83 +555,67 @@ View(data_train)  # Open in a new spreadsheet-like window
 dim(data_train)   # Print dimensions
 names(data_train) # Print the names
 
-# Step 2: Define training control parameters -------------
+# Step 2: Define model ---------------------------------------------------------
 
-# In this case, I will set method = &quot;none&quot; to fit to 
-#  the entire dataset without any fancy methods
-#  such as cross-validation
-train_control &lt;- trainControl(method = &quot;none&quot;) 
+# The model definition defines what kind of model we want to use and how to
+# fit it
+lm_model &lt;- 
+  linear_reg() %&gt;%        # Specify model type
+  set_engine(&quot;lm&quot;) %&gt;%    # Specify engine (often package name) to use
+  set_mode(&quot;regression&quot;)  # Specify whether it&#39;s a regressio or classification
+                          #  problem.
 
-# Step 3: Train model: -----------------------------
-#   Criterion: hwy
-#   Features: year, cyl, displ, trans
+# Step 3: Define recipe --------------------------------------------------------
 
-# Regression
-hwy_glm &lt;- train(form = hwy ~ year + cyl + displ + trans,
-                 data = data_train,
-                 method = &quot;glm&quot;,
-                 trControl = train_control)
+# The recipe defines what to predict with what, and how to pre-process the data
+lm_recipe &lt;- 
+  recipe(hwy ~ year + cyl + displ + trans,  # Specify formula
+         data = data_train) %&gt;%             # Specify the data
+  step_dummy(all_nominal_predictors())      # Dummy code all categorical predictors
 
-# Look at summary information
-summary(hwy_glm)
+# Step 4: Define workflow ------------------------------------------------------
 
-# Step 4: Access fit ------------------------------
+# The workflow combines model and recipe, so that we can fit the model
+lm_workflow &lt;- 
+  workflow() %&gt;%             # Initialize workflow
+  add_model(lm_model) %&gt;%    # Add the model to the workflow
+  add_recipe(lm_recipe)      # Add the recipe to the workflow
 
-# Save fitted values
-glm_fitted &lt;- predict(hwy_glm)
+# Step 5: Fit the model --------------------------------------------------------
 
-# Define data_train$hwy as the true criterion
-criterion &lt;- data_train$hwy
+hwy_lm &lt;- 
+  lm_workflow %&gt;%   # Use the specified workflow
+  fit(data_train)   # Fit the model on the specified data
 
-# Regression Fitting Accuracy
-postResample(pred = glm_fitted, 
-             obs = criterion)
+tidy(hwy_lm)        # Look at summary information
 
-#     RMSE Rsquared      MAE 
-# 3.246182 0.678465 2.501346 
+# Step 6: Assess fit -----------------------------------------------------------
 
-# On average, the model fits are 2.8 away from the true
-#  criterion values
+# Save model predictions and observed values
+lm_fitted &lt;- 
+  hwy_lm %&gt;%               # Model from which to extract predictions
+  predict(data_train) %&gt;%  # Obtain predictions, based on entered data (in this
+                           #  case, these predictions are not out-of-sample)
+  bind_cols(data_train %&gt;% select(hwy))  # Extract observed/true values
 
-# Step 5: Visualise Accuracy -------------------------
-
-# Tidy competition results
-accuracy &lt;- tibble(criterion = criterion,
-                   Regression = glm_fitted) %&gt;%
-               gather(model, prediction, -criterion) %&gt;%
-  
-  # Add error measures
-  mutate(se = prediction - criterion,
-         ae = abs(prediction - criterion))
+# Obtain performance metrics
+metrics(lm_fitted, truth = hwy, estimate = .pred)
 
 
-# Calculate summaries
-accuracy_agg &lt;- accuracy %&gt;%
-                  group_by(model) %&gt;%
-                  summarise(mae = mean(ae))   # Calculate MAE (mean absolute error)
+# Step 7: Visualize Accuracy ---------------------------------------------------
 
-# Plot A) Scatterplot of criterion versus predictions
-ggplot(data = accuracy,
-       aes(x = criterion, y = prediction, col = model)) +
-  geom_point(alpha = .2) +
-  geom_abline(slope = 1, intercept = 0) +
-  labs(title = &quot;Predicting mpg$hwy&quot;,
-       subtitle = &quot;Black line indicates perfect performance&quot;)
-
-# Plot B) Violin plot of absolute errors
-ggplot(data = accuracy, 
-       aes(x = model, y = ae, fill = model)) + 
-  geom_violin() + 
-  geom_jitter(width = .05, alpha = .2) +
-  labs(title = &quot;Distributions of Fitting Absolute Errors&quot;,
-       subtitle = &quot;Numbers indicate means&quot;,
-       x = &quot;Model&quot;,
-       y = &quot;Absolute Error&quot;) +
-  guides(fill = FALSE) +
-  annotate(geom = &quot;label&quot;, 
-           x = accuracy_agg$model, 
-           y = accuracy_agg$mae, 
-           label = round(accuracy_agg$mae, 2))</code></pre>
+# use the lm_fitted object to generate the plot
+ggplot(lm_fitted, aes(x = .pred, y = hwy)) + 
+  # Create a diagonal line:
+  geom_abline(lty = 2) + 
+  # Add data points:
+  geom_point(alpha = 0.5) + 
+  labs(title = &quot;Regression: Four Features&quot;,
+       subtitle = &quot;Line indicates perfect performance&quot;,
+       x = &quot;Predicted hwy&quot;,
+       y = &quot;True hwy&quot;) +
+  # Scale and size the x- and y-axis uniformly:
+  coord_obs_pred()</code></pre>
 </div>
 <div id="datasets" class="section level2">
 <h2>Datasets</h2>
@@ -642,17 +629,17 @@ ggplot(data = accuracy,
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36">college_train.csv</a></td>
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36">airbnb.csv</a></td>
 <td align="left">1000</td>
 <td align="left">21</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li>The <code>college_train</code> data are taken from the <code>College</code> dataset in the <code>ISLR</code> package. They contain statistics for a large number of US Colleges from the 1995 issue of US News and World Report.</li>
+<li>The <code>airbnb</code> data are taken from the <code>College</code> dataset in the <code>ISLR</code> package. They contain statistics for a large number of US Colleges from the 1995 issue of US News and World Report.</li>
 </ul>
-<div id="variable-description-of-college_train" class="section level4">
-<h4>Variable description of <code>college_train</code></h4>
+<div id="variable-description-of-airbnb" class="section level4">
+<h4>Variable description of <code>airbnb</code></h4>
 <table>
 <colgroup>
 <col width="26%" />
@@ -666,76 +653,140 @@ ggplot(data = accuracy,
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>Private</code></td>
-<td align="left">A factor with levels No and Yes indicating private or public university.</td>
+<td align="left">apartment_id</td>
+<td align="left">Apartment id</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Apps</code></td>
-<td align="left">Number of applications received.</td>
+<td align="left">price</td>
+<td align="left">Price per night (in $s)</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>Accept</code></td>
-<td align="left">Number of applications accepted.</td>
+<td align="left">date</td>
+<td align="left">When apartment was added to Airbnb</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Enroll</code></td>
-<td align="left">Number of new students enrolled.</td>
+<td align="left">room_type</td>
+<td align="left">Appartement, Loft, House, etc.</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>Top10perc</code></td>
-<td align="left">Pct. new students from top 10% of H.S. class.</td>
+<td align="left">accommodates</td>
+<td align="left">Number of people the airbnb accommodates</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Top25perc</code></td>
-<td align="left">Pct. new students from top 25% of H.S. class.</td>
+<td align="left">bedrooms</td>
+<td align="left">Number of bedrooms</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>F.Undergrad</code></td>
-<td align="left">Number of fulltime undergraduates.</td>
+<td align="left">bathrooms</td>
+<td align="left">Number of bathrooms</td>
 </tr>
 <tr class="even">
-<td align="left"><code>P.Undergrad</code></td>
-<td align="left">Number of parttime undergraduates.</td>
+<td align="left">cleaning_fee</td>
+<td align="left">Amount of cleaning fee (in $s)</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>Outstate</code></td>
-<td align="left">Out-of-state tuition.</td>
+<td align="left">availability_90_days</td>
+<td align="left">How many of the following 90 days the airbnb is available</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Room.Board</code></td>
-<td align="left">Room and board costs.</td>
+<td align="left">neighbourhood</td>
+<td align="left">The neighbourhood the Airbnb is located in</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>Books</code></td>
-<td align="left">Estimated book costs.</td>
+<td align="left">district</td>
+<td align="left">The district the Airbnb is located in</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Personal</code></td>
-<td align="left">Estimated personal spending.</td>
+<td align="left">latitude</td>
+<td align="left">latitude</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>PhD</code></td>
-<td align="left">Pct. of faculty with Ph.D.’s.</td>
+<td align="left">longitude</td>
+<td align="left">longitude</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Terminal</code></td>
-<td align="left">Pct. of faculty with terminal degree.</td>
+<td align="left">host_id</td>
+<td align="left">Host id</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>S.F.Ratio</code></td>
-<td align="left">Student/faculty ratio.</td>
+<td align="left">host_since</td>
+<td align="left">Experience of the hosts</td>
 </tr>
 <tr class="even">
-<td align="left"><code>perc.alumni</code></td>
-<td align="left">Pct. alumni who donate.</td>
+<td align="left">host_respons_time</td>
+<td align="left">Host average response time</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>Expend</code></td>
-<td align="left">Instructional expenditure per student.</td>
+<td align="left">host_response_rate</td>
+<td align="left">Host response rate</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Grad.Rate</code></td>
-<td align="left">Graduation rate.</td>
+<td align="left">host_superhost</td>
+<td align="left">Whether host is a superhost TRUE/FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">host_listings_count</td>
+<td align="left">Number of listings the host has</td>
+</tr>
+<tr class="even">
+<td align="left">review_scores_rating</td>
+<td align="left">Overall rating [0, 100]</td>
+</tr>
+<tr class="odd">
+<td align="left">review_scores_accuracy</td>
+<td align="left">Accuracy of information rating [0, 10]</td>
+</tr>
+<tr class="even">
+<td align="left">review_scores_cleanliness</td>
+<td align="left">Cleanliness rating [0, 10]</td>
+</tr>
+<tr class="odd">
+<td align="left">review_scores_checkin</td>
+<td align="left">Check in rating [0, 10]</td>
+</tr>
+<tr class="even">
+<td align="left">review_scores_communication</td>
+<td align="left">Communication rating [0, 10]</td>
+</tr>
+<tr class="odd">
+<td align="left">review_scores_location</td>
+<td align="left">Location rating [0, 10]</td>
+</tr>
+<tr class="even">
+<td align="left">review_scores_value</td>
+<td align="left">Value rating [0, 10]</td>
+</tr>
+<tr class="odd">
+<td align="left">kitchen</td>
+<td align="left">Kitchen available TRUE/FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">wifi</td>
+<td align="left">Wifi available TRUE/FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">tv</td>
+<td align="left">TV available TRUE/FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">coffe_machine</td>
+<td align="left">Coffee machine available TRUE/FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">dishwasher</td>
+<td align="left">Dishwasher available TRUE/FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">terrace</td>
+<td align="left">Terrace/balcony available TRUE/FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">bathtub</td>
+<td align="left">Bathtub available TRUE/FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">check_in_24h</td>
+<td align="left">24h Check-In available TRUE/FALSE</td>
 </tr>
 </tbody>
 </table>
@@ -755,11 +806,11 @@ ggplot(data = accuracy,
 <tbody>
 <tr class="odd">
 <td align="left"><code>tidyverse</code></td>
-<td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
+<td align="left"><code>install.packages("tidyverse")</code></td>
 </tr>
 <tr class="even">
-<td align="left"><code>caret</code></td>
-<td align="left"><code>install.packages(&quot;caret&quot;)</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left"><code>install.packages("tidymodels")</code></td>
 </tr>
 </tbody>
 </table>
@@ -781,29 +832,99 @@ ggplot(data = accuracy,
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>trainControl()</code></td>
-<td align="left"><code>caret</code></td>
-<td align="left">Define modelling control parameters</td>
+<td align="left"><code>read_csv()</code></td>
+<td align="left"><code>tidyverse</code></td>
+<td align="left">Read in data</td>
 </tr>
 <tr class="even">
-<td align="left"><code>train()</code></td>
-<td align="left"><code>caret</code></td>
-<td align="left">Train a model</td>
+<td align="left"><code>mutate()</code></td>
+<td align="left"><code>tidyverse</code></td>
+<td align="left">Manipulate or create columns</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>predict(object, newdata)</code></td>
-<td align="left"><code>base</code></td>
-<td align="left">Predict the criterion values of <code>newdata</code> based on <code>object</code></td>
+<td align="left"><code>bind_cols()</code></td>
+<td align="left"><code>tidyverse</code></td>
+<td align="left">Bind columns together and return a tibble</td>
 </tr>
 <tr class="even">
-<td align="left"><code>postResample()</code></td>
-<td align="left"><code>caret</code></td>
-<td align="left">Calculate aggregate model performance in regression tasks</td>
+<td align="left"><code>linear_reg()</code>/<code>logistic_reg()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Initialize linear/logistic regression model</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>confusionMatrix()</code></td>
-<td align="left"><code>caret</code></td>
-<td align="left">Calculate aggregate model performance in classification tasks</td>
+<td align="left"><code>set_engine()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Specify which engine to use for the modeling (e.g., “lm” to use <code>stats::lm()</code>, or “stan” to use <code>rstanarm::stan_lm()</code>)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>set_mode()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Specify whether it’s a regression or classification problem</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>recipe()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Initialize recipe</td>
+</tr>
+<tr class="even">
+<td align="left"><code>step_dummy()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">pre-process data into dummy variables</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>workflow()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Initialize workflow</td>
+</tr>
+<tr class="even">
+<td align="left"><code>add_recipe()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Add recipe to workflow</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>update_recipe()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Update workflow with a new recipe</td>
+</tr>
+<tr class="even">
+<td align="left"><code>add_model()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Add model to workflow</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>fit()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Fit model</td>
+</tr>
+<tr class="even">
+<td align="left"><code>tidy()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Show model parameters</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>predict()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Create model predictions based on specified data</td>
+</tr>
+<tr class="even">
+<td align="left"><code>metrics()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Evaluate model performance</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>conf_mat()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Create confusion matrix</td>
+</tr>
+<tr class="even">
+<td align="left"><code>roc_curve()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Calculate sensitivity and specificity with different thresholds for ROC-curve</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>autoplot()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Plot methods for different objects such as those created from <code>roc_curve()</code> to plot the ROC-curve</td>
 </tr>
 </tbody>
 </table>
@@ -811,13 +932,10 @@ ggplot(data = accuracy,
 </div>
 <div id="resources" class="section level2">
 <h2>Resources</h2>
-<div id="cheatsheet" class="section level3">
-<h3>Cheatsheet</h3>
-<figure>
-<center>
-<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf"> <img src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet.png" alt="Trulli" style="width:70%"></a><br> <font style="font-size:10px"> from <a href= "https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</figcaption">github.com/rstudio</a></font>
-</figure>
-</div>
+<ul>
+<li><a href="https://www.tidymodels.org/"><strong>tidymodels webpage</strong></a>: Can be used as cheat sheet. Also has some tutorials.</li>
+<li>The, not yet completed, book <a href="https://www.tmwr.org"><strong>Tidymodeling with R</strong></a>: More detailed introduction into the <code>tidymodels</code> framework.</li>
+</ul>
 </div>
 </div>
 
@@ -830,7 +948,7 @@ ggplot(data = accuracy,
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -848,7 +966,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
