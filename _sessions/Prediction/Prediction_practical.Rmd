@@ -4,7 +4,7 @@ author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
       <font style='font-style:normal'>Applied Machine Learning with R</font><br>
-      <a href='https://therbootcamp.github.io/AML_2020AMLD/'>
+      <a href='https://therbootcamp.github.io/AML_2021AMLD/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
       <a href='https://therbootcamp.github.io'>
@@ -63,420 +63,560 @@ By the end of this practical you will know how to:
 
 ### A - Setup
 
-1. Open your `RBootcamp_AMLD2020` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data file(s) listed in the `Datasets` section are in your `1_Data` folder.
+1. Open your `RBootcamp_AMLD2021` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data file(s) listed in the `Datasets` section are in your `1_Data` folder.
 
-2. Open a new R script and save it as a new file called `Prediction_College_practical.R` in the `2_Code` folder.
+2. Open a new R script and save it as a new file called `Prediction_practical.R` in the `2_Code` folder.
 
 3. Using `library()` load the set of packages for this practical listed in the packages section above.
 
 ```{r, echo = TRUE, eval = TRUE, message = FALSE}
 # Load packages necessary for this script
+library(rpart.plot)
 library(tidyverse)
-library(caret)
-library(party)
-library(partykit)
+library(tidymodels)
+tidymodels_prefer() # to resolve common conflicts
 ```
 
-4. Run the code below to load each of the datasets listed in the `Datasets` as new objects.
+4. We will again work with the `airbnb` data. Load the dataset using the code below.
 
 ```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
-# College data
-college_train <- read_csv(file = "1_Data/college_train.csv")
-college_test <- read_csv(file = "1_Data/college_test.csv")
+# airbnb data
+airbnb <- read_csv(file = "1_Data/airbnb.csv")
 ```
 
 
 ```{r, echo = FALSE, eval = TRUE}
-# College data
-college_train <- read_csv(file = "1_Data/college_train.csv")
-college_test <- read_csv(file = "1_Data/college_test.csv")
+# airbnb data
+airbnb <- read_csv(file = "1_Data/airbnb.csv")
 ```
 
-5. Take a look at the first few rows of each dataframe by printing them to the console.
+5. You should already be familiar with the dataset, but you can refresh your memory by checking the variable names with `names()` and the contents using `View()`.
 
-```{r, echo = TRUE}
-# Print dataframes to the console
-college_train
-college_test
-```
+### B - Splitting the data into training and test set
 
-6. Open each dataset in a new window using `View()`. Do they look ok?
+1. In the previous practical, we used the complete `airbnb` dataset to fit the models. To avoid over-fitting, we will now split the data into a training- and a test-set. Use the `initial_split()` function to create a split. Pass it the `airbnb` data as argument and save the output as `airbnb_split`.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Open each dataset in a window.
-View(XXX)
-View(XXX)
+# initialize split
+XXX <- XXX(XXX)
 ```
 
-7. Again,  We need to do a little bit of data cleaning. Specifically, we need to convert all character columns to factors: Do this by running the following code:
-
-```{r, eval = TRUE, echo = TRUE}
-# Convert all character columns to factor
-college_train <- college_train %>%
-          mutate_if(is.character, factor)
-
-college_test <- college_test %>%
-          mutate_if(is.character, factor)
+```{r}
+airbnb_split <- initial_split(airbnb)
 ```
+
+2. Create a training-set using the `training()` function. Pass it the `airbnb_split` object as argument and save the output as `airbnb_train`.
+
+```{r, echo = TRUE, eval = FALSE}
+# training data
+XXX <- XXX(XXX)
+```
+
+```{r}
+airbnb_train <- training(airbnb_split)
+```
+
+3. Create a test-set using the `testing()` function. Pass it the `airbnb_split` object as argument and save the output as `airbnb_test`.
+
+```{r, echo = TRUE, eval = FALSE}
+# test data
+XXX <- XXX(XXX)
+```
+
+```{r}
+airbnb_test <- testing(airbnb_split)
+```
+
 
 ### B - Fitting
 
-Your goal in this set of tasks is again to fit models predicting `Grad.Rate`, the percentage of attendees who graduate from each college.
-
-1. Using `trainControl()`, set your training control method to `"none"`. Save your object as `ctrl_none`.
-
-```{r, echo = TRUE, eval = FALSE}
-# Set training method to "none" for simple fitting
-#  Note: This is for demonstration purposes, you would almost
-#   never do this for a 'real' prediction task!
-ctrl_none <- trainControl(method = "XXX")
-```
-
-```{r}
-ctrl_none <- trainControl(method = "none")
-```
-
+Your goal in this set of tasks is again to fit models predicting `price`, the price of Airbnbs located in Berlin.
 
 #### Regression
 
-2. Using `train()` fit a regression model called `grad_glm` predicting `Grad.Rate` as a function of all features. Specifically,...
+1. Define a recipe called `lm_recipe` by calling the `recipe()` function. Use all available predictors by setting the formula to `price ~ .` and use the `airbnb_train` data. Also, add a pipe (`%>%`) and `step_dummy(all_nominal_predictors())` to dummy-code all categorical predictors.
 
-- for the `form` argument, use `Grad.Rate ~ .`.
-- for the `data` argument, use  `college_train` in the data argument.
-- for the `method` argument, use `method = "glm"` for regression.
-- for the `trControl` argument, use your `ctrl_none` object you created before.
 
 ```{r, echo = TRUE, eval = FALSE}
-grad_glm <- train(form = XX ~ .,
-                  data = XX,
-                  method = "XXX",
-                  trControl = ctrl_none)
-```
-
-
-```{r}
-grad_glm <- train(form = Grad.Rate ~ .,
-                  data = college_train,
-                  method = "glm",
-                  trControl = ctrl_none)
-```
-
-3. Explore your `grad_glm` object by looking at `grad_glm$finalModel` and using `summary()`, what do you find?
-
-```{r, eval = FALSE, echo = TRUE}
-grad_glm$XXX
-summary(XXX)
+# create recipe
+XXX <- 
+  XXX(XXX, data = XXX) %>% 
+  XXX(XXX())
 ```
 
 ```{r}
-grad_glm$finalModel
-summary(grad_glm)
+# create recipe
+lm_recipe <- 
+  recipe(price ~ ., data = airbnb) %>% 
+  step_dummy(all_nominal_predictors())
 ```
 
-4. Using `predict()` save the fitted values of `grad_glm` object as `glm_fitted`.
+2. Print the recipe.
+
+```{r}
+lm_recipe
+```
+
+
+3. Create a regression model by
+
+- calling the `linear_reg()` function.
+- adding a pipe and setting the enginge to `"lm"` using `set_engine()`.
+- specifying the problem mode to `"regression"` using `set_mode()`.
+- saving the output as `lm_model`.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Save fitted values of regression model
-glm_fitted <- predict(XXX)
+# set up the regression model
+XXX <- 
+  XXX() %>% 
+  XXX(XXX) %>% 
+  XXX(XXX)
 ```
 
 ```{r}
-glm_fitted <- predict(grad_glm)
+# set up the regression model
+lm_model <- 
+  linear_reg() %>% 
+  set_engine("lm") %>% 
+  set_mode("regression")
 ```
 
+4. Print the model.
 
-5. Print your `glm_fitted` object, look at summary statistics with `summary(glm_fitted)`, and create a histogram with `hist()` do they make sense?
+```{r}
+lm_model
+```
+
+5. Create a workflow called `lm_workflow` using `workflow()` and add the `lm_recipe` and `lm_model` objects using `add_recipe()` and `add_model()`.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Explore regression model fits
-XXX
-summary(XXX)
-hist(XXX)
+# lm workflow 
+lm_workflow <- 
+  XXX() %>% 
+  XXX(XXX) %>% 
+  XXX(XXX)
 ```
 
 ```{r}
-glm_fitted[1:10]   # Only printing first 10
-summary(glm_fitted)
-hist(glm_fitted)
+# lm workflow 
+lm_workflow <- 
+  workflow() %>% 
+  add_recipe(lm_recipe) %>% 
+  add_model(lm_model)
+```
+
+6. Print the workflow.
+
+```{r}
+lm_workflow
+```
+
+7. Fit the model on the training data by passing the `lm_workflow` and the `aribnb_train` data to the `fit()` function and save the output as `price_lm`.
+
+```{r}
+# Fit the regression model
+XXX <-
+  XXX %>% 
+  XXX(XXX)
+```
+
+```{r}
+# Fit the regression model
+price_lm <-
+  lm_workflow %>% 
+  fit(airbnb_train)
+```
+
+
+8. Using the `tidy()` function on the `price_lm` object, take a look at the parameter estimates.
+
+
+```{r}
+# regression model parameters
+tidy(price_lm)
+```
+
+
+9. Using the `predict()` function, to extract the model predictions from `price_lm` and bind them together with the true values from `airbnb_train` using `bind_cols()`.
+
+```{r, echo = TRUE, eval = FALSE}
+# get predicted values from training data
+lm_pred <-
+  XXX %>% 
+  XXX(XXX) %>% 
+  XXX(airbnb_train %>% select(price))
+```
+
+```{r}
+# get predicted values from training data
+lm_pred <-
+  price_lm %>% 
+  predict(new_data = airbnb_train) %>% 
+  bind_cols(airbnb_train %>% select(price))
+```
+
+
+10. Using the `metrics()` function, evaluate the model performance. Pass it the `price` variable as `truth` and the `.pred` variable as `estimate`.
+
+```{r, echo = TRUE, eval = FALSE}
+# evaluate performance
+XXX(lm_pred, truth = XXX, estimate = XXX)
+```
+
+```{r}
+# evaluate performance
+metrics(lm_pred, truth = price, estimate = .pred)
+
+```
+
+11. Using the following code, plot the fitted against the true value, to judge how well our model performed.
+
+```{r, echo = TRUE, eval = FALSE}
+# use the lm_pred object to generate the plot
+ggplot(lm_pred, aes(x = .pred, y = price)) + 
+  # Create a diagonal line:
+  geom_abline(lty = 2) + 
+  # Add data points:
+  geom_point(alpha = 0.5) + 
+  labs(title = "Regression: All Features",
+       subtitle = "Line indicates perfect performance",
+       x = "Predicted Airbnb Prices in $",
+       y = "True Airbnb Prices in $") +
+  # Scale and size the x- and y-axis uniformly:
+  coord_obs_pred()
 ```
 
 #### Decision Trees
 
-6. Using `train()`, fit a decision tree model called `grad_rpart`. Specifically,...
+12. Decision trees don't need categorical variables to be dummy coded. Create a new recipe called `tree_recipe` that uses all available predictors to predict the `price` of Airbnbs based on the `airbnb_train` data. In addition, use the pre-proccessing step `step_other(all_nominal_predictors(), threshold = 0.005)`. This will lump together all cases of categorical variables that make up less than 0.5% of the cases into an `other` category. This will prevent issues when assessing performance using the test set.
 
-- for the `form` argument, use `Grad.Rate ~ .`.
-- for the `data` argument, use  `college_train`.
-- for the `method` argument, use `method = "rpart"` to create decision trees.
-- for the `trControl` argument, use your `ctrl_none` object you created before.
-- for the `tuneGrid` argument, use `cp = 0.01` to specify the value of the complexity parameter. This is a relatively low value which means your trees will be, relatively, complex, i.e., deep.
+```{r}
+tree_recipe <-
+  recipe(price ~ ., data = airbnb_train) %>% 
+  step_other(all_nominal_predictors(), threshold = 0.005)
+```
+
+13. Set up a decision tree model. Use the `decision_tree()` function to specify the model, and set the engine to `rpart`. Set the mode to `"regression"`. Call the output `dt_model`.
 
 ```{r, echo = TRUE, eval = FALSE}
-grad_rpart <- train(form = XX ~ .,
-                  data = XXX,
-                  method = "XX",
-                  trControl = XX,
-                  tuneGrid = expand.grid(cp = XX))   # Set complexity parameter
+# set up the decision tree model
+XXX <- 
+  XXX() %>% 
+  XXX(XXX) %>% 
+  XXX(XXX)
 ```
 
 ```{r}
-grad_rpart <- train(form = Grad.Rate ~ .,
-                  data = college_train,
-                  method = "rpart",
-                  trControl = ctrl_none,
-                  tuneGrid = expand.grid(cp = .01))   # Set complexity parameter
+# set up the decision tree model
+dt_model <- 
+  decision_tree() %>% 
+  set_engine("rpart") %>% 
+  set_mode("regression")
 ```
 
-7. Explore your `grad_rpart` object by looking at `grad_rpart$finalModel` and plotting it with `plot(as.party(grad_rpart$finalModel))`, what do you find?
-
-```{r}
-grad_rpart$finalModel
-plot(as.party(grad_rpart$finalModel))
-```
-
-8. Using `predict()`, save the fitted values of `grad_rpart` object as `rpart_fitted`.
+14. Create a new workflow `dt_workflow`, where you add the newly created `tree_recipe` and the `dt_model`.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Save fitted values of decision tree model
-rpart_fitted <- predict(XXX)
+# decision tree workflow 
+dt_workflow <- 
+  XXX() %>% 
+  XXX(XXX) %>% 
+  XXX(XXX)
 ```
 
 ```{r}
-rpart_fitted <- predict(grad_rpart)
+# decision tree workflow  
+dt_workflow <- 
+  workflow() %>% 
+  add_recipe(tree_recipe) %>% 
+  add_model(dt_model)
 ```
 
-9. Print your `rpart_fitted` object, look at summary statistics with `summary(rpart_fitted)`, and create a histogram with `hist()`. Do they make sense?
+15. Print the workflow.
+
+```{r}
+dt_workflow
+```
+
+16. Fit the model on the training data by passing the `dt_workflow` and the `aribnb_train` data to the `fit()` function and save the output as `price_dt`.
+
+```{r}
+# Fit the decision tree
+XXX <-
+  XXX %>% 
+  XXX(XXX)
+```
+
+```{r}
+# Fit the decision tree
+price_dt <-
+  dt_workflow %>% 
+  fit(airbnb_train)
+```
+
+
+17. The `tidy()` function won't work with decision tree fit objects, but we can print the output using the following code:
+
+
+```{r}
+# print the decision tree output
+price_dt %>% 
+  extract_fit_parsnip() %>% 
+  pluck("fit")
+```
+
+18. Alternatively, we can pass the object you printed in the previous task in the `rpart.plot` function. This will create a visualization of the decision tree (in this case, the plot does not look very usefull, but depending on the variables used by the model it can be).
+
+```{r}
+price_dt %>% 
+  extract_fit_parsnip() %>% 
+  pluck("fit") %>% 
+  rpart.plot()
+```
+
+
+19. Using the `predict()` function, to extract the model predictions from `price_dt` and bind them together with the true values from `airbnb_train` using `bind_cols()`.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Explore decision tree fits
-XXX
-summary(XXX)
-hist(XXX)
+# get predicted values from training data
+dt_pred <-
+  XXX %>% 
+  XXX(XXX) %>% 
+  XXX(airbnb_train %>% select(price))
 ```
 
 ```{r}
-rpart_fitted[1:10] # Only first 10
-summary(rpart_fitted)
-hist(rpart_fitted)
+# get predicted values from training data
+dt_pred <-
+  price_dt %>% 
+  predict(new_data = airbnb_train) %>% 
+  bind_cols(airbnb_train %>% select(price))
 ```
+
+
+20. Using the `metrics()` function, evaluate the model performance. Pass it the `price` variable as `truth` and the `.pred` variable as `estimate`.
+
+```{r, echo = TRUE, eval = FALSE}
+# evaluate performance
+XXX(dt_pred, truth = XXX, estimate = XXX)
+```
+
+```{r}
+# evaluate performance
+metrics(dt_pred, truth = price, estimate = .pred)
+
+```
+
+21. How does the model performance of the decision tree compare to the one of the regression model, based on the training data?
+
+
+22. Using the following code, plot the fitted against the true value, to judge how well our model performed.
+
+```{r, echo = TRUE, eval = FALSE}
+# use the dt_pred object to generate the plot
+ggplot(dt_pred, aes(x = .pred, y = price)) + 
+  # Create a diagonal line:
+  geom_abline(lty = 2) + 
+  # Add data points:
+  geom_point(alpha = 0.5) + 
+  labs(title = "Decision Tree: All Features",
+       subtitle = "Line indicates perfect performance",
+       x = "Predicted Airbnb Prices in $",
+       y = "True Airbnb Prices in $") +
+  # Scale and size the x- and y-axis uniformly:
+  coord_obs_pred()
+```
+
 
 #### Random Forests
 
-10. Using `train()`, fit a random forest model called `grad_rf`. Speicifically,... 
-
-- for the `form` argument, use `Grad.Rate ~ .`.
-- for the `data` argument, use  `college_train`.
-- for the `method` argument, use `method = "rf"` to fit random forests.
-- for the `trControl` argument, use your `ctrl_none` object you created before.
-- for the `mtry` parameter, use `mtry` = 2. This is a relatively low value, so the forest will be very diverse.
+22. As random forests are made up of many decision trees, we can use the recipe we defined for the decision tree, so we only have to set up a random forest model. Use the `rand_forest()` function to specify the model, and set the engine to `"ranger"`. Set the mode to `"regression"`. Call the output `rf_model`.
 
 ```{r, echo = TRUE, eval = FALSE}
-grad_rf <- train(form = XX ~ .,   # Predict grad
-                 data = XX,
-                 method = "XX",
-                 trControl = XX,
-                 tuneGrid = expand.grid(mtry = XX))  # Set number of features randomly selected
+# set up the random forest model
+XXX <- 
+  XXX() %>% 
+  XXX(XXX) %>% 
+  XXX(XXX)
 ```
 
 ```{r}
-grad_rf <- train(form = Grad.Rate ~ .,   # Predict grad
-                 data = college_train,
-                 method = "rf",
-                 trControl = ctrl_none,
-                 tuneGrid = expand.grid(mtry = 2))  # Set number of features randomly selected
+# set up the random forest model
+rf_model <- 
+  rand_forest() %>% 
+  set_engine("ranger") %>% 
+  set_mode("regression")
 ```
 
-11. Using `predict()`, save the fitted values of `grad_rf` object as `rf_fitted`.
+23. Create a new workflow `rf_workflow`, where you add the `tree_recipe` and the newly created `rf_model`.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Save fitted values of random forest model
-rf_fitted <- predict(XXX)
+# random forest workflow 
+rf_workflow <- 
+  XXX() %>% 
+  XXX(XXX) %>% 
+  XXX(XXX)
 ```
 
 ```{r}
-rf_fitted <- predict(grad_rf)
+# random forest workflow  
+rf_workflow <- 
+  workflow() %>% 
+  add_recipe(tree_recipe) %>% 
+  add_model(rf_model)
 ```
 
-12. Print your `rf_fitted` object, look at summary statistics with `summary(rf_fitted)`, and create a histogram with `hist()`. Do they make sense?
+24. Print the workflow.
+
+```{r}
+rf_workflow
+```
+
+25. Fit the model on the training data by passing the `rf_workflow` and the `aribnb_train` data to the `fit()` function and save the output as `price_rf`.
+
+```{r}
+# Fit the random forest
+XXX <-
+  XXX %>% 
+  XXX(XXX)
+```
+
+```{r}
+# Fit the random forest
+price_rf <-
+  rf_workflow %>% 
+  fit(airbnb_train)
+```
+
+
+26. The `tidy()` function won't work with random forest fit objects, but we can print the output using the following code:
+
+
+```{r}
+# print the random forest output
+price_rf %>% 
+  extract_fit_parsnip() %>% 
+  pluck("fit")
+```
+
+27. Using the `predict()` function, to extract the model predictions from `price_rf` and bind them together with the true values from `airbnb_train` using `bind_cols()`.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Explore random forest fits
-XXX
-summary(XXX)
-hist(XXX)
+# get predicted values from training data
+rf_pred <-
+  XXX %>% 
+  XXX(XXX) %>% 
+  XXX(airbnb_train %>% select(price))
 ```
 
 ```{r}
-rf_fitted[1:10]    # Only first 10
-summary(rf_fitted)
-hist(rf_fitted)
+# get predicted values from training data
+rf_pred <-
+  price_rf %>% 
+  predict(new_data = airbnb_train) %>% 
+  bind_cols(airbnb_train %>% select(price))
 ```
 
-#### Assess accuracy
 
-13. Save the true training criterion values (`college_train$Grad.Rate`) as a vector called `criterion_train`.
+28. Using the `metrics()` function, evaluate the model performance. Pass it the `price` variable as `truth` and the `.pred` variable as `estimate`.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Save training criterion values
-criterion_train <- XXX$XXX
+# evaluate performance
+XXX(rf_pred, truth = XXX, estimate = XXX)
 ```
 
 ```{r}
-criterion_train <- college_train$Grad.Rate
+# evaluate performance
+metrics(rf_pred, truth = price, estimate = .pred)
+
 ```
 
-14. Using `postResample()`, determine the fitting performance of each of your models separately. Make sure to set your `criterion_train` values to the `obs` argument, and your true model fits `XX_fitted` to the `pred` argument.
+29. How does the training performance of the random forest compare to the ones of the other two models?
+
+
+30. Using the following code, plot the fitted against the true value, to judge how well our model performed.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Calculate fitting accuracies of each model
-# pred = XX_fitted
-# obs = criterion_train
-
-# Regression
-postResample(pred = XXX, obs = XXX)
-
-# Decision Trees
-postResample(pred = XXX, obs = XXX)
-
-# Random Forests
-postResample(pred = XXX, obs = XXX)
+# use the rf_pred object to generate the plot
+ggplot(rf_pred, aes(x = .pred, y = price)) + 
+  # Create a diagonal line:
+  geom_abline(lty = 2) + 
+  # Add data points:
+  geom_point(alpha = 0.5) + 
+  labs(title = "Random Forest: All Features",
+       subtitle = "Line indicates perfect performance",
+       x = "Predicted Airbnb Prices in $",
+       y = "True Airbnb Prices in $") +
+  # Scale and size the x- and y-axis uniformly:
+  coord_obs_pred()
 ```
-
-```{r}
-# Regression
-postResample(pred = glm_fitted, obs = criterion_train)
-
-# Decision Trees
-postResample(pred = rpart_fitted, obs = criterion_train)
-
-# Random Forests
-postResample(pred = rf_fitted, obs = criterion_train)
-```
-
-15. Which one had the best fit? What was the fitting MAE of each model? Optional: If you'd like to, try visualizing the fitting results using the plotting code shown in the Examples tab above.
-
-```{r}
-
-accuracy <- tibble(criterion_train = criterion_train,
-                   Regression = glm_fitted,
-                   DecisionTrees = rpart_fitted,
-                   RandomForest = rf_fitted) %>%
-               gather(model, prediction, -criterion_train) %>%
-               # Add error measures
-               mutate(se = prediction - criterion_train,
-                      ae = abs(prediction - criterion_train))
-
-# Calculate summaries
-accuracy_agg <- accuracy %>%
-                  group_by(model) %>%
-                  summarise(mae = mean(ae))   # Calculate MAE (mean absolute error)
-# Plot A) Scatterplot of truth versus predictions
-ggplot(data = accuracy,
-       aes(x = criterion_train, y = prediction)) +
-  geom_point(alpha = .5) +
-  geom_abline(slope = 1, intercept = 0) +
-  facet_wrap(~ model) +
-  labs(title = "Predicting college_train$Grad.Rate",
-       subtitle = "Black line indicates perfect performance")
-
-# Plot B) Violin plot of absolute errors
-ggplot(data = accuracy, 
-       aes(x = model, y = ae, fill = model)) + 
-  geom_violin() + 
-  geom_jitter(width = .05, alpha = .2) +
-  labs(title = "Prediction Absolute Errors",
-       subtitle = "Numbers indicate means",
-       x = "Model",
-       y = "Absolute Error") +
-  guides(fill = FALSE) +
-  annotate(geom = "label", 
-           x = accuracy_agg$model, 
-           y = accuracy_agg$mae, 
-           label = round(accuracy_agg$mae, 2))
-```
-
 
 ### C - Prediction
 
-1. Save the criterion values from the test data set `college_test$Grad.Rate` as a new vector called `criterion_test`.
+1. Before we compared the training performances. Now, let's compare the out-of-sample performances on the test-set. First the linear regression. Using the `predict()` function, to extract the model predictions from `price_lm`, but this time based on `airbnb_test` and bind them together with the true values from `airbnb_test` using `bind_cols()`. Save the output as `lm_pred_test`
 
 ```{r, echo = TRUE, eval = FALSE}
-# Save criterion values
-criterion_test <- XXX$XXX
+# get predicted values from test data
+lm_pred_test <-
+  XXX %>% 
+  XXX(XXX) %>% 
+  XXX(airbnb_test %>% select(price))
 ```
 
 ```{r}
-# Save criterion values
-criterion_test <- college_test$Grad.Rate
+# get predicted values from test data
+lm_pred_test <-
+  price_lm %>% 
+  predict(new_data = airbnb_test) %>% 
+  bind_cols(airbnb_test %>% select(price))
 ```
 
-2. Using `predict()`, save the predicted values of each model for the test data `college_test` as `glm_pred`, `rpart_pred` and `rf_pred`. 
+2. Repeat the step above with the decision tree and random forest fits, to create `dt_pred_test` and `rf_pred_test`.
+
+```{r}
+# decision tree
+dt_pred_test <-
+  price_dt %>% 
+  predict(new_data = airbnb_test) %>% 
+  bind_cols(airbnb_test %>% select(price))
+
+# random forest
+rf_pred_test <-
+  price_rf %>% 
+  predict(new_data = airbnb_test) %>% 
+  bind_cols(airbnb_test %>% select(price))
+```
+
+3. Using the `metrics()` function, evaluate the models' out-of-sample performances. Pass it the `price` variable as `truth` and the `.pred` variable as `estimate`.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Save model predictions for test data
-# newdata = college_test
-
-# Regression
-glm_pred <- predict(XXX, newdata = XXX)
-
-# Decision Trees
-rpart_pred <- predict(XXX, newdata = XXX)
-
-# Random Forests
-rf_pred <- predict(XXX, newdata = XXX)
+# evaluate performance
+XXX(XXX, truth = XXX, estimate = XXX)
+XXX(XXX, truth = XXX, estimate = XXX)
+XXX(XXX, truth = XXX, estimate = XXX)
 ```
 
 ```{r}
-# Save model predictions for test data
-# newdata = college_test
-
-# Regression
-glm_pred <- predict(grad_glm, newdata = college_test)
-
-# Decision Trees
-rpart_pred <- predict(grad_rpart, newdata = college_test)
-
-# Random Forests
-rf_pred <- predict(grad_rf, newdata = college_test)
+# evaluate performance
+metrics(lm_pred_test, truth = price, estimate = .pred)
+metrics(dt_pred_test, truth = price, estimate = .pred)
+metrics(rf_pred_test, truth = price, estimate = .pred)
 ```
 
-3. Using `postResample()`, determine the *prediction* performance of each of your models against the test criterion `criterion_test`. 
-
-```{r, echo = TRUE, eval = FALSE}
-# Calculate prediction accuracies of each model
-# obs = criterion_test
-# pred = XX_pred
-
-# Regression
-postResample(pred = XXX, obs = XXX)
-
-# Decision Trees
-postResample(pred = XXX, obs = XXX)
-
-# Random Forests
-postResample(pred = XXX, obs = XXX)
-```
+4. Which model performs the best based on the test data? 
 
 ```{r}
-# Calculate prediction accuracies of each model
-# obs = criterion_test
-# pred = XX_pred
-
-# Regression
-postResample(pred = glm_pred, obs = criterion_test)
-
-# Decision Trees
-postResample(pred = rpart_pred, obs = criterion_test)
-
-# Random Forests
-postResample(pred = rf_pred, obs = criterion_test)
+# The random forest predictions are still the most accurate.
 ```
 
-4. How does each model's *prediction or test* performance (on the `XXX_test` data) compare to its *fitting or training* performance (on the `XXX_train` data)? Is it worse? Better? The same? What does the change tell you about the models?
+5. Which performance stays the most constant?
 
 ```{r}
-# The regression goodness of fit stayed the most constant. The random forest one droped considerably.
+# The regression model's performance is very similar in the training and 
+# test data. The test performance of the decision tree drops somewhat and
+# the test performance of the random forest has the most significant drop
+# in comparison to it's training performance.
 ```
-
 
 5. Which of the three models has the best prediction performance?
 
@@ -485,638 +625,482 @@ postResample(pred = rf_pred, obs = criterion_test)
 ```
 
 
-6. If you had to use one of these three models in the real-world, which one would it be? Why?
+### D - Classification
 
-7. If someone came to you and asked "If I use your model in the future to predict the graduation rate of a new college, how accurate do you think it would be?", what would you say?
+1. Let's again turn to a classification example. We will again focus on the `host_superhost` variable. Like in the previous practical, we first have to change our criterion to be a `factor`. We again explicitly specify `TRUE` as first level.
 
-### D - A different data Set House Prices in King County, Washington
-
-In this section, we will work with a different data set. Specifically, we will predict the prices of houses in King County Washington (home of Seattle, [which you can thank for this](https://qz.com/208457/a-cartographic-guide-to-starbucks-global-domination/)) using the `house_train` and `house_test` datasets.
-
-#### Setup
-
-1. Run the code below to load each of the datasets listed in the `Datasets` as new objects.
-
-```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
-# house data
-house_train <- read_csv(file = "1_Data/house_train.csv")
-house_test <- read_csv(file = "1_Data/house_test.csv")
+```{r, echo = TRUE}
+# Recode host_superhost to be a factor with TRUE as first level
+airbnb <-
+  airbnb %>% 
+  mutate(host_superhost = factor(host_superhost, levels = c(TRUE, FALSE)))
 ```
 
-```{r, echo = FALSE, eval = TRUE, message = FALSE, warning = FALSE}
-# house data
-house_train <- read_csv(file = "1_Data/house_train.csv")
-house_test <- read_csv(file = "1_Data/house_test.csv")
-```
-
-2. Take a look at the first few rows of each dataframe by printing them to the console.
-
-```{r, echo = FALSE, eval = FALSE}
-# Print dataframes to the console
-house_train
-house_test
-```
-
-3. Open each dataset in a new window using `View()`. Do they look ok?
+2. Create a split that balances the proportion of the two levels of `host_superhost` and that uses 80% of the data for the training.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Open each dataset in a window.
-View(XXX)
-View(XXX)
+airbnb_split <- initial_split(XXX, prop = XXX, strata = XXX)
 ```
 
-4. Again, we need to do a little bit of data cleaning. Convert all character columns to factor.
-
-```{r, echo = TRUE, eval = FALSE}
-# Convert all character columns to factor
-house_train <- house_train %>%
-          mutate_if(is.character, factor)
-
-house_test <- house_test %>%
-          mutate_if(is.character, factor)
+```{r}
+airbnb_split <- initial_split(airbnb, prop = .8, strata = host_superhost)
 ```
 
-#### Fitting
-
-Your goal in the following models is to predict `price`, the selling price of homes in King County WA.
-
-1. Using `trainControl()`, set your training control method to `"none"`. Save your object as `ctrl_none`.
+3. From the initial split object, creat a training and a test set, and save them as `airbnb_train` and `airbnb_test`.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Set training method to "none" for simple fitting
-#  Note: This is for demonstration purposes, you would almost
-#   never do this for a 'real' prediction task!
-ctrl_none <- trainControl(method = "XXX")
+XXX <- XXX(XXX)
+XXX <- XXX(XXX)
+```
+
+```{r}
+airbnb_train <- training(airbnb_split)
+airbnb_test <- testing(airbnb_split)
+```
+
+
+### F - Fitting
+
+#### Regression
+
+1. Specify the recipe for a logistic regression. Specifically...
+
+- set the formula to `host_superhost ~ .`, to use all possible features
+- use the `airbnb_train` data
+- add `step_dummy(all_nominal_predictors())` to pre-process nominal features
+- call the new object `logistic_recipe`
+
+
+```{r, echo = TRUE, eval = FALSE}
+# create new recipe
+XXX <- 
+  XXX(XXX, data = XXX) %>% 
+  XXX(XXX())
+```
+
+```{r}
+# create new recipe
+logistic_recipe <- 
+  recipe(host_superhost ~ ., data = airbnb_train) %>% 
+  step_dummy(all_nominal_predictors())
+```
+
+2. Print the new recipe.
+
+```{r}
+logistic_recipe
+```
+
+
+3. Create a new model called `logistic_model`, with the model type `logistic_reg`, the engine `"glm"`, and mode `"classification"`.
+
+```{r, echo = TRUE, eval = FALSE}
+# create a logistic regression model 
+XXX_model <-
+  XXX() %>% 
+  set_XXX(XXX) %>% 
+  set_XXX(XXX)
 ```
 
 
 ```{r}
-ctrl_none <- trainControl(method = "none")
+# create a logistic regression model 
+logistic_model <-
+  logistic_reg() %>% 
+  set_engine("glm") %>% 
+  set_mode("classification")
 ```
 
-2. Using `train()`, fit a regression model called `price_glm` predicting `price` using all features in `house_train`. Specifically,...
+4. Create a new workflow called `logistic_workflow`, where you add the `logistic_model` and the `logistic_recipe` together.
 
-- for the `form` argument, use `price ~ .`.
-- for the `data` argument, use  `house_train`.
-- for the `method` argument, use `method = "glm"` for regression.
-- for the `trControl` argument, use your `ctrl_none` object you created before.
+```{r}
+# create logistic_workflow 
+logistic_workflow <- 
+  workflow() %>% 
+  add_recipe(logistic_recipe) %>% 
+  add_model(logistic_model)
+```
+
+6. Fit the model on the training data (`airbnb_train`) using `fit()`. Save the result as `superhost_glm`.
+
+```{r}
+# Fit the logistic regression model
+superhost_glm <-
+  logistic_workflow %>% 
+  fit(airbnb_train)
+```
+
+7. Evaluate the training performance with the `metrics()` function to do so. First, we again create a dataset containing the predicted and true values. This time, we call the `predict()` function twice: once to obtain the predicted classes, and once to obtain the probabilities, with which the classes are predicted.
 
 ```{r, echo = TRUE, eval = FALSE}
-price_glm <- train(form = XX ~ .,
-                  data = XX,
-                  method = "XXX",
-                  trControl = ctrl_none)
+# Get fitted values from the Private_glm object
+logistic_pred <- 
+  predict(superhost_glm, airbnb_train, type = "prob") %>% 
+  bind_cols(predict(superhost_glm, airbnb_train)) %>% 
+  bind_cols(airbnb_train %>% select(host_superhost))
 ```
-
 
 ```{r}
-price_glm <- train(form = price ~ .,
-                  data = house_train,
-                  method = "glm",
-                  trControl = ctrl_none)
+# Get fitted values from the Private_glm object
+logistic_pred <- 
+  predict(superhost_glm, airbnb_train, type = "prob") %>% 
+  bind_cols(predict(superhost_glm, airbnb_train)) %>% 
+  bind_cols(airbnb_train %>% select(host_superhost))
 ```
 
-3. Using `predict()`, save the fitted values of `price_glm` object as `glm_fitted`.
+
+8. Let's look at different performance metrics. Use the `metrics()` function and pass it the `host_superhost` variable as `truth`, the `.pred_class` variable as `estimate`, and `.pred_TRUE` as last argument.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Save fitted values of regression model
-glm_fitted <- predict(XXX)
+XXX(logistic_pred, truth = XXX, estimate = XXX, XXX)
 ```
 
 ```{r}
-# Save fitted values of regression model
-glm_fitted <- predict(price_glm)
+metrics(logistic_pred, truth = host_superhost, estimate = .pred_class, .pred_TRUE)
 ```
 
-4. Using `train()`, fit a decision tree model called `price_rpart` predicting `price` using all features in `house_train`. Specifically,...
 
-- for the `form` argument, use `price ~ .`.
-- for the `data` argument, use  `house_train`.
-- for the `method` argument, use `method = "rpart"` to create decision trees.
-- for the `trControl` argument, use your `ctrl_none` object you created before.
-- for the `tuneGrid` argument, use `cp = 0.01` to specify the value of the complexity parameter. This is a pretty low value which means your trees will be, relatively, complex.
+9. Plot the ROC-curve using the `roc_curve()` function, to create sensitivity and specificity values of different cut-offs, and pass this into the `autoplot()` function, to plot the curve. Add the `host_superhost` column as `truth`, and the `.pred_TRUE` column as third, unnamed argument, to the `roc_curve()` function and plot the curve.
 
 ```{r, echo = TRUE, eval = FALSE}
-price_rpart <- train(form = XX ~ .,
-                  data = XXX,
-                  method = "XX",
-                  trControl = XX,
-                  tuneGrid = expand.grid(cp = XX))   # Set complexity parameter
+XXX(logistic_pred, truth = XXX, XXX) %>% 
+  autoplot()
 ```
 
 ```{r}
-price_rpart <- train(form = price ~ .,
-                  data = house_train,
-                  method = "rpart",
-                  trControl = ctrl_none,
-                  tuneGrid = expand.grid(cp = .01))   # Set complexity parameter
+roc_curve(logistic_pred, truth = host_superhost, .pred_TRUE) %>% 
+  autoplot()
 ```
 
-5. Using `predict()` save the fitted values of `price_rpart` object as `rpart_fitted`.
+#### Decision Tree
 
-```{r, echo = TRUE, eval = FALSE}
-# Save fitted values of decision tree model
-rpart_fitted <- predict(XXX)
-```
+10. Create a new recipe called `tree_recipe` that uses all available predictors to predict `host_superhost`. In addition, again use the pre-processing step `step_other(all_nominal_predictors(), threshold = 0.005)`.
 
 ```{r}
-rpart_fitted <- predict(price_rpart)
+tree_recipe <-
+  recipe(host_superhost ~ ., data = airbnb_train) %>% 
+  step_other(all_nominal_predictors(), threshold = 0.005)
 ```
 
-6. Using `train()`, fit a random forest model called `price_rf` predicting `price` using all features in `house_train`. Specifically,...
-
-- for the `form` argument, use `price ~ .`.
-- for the `data` argument, use  `house_train` in the data argument.
-- for the `method` argument, use `method = "rf"` to fit random forests.
-- for the `trControl` argument, use your `ctrl_none` object you created before.
-- for the `mtry` parameter, use `mtry` = 2. This is a relatively low value, so the forest will be very diverse.
-
-```{r, echo = TRUE, eval = FALSE}
-price_rf <- train(form = XX ~ .,
-                 data = XX,
-                 method = "XX",
-                 trControl = XX,
-                 tuneGrid = expand.grid(mtry = XX))  # Set number of features randomly selected
-```
+11. Set up a decision tree model. Use the `decision_tree()` function to specify the model, and set the engine to `rpart`. Set the mode to `"classification"`. Call the output `dt_model`.
 
 
 ```{r}
-price_rf <- train(form = price ~ .,
-                 data = house_train,
-                 method = "rf",
-                 trControl = ctrl_none,
-                 tuneGrid = expand.grid(mtry = 2))  # Set number of features randomly selected
+# set up the decision tree model
+dt_model <- 
+  decision_tree() %>% 
+  set_engine("rpart") %>% 
+  set_mode("classification")
 ```
 
-7. Using `predict()` save the fitted values of `price_rf` object as `rf_fitted`.
-
-```{r, echo = TRUE, eval = FALSE}
-# Save fitted values of random forest model
-rf_fitted <- predict(XXX)
-```
-
-```{r}
-rf_fitted <- predict(price_rf)
-```
-
-#### Assess fitting accuracy
-
-13. Save the true training criterion values (`house_train$price`) as a vector called `criterion_train`.
-
-```{r, echo = TRUE, eval = FALSE}
-# Save training criterion values
-criterion_train <- XXX$XXX
-```
-
-```{r}
-criterion_train <- house_train$price
-```
-
-14. Using `postResample()`, determine the fitting performance of each of your models separately. Make sure to set your `criterion_train` values to the `obs` argument, and your true model fits `XX_fitted` to the `pred` argument.
-
-```{r, echo = TRUE, eval = FALSE}
-# Calculate fitting accuracies of each model
-# pred = XX_fitted
-# obs = criterion_train
-
-# Regression
-postResample(pred = XXX, obs = XXX)
-
-# Decision Trees
-postResample(pred = XXX, obs = XXX)
-
-# Random Forests
-postResample(pred = XXX, obs = XXX)
-```
-
-```{r}
-# Calculate fitting accuracies of each model
-# pred = XX_fitted
-# obs = criterion_train
-
-# Regression
-postResample(pred = glm_fitted, obs = criterion_train)
-
-# Decision Trees
-postResample(pred = rpart_fitted, obs = criterion_train)
-
-# Random Forests
-postResample(pred = rf_fitted, obs = criterion_train)
-```
-
-15. Which one had the best fits? What was the fitting MAE of each model? Optional: If you'd like to, try visualizing the fitting results using the plotting code shown in the Examples tab above. Ask for help if you need it!
+12. Create a new workflow `dt_workflow`, where you add the newly created `tree_recipe` and the `dt_model`.
 
 
 ```{r}
-# Tidy competition results
-accuracy <- tibble(criterion_train = criterion_train,
-                   Regression = glm_fitted,
-                   DecisionTrees = rpart_fitted,
-                   RandomForest = rf_fitted) %>%
-               gather(model, prediction, -criterion_train) %>%
-               # Add error measures
-               mutate(se = prediction - criterion_train,
-                      ae = abs(prediction - criterion_train))
-
-# Calculate summaries
-accuracy_agg <- accuracy %>%
-                  group_by(model) %>%
-                  summarise(mae = mean(ae))   # Calculate MAE (mean absolute error)
-
-# Plot A) Scatterplot of truth versus predictions
-ggplot(data = accuracy,
-       aes(x = criterion_train, y = prediction, col = model)) +
-  geom_point(alpha = .5) +
-  geom_abline(slope = 1, intercept = 0) +
-  labs(title = "Predicting Housing Prices",
-       subtitle = "Black line indicates perfect performance")
-
-# Plot B) Violin plot of absolute errors
-ggplot(data = accuracy, 
-       aes(x = model, y = ae, fill = model)) + 
-  geom_violin() + 
-  geom_jitter(width = .05, alpha = .2) +
-  labs(title = "Prediction Absolute Errors",
-       subtitle = "Numbers indicate means",
-       x = "Model",
-       y = "Absolute Error") +
-  guides(fill = FALSE) +
-  annotate(geom = "label", 
-           x = accuracy_agg$model, 
-           y = accuracy_agg$mae, 
-           label = round(accuracy_agg$mae, 2))
+# decision tree workflow  
+dt_workflow <- 
+  workflow() %>% 
+  add_recipe(tree_recipe) %>% 
+  add_model(dt_model)
 ```
 
-#### Assess prediction accuracy
-
-1. Save the criterion values from the test data set `house_test$price` as a new vector called `criterion_test`.
-
-```{r, echo = TRUE, eval = FALSE}
-# Save criterion values
-criterion_test <- XXX$XXX
-```
+13. Print the workflow.
 
 ```{r}
-criterion_test <- house_test$price
+dt_workflow
 ```
 
-2. Using `predict()`, save the predicted values of each model for the test data `house_test` as `glm_pred`, `rpart_pred` and `rf_pred`. 
+14. Fit the model on the training data by passing the `dt_workflow` and the `aribnb_train` data to the `fit()` function and save the output as `superhost_dt`.
 
-```{r, echo = TRUE, eval = FALSE}
-# Save model predictions for test data
-# object: price_XXX
-# newdata: house_test
-
-# Regression
-glm_pred <- predict(XXX, newdata = XXX)
-
-# Decision Trees
-rpart_pred <- predict(XXX, newdata = XXX)
-
-# Random Forests
-rf_pred <- predict(XXX, newdata = XXX)
+```{r}
+# Fit the decision tree
+superhost_dt <-
+  dt_workflow %>% 
+  fit(airbnb_train)
 ```
+
+15. Evaluate the training performance with the `metrics()` function to do so. Use the code from the logistic regression above as template. Save the output as `dt_pred`.
 
 
 ```{r}
-# Regression
-glm_pred <- predict(price_glm, 
-                    newdata = house_test)
-
-# Decision Trees
-rpart_pred <- predict(price_rpart, 
-                      newdata = house_test)
-
-# Random Forests
-rf_pred <- predict(price_rf, 
-                   newdata = house_test)
+dt_pred <- 
+  predict(superhost_dt, airbnb_train, type = "prob") %>% 
+  bind_cols(predict(superhost_dt, airbnb_train)) %>% 
+  bind_cols(airbnb_train %>% select(host_superhost))
 ```
 
-3. Using `postResample()`, determine the *prediction* performance of each of your models against the test criterion `criterion_test`. 
 
-```{r, echo = TRUE, eval = FALSE}
-# Calculate prediction accuracies of each model
-# obs = criterion_test
-# pred = XX_pred
-
-# Regression
-postResample(pred = XXX, obs = XXX)
-
-# Decision Trees
-postResample(pred = XXX, obs = XXX)
-
-# Random Forests
-postResample(pred = XXX, obs = XXX)
-```
+16. Let's look at different performance metrics. Use the `metrics()` function and pass it the `host_superhost` variable as `truth`, the `.pred_class` variable as `estimate`, and `.pred_TRUE` as last argument.
 
 
 ```{r}
-# Regression
-postResample(pred = glm_pred, obs = criterion_test)
-
-# Decision Trees
-postResample(pred = rpart_pred, obs = criterion_test)
-
-# Random Forests
-postResample(pred = rf_pred, obs = criterion_test)
+metrics(dt_pred, truth = host_superhost, estimate = .pred_class, .pred_TRUE)
 ```
 
-4. How does each model's *prediction or test* performance (on the `XXX_test` data) compare to its *fitting or training* performance (on the `XXX_train` data)? Is it worse? Better? The same? What does the change tell you about the models?
 
-5. Which of the three models has the best prediction performance?
+17. Plot the ROC-curve using the `roc_curve()` function, to create sensitivity and specificity values of different cut-offs, and pass this into the `autoplot()` function, to plot the curve. Add the `host_superhost` column as `truth`, and the `.pred_TRUE` column as third, unnamed argument, to the `roc_curve()` function and plot the curve.
 
-6. If you had to use one of these three models in the real-world, which one would it be? Why?
+```{r}
+roc_curve(dt_pred, truth = host_superhost, .pred_TRUE) %>% 
+  autoplot()
+```
 
-7. If someone came to you and asked "If I use your model in the future to predict the price of a new house, how accurate do you think it would be?", what would you say?
 
-### E - Exploring model tuning parameters
+#### Random Forest
 
-1. In all of your decision tree models so far, you have been setting the complexity parameter to 0.01. Try setting it to a larger value of 0.2 and see how your decision trees change (by plotting them using `plot(as.party(XXX_rpart$finalModel))`). Do they get more or less complicated? How does increasing this value affect fitting and prediction performance? If you are interested in learning more about this parameter, look at the help menu with `?rpart.control`.
+18. Set up a random forest classification model. Use the `rand_forest()` function to specify the model, and set the engine to `ranger`. Set the mode to `"classification"`. Call the output `rf_model`.
 
-2. In each of your random forest models, you have been setting the `mtry` argument to 2. Try setting it to a larger value such as 5 and re-run your models. How does increasing this value affect fitting and prediction performance? If you are interested in learning more about this parameter, look at the help menu with `?randomForest`.
 
-3. By default, the `train()` function uses 500 trees for `method = "rf"`. How do the number of trees affect performance? To answer this, try setting the number of trees to 1,000 (see example below) and re-evaluating your model's training and test performance. What do you find? What if you set the number of trees to just 10?
+```{r}
+# set up the random forest model
+rf_model <- 
+  rand_forest() %>% 
+  set_engine("ranger") %>% 
+  set_mode("classification")
+```
 
-```{r, eval = FALSE, echo = TRUE}
-# Create random forest model with 1000 trees
-mod <- train(form = price ~ .,
-             data = house_train,
-             method = "rf",
-             trControl = ctrl_none,
-             ntree = 1000,   # use 1000 trees! (Instead of the default value of 500)
-             tuneGrid = expand.grid(mtry = 2))
+19. Create a new workflow `rf_workflow`, where you add the previously created `tree_recipe` and the new `rf_model`.
 
+
+```{r}
+# random forest workflow  
+rf_workflow <- 
+  workflow() %>% 
+  add_recipe(tree_recipe) %>% 
+  add_model(rf_model)
+```
+
+20. Print the workflow.
+
+```{r}
+rf_workflow
+```
+
+21. Fit the model on the training data by passing the `rf_workflow` and the `aribnb_train` data to the `fit()` function and save the output as `superhost_rf`.
+
+```{r}
+# Fit the random forest
+superhost_rf <-
+  rf_workflow %>% 
+  fit(airbnb_train)
+```
+
+22. Evaluate the training performance with the `metrics()` function to do so and save the output as `rf_pred`.
+
+
+```{r}
+rf_pred <- 
+  predict(superhost_rf, airbnb_train, type = "prob") %>% 
+  bind_cols(predict(superhost_rf, airbnb_train)) %>% 
+  bind_cols(airbnb_train %>% select(host_superhost))
+```
+
+
+23. Let's look at different performance metrics. Use the `metrics()` function and pass it the `host_superhost` variable as `truth`, the `.pred_class` variable as `estimate`, and `.pred_TRUE` as last argument.
+
+
+```{r}
+metrics(rf_pred, truth = host_superhost, estimate = .pred_class, .pred_TRUE)
+```
+
+24. Plot the ROC-curve using the `roc_curve()` function, to create sensitivity and specificity values of different cut-offs, and pass this into the `autoplot()` function, to plot the curve.
+
+```{r}
+roc_curve(rf_pred, truth = host_superhost, .pred_TRUE) %>% 
+  autoplot()
+```
+
+### G - Prediction
+
+1. Before we compared the training performances. Now, let's compare the out-of-sample performances on the test-set. First the logistic regression. Using the `predict()` function twice to extract the model predictions from `superhost_glm` (as done with the training data), but this time based on `airbnb_test` and bind them together with the true values from `airbnb_test` using `bind_cols()`. Save the output as `glm_pred_test`
+
+
+```{r}
+# get predicted values from test data
+glm_pred_test <-
+  superhost_glm %>% 
+  predict(airbnb_test, type = "prob") %>% 
+  bind_cols(predict(superhost_glm, airbnb_test)) %>% 
+  bind_cols(airbnb_test %>% select(host_superhost))
+```
+
+2. Repeat the step above with the decision tree and random forest fits, to create `dt_pred_test` and `rf_pred_test`.
+
+```{r}
+# decision tree
+dt_pred_test <-
+  superhost_dt %>% 
+  predict(airbnb_test, type = "prob") %>% 
+  bind_cols(predict(superhost_dt, airbnb_test)) %>% 
+  bind_cols(airbnb_test %>% select(host_superhost))
+
+# random forest
+rf_pred_test <-
+  superhost_rf %>% 
+  predict(airbnb_test, type = "prob") %>% 
+  bind_cols(predict(superhost_rf, airbnb_test)) %>% 
+  bind_cols(airbnb_test %>% select(host_superhost))
+```
+
+3. Using the `metrics()` function, evaluate the models' out-of-sample performances. Pass it the `price` variable as `truth` and the `.pred` variable as `estimate`.
+
+
+```{r}
+# evaluate performance
+metrics(glm_pred_test, truth = host_superhost, estimate = .pred_class, .pred_TRUE)
+metrics(dt_pred_test, truth = host_superhost, estimate = .pred_class, .pred_TRUE)
+metrics(rf_pred_test, truth = host_superhost, estimate = .pred_class, .pred_TRUE)
+```
+
+4. Which model performs the best based on the test data? 
+
+```{r}
+# The random forest predictions are still the most accurate.
+```
+
+5. Plot the ROC-curves of the test performances.
+```{r}
+roc_curve(glm_pred_test, truth = host_superhost, .pred_TRUE) %>% 
+  autoplot()
+roc_curve(dt_pred_test, truth = host_superhost, .pred_TRUE) %>% 
+  autoplot()
+roc_curve(rf_pred_test, truth = host_superhost, .pred_TRUE) %>% 
+  autoplot()
 ```
 
 
 ## Examples
 
 ```{r, eval = FALSE, echo = TRUE}
-# Fitting and evaluating regression, decision trees, and random forests
+# Fitting and evaluating a regression model ------------------------------------
 
-# Step 0: Load packages-----------
+# Step 0: Load packages---------------------------------------------------------
 library(tidyverse)    # Load tidyverse for dplyr and tidyr
-library(caret)        # For ML mastery 
-library(partykit)     # For decision trees
-library(party)        # For decision trees
+library(tidymodels)   # For ML mastery 
+tidymodels_prefer()   # To resolve common conflicts
 
-# Step 1: Load and Clean, and Explore Training data ----------------------
+# Step 1: Load and Clean, and Explore Training data ----------------------------
 
-# training data
-data_train <- read_csv("1_Data/mpg_train.csv")
-
-# test data
-data_test <- read_csv("1_Data/mpg_test.csv")
-
-# Convert all characters to factor
-#  Some ML models require factors
-data_train <- data_train %>%
-  mutate_if(is.character, factor)
-
-data_test <- data_test %>%
-  mutate_if(is.character, factor)
-
+# I'll use the mpg dataset from the dplyr package 
 # Explore training data
-data_train        # Print the dataset
-View(data_train)  # Open in a new spreadsheet-like window 
-dim(data_train)   # Print dimensions
-names(data_train) # Print the names
+mpg        # Print the dataset
+View(mpg)  # Open in a new spreadsheet-like window 
+dim(mpg)   # Print dimensions
+names(mpg) # Print the names
 
-# Define criterion_train
-#   We'll use this later to evaluate model accuracy
-criterion_train <- data_train$hwy
+# Step 2: Split the data--------------------------------------------------------
 
-# Step 2: Define training control parameters -------------
+mpg_split <- initial_split(mpg)
+data_train <- training(mpg_split)
+data_test <- testing(mpg_split)
 
-# In this case, I will set method = "none" to fit to 
-#  the entire dataset without any fancy methods
-ctrl_none <- trainControl(method = "none") 
+# Step 3: Define recipe --------------------------------------------------------
 
-# Step 3: Train model: -----------------------------
-#   Criterion: hwy
-#   Features: year, cyl, displ
+# The recipe defines what to predict with what, and how to pre-process the data
+lm_recipe <- 
+  recipe(hwy ~ year + cyl + displ + trans,  # Specify formula
+         data = data_train) %>%             # Specify the data
+  step_dummy(all_nominal_predictors())      # Dummy code all categorical predictors
 
-# Regression --------------------------
-hwy_glm <- train(form = hwy ~ year + cyl + displ,
-                 data = data_train,
-                 method = "glm",
-                 trControl = ctrl_none)
 
-# Look at summary information
-hwy_glm$finalModel
-summary(hwy_glm)
+# Step 4: Define model ---------------------------------------------------------
 
-# Save fitted values
-glm_fitted <- predict(hwy_glm)
+# The model definition defines what kind of model we want to use and how to
+# fit it
+lm_model <- 
+  linear_reg() %>%        # Specify model type
+  set_engine("lm") %>%    # Specify engine (often package name) to use
+  set_mode("regression")  # Specify whether it's a regressio or classification
+                          #  problem.
 
-#  Calculate fitting accuracies
-postResample(pred = glm_fitted, 
-             obs = criterion_train)
+# Step 5: Define workflow ------------------------------------------------------
 
-# Decision Trees ----------------
-hwy_rpart <- train(form = hwy ~ year + cyl + displ,
-                data = data_train,
-                method = "rpart",
-                trControl = ctrl_none,
-                tuneGrid = expand.grid(cp = .01))   # Set complexity parameter
+# The workflow combines model and recipe, so that we can fit the model
+lm_workflow <- 
+  workflow() %>%             # Initialize workflow
+  add_model(lm_model) %>%    # Add the model to the workflow
+  add_recipe(lm_recipe)      # Add the recipe to the workflow
 
-# Look at summary information
-hwy_rpart$finalModel
-plot(as.party(hwy_rpart$finalModel))   # Visualise your trees
+# Step 6: Fit the model --------------------------------------------------------
 
-# Save fitted values
-rpart_predfit <- predict(hwy_rpart)
+hwy_lm <- 
+  lm_workflow %>%   # Use the specified workflow
+  fit(data_train)   # Fit the model on the specified data
 
-# Calculate fitting accuracies
-postResample(pred = rpart_predfit, obs = criterion_train)
+tidy(hwy_lm)        # Look at summary information
 
-# Random Forests -------------------------
-hwy_rf <- train(form = hwy ~ year + cyl + displ,
-                data = data_train,
-                method = "rf",
-                trControl = ctrl_none,
-                tuneGrid = expand.grid(mtry = 2))   # Set number of features randomly selected
+# Step 7: Assess fit -----------------------------------------------------------
 
-# Look at summary information
-hwy_rf$finalModel
+# Save model predictions and observed values
+lm_fitted <- 
+  hwy_lm %>%               # Model from which to extract predictions
+  predict(data_train) %>%  # Obtain predictions, based on entered data (in this
+                           #  case, these predictions are not out-of-sample)
+  bind_cols(data_train %>% select(hwy))  # Extract observed/true values
 
-# Save fitted values
-rf_fitted <- predict(hwy_rf)
+# Obtain performance metrics
+metrics(lm_fitted, truth = hwy, estimate = .pred)
 
-# Calculate fitting accuracies
-postResample(pred = rf_fitted, obs = criterion_train)
+# Step 8: Assess prediction performance ----------------------------------------
+# Save model predictions and observed values
+lm_pred <- 
+  hwy_lm %>%               # Model from which to extract predictions
+  predict(data_test) %>%   # Obtain predictions, based on entered data (in this
+                           #  case, these predictions ARE out-of-sample)
+  bind_cols(data_test %>% select(hwy))  # Extract observed/true values
 
-# Visualise Accuracy -------------------------
-
-# Tidy competition results
-accuracy <- tibble(criterion_train = criterion_train,
-                   Regression = glm_fitted,
-                   DecisionTrees = rpart_predfit,
-                   RandomForest = rf_fitted) %>%
-               gather(model, prediction, -criterion_train) %>%
-               # Add error measures
-               mutate(se = prediction - criterion_train,
-                      ae = abs(prediction - criterion_train))
-
-# Calculate summaries
-accuracy_agg <- accuracy %>%
-                  group_by(model) %>%
-                  summarise(mae = mean(ae))   # Calculate MAE (mean absolute error)
-
-# Plot A) Scatterplot of truth versus predictions
-ggplot(data = accuracy,
-       aes(x = criterion_train, y = prediction, col = model)) +
-  geom_point(alpha = .5) +
-  geom_abline(slope = 1, intercept = 0) +
-  labs(title = "Predicting mpg$hwy",
-       subtitle = "Black line indicates perfect performance")
-
-# Plot B) Violin plot of absolute errors
-ggplot(data = accuracy, 
-       aes(x = model, y = ae, fill = model)) + 
-  geom_violin() + 
-  geom_jitter(width = .05, alpha = .2) +
-  labs(title = "Fitting Absolute Errors",
-       subtitle = "Numbers indicate means",
-       x = "Model",
-       y = "Absolute Error") +
-  guides(fill = FALSE) +
-  annotate(geom = "label", 
-           x = accuracy_agg$model, 
-           y = accuracy_agg$mae, 
-           label = round(accuracy_agg$mae, 2))
-
-# Step 5: Access prediction ------------------------------
-
-# Define criterion_train
-criterion_test <- data_test$hwy
-
-# Save predicted values
-glm_pred <- predict(hwy_glm, newdata = data_test)
-rpart_pred <- predict(hwy_rpart, newdata = data_test)
-rf_pred <- predict(hwy_rf, newdata = data_test)
-
-#  Calculate fitting accuracies
-postResample(pred = glm_pred, obs = criterion_test)
-postResample(pred = rpart_pred, obs = criterion_test)
-postResample(pred = rf_pred, obs = criterion_test)
-
-# Visualise Accuracy -------------------------
-
-# Tidy competition results
-accuracy <- tibble(criterion_test = criterion_test,
-                   Regression = glm_pred,
-                   DecisionTrees = rpart_pred,
-                   RandomForest = rf_pred) %>%
-               gather(model, prediction, -criterion_test) %>%
-               # Add error measures
-               mutate(se = prediction - criterion_test,
-                      ae = abs(prediction - criterion_test))
-
-# Calculate summaries
-accuracy_agg <- accuracy %>%
-                  group_by(model) %>%
-                  summarise(mae = mean(ae))   # Calculate MAE (mean absolute error)
-
-# Plot A) Scatterplot of truth versus predictions
-ggplot(data = accuracy,
-       aes(x = criterion_test, y = prediction, col = model)) +
-  geom_point(alpha = .5) +
-  geom_abline(slope = 1, intercept = 0) +
-  labs(title = "Predicting mpg$hwy",
-       subtitle = "Black line indicates perfect performance")
-
-# Plot B) Violin plot of absolute errors
-ggplot(data = accuracy, 
-       aes(x = model, y = ae, fill = model)) + 
-  geom_violin() + 
-  geom_jitter(width = .05, alpha = .2) +
-  labs(title = "Prediction Absolute Errors",
-       subtitle = "Numbers indicate means",
-       x = "Model",
-       y = "Absolute Error") +
-  guides(fill = FALSE) +
-  annotate(geom = "label", 
-           x = accuracy_agg$model, 
-           y = accuracy_agg$mae, 
-           label = round(accuracy_agg$mae, 2))
+# Obtain performance metrics
+metrics(lm_pred, truth = hwy, estimate = .pred)
 ```
+
 
 
 ## Datasets
 
 ```{r, eval = TRUE, message = FALSE, echo = FALSE}
 library(tidyverse)
-library(ggthemes)
+library(tidymodels)
 ```
 
 |File  |Rows | Columns |
 |:----|:-----|:------|
-|[college_train.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv)| 500 | 18|
-|[college_test.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_test.csv)| 277 | 18|
-|[house_train.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/house_train.csv)| 5000 | 21|
-|[house_test.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/house_test.csv)| 1000 | 21|
+|[airbnb.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36)| 7609 | 30|
 
 
-```{r, message = FALSE, eval = TRUE, echo = FALSE}
-# Load datasets locally
-library(tidyverse)
-college_train <- read_csv("1_Data/college_train.csv")
-college_test <- read_csv("1_Data/college_test.csv")
-house_train <- read_csv("1_Data/house_train.csv")
-house_test <- read_csv("1_Data/house_test.csv")
-```
-
-- The `college_train` and `college_test` data are taken from the `College` dataset in the `ISLR` package. They contain statistics for a large number of US Colleges from the 1995 issue of US News and World Report.
-
-- The `house_train` and `house_test` data come from [https://www.kaggle.com/harlfoxem/housesalesprediction](https://www.kaggle.com/harlfoxem/housesalesprediction)
-
-#### Variable description of `college_train` and `college_test`
+#### Variable description of `airbnb`
 
 | Name | Description |
 |:-------------|:-------------------------------------|
-| `Private` | A factor with levels No and Yes indicating private or public university. |
-| `Apps` | Number of applications received.  |
-| `Accept` | Number of applications accepted. |
-| `Enroll` | Number of new students enrolled. |
-| `Top10perc` | Pct. new students from top 10% of H.S. class. |
-| `Top25perc` | Pct. new students from top 25% of H.S. class. |
-| `F.Undergrad` | Number of fulltime undergraduates. |
-| `P.Undergrad` | Number of parttime undergraduates. |
-| `Outstate` | Out-of-state tuition. |
-| `Room.Board` | Room and board costs. |
-| `Books` | Estimated book costs. |
-| `Personal` | Estimated personal spending. |
-| `PhD` | Pct. of faculty with Ph.D.'s. |
-| `Terminal` | Pct. of faculty with terminal degree. |
-| `S.F.Ratio` | Student/faculty ratio. |
-| `perc.alumni` | Pct. alumni who donate. |
-| `Expend` | Instructional expenditure per student. |
-| `Grad.Rate` | Graduation rate. |
-
-#### Variable description of `house_train` and `house_test`
-
-| Name | Description |
-|:-------------|:-------------------------------------|
-| `price` | Price of the house in $. |
-| `bedrooms` | Number of bedrooms.  |
-| `bathrooms` | Number of bathrooms. |
-| `sqft_living` | Square footage of the home. |
-| `sqft_lot` | Square footage of the lot. |
-| `floors` | Total floors (levels) in house. |
-| `waterfront` | House which has a view to a waterfront. |
-| `view` | Has been viewed. |
-| `condition` | How good the condition is (Overall). |
-| `grade` | Overall grade given to the housing unit, based on King County grading system. |
-| `sqft_above` | Square footage of house apart from basement. |
-| `sqft_basement` | Square footage of the basement. |
-| `yr_built` | Built Year. |
-| `yr_renovated` | Year when house was renovated. |
-| `zipcode` | Zip code. |
-| `lat` | Latitude coordinate. |
-| `long` | Longitude coordinate. |
-| `sqft_living15` | Living room area in 2015 (implies some renovations). This might or might not have affected the lotsize area. |
-| `sqft_lot15` | lot-size area in 2015 (implies some renovations). |
+|price| Price per night (in \$s)|
+|date| When apartment was added to Airbnb |
+|room_type| Apartment, Loft, House, etc.|
+|accommodates| Number of people the airbnb accommodates |
+|bedrooms| Number of bedrooms |
+|bathrooms| Number of bathrooms |
+|cleaning_fee| Amount of cleaning fee (in \$s) |
+|availability_90_days| How many of the following 90 days the airbnb is available |
+|neighbourhood| The neighbourhood the Airbnb is located in |
+|district| The district the Airbnb is located in |
+|host_since| Experience of the hosts |
+|host_respons_time| Host average response time|
+|host_response_rate| Host response rate |
+|host_superhost| Whether host is a superhost TRUE/FALSE |
+|host_listings_count| Number of listings the host has |
+|review_scores_rating| Overall rating [0, 100]|
+|review_scores_accuracy| Accuracy of information rating [0, 10] |
+|review_scores_cleanliness| Cleanliness rating  [0, 10]|
+|review_scores_checkin| Check in rating [0, 10] |
+|review_scores_communication| Communication rating [0, 10] |
+|review_scores_location| Location rating [0, 10] |
+|review_scores_value| Value rating [0, 10] |
+|kitchen| Kitchen available TRUE/FALSE |
+|wifi| Wifi available TRUE/FALSE |
+|tv| TV available TRUE/FALSE |
+|coffe_machine| Coffee machine available TRUE/FALSE|
+|dishwasher| Dishwasher available TRUE/FALSE|
+|terrace| Terrace/balcony available TRUE/FALSE|
+|bathtub| Bathtub available TRUE/FALSE|
+|check_in_24h| 24h Check-In available TRUE/FALSE|
 
 
 ## Functions
@@ -1126,28 +1110,41 @@ house_test <- read_csv("1_Data/house_test.csv")
 |Package| Installation|
 |:------|:------|
 |`tidyverse`|`install.packages("tidyverse")`|
-|`caret`|`install.packages("caret")`|
-|`partykit`|`install.packages("partykit")`|
-|`party`|`install.packages("party")`|
+|`tidymodels`|`install.packages("tidymodels")`|
+|`rpart.plot`|`install.packages("rpart.plot")`|
 
 ### Functions
 
 | Function| Package | Description |
 |:---|:------|:---------------------------------------------|
-| `trainControl()`|`caret`|    Define modelling control parameters| 
-| `train()`|`caret`|    Train a model|
-| `predict(object, newdata)`|`stats`|    Predict the criterion values of `newdata` based on `object`|
-| `postResample()`|`caret`|   Calculate aggregate model performance in regression tasks|
-| `confusionMatrix()`|`caret`|   Calculate aggregate model performance in classification tasks| 
+| `read_csv()`|`tidyverse`|    Read in data| 
+| `mutate()`|`tidyverse`|    Manipulate or create columns| 
+| `bind_cols()`|`tidyverse`|    Bind columns together and return a tibble| 
+| `pluck()` | `tidyverse` | Extract element from list|
+| `initial_split()` | `tidymodels`|    Initialize splitting dataset into training and test data|
+| `training()` | `tidymodels`|    Create training data from `initial_split` output|
+| `testing()` | `tidymodels`|    Create training data from `initial_split` output|
+| `linear_reg()`/`logistic_reg()`|`tidymodels`|    Initialize linear/logistic regression model| 
+| `set_engine()`|`tidymodels`|    Specify which engine to use for the modeling (e.g., "lm" to use `stats::lm()`, or "stan" to use `rstanarm::stan_lm()`)| 
+| `set_mode()`|`tidymodels`|    Specify whether it's a regression or classification problem| 
+| `recipe()`|`tidymodels`|    Initialize recipe| 
+| `step_dummy()`|`tidymodels`|    pre-process data into dummy variables| 
+| `workflow()`|`tidymodels`|   Initialize workflow| 
+| `add_recipe()`|`tidymodels`|   Add recipe to workflow|
+| `update_recipe()`|`tidymodels`|   Update workflow with a new recipe|
+| `add_model()`|`tidymodels`|   Add model to workflow| 
+| `fit()`|`tidymodels`|   Fit model| 
+| `tidy()`|`tidymodels`|   Show model parameters| 
+| `predict()`|`tidymodels`|   Create model predictions based on specified data| 
+| `metrics()`|`tidymodels`|   Evaluate model performance| 
+| `conf_mat()`|`tidymodels`|   Create confusion matrix| 
+| `roc_curve()`|`tidymodels`|   Calculate sensitivity and specificity with different thresholds for ROC-curve| 
+| `autoplot()`|`tidymodels`|   Plot methods for different objects such as those created from `roc_curve()` to plot the ROC-curve| 
+| `rpart.plot()`| `rpart.plot` | Plot a decision tree from an `rpart` fit object|
+
+
 
 ## Resources
 
-### Cheatsheet
-
-<figure>
-<center>
-<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf">
-  <img src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet.png" alt="Trulli" style="width:70%"></a><br>
- <font style="font-size:10px"> from <a href= "https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</figcaption">github.com/rstudio</a></font>
-</figure>
-
+- [**tidymodels webpage**](https://www.tidymodels.org/): Can be used as cheat sheet. Also has some tutorials.
+- The, not yet completed, book [**Tidymodeling with R**](https://www.tmwr.org): More detailed introduction into the `tidymodels` framework.

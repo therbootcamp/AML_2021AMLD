@@ -141,69 +141,9 @@ names(XXX)
 names(airbnb)
 ```
 
-9. Before starting to model the data, we need to do a little bit of data cleaning. Given the names of the data and the description in the *Datasets* tab, which do you think could be excluded?
+### B - Set up the recipe
 
-```{r}
-# apartment_id and host_id do not contain information that will help in the modeling
-# process, as they provide (almost) unique identifiers for a given apartment and
-# thus don't contain generalizable information.
-# longitude and latitude are already more or less covered in the "neighbourhood"
-# and "district" variables.
-```
-
-10. Let's remove the variables we won't need in the analyses. Also, the `cleening_fee` is currently a string, because of the \$ sign in front of the numbers. Let's change this to create a numeric variable. 
-
-```{r, echo = TRUE}
-# Convert character to factor
-airbnb <- 
-  airbnb %>%
-  select(-ends_with(c("_id", "itude"))) %>% 
-  mutate(cleaning_fee = as.numeric(gsub("$", "", cleaning_fee, fixed = TRUE)))
-```
-
-### B - Set up the model
-
-1. In this practical we will use a linear regression to predict the price of airbnbs. To be able to do so in `tidymodels`, we first have to set up our model. We do this by specifying (a) the model type, (b) the enginge we want to use, and (c) whether we are working on a regression or a classification problem. To do so, ...
-
-- set the model type to `linear_reg()`.
-- specify the engine using `set_engine(XXX)`, with the engine `"lm"`.
-- specify, that the problem type with `set_mode(XXX)` to `"regression"`.
-- add all these function calls together using the `%>%` operator.
-- save the model specification as `lm_model`.
-
-```{r, echo = TRUE, eval = FALSE}
-# set up our model
-lm_model <- 
-  XXX() %>% 
-  XXX(XXX) %>% 
-  XXX(XXX)
-```
-
-```{r}
-# set up our model
-lm_model <- 
-  linear_reg() %>% 
-  set_engine("lm") %>% 
-  set_mode("regression")
-```
-
-2. Take a look at your model by printing `lm_model`.
-
-```{r}
-# print lm_model
-lm_model
-```
-
-3. Using `translate()` we can view the function that will be called to fit our model. Arguments not yet specified (and thus, at this point, unknown), will be shown as `missing_arg()`. Use `translate()` and pass `lm_model` as argument.
-
-```{r}
-# view the underlying function used to fit the model
-translate(lm_model)
-```
-
-### C - Set up the recipe
-
-1. In the previous section, we defined what model to fit. By specifying a `recipe`, we specify (a) what to predict, (b) how to predict it (the features), (c) how to prepare our data. Create your first recipe called `airbnb_recipe`, by adding a formula to specify that we want to predict `price` with the number of people it can accommodate (`accommodates`):
+1. By specifying a `recipe`, we specify (a) what to predict, (b) how to predict it (the features), (c) how to prepare our data. Create your first recipe called `airbnb_recipe`, by adding a formula to specify that we want to predict `price` with the number of people it can accommodate (`accommodates`):
 
 - set the formula to `price ~ accommodates`
 - set the data to `airbnb`
@@ -223,6 +163,79 @@ airbnb_recipe <- recipe(price ~ accommodates, data = airbnb)
 ```{r}
 airbnb_recipe
 ```
+
+
+### C - Set up the model
+
+1. In this practical we will use a linear regression to predict the price of airbnbs. To be able to do so in `tidymodels`, we first have to set up our model. We do this by specifying (a) the model type, (b) the enginge we want to use, and (c) whether we are working on a regression or a classification problem. We will do this step-by-step. To perform step (a), call the `linear_reg()` function and assign it the name `lm_model`.
+
+```{r, echo = TRUE, eval = FALSE}
+# set up our model
+lm_model <- 
+  XXX()
+```
+
+```{r}
+# set up our model
+lm_model <- 
+  linear_reg()
+```
+
+2. Next, we have to specify which engine to use. Here we will use the `stats` package's engine. To do so, add a pipe (`%>%`) to the code you specified above, and add the `set_engine(XXX)` function, with the engine `"lm"`.
+
+```{r, echo = TRUE, eval = FALSE}
+# set up the engine
+lm_model <- 
+  linear_reg() %>% 
+  XXX(XXX)
+```
+
+```{r}
+# set up the engine
+lm_model <- 
+  linear_reg() %>% 
+  set_engine("lm")
+```
+
+3. To see which engines are available for a given model type, use `show_engines("MODEL_TYPE")`. Check which other engines would be available with the model type `linear_reg`.
+
+```{r}
+show_engines("linear_reg")
+```
+
+
+4. The third and last step is to specify the problem type, which in `tidymodels` is referred to as the problem `mode`. To do so, add yet another pipe to the definition of `lm_model` and call the `set_mode()` function. Pass `"regression"` as argument to this function.
+
+```{r, echo = TRUE, eval = FALSE}
+# set up the problem mode
+lm_model <- 
+  linear_reg() %>% 
+  set_engine("lm") %>% 
+  XXX(XXX)
+```
+
+```{r}
+# set up the problem mode
+lm_model <- 
+  linear_reg() %>% 
+  set_engine("lm") %>% 
+  set_mode("regression")
+```
+
+5. Take a look at your model by printing `lm_model`.
+
+```{r}
+# print lm_model
+lm_model
+```
+
+6. Using `translate()` we can view the function that will be called to fit our model. Arguments not yet specified (and thus, at this point, unknown), will be shown as `missing_arg()`. Use `translate()` and pass `lm_model` as argument.
+
+```{r}
+# view the underlying function used to fit the model
+translate(lm_model)
+```
+
 
 
 ### D - Fit a regression model
@@ -378,12 +391,28 @@ So far we have only used one feature (`accommodates`), to predict `price`. Let's
 - `bedrooms` - number of bedrooms.
 - `bathrooms` - number of bathrooms.
 
-1. To do this, we will have to update our `lm_recipe`. Specifically, we want to add the three new features to the formula, and add a pre-processing step: creating dummy variables out of the categorical `room_type` variable. Update the recipe from C1, by extending the formula, and by adding `step_dummy(all_nominal_predictors())` as pre-processing step.
+1. To do this, we will have to update our `lm_recipe`. Specifically, we want to add the three new features to the formula. Update the recipe from B1, by extending the formula.
 
 ```{r, echo = TRUE, eval = FALSE}
 # updated recipe
 airbnb_recipe <- 
-  recipe(XXX ~ XXX + XXX + XXX + XXX, data = XXX) %>% 
+  recipe(XXX ~ XXX + XXX + XXX + XXX, data = XXX)
+```
+
+```{r}
+# updated recipe
+airbnb_recipe <- 
+  recipe(price ~ accommodates + room_type + bedrooms + bathrooms,
+                        data = airbnb)
+```
+
+2. Because we now have a categorical predictor (`room_type`), we also have to update the recipe by adding a pre-processing step that ensures that categorical predictors are dummy-coded. Add a pipe (`%>%`) to the recipe definition of the previous task and call `step_dummy(all_nominal_predictors())` to define this pre-processing step.
+
+```{r, echo = TRUE, eval = FALSE}
+# updated recipe
+airbnb_recipe <- 
+  recipe(price ~ accommodates + room_type + bedrooms + bathrooms,
+                        data = airbnb) %>% 
   XXX(XXX())
 ```
 
@@ -395,7 +424,8 @@ airbnb_recipe <-
   step_dummy(all_nominal_predictors())
 ```
 
-2. Update the recipe in the workflow using the `update_recipe()` function. Pass the new `airbnb_recipe` to `update_recipe()`.
+
+3. Update the recipe in the workflow using the `update_recipe()` function. Pass the new `airbnb_recipe` to `update_recipe()`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # update lm workflow with new recipe
@@ -411,13 +441,13 @@ lm_workflow <-
   update_recipe(airbnb_recipe)
 ```
 
-3. Print the `lm_workflow` object to view a summary of how the modeling will be done. The recipe should now be updated, which you can see by the new section *Preprocessor*.
+4. Print the `lm_workflow` object to view a summary of how the modeling will be done. The recipe should now be updated, which you can see by the new section *Preprocessor*.
 
 ```{r}
 lm_workflow
 ```
 
-3. Refit the model as you have done above, and call it `price_lm`.
+5. Refit the model as you have done above, and call it `price_lm`.
 
 ```{r}
 # Fit the regression model
@@ -426,7 +456,7 @@ price_lm <-
   fit(airbnb)
 ```
 
-4. Using the `tidy()` function on the `price_lm` object, take a look at the parameter estimates.
+6. Using the `tidy()` function on the `price_lm` object, take a look at the parameter estimates.
 
 
 ```{r}
@@ -434,7 +464,7 @@ price_lm <-
 tidy(price_lm)
 ```
 
-5. Using the `predict()` function, to extract the model predictions and bind them together with the true values using `bind_cols()`.
+7. Using the `predict()` function, to extract the model predictions and bind them together with the true values using `bind_cols()`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # generate predictions
@@ -453,7 +483,7 @@ lm_pred <-
 ```
 
 
-6. Using the following code, plot the fitted against the true value, to judge how well our model performed. What do you think, is this performance good or bad? And how does it compare to the model with only one feature we fitted before?
+8. Using the following code, plot the fitted against the true value, to judge how well our model performed. What do you think, is this performance good or bad? And how does it compare to the model with only one feature we fitted before?
 
 ```{r, echo = TRUE, eval = FALSE}
 # use the lm_pred object to generate the plot
@@ -462,7 +492,7 @@ ggplot(lm_pred, aes(x = .pred, y = price)) +
   geom_abline(lty = 2) + 
   # Add data points:
   geom_point(alpha = 0.5) + 
-  labs(title = "Regression: One Feature",
+  labs(title = "Regression: Four Features",
        subtitle = "Line indicates perfect performance",
        x = "Predicted Airbnb Prices in $",
        y = "True Airbnb Prices in $") +
@@ -475,7 +505,7 @@ ggplot(lm_pred, aes(x = .pred, y = price)) +
 # really fall on the line, which indicates a poor model fit.
 ```
 
-7. Using the `metrics()` function, evaluate the model performance. Pass it the `price` variable as `truth` and the `.pred` variable as `estimate`.
+9. Using the `metrics()` function, evaluate the model performance. Pass it the `price` variable as `truth` and the `.pred` variable as `estimate`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # evaluate performance
@@ -488,7 +518,7 @@ metrics(lm_pred, truth = price, estimate = .pred)
 
 ```
 
-8. How do you interpret these values? How do they compare to the ones you obtained previously?
+10. How do you interpret these values? How do they compare to the ones you obtained previously?
 
 ```{r}
 # On average, the model commits a prediction error of 35.7 when predicting the 
@@ -584,7 +614,7 @@ ggplot(lm_pred, aes(x = .pred, y = price)) +
   geom_abline(lty = 2) + 
   # Add data points:
   geom_point(alpha = 0.5) + 
-  labs(title = "Regression: One Feature",
+  labs(title = "Regression: All Features",
        subtitle = "Line indicates perfect performance",
        x = "Predicted Airbnb Prices in $",
        y = "True Airbnb Prices in $") +
@@ -637,7 +667,7 @@ class(airbnb$host_superhost)
 2. The `host_superhost` variable is of class `logical`. Therefore, we have to change it to `factor`. **Important note**: In binary classification tasks, the **first** factor level will be chosen as positive. We therefore explicitly specify, that `TRUE` be the first level.
 
 ```{r, echo = TRUE}
-# Define criterion as college_train$Private
+# Recode host_superhost to be a factor with TRUE as first level
 airbnb <-
   airbnb %>% 
   mutate(host_superhost = factor(host_superhost, levels = c(TRUE, FALSE)))
@@ -658,33 +688,7 @@ levels(airbnb$host_superhost)
 
 ### I - Fit a classification model
 
-1. Given that we now want to predict a new variable (`host_superhost`) with a new model (a logistic regression), we need to update both our model and our recipe. Create a new model called `logistic_model`, with the model type `logistic_reg`, the engine `"glm"`, and mode `"classification"`.
-
-```{r, echo = TRUE, eval = FALSE}
-# create a logistic regression model 
-XXX_model <-
-  XXX() %>% 
-  set_XXX(XXX) %>% 
-  set_XXX(XXX)
-```
-
-
-```{r}
-# create a logistic regression model 
-logistic_model <-
-  logistic_reg() %>% 
-  set_engine("glm") %>% 
-  set_mode("classification")
-```
-
-2. Print the `logistic_model` object. Using `translate()`, check out the underlying function that will be used to fit the model.
-
-```{r}
-logistic_model
-translate(logistic_model)
-```
-
-3. Specify the new recipe. Specifically...
+1. Given that we now want to predict a new variable (`host_superhost`) with a new model (a logistic regression), we need to update both our model and our recipe. Specify the new recipe. Specifically...
 
 - set the formula to `host_superhost ~ .`, to use all possible features
 - add `step_dummy(all_nominal_predictors())` to pre-process nominal features
@@ -705,11 +709,39 @@ logistic_recipe <-
   step_dummy(all_nominal_predictors())
 ```
 
-4. Print the new recipe.
+2. Print the new recipe.
 
 ```{r}
 logistic_recipe
 ```
+
+
+3. Create a new model called `logistic_model`, with the model type `logistic_reg`, the engine `"glm"`, and mode `"classification"`.
+
+```{r, echo = TRUE, eval = FALSE}
+# create a logistic regression model 
+XXX_model <-
+  XXX() %>% 
+  set_XXX(XXX) %>% 
+  set_XXX(XXX)
+```
+
+
+```{r}
+# create a logistic regression model 
+logistic_model <-
+  logistic_reg() %>% 
+  set_engine("glm") %>% 
+  set_mode("classification")
+```
+
+4. Print the `logistic_model` object. Using `translate()`, check out the underlying function that will be used to fit the model.
+
+```{r}
+logistic_model
+translate(logistic_model)
+```
+
 
 5. Create a new workflow called `logistic_workflow`, where you add the `logistic_model` and the `logistic_recipe` together.
 
@@ -721,13 +753,13 @@ logistic_workflow <-
   add_model(logistic_model)
 ```
 
-5. Print and check out the new workflow.
+6. Print and check out the new workflow.
 
 ```{r}
 logistic_workflow
 ```
 
-6. Fit the model using `fit()`. Save the result as 
+7. Fit the model using `fit()`. Save the result as 
 
 ```{r}
 # Fit the logistic regression model
@@ -842,7 +874,6 @@ tidymodels_prefer()   # To resolve common conflicts
 # Step 1: Load and Clean, and Explore Training data ----------------------------
 
 # I'll use the mpg dataset from the dplyr package in this example
-#  no need to load an external dataset
 data_train <- read_csv("1_Data/mpg_train.csv")
 
 # Explore training data
@@ -851,7 +882,16 @@ View(data_train)  # Open in a new spreadsheet-like window
 dim(data_train)   # Print dimensions
 names(data_train) # Print the names
 
-# Step 2: Define model ---------------------------------------------------------
+# Step 2: Define recipe --------------------------------------------------------
+
+# The recipe defines what to predict with what, and how to pre-process the data
+lm_recipe <- 
+  recipe(hwy ~ year + cyl + displ + trans,  # Specify formula
+         data = data_train) %>%             # Specify the data
+  step_dummy(all_nominal_predictors())      # Dummy code all categorical predictors
+
+
+# Step 3: Define model ---------------------------------------------------------
 
 # The model definition defines what kind of model we want to use and how to
 # fit it
@@ -860,14 +900,6 @@ lm_model <-
   set_engine("lm") %>%    # Specify engine (often package name) to use
   set_mode("regression")  # Specify whether it's a regressio or classification
                           #  problem.
-
-# Step 3: Define recipe --------------------------------------------------------
-
-# The recipe defines what to predict with what, and how to pre-process the data
-lm_recipe <- 
-  recipe(hwy ~ year + cyl + displ + trans,  # Specify formula
-         data = data_train) %>%             # Specify the data
-  step_dummy(all_nominal_predictors())      # Dummy code all categorical predictors
 
 # Step 4: Define workflow ------------------------------------------------------
 
@@ -924,18 +956,16 @@ library(tidymodels)
 
 |File  |Rows | Columns |
 |:----|:-----|:------|
-|[airbnb.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36)| 1000 | 21|
+|[airbnb.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36)| 7609 | 30|
 
-- The `airbnb` data are taken from the `College` dataset in the `ISLR` package. They contain statistics for a large number of US Colleges from the 1995 issue of US News and World Report.
 
 #### Variable description of `airbnb`
 
 | Name | Description |
 |:-------------|:-------------------------------------|
-|apartment_id| Apartment id|
 |price| Price per night (in \$s)|
 |date| When apartment was added to Airbnb |
-|room_type| Appartement, Loft, House, etc.|
+|room_type| Apartment, Loft, House, etc.|
 |accommodates| Number of people the airbnb accommodates |
 |bedrooms| Number of bedrooms |
 |bathrooms| Number of bathrooms |
@@ -943,9 +973,6 @@ library(tidymodels)
 |availability_90_days| How many of the following 90 days the airbnb is available |
 |neighbourhood| The neighbourhood the Airbnb is located in |
 |district| The district the Airbnb is located in |
-|latitude| latitude|
-|longitude| longitude |
-|host_id| Host id |
 |host_since| Experience of the hosts |
 |host_respons_time| Host average response time|
 |host_response_rate| Host response rate |
