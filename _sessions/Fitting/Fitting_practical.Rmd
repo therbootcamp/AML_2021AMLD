@@ -964,7 +964,6 @@ library(tidymodels)
 | Name | Description |
 |:-------------|:-------------------------------------|
 |price| Price per night (in \$s)|
-|date| When apartment was added to Airbnb |
 |room_type| Apartment, Loft, House, etc.|
 |accommodates| Number of people the airbnb accommodates |
 |bedrooms| Number of bedrooms |
@@ -973,7 +972,7 @@ library(tidymodels)
 |availability_90_days| How many of the following 90 days the airbnb is available |
 |neighbourhood| The neighbourhood the Airbnb is located in |
 |district| The district the Airbnb is located in |
-|host_since| Experience of the hosts |
+|host_since| Experience of the hosts in days |
 |host_respons_time| Host average response time|
 |host_response_rate| Host response rate |
 |host_superhost| Whether host is a superhost TRUE/FALSE |

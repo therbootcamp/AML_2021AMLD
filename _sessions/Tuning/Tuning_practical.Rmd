@@ -4,7 +4,7 @@ author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
       <font style='font-style:normal'>Applied Machine Learning with R</font><br>
-      <a href='https://therbootcamp.github.io/AML_2020AMLD/'>
+      <a href='https://therbootcamp.github.io/AML_2021AMLD/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
       <a href='https://therbootcamp.github.io'>
@@ -48,14 +48,7 @@ set.seed(100)
 ```{r, message = FALSE, eval = TRUE, echo = FALSE}
 # Load datasets locally
 library(tidyverse)
-college_train <- read_csv("1_Data/college_train.csv")
-college_test <- read_csv("1_Data/college_test.csv")
-house_train <- read_csv("1_Data/house_train.csv")
-house_test <- read_csv("1_Data/house_test.csv")
-hitters_train <- read_csv("1_Data/hitters_train.csv") %>%
-  select(Salary, everything())
-hitters_test <- read_csv("1_Data/hitters_test.csv") %>%
-  select(Salary, everything())
+airbnb <- read_csv("1_Data/airbnb.csv")
 ```
 <p align="center">
 <img width="100%" src="image/rexthor.png" margin=0><br>
@@ -74,878 +67,771 @@ By the end of this practical you will know how to:
 
 ## Tasks
 
-In this practical, we will predict the `Salary` of baseball players from the `hitters_train` and `hitters_test` datasets. 
+In this practical, we will again predict the `price` of Airbnbs located in Berlin. 
 
 ### A - Setup
 
-1. Open your `RBootcamp_AMLD2020` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data file(s) listed in the `Datasets` section are in your `1_Data` folder
+1. Open your `RBootcamp_AMLD2021` R project. It should already have the folders `1_Data` and `2_Code`.
 
-2. Open a new R script and save it as a new file called `Optimization_practical.R` in the `2_Code` folder.  
+2. Open a new R script and save it as a new file called `Tuning_practical.R` in the `2_Code` folder.  
 
 3. Using `library()` load the set of packages for this practical listed in the packages section above.
 
 ```{r, echo = TRUE, eval = TRUE, message = FALSE}
 # Load packages necessary for this script
 library(tidyverse)
-library(caret)
-library(party)
-library(partykit)
+library(tidymodels)
+tidymodels_prefer() # to resolve common conflicts
 ```
 
 ```{r, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
+# Load packages necessary for this script
 library(tidyverse)
-library(caret)
-library(party)
-library(partykit)
+library(tidymodels)
+tidymodels_prefer() # to resolve common conflicts
 ```
 
-4. Run the code below to load each of the datasets listed in the `Datasets` section as new objects.
+4. Run the code below to load the airbnb dataset.
 
 ```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
-# hitters data
-hitters_train <- read_csv(file = "1_Data/hitters_train.csv")
-hitters_test <- read_csv(file = "1_Data/hitters_test.csv")
+# airbnb data
+airbnb <- read_csv(file = "1_Data/airbnb.csv")
 ```
 
-5. Take a look at the first few rows of each dataframe by printing them to the console.
+### B - Data splitting
 
-```{r, echo = TRUE, eval = FALSE}
-# Print dataframes to the console
-hitters_train
-hitters_test
-```
-
-
-6. Open each dataset in a new window using `View()`. Do they look ok?
-
-```{r, eval = FALSE, echo = TRUE}
-# Open each dataset in a window.
-View(XXX)
-View(XXX)
-```
-
-7. As always, we need to convert all character columns to factors before we start. Do this by running the following code.
+1. Create an initial split of the data, where you allocate only 50% of the data to the training set (usually this proportion is higher, but then model fitting takes ages) and where you stratify for the `price` variable. Save it as `airbnb_split`
 
 ```{r}
-# Convert all character columns to factor
-hitters_train <- hitters_train %>%
-          mutate_if(is.character, factor)
-
-hitters_test <- hitters_test %>%
-          mutate_if(is.character, factor)
+airbnb_split <- initial_split(airbnb, stata = price, prop = .5)
 ```
 
-### B - Setup `trainControl()`
+2. Using the `training()` function, create a training set and call it `airbnb_train`.
 
-1. Set up your training by specifying `ctrl_cv` as 10-fold cross-validation. Specifically,...
+```{r}
+airbnb_train <- training(airbnb_split)
+```
 
-- set `method = "cv"` to specify cross validation.
-- set `number = 10` to specify 10 folds.
+3. Using the `testing()` function, create a training set and call it `airbnb_test`.
+
+```{r}
+airbnb_test <- testing(airbnb_split)
+```
+
+### C - Setup resampling scheme
+
+1. In this practical, we will use 10-fold cross-validation. Use `vfold_cv()` to set this up and add the `airbnb_train` data as first argument. Also, set the argument `v = 10` to specify the number of folds. Save the ouput as `airbnb_folds`.
 
 ```{r, eval = FALSE, echo = TRUE}
 # Use 10-fold cross validation
-ctrl_cv <- trainControl(method = "XX", 
-                        number = XX) 
+airbnb_folds <- XXX(XXX, XXX = XXX) 
 ```
 
 ```{r}
 # Use 10-fold cross validation
-ctrl_cv <- trainControl(method = "cv", 
-                        number = 10) 
+airbnb_folds <- vfold_cv(airbnb_train, v = 10) 
 ```
 
-### C - Regression (standard)
+2. Use `control_resamples()` to set up the info for our resampling function such that it will save the predictions and the workflow. To do so, set the `save_pred` and `save_workflow` arguments to `TRUE`. Call the output `keep_pred`.
 
-1. Fit a (standard) regression model predicting `Salary` as a function of all features. Specifically,...
+```{r, eval = FALSE, echo = TRUE}
+XXX <- XXX(XXX = XXX, XXX = XXX)
+```
 
-- set the formula to `Salary ~ .`.
-- set the data to `hitters_train`.
-- set the method to `"glm"` for regular regression.
-- set the train control argument to `ctrl_cv`.
 
-```{r, echo = TRUE, eval = FALSE}
-# Normal Regression --------------------------
-salary_glm <- train(form = XX ~ .,
-                    data = XX,
-                    method = "XX",
-                    trControl = XX)
+```{r}
+keep_pred <- control_resamples(save_pred = TRUE, save_workflow = TRUE)
+```
+
+
+
+### D - Regression (standard)
+
+
+1. Define a recipe called `lm_recipe` by calling the `recipe()` function. Use all available predictors by setting the formula to `price ~ .` and use the `airbnb_train` data. Also, add a pipe (`%>%`) and `step_dummy(all_nominal_predictors())` to dummy-code all categorical predictors.
+
+```{r}
+# create recipe
+lm_recipe <- 
+  recipe(price ~ ., data = airbnb_train) %>% 
+  step_dummy(all_nominal_predictors())
+```
+
+2. Create a regression model using the `lm` engine and the regression mode.
+
+```{r}
+# set up the regression model
+lm_model <- 
+  linear_reg() %>% 
+  set_engine("lm") %>% 
+  set_mode("regression")
+```
+
+3. Create a workflow called `lm_workflow` using `workflow()` and add the `lm_recipe` and `lm_model` objects.
+
+```{r}
+# lm workflow 
+lm_workflow <- 
+  workflow() %>% 
+  add_recipe(lm_recipe) %>% 
+  add_model(lm_model)
+```
+
+4. Fit the model on the training data. Here, using resampling doesn't make any sense, as we are not tuning any parameters. Use the `fit()` function that you already know from previous practicals and save the output as `lm_res`. We will compare the model performances afterwards.
+
+```{r, eval = FALSE, echo = TRUE}
+# Fit the regression model
+XXX <-
+  XXX %>% 
+  XXX(XXX, XXX = XXX, XXX = XXX)
 ```
 
 ```{r}
-# Normal Regression --------------------------
-salary_glm <- train(form = Salary ~ .,
-                   data = hitters_train,
-                   method = "glm",
-                   trControl = ctrl_cv)
+# Fit the regression model using resampling
+lm_res <-
+  lm_workflow %>% 
+  fit(airbnb_train)
 ```
 
-2. Print your `salary_glm`. What do you see?
+### E - Ridge Regression
+
+1. Define a recipe called `ridge_recipe`. Use the same recipe as with the regression above (`lm_recipe`), but add an additional pre-processing step: `step_normalize(all_numeric_predictors())`. This is to ensure that all parameters are penalized equally.
 
 ```{r}
-salary_glm
+# create recipe
+ridge_recipe <- 
+  recipe(price ~ ., data = airbnb_train) %>% 
+  step_normalize(all_numeric_predictors()) %>%
+  step_dummy(all_nominal_predictors())
+  
 ```
 
-3. Print your final model object with `salary_glm$finalModel`.
+2. Create a ridge regression model, again using the `linear_reg()` model, but this time with the  `glmnet` engine. Within `linear_reg()`, set the argument `mixture` to 0 and `penalty` to `tune()`. Save the output as `ridge_model`
 
-```{r, echo = TRUE}
-# Print final regression model
-salary_glm$finalModel
-```
-
-4. Print your final regression model coefficients with `coef()`.
-
-```{r}
-# Print glm coefficients
-coef(salary_glm$finalModel)
-```
-
-### D - Ridge Regression
-
-It's time to fit an optimized regression model with a Ridge penalty!
-
-1. Before we can fit a ridge regression model, we need to specify which values of the lambda penalty parameter we want to try. Using the code below, create a vector called `lambda_vec` which contains 100 values spanning a wide range, from very close to 0 to 1,000.
-
-```{r, echo = TRUE}
-# Vector of lambda values to try
-lambda_vec <- 10 ^ (seq(-4, 4, length = 100))
-```
-
-2. Fit a ridge regression model predicting `Salary` as a function of all features. Specifically,...
-
-- set the formula to `Salary ~ .`.
-- set the data to `hitters_train`.
-- set the method to `"glmnet"` for regularized regression.
-- set the train control argument to `ctrl_cv`.
-- set the `preProcess` argument to `c("center", "scale")` to make sure the variables are standarised when estimating the beta weights (this is good practice for ridge regression as otherwise the different scales of the variables impact the betas and thus the punishment would also depend on the scale).
-- set the tuneGrid argument such that alpha is 0 (for ridge regression), and with all lambda values you specified in `lambda_vec` (we've done this for you below).
-
-```{r, echo = TRUE, eval = FALSE}
-# Ridge Regression --------------------------
-salary_ridge <- train(form = XX ~ .,
-                      data = XX,
-                      method = "XX",
-                      trControl = XX,
-                      preProcess = c("XX", "XX"),  # Standardise
-                      tuneGrid = expand.grid(alpha = 0,  # Ridge penalty
-                                             lambda = lambda_vec))
+```{r, eval = FALSE, echo = TRUE}
+# set up the ridge regression model
+XXX <- 
+  XXX(XXX = XXX, XXX = XXX) %>% 
+  set_engine(XXX) %>% 
+  set_mode("regression")
 ```
 
 ```{r}
-# Ridge Regression --------------------------
-salary_ridge <- train(form = Salary ~ .,
-                      data = hitters_train,
-                      method = "glmnet",
-                      trControl = ctrl_cv,
-                      preProcess = c("center", "scale"),  # Standardise
-                      tuneGrid = expand.grid(alpha = 0,  # Ridge penalty
-                                             lambda = lambda_vec))
+# set up the ridge regression model
+ridge_model <- 
+  linear_reg(mixture = 0, penalty = tune()) %>% 
+  set_engine("glmnet") %>% 
+  set_mode("regression")
 ```
 
-3. Print your `salary_ridge` object. What do you see?
+3. Create a workflow called `ridge_workflow` using `workflow()` and add the `ridge_recipe` and `ridge_model` objects.
 
 ```{r}
-salary_ridge
+# ridge workflow 
+ridge_workflow <- 
+  workflow() %>% 
+  add_recipe(ridge_recipe) %>% 
+  add_model(ridge_model)
 ```
 
-4. Plot your `salary_ridge` object. What do you see? Which value of the regularization parameter seems to be the best?
+4. Set up a grid of tuning parameters. Here we only have one parameter `penalty`. Use `grid_regular()` to do so, and pass it `penalty()` as first argument and `levels = 50`as second argument. Call it `penalty_grid`.
 
-```{r, echo = TRUE, eval = FALSE}
-# Plot salary_ridge object
-plot(XX)
-```
-
-```{r}
-plot(salary_ridge)
-```
-
-5. Print the best value of lambda by running the following code. Does this match what you saw in the plot above?
-
-```{r, echo = TRUE}
-# Print best regularisation parameter
-salary_ridge$bestTune$lambda
-```
-
-6. What were your final regression model coefficients for the best lambda value? Find them by running the following code.
-
-```{r, echo = TRUE}
-# Get coefficients from best lambda value
-coef(salary_ridge$finalModel, 
-     salary_ridge$bestTune$lambda)
-```
-
-7. How do these coefficients compare to what you found in regular regression? Are they similar? Different?
-
-```{r}
-# Actually the look quite different! The reason why is that we have changed the scale using preProcess
-
-# If you want the coefficients on the original scale, you'd need to convert them, or run your training again without any processing. However, this can lead to problems finding the optimal Lambda value...
-```
-
-### E - Lasso Regression
-
-It's time to fit an optimized regression model with a Lasso penalty!
-
-1. Before we can fit a lasso regression model, we again first specify which values of the lambda penalty parameter we want to try. Using the code below, create a vector called `lambda_vec` which contains 100 values between 0 and 1,000.
-
-```{r, echo = TRUE}
-# Determine possible values of lambda
-lambda_vec <- 10 ^ seq(from = -4, to = 4, length = 100)
-```
-
-2. Fit a lasso regression model predicting `Salary` as a function of all features. Specifically,...
-
-- set the formula to `Salary ~ .`.
-- set the data to `hitters_train`.
-- set the method to `"glmnet"` for regularized regression.
-- set the train control argument to `ctrl_cv`.
-- set the `preProcess` argument to `c("center", "scale")` to make sure the variables are standarised when estimating the beta weights (this is also good practice for lasso regression).
-- set the tuneGrid argument such that alpha is 1 (for lasso regression), and with all lambda values you specified in `lambda_vec` (we've done this for you below).
-
-```{r, echo = TRUE, eval = FALSE}
-# Lasso Regression --------------------------
-salary_lasso <- train(form = XX ~ .,
-                      data = XX,
-                      method = "XX",
-                      trControl = XX,
-                      preProcess = c("XX", "XX"),  # Standardise
-                      tuneGrid = expand.grid(alpha = 1,  # Lasso penalty
-                                            lambda = lambda_vec))
+```{r, eval = FALSE, echo = TRUE}
+XXX <- XXX(XXX, XXX = XXX)
 ```
 
 ```{r}
-# Fit a lasso regression
-salary_lasso <- train(form = Salary ~ .,
-                   data = hitters_train,
-                   method = "glmnet",
-                   trControl = ctrl_cv,
-                   preProcess = c("center", "scale"),
-                   tuneGrid = expand.grid(alpha = 1,  # Lasso penalty
-                                          lambda = lambda_vec))
+penalty_grid <- grid_regular(penalty(), levels = 50)
 ```
 
-3. Print your `salary_lasso` object. What do you see?
+
+5. Tune the model on the training data. To do so using our resampling scheme, use the `tune_grid()` function instead of the `fit()` or `fit_resamples()` function. Pass it the defined workflow as first argument and set the `resamples` argument to `airbnb_folds`, and the `grid` argument to `penalty_grid`. Save the output as `ridge_grid`.
+
 
 ```{r}
-salary_lasso
+# tune the penalty parameter
+ridge_grid <-
+  ridge_workflow %>% 
+  tune_grid(resamples = airbnb_folds,
+            grid = penalty_grid)
+
 ```
 
+6. Use `collect_metrics()` to evaluate the cross-validation performance of the model across the different values of the penalty parameter.
 
-4. Plot your `salary_lasso` object. What do you see? Which value of the regularization parameter seems to be the best?
+```{r}
+collect_metrics(ridge_res)
 
-```{r, echo = TRUE, eval = FALSE}
-# Plot salary_lasso object
-plot(XX)
+```
+
+7. OK, that's kind of hard to interpret, given that we'd have to scan 100 rows. Instead, let's plot the `penalty` value on the x axis, and the performance metrics on the y axis. Use the code below to do so.
+
+```{r echo=TRUE}
+ridge_grid %>%
+  collect_metrics() %>%
+  ggplot(aes(penalty, mean, color = .metric)) +
+  geom_errorbar(aes(
+    ymin = mean - std_err,
+    ymax = mean + std_err
+  ),
+  alpha = 0.5
+  ) +
+  geom_line(size = 1.5) +
+  facet_wrap(~.metric, scales = "free", nrow = 2) +
+  scale_x_log10() +
+  theme(legend.position = "none")
+```
+
+8. Hm, the tuning did not seem to have a large effect. But the maximum penalty value automatically chosen by the `grid_regular` function was only 1. Specify your own grid of parameter values and repeat steps 5 to 7 above.
+
+```{r, eval = FALSE, echo = TRUE}
+penalty_grid <- tibble(penalty = 10 ^ (seq(-4, 5, length = 150)))
 ```
 
 ```{r}
-plot(salary_lasso)
+penalty_grid <- tibble(penalty = 10 ^ (seq(-4, 5, length = 150)))
+
+# step 5
+ridge_grid <-
+  ridge_workflow %>% 
+  tune_grid(resamples = airbnb_folds,
+            grid = penalty_grid)
+
+# step 6
+collect_metrics(ridge_res)
+
+# step 7
+ridge_grid %>%
+  collect_metrics() %>%
+  ggplot(aes(penalty, mean, color = .metric)) +
+  geom_errorbar(aes(
+    ymin = mean - std_err,
+    ymax = mean + std_err
+  ),
+  alpha = 0.5
+  ) +
+  geom_line(size = 1.5) +
+  facet_wrap(~.metric, scales = "free", nrow = 2) +
+  scale_x_log10() +
+  theme(legend.position = "none")
 ```
 
+9. Now we see a drop in the RMSE at higher `penalty` values. Select the best `penalty` value by passing `ridge_grid` into the `select_best()` function and save the output as `best_ridge`.
 
-5. Print the best value of lambda by running the following code. Does this match what you saw in the plot above?
 
-```{r, echo = TRUE}
-# Print best regularisation parameter
-salary_lasso$bestTune$lambda
+```{r, eval = FALSE, echo = TRUE}
+XXX <- XXX(XXX, "rmse")
 ```
-
-6. What were your final regression model coefficients for the best lambda value? Find them by running the following code.
-
-```{r, echo = TRUE}
-# Get coefficients from best lambda value
-coef(salary_lasso$finalModel, 
-     salary_lasso$bestTune$lambda)
-```
-
-7. How do these coefficients compare to what you found in regular regression? Are they similar? Different? Do you notice that any coefficients are now set to exactly 0?
 
 ```{r}
-# Yep!
-
-# I see that many features are now removed!
+best_ridge <- select_best(ridge_grid, "rmse")
 ```
 
-### F - Decision Tree
+10. Now let's finalize our workflow using the `finalize_workflow()` function. Pass it the `ridge_workflow` and the `best_ridge` objects as first and second arguments. Save the output as `final_ridge`.
+
+
+```{r}
+final_ridge <- 
+  ridge_workflow %>% 
+  finalize_workflow(best_ridge)
+```
+
+11. Now we can fit the model using the final workflow. Use the `fit()` function to this end, by passing it the `final_ridge` workflow and `airbnb_train`. Save the output as `ridge_res`.
+
+```{r}
+ridge_res <- fit(final_ridge, airbnb_train) 
+```
+
+12. Use the `tidy()` function to look at the parameter values of `ridge_res`.
+
+```{r}
+tidy(ridge_res) 
+```
+
+13. The `last_fit()` function, which you can use with the `final_ridge` workflow instead of the `fit()` function, let's you directly evaluate the model performance. Pass the `final_ridge` and `airbnb_split` (! instead of the `airbnb_train`) objects into `last_fit()` and directly pipe the output into `collect_metrics()`.
+
+```{r, eval = FALSE, echo = TRUE}
+XXX(XXX, XXX) %>% 
+  XXX()
+```
+
+```{r}
+last_fit(final_ridge, airbnb_split) %>% 
+  collect_metrics()
+```
+
+
+### F - Lasso Regression
+
+Now it's time to fit a lasso regression. We can use the `ridge_recipe` from before, so no need to specify a new recipe.
+
+1. Create a lasso regression model, again using the `linear_reg()` model and the  `glmnet` engine. Within `linear_reg()`, set the argument `mixture` to 1 and `penalty` to `tune()`. Save the output as `lasso_model`
+
+```{r, eval = FALSE, echo = TRUE}
+# set up the lasso regression model
+XXX <- 
+  XXX(XXX = XXX, XXX = XXX) %>% 
+  set_engine(XXX) %>% 
+  set_mode("regression")
+```
+
+```{r}
+# set up the lasso regression model
+lasso_model <- 
+  linear_reg(mixture = 1, penalty = tune()) %>% 
+  set_engine("glmnet") %>% 
+  set_mode("regression")
+```
+
+2. Create a workflow called `lasso_workflow` using `workflow()` and add the `ridge_recipe` and `lasso_model` objects.
+
+```{r}
+# lasso workflow 
+lasso_workflow <- 
+  workflow() %>% 
+  add_recipe(ridge_recipe) %>% 
+  add_model(lasso_model)
+```
+
+3. Set up a grid of tuning parameters. Here we will directly specify our own grid. We'll use the same as with the ridge regression:
+
+```{r, eval = FALSE, echo = TRUE}
+penalty_grid <- tibble(penalty = 10 ^ (seq(-4, 5, length = 150)))
+```
+
+```{r}
+penalty_grid <- tibble(penalty = 10 ^ (seq(-4, 5, length = 150)))
+```
+
+
+4. Tune the model on the training data. To do so using our resampling scheme, use the `tune_grid()` function instead of the `fit()` or `fit_resamples()` function. Pass it the defined workflow as first argument and set the `resamples` argument to `airbnb_folds`, and the `grid` argument to `penalty_grid`. Save the output as `lasso_grid`.
+
+
+```{r}
+# tune the penalty parameter
+lasso_grid <-
+  lasso_workflow %>% 
+  tune_grid(resamples = airbnb_folds,
+            grid = penalty_grid)
+
+```
+
+5. Use `collect_metrics()` to evaluate the cross-validation performance of the model across the different values of the penalty parameter.
+
+```{r}
+collect_metrics(lasso_grid)
+
+```
+
+6. Plot the `penalty` value on the x axis, and the performance metrics on the y axis. Use the code below to do so.
+
+```{r echo=TRUE}
+lasso_grid %>%
+  collect_metrics() %>%
+  ggplot(aes(penalty, mean, color = .metric)) +
+  geom_errorbar(aes(
+    ymin = mean - std_err,
+    ymax = mean + std_err
+  ),
+  alpha = 0.5
+  ) +
+  geom_line(size = 1.5) +
+  facet_wrap(~.metric, scales = "free", nrow = 2) +
+  scale_x_log10() +
+  theme(legend.position = "none")
+```
+
+7. Select the best `penalty` value by passing `lasso_grid` into the `select_best()` function and save the output as `best_lasso`.
+
+
+```{r, eval = FALSE, echo = TRUE}
+XXX <- XXX(XXX, "rmse")
+```
+
+```{r}
+best_lasso <- select_best(lasso_grid, "rmse")
+```
+
+8. Finalize the workflow using the `finalize_workflow()` function. Pass it the `lasso_workflow` and the `best_lasso` objects as first and second arguments. Save the output as `final_lasso`.
+
+```{r}
+final_lasso <- 
+  lasso_workflow %>% 
+  finalize_workflow(best_lasso)
+```
+
+9. Fit the model using the final workflow. Use the `fit()` function to this end, by passing it the `final_lasso` workflow and `airbnb_train`. Save the output as `lasso_res`.
+
+```{r}
+lasso_res <- fit(final_lasso, airbnb_train) 
+```
+
+10. Use the `tidy()` function to look at the parameter values of `lasso_res`. Which variables are important and which were set to 0?
+
+```{r}
+tidy(lasso_res) 
+```
+
+
+### G - Decision Tree
 
 It's time to fit an optimized decision tree model!
 
-1. Before we can fit a decision tree, we need to specify which values of the complexity parameter `cp` we want to try. Using the code below, create a vector called `cp_vec` which contains 100 values between 0 and 1.
+1. Decision trees don't need categorical variables to be dummy coded. Create a new recipe called `tree_recipe` that uses all available predictors to predict the `price` of Airbnbs based on the `airbnb_train` data. In addition, use the pre-proccessing step `step_other(all_nominal_predictors(), threshold = 0.005)`. This will lump together all cases of categorical variables that make up less than 0.5% of the cases into an `other` category. This will prevent issues when assessing performance using the test set.
 
 ```{r}
-# Determine possible values of the complexity parameter cp
-cp_vec <- seq(from = 0, to = 1, length = 100)
+tree_recipe <-
+  recipe(price ~ ., data = airbnb_train) %>% 
+  step_other(all_nominal_predictors(), threshold = 0.005)
 ```
 
-2. Fit a decision tree model predicting `Salary` as a function of all features. Specifically,...
 
-- set the formula to `Salary ~ .`.
-- set the data to `hitters_train`.
-- set the method to `"rpart"` for decision trees.
-- set the train control argument to `ctrl_cv`,
-- set the tuneGrid argument with all `cp` values you specified in `cp_vec`.
+2. Set up a decision tree model. Use the `decision_tree()` function to specify the model, and set the engine to `rpart`. Set the mode to `"regression"`. Call the output `dt_model`. Within `decision_tree()` specify the argument `cost_complexity = tune()`.
 
-```{r, echo = TRUE, eval = FALSE}
-# Decision Tree --------------------------
-salary_rpart <- train(form = XX ~ .,
-                  data = XX,
-                  method = "XX",
-                  trControl = XX,
-                  tuneGrid = expand.grid(cp = cp_vec))
-```
 
 ```{r}
-# Decision Tree --------------------------
-salary_rpart <- train(form = Salary ~ .,
-                  data = hitters_train,
-                  method = "rpart",
-                  trControl = ctrl_cv,
-                  tuneGrid = expand.grid(cp = cp_vec))
+# set up the decision tree model
+dt_model <- 
+  decision_tree(cost_complexity = tune()) %>% 
+  set_engine("rpart") %>% 
+  set_mode("regression")
 ```
 
-3. Print your `salary_rpart` object. What do you see?
+3. Create a new workflow `dt_workflow`, where you add the newly created `tree_recipe` and the `dt_model`.
+
 
 ```{r}
-salary_rpart
+# decision tree workflow  
+dt_workflow <- 
+  workflow() %>% 
+  add_recipe(tree_recipe) %>% 
+  add_model(dt_model)
 ```
 
-4. Plot your `salary_rpart` object. What do you see? Which value of the complexity parameter seems to be the best?
 
-```{r, echo = TRUE, eval = FALSE}
-# Plot salary_rpart object
-plot(XX)
-```
-
-```{r}
-plot(salary_rpart)
-```
-
-5. Print the best value of `cp` by running the following code. Does this match what you saw in the plot above?
+4. Set up a grid of tuning parameters. Use the following code to do so:
 
 ```{r, echo = TRUE}
-# Print best regularisation parameter
-salary_rpart$bestTune$cp
+complexity_grid <- tibble(cost_complexity =  seq(from = 0, to = 1, length = 50))
 ```
 
-6. Plot your final decision tree using the following code:
+5. To speed up the model tuning, execute the following code (this will parallelize the tuning process).
 
-```{r, echo = TRUE}
-# Visualise your trees
-plot(as.party(salary_rpart$finalModel)) 
+```{r echo=TRUE}
+doParallel::registerDoParallel()
 ```
 
-7. How do the nodes in the tree compare to the coefficients you found in your regression analyses? Do you see similarities or differences?
+5. Tune the model on the training data. To do so using our resampling scheme, use the `tune_grid()` function and pass it the defined workflow as first argument and set the `resamples` argument to `airbnb_folds`, and the `grid` argument to `complexity_grid`. Save the output as `dt_grid`. (Note: This will take some time...)
+
 
 ```{r}
-# Actually, the tree just has one root and no nodes! This is due to the optimal complexity parameter being so high.
+# tune the cost complexity parameter
+dt_grid <-
+  dt_workflow %>% 
+  tune_grid(resamples = airbnb_folds,
+            grid = complexity_grid)
+
+```
+
+6. Plot the `cost_complexity` value on the x axis, and the performance metrics on the y axis. Use the code below to do so.
+
+```{r echo=TRUE}
+dt_grid %>%
+  collect_metrics() %>%
+  ggplot(aes(cost_complexity, mean, color = .metric)) +
+  geom_errorbar(aes(
+    ymin = mean - std_err,
+    ymax = mean + std_err
+  ),
+  alpha = 0.5
+  ) +
+  geom_line(size = 1.5) +
+  facet_wrap(~.metric, scales = "free", nrow = 2) +
+  theme(legend.position = "none")
+```
+
+7. Select the best `cost_complexity` value by passing `dt_grid` into the `select_best()` function and save the output as `best_dt`.
+
+
+```{r, eval = FALSE, echo = TRUE}
+XXX <- XXX(XXX, "rmse")
+```
+
+```{r}
+best_dt <- select_best(dt_grid, "rmse")
+```
+
+8. Finalize the workflow using the `finalize_workflow()` function. Pass it the `dt_workflow` and the `best_dt` objects as first and second arguments. Save the output as `final_dt`.
+
+```{r}
+final_dt <- 
+  dt_workflow %>% 
+  finalize_workflow(best_dt)
+```
+
+9. Fit the model using the final workflow. Use the `fit()` function to this end, by passing it the `final_dt` workflow and `airbnb_train`. Save the output as `dt_res`.
+
+```{r}
+dt_res <- fit(final_dt, airbnb_train) 
 ```
 
 
-### G - Random Forests
+### H - Random Forests
 
 It's time to fit an optimized random forest model!
 
-1. Before we can fit a random forest model, we need to specify which values of the diversity parameter `mtry` we want to try. Using the code below, create a vector called `mtry_vec` which is a sequence of numbers from 1 to 10.
+1. As random forests are made up of many decision trees, we can use the recipe we defined for the decision tree, so we only have to set up a random forest model. Use the `rand_forest()` function to specify the model, and set the engine to `"ranger"`. Set the mode to `"regression"`. Call the output `rf_model`. In the `rand_forest()` function, set the `mtry` argument to `tune()`.
 
 ```{r}
-# Determine possible values of the random forest diversity parameter mtry
-mtry_vec <- 1:10
+# set up the random forest model
+rf_model <- 
+  rand_forest(mtry = tune()) %>% 
+  set_engine("ranger") %>% 
+  set_mode("regression")
 ```
 
-2. Fit a random forest model predicting `Salary` as a function of all features. Specifically,...
-
-- set the formula to `Salary ~ .`.
-- set the data to `hitters_train`.
-- set the method to `"rf"` for random forests.
-- set the train control argument to `ctrl_cv`.
-- set the tuneGrid argument such that mtry can take on the values you defined in `mtry_vec`.
-
-```{r, echo = TRUE, eval = FALSE}
-# Random Forest --------------------------
-salary_rf <- train(form = XX ~ .,
-                   data = XX,
-                   method = "XX",
-                   trControl = XX,
-                   tuneGrid = expand.grid(mtry = mtry_vec))
-```
+2. Create a new workflow `rf_workflow`, where you add the `tree_recipe` and the newly created `rf_model`.
 
 ```{r}
-# Random Forest --------------------------
-salary_rf <- train(form = Salary ~ .,
-                   data = hitters_train,
-                   method = "rf",
-                   trControl = ctrl_cv,
-                   tuneGrid = expand.grid(mtry = mtry_vec))
-```
-
-3. Print your `salary_rf` object. What do you see?
-
-```{r}
-salary_rf
+# random forest workflow  
+rf_workflow <- 
+  workflow() %>% 
+  add_recipe(tree_recipe) %>% 
+  add_model(rf_model)
 ```
 
 
-4. Plot your `salary_rf` object. What do you see? Which value of the regularization parameter seems to be the best?
-
-```{r, echo = TRUE, eval = FALSE}
-# Plot salary_rf object
-plot(XX)
-```
-
-```{r}
-plot(salary_rf)
-```
-
-
-5. Print the best value of `mtry` by running the following code. Does this match what you saw in the plot above?
+3. Set up a grid of tuning parameters. Use the following code to do so:
 
 ```{r, echo = TRUE}
-# Print best mtry parameter
-salary_rf$bestTune$mtry
+mtry_grid <- tibble(mtry = 1:10)
 ```
 
-### H - Estimate prediction accuracy from training folds
 
-1. Using `resamples()`, calculate the estimated prediction accuracy for each of your models. To do this, put your model objects in the named list (e.g.; `glm = salary_glm`, ...). See below.
+4. Tune the model on the training data. To do so using our resampling scheme, use the `tune_grid()` function and pass it the defined workflow as first argument and set the `resamples` argument to `airbnb_folds`, and the `grid` argument to `mtry_grid`. Save the output as `rf_grid`. (Note: This will again take some time... Actually even some more... Welcome in the world of machine learning...)
+
+
+```{r}
+# tune the mtry parameter
+rf_grid <-
+  rf_workflow %>% 
+  tune_grid(resamples = airbnb_folds,
+            grid = mtry_grid)
+
+```
+
+5. Plot the `mtry` value on the x axis, and the performance metrics on the y axis. Use the code below to do so.
+
+```{r echo=TRUE}
+rf_grid %>%
+  collect_metrics() %>%
+  ggplot(aes(mtry, mean, color = .metric)) +
+  geom_errorbar(aes(
+    ymin = mean - std_err,
+    ymax = mean + std_err
+  ),
+  alpha = 0.5
+  ) +
+  geom_line(size = 1.5) +
+  facet_wrap(~.metric, scales = "free", nrow = 2) +
+  theme(legend.position = "none")
+```
+
+6. Select the best `mtry` value by passing `rf_grid` into the `select_best()` function and save the output as `best_rf`.
+
+```{r}
+best_rf <- select_best(rf_grid, "rmse")
+```
+
+7. Finalize the workflow using the `finalize_workflow()` function. Pass it the `rf_workflow` and the `best_rf` objects as first and second arguments. Save the output as `final_rf`.
+
+```{r}
+final_rf <- 
+  rf_workflow %>% 
+  finalize_workflow(best_rf)
+```
+
+8. Fit the model using the final workflow. Use the `fit()` function to this end, by passing it the `final_rf` workflow and `airbnb_train`. Save the output as `rf_res`.
+
+```{r}
+rf_res <- fit(final_rf, airbnb_train) 
+```
+
+
+### I - Estimate prediction accuracy from training folds
+
+1. Using the following code as template, evaluate and compare the model performances of the different models.
 
 ```{r, eval = FALSE, echo = TRUE}
-# Summarise accuracy statistics across folds
-salary_resamples <- resamples(list(glm = XXX,
-                                   ridge = XXX, 
-                                   lasso = XXX, 
-                                   rpart = XXX, 
-                                   rf = XXX))
+XXX_res %>% 
+  predict(new_data = airbnb_train) %>% 
+  bind_cols(airbnb_train %>% select(price)) %>% 
+  metrics(truth = price, estimate = .pred)
 ```
 
 ```{r}
-# Summarise accuracy statistics across folds
-salary_resamples <- resamples(list(glm = salary_glm,
-                                   ridge = salary_ridge, 
-                                   lasso = salary_lasso, 
-                                   dt = salary_rpart, 
-                                   rf = salary_rf))
+lm_res %>% 
+  predict(new_data = airbnb_train) %>% 
+  bind_cols(airbnb_train %>% select(price)) %>% 
+  metrics(truth = price, estimate = .pred)
+
+ridge_res %>% 
+  predict(new_data = airbnb_train) %>% 
+  bind_cols(airbnb_train %>% select(price)) %>% 
+  metrics(truth = price, estimate = .pred)
+
+lasso_res %>% 
+  predict(new_data = airbnb_train) %>% 
+  bind_cols(airbnb_train %>% select(price)) %>% 
+  metrics(truth = price, estimate = .pred)
+
+dt_res %>% 
+  predict(new_data = airbnb_train) %>% 
+  bind_cols(airbnb_train %>% select(price)) %>% 
+  metrics(truth = price, estimate = .pred)
+
+rf_res %>% 
+  predict(new_data = airbnb_train) %>% 
+  bind_cols(airbnb_train %>% select(price)) %>% 
+  metrics(truth = price, estimate = .pred)
 ```
 
-2. Look at the summary of your `salary_resamples` object with `summary(salary_resamples)`. What does this tell you? Which model do you expect to have the best prediction accuracy for the test data?
+
+### J - Calculate prediction accuracy
+
+1. Now, based on the same template, but this time using the test data, evaluate and compare the out-of-sample model performances.
 
 ```{r}
-# Print summaries of cross-validation accuracy 
+lm_res %>% 
+  predict(new_data = airbnb_test) %>% 
+  bind_cols(airbnb_test %>% select(price)) %>% 
+  metrics(truth = price, estimate = .pred)
 
-# I see below that the random forest model has the lowest mean MAE, so I
-#  would expect it to be the best model in the true test data
-summary(salary_resamples)
-```
+ridge_res %>% 
+  predict(new_data = airbnb_test) %>% 
+  bind_cols(airbnb_test %>% select(price)) %>% 
+  metrics(truth = price, estimate = .pred)
 
-### I - Calculate prediction accuracy
+lasso_res %>% 
+  predict(new_data = airbnb_test) %>% 
+  bind_cols(airbnb_test %>% select(price)) %>% 
+  metrics(truth = price, estimate = .pred)
 
-1. Save the criterion value for the test data as a new vector called `criterion_test`.
+dt_res %>% 
+  predict(new_data = airbnb_test) %>% 
+  bind_cols(airbnb_test %>% select(price)) %>% 
+  metrics(truth = price, estimate = .pred)
 
-```{r, eval = FALSE, echo = TRUE}
-# Save salaries of players in test dataset as criterion_test
-criterion_test <- XXX$XXX
-```
-
-```{r}
-criterion_test <- hitters_test$Salary
-```
-
-2. Using `predict()`, save the prediction of your regular regression model `salary_glm` for the `hitters_test` data as a new object called `glm_pred`. Specifically,...
-
-- set the first argument to `salary_glm`.
-- set the newdata argument to `hitters_test`.
-
-```{r, eval = FALSE, echo = TRUE}
-# Save the glm predicted salaries of hitters_test
-glm_pred <- predict(XXX, newdata = XXX)
+rf_res %>% 
+  predict(new_data = airbnb_test) %>% 
+  bind_cols(airbnb_test %>% select(price)) %>% 
+  metrics(truth = price, estimate = .pred)
 ```
 
 
-```{r}
-# Save predictions for glm
-glm_pred <- predict(salary_glm, newdata = hitters_test)
-```
+2. Which of your models had the best performance in the true test data?
 
-3. Now do the same with your ridge, lasso, decision tree, and random forest models to get the objects `ridge_pred`, `lasso_pred`, `rpart_pred` and `rf_pred`.
-
-```{r, eval = FALSE, echo = TRUE}
-ridge_pred <- predict(XXX, newdata = XXX)
-lasso_pred <- predict(XXX, newdata = XXX)
-rpart_pred <- predict(XXX, newdata = XXX)
-rf_pred <- predict(XXX, newdata = XXX)
-```
-
-
-```{r}
-# Save predictions from other models
-ridge_pred <- predict(salary_ridge, newdata = hitters_test)
-lasso_pred <- predict(salary_lasso, newdata = hitters_test)
-rpart_pred <- predict(salary_rpart, newdata = hitters_test)
-rf_pred <- predict(salary_rf, newdata = hitters_test)
-```
-
-4. Using `postResample()`, calculate the aggregate prediction accuracy for each model using the template below. Specifically,...
-
-- set the pred argument to your model predictions (e.g.; `ridge_pred`).
-- set the `obs` argument to the true criterion values `criterion_test`).
-
-```{r, eval = FALSE, echo = TRUE}
-# Calculate aggregate accuracy for a model
-postResample(pred = XXX, 
-             obs = XXX)
-```
-
-```{r}
-# Prediction error for normal regression
-postResample(pred = glm_pred, 
-             obs = hitters_test$Salary)
-
-# Prediction error for ridge regression
-postResample(pred = ridge_pred, 
-             obs = hitters_test$Salary)
-
-# Prediction error for lasso regression
-postResample(pred = lasso_pred, 
-             obs = hitters_test$Salary)
-
-# Prediction error for decision trees
-postResample(pred = rpart_pred, 
-             obs = hitters_test$Salary)
-
-# Prediction error for random forests
-postResample(pred = rf_pred, 
-             obs = hitters_test$Salary)
-
-```
-
-
-```{r, echo = FALSE}
-x <- postResample(pred = rf_pred, 
-             obs = hitters_test$Salary)
-```
-
-
-5. Which of your models had the best performance in the true test data?
-
-```{r}
-# Random forests had the lowest test MAE of
-postResample(pred = rf_pred, 
-             obs = hitters_test$Salary)[3]
-```
-
-
-6. How close were your models' true prediction error to the values you estimated in the previous section when you ran `resamples()`?
-
-```{r}
-# Depends on what you mean by 'close', but they are definitely higher (worse) in the test data
-```
+3. How close were your models' true prediction error to the values you estimated in the previous section based on the training data?
 
 
 ## Examples
 
 ```{r, eval = FALSE, echo = TRUE}
-# Model optimization with Regression
+# Fitting and evaluating a regression model ------------------------------------
 
-# Step 0: Load packages-----------
+# Step 0: Load packages---------------------------------------------------------
 library(tidyverse)    # Load tidyverse for dplyr and tidyr
-library(caret)        # For ML mastery 
-library(partykit)     # For decision trees
-library(party)        # For decision trees
+library(tidymodels)   # For ML mastery 
+tidymodels_prefer()   # To resolve common conflicts
 
-# Step 1: Load, clean, and explore data ----------------------
+# Step 1: Load and Clean, and Explore Training data ----------------------------
 
-# training data
-data_train <- read_csv("1_Data/diamonds_train.csv")
-
-# test data
-data_test <- read_csv("1_Data/diamonds_test.csv")
-
-# Convert all characters to factor
-#  Some ML models require factors
-data_train <- data_train %>%
-  mutate_if(is.character, factor)
-
-data_test <- data_test %>%
-  mutate_if(is.character, factor)
-
+# I'll use the mpg dataset from the dplyr package 
 # Explore training data
-data_train        # Print the dataset
-View(data_train)  # Open in a new spreadsheet-like window 
-dim(data_train)   # Print dimensions
-names(data_train) # Print the names
+mpg        # Print the dataset
+View(mpg)  # Open in a new spreadsheet-like window 
+dim(mpg)   # Print dimensions
+names(mpg) # Print the names
 
-# Define criterion_train
-#   We'll use this later to evaluate model accuracy
-criterion_train <- data_train$price
-criterion_test <- data_test$price
+# Step 2: Split the data--------------------------------------------------------
 
-# Step 2: Define training control parameters -------------
+mpg_split <- initial_split(mpg)
+data_train <- training(mpg_split)
+data_test <- testing(mpg_split)
+
+# Step 3: Define resampling scheme ---------------------------------------------
 
 # Use 10-fold cross validation
-ctrl_cv <- trainControl(method = "cv", 
-                        number = 10) 
+data_folds <- vfold_cv(data_train, v = 10) 
 
-# Step 3: Train models: -----------------------------
-#   Criterion: hwy
-#   Features: year, cyl, displ
+# Step 4: Define recipe --------------------------------------------------------
 
-# Normal Regression --------------------------
-price_glm <- train(form = price ~ carat + depth + table + x + y,
-                   data = data_train,
-                   method = "glm",
-                   trControl = ctrl_cv)
+# The recipe defines what to predict with what, and how to pre-process the data
+lasso_recipe <- 
+  recipe(hwy ~ year + cyl + displ + trans,  # Specify formula
+         data = data_train) %>%             # Specify the data
+  step_dummy(all_nominal_predictors()) %>%  # Dummy code all categorical predictors
+  step_normalize(all_numeric_predictors())  # Center and scale numeric variables
 
 
-# Print key results
-price_glm
+# Step 5: Define model ---------------------------------------------------------
 
-# RMSE  Rsquared  MAE
-# 1506  0.86      921
+# The model definition defines what kind of model we want to use and how to
+# fit it
+lasso_model <- 
+  linear_reg(mixture = 1,           # Specify model type and parameters
+             penalty = tune()) %>%        
+  set_engine("glmnet") %>%          # Specify engine (often package name) to use
+  set_mode("regression")            # Specify whether it's a regressio or 
+                                    # classification problem.
 
-# Coefficients
-coef(price_glm$finalModel)
+# Step 6: Define workflow ------------------------------------------------------
 
-# (Intercept)       carat       depth       table           x           y 
-#     21464.9     11040.4      -215.6       -94.2     -3681.6      2358.9 
+# The workflow combines model and recipe, so that we can fit the model
+lasso_workflow <- 
+  workflow() %>%                # Initialize workflow
+  add_model(lasso_model) %>%    # Add the model to the workflow
+  add_recipe(lasso_recipe)      # Add the recipe to the workflow
 
-# Lasso --------------------------
+# Step 7: Tune parameters ------------------------------------------------------
 
-# Vector of lambda values to try
-lambda_vec <- 10 ^ seq(-3, 3, length = 100)
+# Create a grid of parameter values to test
+penalty_grid <- tibble(penalty = 10 ^ (seq(-4, 5, length = 150)))
 
-price_lasso <- train(form = price ~ carat + depth + table + x + y,
-                   data = data_train,
-                   method = "glmnet",
-                   trControl = ctrl_cv,
-                   preProcess = c("center", "scale"),  # Standardise
-                   tuneGrid = expand.grid(alpha = 1,  # Lasso
-                                          lambda = lambda_vec))
+# tune the penalty parameter
+lasso_grid <-
+  lasso_workflow %>%                 # The workflow
+  tune_grid(resamples = data_folds,  # The resampling scheme
+            grid = penalty_grid)     # The parameter grid
 
+# Step 8: Finalize workflow ----------------------------------------------------
 
-# Print key results
-price_lasso
+# Select best parameter values
+best_lasso <- select_best(lasso_grid, "rmse")
 
-# glmnet 
-# 
-# 5000 samples
-#    5 predictor
-# 
-# Pre-processing: centered (5), scaled (5) 
-# Resampling: Cross-Validated (10 fold) 
-# Summary of sample sizes: 4500, 4500, 4500, 4500, 4500, 4500, ... 
-# Resampling results across tuning parameters:
-# 
-#   lambda    RMSE  Rsquared  MAE 
-#   1.00e-03  1509  0.858      918
-#   1.15e-03  1509  0.858      918
-#   1.32e-03  1509  0.858      918
-#   1.52e-03  1509  0.858      918
+# finalise workflow
+final_lasso <- 
+  lasso_workflow %>% 
+  finalize_workflow(best_lasso)
 
-# Plot regularisation parameter versus error
-plot(price_lasso)
+# Step 9: Fit model based on best hyper-parameter ------------------------------
 
-# Print best regularisation parameter
-price_lasso$bestTune$lambda
+# Fit the model on complete training data, using the best hyper-parameter value
+lasso_res <- fit(final_lasso, data_train) 
 
-# Get coefficients from best lambda value
-coef(price_lasso$finalModel, 
-     price_lasso$bestTune$lambda)
+# Look at summary information
+tidy(lasso_res)        
 
-# 6 x 1 sparse Matrix of class "dgCMatrix"
-#                 1
-# (Intercept)  4001
-# carat        5179
-# depth        -300
-# table        -213
-# x           -3222
-# y            1755
+# Step 10: Assess prediction performance ----------------------------------------
+# Save model predictions and observed values
+lasso_pred <- 
+  lasso_res %>%            # Model from which to extract predictions
+  predict(data_test) %>%   # Obtain predictions, based on entered data (in this
+                           #  case, these predictions ARE out-of-sample)
+  bind_cols(data_test %>% select(hwy))  # Extract observed/true values
 
-
-# Ridge --------------------------
-
-# Vector of lambda values to try
-lambda_vec <- 10 ^ seq(-3, 3, length = 100)
-
-price_ridge <- train(form = price ~ carat + depth + table + x + y,
-                     data = data_train,
-                     method = "glmnet",
-                     trControl = ctrl_cv,
-                     preProcess = c("center", "scale"),  # Standardise
-                     tuneGrid = expand.grid(alpha = 0,  # Ridge penalty
-                                            lambda = lambda_vec))
-
-# Print key results
-price_ridge
-
-# glmnet 
-# 
-# 5000 samples
-#    5 predictor
-# 
-# Pre-processing: centered (5), scaled (5) 
-# Resampling: Cross-Validated (10 fold) 
-# Summary of sample sizes: 4500, 4500, 4500, 4500, 4500, 4500, ... 
-# Resampling results across tuning parameters:
-# 
-#   lambda    RMSE  Rsquared  MAE 
-#   1.00e-03  1638  0.835     1137
-#   1.15e-03  1638  0.835     1137
-#   1.32e-03  1638  0.835     1137
-#   1.52e-03  1638  0.835     1137
-#   1.75e-03  1638  0.835     1137
-
-# Plot regularisation parameter versus error
-plot(price_ridge)
-
-# Print best regularisation parameter
-price_ridge$bestTune$lambda
-
-# Get coefficients from best lambda value
-coef(price_ridge$finalModel, 
-     price_ridge$bestTune$lambda)
-
-# 6 x 1 sparse Matrix of class "dgCMatrix"
-#                1
-# (Intercept) 4001
-# carat       2059
-# depth       -131
-# table       -168
-# x            716
-# y            797
-
-# Decision Trees --------------------------
-
-# Vector of cp values to try
-cp_vec <- seq(0, .1, length = 100)
-
-price_rpart <- train(form = price ~ carat + depth + table + x + y,
-                  data = data_train,
-                  method = "rpart",
-                  trControl = ctrl_cv,
-                  tuneGrid = expand.grid(cp = cp_vec))
-
-# Print key results
-price_rpart
-
-# Plot complexity parameter vs. error
-plot(price_rpart)
-
-# Print best complexity parameter
-price_rpart$bestTune$cp
-
-# [1] 0.00202
-
-# Step 3: Estimate prediction accuracy from folds ----
-
-# Get accuracy statistics across folds
-resamples_price <- resamples(list(ridge = price_ridge, 
-                                  lasso = price_lasso, 
-                                  glm = price_glm))
-
-# Print summary of accuracies
-summary(resamples_price)
-
-# MAE 
-#       Min. 1st Qu. Median Mean 3rd Qu. Max. NA's
-# ridge 1094    1100   1117 1137    1170 1217    0
-# lasso  869     887    929  918     944  960    0
-# glm    856     882    921  920     949  986    0
-# 
-# RMSE 
-#       Min. 1st Qu. Median Mean 3rd Qu. Max. NA's
-# ridge 1545    1580   1609 1638    1703 1772    0
-# lasso 1323    1479   1518 1509    1583 1593    0
-# glm   1350    1429   1526 1509    1582 1702    0
-# 
-# Rsquared 
-#        Min. 1st Qu. Median  Mean 3rd Qu.  Max. NA's
-# ridge 0.798   0.828  0.836 0.835   0.848 0.854    0
-# lasso 0.827   0.846  0.858 0.858   0.868 0.902    0
-# glm   0.819   0.849  0.863 0.860   0.870 0.888    0
-
-# Step 4: Measure prediction Accuracy -------------------
-
-# GLM ================================
-
-# Predictions
-glm_pred <- predict(price_glm, 
-                    newdata = data_test)
-
-# Calculate aggregate accuracy
-postResample(pred = glm_pred, 
-             obs = criterion_test)
-
-#     RMSE Rsquared      MAE 
-# 1654.017    0.832  944.854 
-
-# Ridge ================================
-
-# Predictions
-ridge_pred <- predict(price_ridge, 
-                      newdata = data_test)
-
-# Calculate aggregate accuracy
-postResample(pred = ridge_pred, 
-             obs = criterion_test)
-
-#     RMSE Rsquared      MAE 
-# 1650.541    0.832 1133.063 
-
-
-# Lasso ================================
-
-# Predictions
-lasso_pred <- predict(price_lasso, 
-                      newdata = data_test)
-
-# Calculate aggregate accuracy
-postResample(pred = lasso_pred, 
-             obs = criterion_test)
-
-#     RMSE Rsquared      MAE 
-# 1653.675    0.832  942.870 
-
-
-# Visualise Accuracy -------------------------
-
-# Tidy competition results
-accuracy <- tibble(criterion_test = criterion_test,
-                   Regression = glm_pred,
-                   Ridge = ridge_pred,
-                   Lasso = lasso_pred) %>%
-               gather(model, prediction, -criterion_test) %>%
-               # Add error measures
-               mutate(se = prediction - criterion_test,
-                      ae = abs(prediction - criterion_test))
-
-# Calculate summaries
-accuracy_agg <- accuracy %>%
-                  group_by(model) %>%
-                  summarise(mae = mean(ae))   # Calculate MAE (mean absolute error)
-
-# Plot A) Scatterplot of truth versus predictions
-ggplot(data = accuracy,
-       aes(x = criterion_test, y = prediction, col = model)) +
-  geom_point(alpha = .5) +
-  geom_abline(slope = 1, intercept = 0) +
-  labs(x = "True Prices",
-       y = "Predicted Prices",
-       title = "Predicting Diamond Prices",
-       subtitle = "Black line indicates perfect performance")
-
-# Plot B) Violin plot of absolute errors
-ggplot(data = accuracy, 
-       aes(x = model, y = ae, fill = model)) + 
-  geom_violin() + 
-  geom_jitter(width = .05, alpha = .2) +
-  labs(title = "Fitting Absolute Errors",
-       subtitle = "Numbers indicate means",
-       x = "Model",
-       y = "Absolute Error (Log Transformed)") +
-  guides(fill = FALSE) +
-  annotate(geom = "label", 
-           x = accuracy_agg$model, 
-           y = accuracy_agg$mae, 
-           label = round(accuracy_agg$mae, 2)) +
-  scale_y_continuous(trans='log')
+# Obtain performance metrics
+metrics(lasso_pred, truth = hwy, estimate = .pred)
 ```
 
 
@@ -954,100 +840,48 @@ ggplot(data = accuracy,
 
 ```{r, eval = TRUE, message = FALSE, echo = FALSE}
 library(tidyverse)
-library(ggthemes)
+library(tidymodels)
 ```
 
 |File  |Rows | Columns |
 |:----|:-----|:------|
-|[hitters_train.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/hitters_train.csv)| 50 | 20|
-|[hitters_test.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/hitters_test.csv)| 213 | 20|
-|[college_train.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv)| 500 | 18|
-|[college_test.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_test.csv)| 277 | 18|
-|[house_train.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/house_train.csv)| 5000 | 21|
-|[house_test.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/hitters_test.csv)| 1000 | 21|
+|[airbnb.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36)| 7609 | 30|
 
 
-- The `hitters_train` and `hitters_test` data are taken from the `Hitters` dataset in the `ISLR` package. They are data frames with observations of major league baseball players from the 1986 and 1987 seasons.
-
-- The `college_train` and `college_test` data are taken from the `College` dataset in the `ISLR` package. They contain statistics for a large number of US Colleges from the 1995 issue of US News and World Report.
-
-
-- The `house_train` and `house_test` data come from [https://www.kaggle.com/harlfoxem/housesalesprediction](https://www.kaggle.com/harlfoxem/housesalesprediction)
-
-
-#### Variable description of `hitters_train` and `hitters_test`
+#### Variable description of `airbnb`
 
 | Name | Description |
 |:-------------|:-------------------------------------|
-| `Salary` | 1987 annual salary on opening day in thousands of dollars. |
-| `AtBat` | Number of times at bat in 1986.  |
-| `Hits` | Number of hits in 1986. |
-| `HmRun` | Number of home runs in 1986. |
-| `Runs` | Number of runs in 1986. |
-| `RBI` | Number of runs batted in in 1986. |
-| `Walks` | Number of walks in 1986. |
-| `Years` | Number of years in the major leagues. |
-| `CAtBat` | Number of times at bat during his career. |
-| `CHits` | Number of hits during his career. |
-| `CHmRun` | Number of home runs during his career. |
-| `CRuns` | Number of runs during his career. |
-| `CRBI` | Number of runs batted in during his career. |
-| `CWalks` | Number of walks during his career. |
-| `League` | A factor with levels A and N indicating player's league at the end of 1986. |
-| `Division` | A factor with levels E and W indicating player's division at the end of 1986. |
-| `PutOuts` | Number of put outs in 1986. |
-| `Assists` | Number of assists in 1986. |
-| `Errors` | Number of errors in 1986. |
-| `NewLeague` | A factor with levels A and N indicating player's league at the beginning of 1987. |
+|price| Price per night (in \$s)|
+|room_type| Apartment, Loft, House, etc.|
+|accommodates| Number of people the airbnb accommodates |
+|bedrooms| Number of bedrooms |
+|bathrooms| Number of bathrooms |
+|cleaning_fee| Amount of cleaning fee (in \$s) |
+|availability_90_days| How many of the following 90 days the airbnb is available |
+|neighbourhood| The neighbourhood the Airbnb is located in |
+|district| The district the Airbnb is located in |
+|host_since| Experience of the hosts in days |
+|host_respons_time| Host average response time|
+|host_response_rate| Host response rate |
+|host_superhost| Whether host is a superhost TRUE/FALSE |
+|host_listings_count| Number of listings the host has |
+|review_scores_rating| Overall rating [0, 100]|
+|review_scores_accuracy| Accuracy of information rating [0, 10] |
+|review_scores_cleanliness| Cleanliness rating  [0, 10]|
+|review_scores_checkin| Check in rating [0, 10] |
+|review_scores_communication| Communication rating [0, 10] |
+|review_scores_location| Location rating [0, 10] |
+|review_scores_value| Value rating [0, 10] |
+|kitchen| Kitchen available TRUE/FALSE |
+|wifi| Wifi available TRUE/FALSE |
+|tv| TV available TRUE/FALSE |
+|coffe_machine| Coffee machine available TRUE/FALSE|
+|dishwasher| Dishwasher available TRUE/FALSE|
+|terrace| Terrace/balcony available TRUE/FALSE|
+|bathtub| Bathtub available TRUE/FALSE|
+|check_in_24h| 24h Check-In available TRUE/FALSE|
 
-
-
-#### Variable description of `college_train` and `college_test`
-
-| Name | Description |
-|:-------------|:-------------------------------------|
-| `Private` | A factor with levels No and Yes indicating private or public university. |
-| `Apps` | Number of applications received.  |
-| `Accept` | Number of applications accepted. |
-| `Enroll` | Number of new students enrolled. |
-| `Top10perc` | Pct. new students from top 10% of H.S. class. |
-| `Top25perc` | Pct. new students from top 25% of H.S. class. |
-| `F.Undergrad` | Number of fulltime undergraduates. |
-| `P.Undergrad` | Number of parttime undergraduates. |
-| `Outstate` | Out-of-state tuition. |
-| `Room.Board` | Room and board costs. |
-| `Books` | Estimated book costs. |
-| `Personal` | Estimated personal spending. |
-| `PhD` | Pct. of faculty with Ph.D.'s. |
-| `Terminal` | Pct. of faculty with terminal degree. |
-| `S.F.Ratio` | Student/faculty ratio. |
-| `perc.alumni` | Pct. alumni who donate. |
-| `Expend` | Instructional expenditure per student. |
-| `Grad.Rate` | Graduation rate. |
-
-#### Variable description of `house_train` and `house_test`
-
-| Name | Description |
-|:-------------|:-------------------------------------|
-| `price` | Price of the house in $. |
-| `bedrooms` | Number of bedrooms.  |
-| `bathrooms` | Number of bathrooms. |
-| `sqft_living` | Square footage of the home. |
-| `sqft_lot` | Square footage of the lot. |
-| `floors` | Total floors (levels) in house. |
-| `waterfront` | House which has a view to a waterfront. |
-| `view` | Has been viewed. |
-| `condition` | How good the condition is (Overall). |
-| `grade` | Overall grade given to the housing unit, based on King County grading system. |
-| `sqft_above` | Square footage of house apart from basement. |
-| `sqft_basement` | Square footage of the basement. |
-| `yr_built` | Built Year. |
-| `yr_renovated` | Year when house was renovated. |
-| `zipcode` | Zip code. |
-| `lat` | Latitude coordinate. |
-| `long` | Longitude coordinate. |
-| `sqft_living15` | Living room area in 2015 (implies some renovations). This might or might not have affected the lotsize area. |
-| `sqft_lot15` | lot-size area in 2015 (implies some renovations). |
 
 ## Functions
 
@@ -1056,27 +890,54 @@ library(ggthemes)
 |Package| Installation|
 |:------|:------|
 |`tidyverse`|`install.packages("tidyverse")`|
-|`caret`|`install.packages("caret")`|
-|`partykit`|`install.packages("partykit")`|
-|`party`|`install.packages("party")`|
+|`tidymodels`|`install.packages("tidymodels")`|
+|`rpart.plot`|`install.packages("rpart.plot")`|
 
 ### Functions
-
+tune
 | Function| Package | Description |
 |:---|:------|:---------------------------------------------|
-| `trainControl()`|`caret`|    Define modelling control parameters| 
-| `train()`|`caret`|    Train a model|
-| `predict(object, newdata)`|`stats`|    Predict the criterion values of `newdata` based on `object`|
-| `postResample()`|`caret`|   Calculate aggregate model performance in regression tasks|
-| `confusionMatrix()`|`caret`|   Calculate aggregate model performance in classification tasks| 
+| `read_csv()`|`tidyverse`|    Read in data| 
+| `mutate()`|`tidyverse`|    Manipulate or create columns| 
+| `bind_cols()`|`tidyverse`|    Bind columns together and return a tibble| 
+| `pluck()` | `tidyverse` | Extract element from list|
+| `initial_split()` | `tidymodels`|    Initialize splitting dataset into training and test data|
+| `training()` | `tidymodels`|    Create training data from `initial_split` output|
+| `testing()` | `tidymodels`|    Create training data from `initial_split` output|
+| `vfold_cv()` | `tidymodels`|    Set up resampling scheme.|
+| `linear_reg()`/`logistic_reg()`|`tidymodels`|    Initialize linear/logistic regression model| 
+| `decision_tree`|`tidymodels`|    Initialize decision tree model| 
+| `rand_forest()`|`tidymodels`|    Initialize random forest model| 
+| `tune()`|`tidymodels`|    Specify that a parameter should be tuned| 
+| `set_engine()`|`tidymodels`|    Specify which engine to use for the modeling (e.g., "lm" to use `stats::lm()`, or "stan" to use `rstanarm::stan_lm()`)| 
+| `set_mode()`|`tidymodels`|    Specify whether it's a regression or classification problem| 
+| `recipe()`|`tidymodels`|    Initialize recipe| 
+| `step_dummy()`|`tidymodels`|    pre-process data into dummy variables| 
+| `step_normalize()`|`tidymodels`|    pre-process data by centering and scaling variables| 
+| `workflow()`|`tidymodels`|   Initialize workflow| 
+| `add_recipe()`|`tidymodels`|   Add recipe to workflow|
+| `update_recipe()`|`tidymodels`|   Update workflow with a new recipe|
+| `add_model()`|`tidymodels`|   Add model to workflow| 
+| `grid_regular()`|`tidymodels`|   Set up grid to tune parameters| 
+| `tune_grid()`|`tidymodels`|   Tune hyper-parameters| 
+| `select_best()`|`tidymodels`|   Select best hyper-parameter values|
+| `finalize_model()`|`tidymodels`|   Update workflow with best hyper-parameter values|
+| `fit()`|`tidymodels`|   Fit model| 
+| `last_fit()`|`tidymodels`|   Fit model and directly evaluate prediction performance on test set| 
+| `tidy()`|`tidymodels`|   Show model parameters| 
+| `predict()`|`tidymodels`|   Create model predictions based on specified data| 
+| `metrics()`|`tidymodels`|   Evaluate model performance| 
+| `collect_metrics()`|`tidymodels`|   Evaluate model performance from `last_fit()` or `tune_grid()` or `fit_resamples()` objects| 
+| `conf_mat()`|`tidymodels`|   Create confusion matrix| 
+| `roc_curve()`|`tidymodels`|   Calculate sensitivity and specificity with different thresholds for ROC-curve| 
+| `autoplot()`|`tidymodels`|   Plot methods for different objects such as those created from `roc_curve()` to plot the ROC-curve| 
+| `rpart.plot()`| `rpart.plot` | Plot a decision tree from an `rpart` fit object|
+
+
 
 ## Resources
 
-<figure>
-<center>
-<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf">
-  <img src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet.png" alt="Trulli" style="width:70%"></a><br>
- <font style="font-size:10px"> from <a href= "https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</figcaption">github.com/rstudio</a></font>
-</figure>
+- [**tidymodels webpage**](https://www.tidymodels.org/): Can be used as cheat sheet. Also has some tutorials.
+- The, not yet completed, book [**Tidymodeling with R**](https://www.tmwr.org): More detailed introduction into the `tidymodels` framework.
 
 
