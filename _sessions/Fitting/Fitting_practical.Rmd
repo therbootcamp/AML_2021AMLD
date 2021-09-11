@@ -158,7 +158,7 @@ names(airbnb)
 airbnb <- 
   airbnb %>%
   select(-ends_with(c("_id", "itude"))) %>% 
-  mutate(cleaning_fee = as.numeric(gsub("$", "", cleaning_fee, fixed = TRUE)))
+    mutate(cleaning_fee = as.numeric(gsub("$", "", cleaning_fee, fixed = TRUE)))
 ```
 
 ### B - Set up the model
