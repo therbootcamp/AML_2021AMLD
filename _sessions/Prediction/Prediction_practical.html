@@ -13,22 +13,36 @@
 
 <title>Prediction</title>
 
+<script src="Prediction_practical_files/header-attrs-2.10/header-attrs.js"></script>
 <script src="Prediction_practical_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="Prediction_practical_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="Prediction_practical_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="Prediction_practical_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="Prediction_practical_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="Prediction_practical_files/navigation-1.1/tabsets.js"></script>
 <link href="Prediction_practical_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="Prediction_practical_files/highlightjs-9.12.0/highlight.js"></script>
 
-<style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -41,32 +55,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 <link rel="stylesheet" href="practical.css" type="text/css" />
 
@@ -77,10 +66,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -97,6 +82,9 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
@@ -109,7 +97,6 @@ summary {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -173,7 +160,7 @@ summary {
 
 
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -183,7 +170,7 @@ summary {
 <col width='10%'>
 <tr style="border:none">
 <td style="display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none" nowrap>
-<font style='font-style:normal'>Applied Machine Learning with R</font><br> <a href='https://therbootcamp.github.io/AML_2020AMLD/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>The R Bootcamp @ AMLD</font> </a>
+<font style='font-style:normal'>Applied Machine Learning with R</font><br> <a href='https://therbootcamp.github.io/AML_2021AMLD/'> <i class='fas fa-clock' style='font-size:.9em;' ></i> </a> <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;'></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a> <a href='https://therbootcamp.github.io'> <font style='font-style:normal'>The R Bootcamp @ AMLD</font> </a>
 </td>
 <td style="width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none">
 <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
@@ -198,7 +185,7 @@ summary {
 <img width="100%" src="https://cdn-images-1.medium.com/max/1200/0*F0y1bmOEzCFCcPE_" margin=0><br> <font style="font-size:10px">from <a href="https://Medium.com/">Medium.com</a></font>
 </p>
 <div id="section" class="section level1 tabset">
-<h1></h1>
+<h1 class="tabset"></h1>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
 <p>By the end of this practical you will know how to:</p>
@@ -214,591 +201,422 @@ summary {
 <div id="a---setup" class="section level3">
 <h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
-<li><p>Open your <code>RBootcamp_AMLD2020</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data file(s) listed in the <code>Datasets</code> section are in your <code>1_Data</code> folder.</p></li>
-<li><p>Open a new R script and save it as a new file called <code>Prediction_College_practical.R</code> in the <code>2_Code</code> folder.</p></li>
+<li><p>Open your <code>RBootcamp_AMLD2021</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data file(s) listed in the <code>Datasets</code> section are in your <code>1_Data</code> folder.</p></li>
+<li><p>Open a new R script and save it as a new file called <code>Prediction_practical.R</code> in the <code>2_Code</code> folder.</p></li>
 <li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
 </ol>
 <pre class="r"><code># Load packages necessary for this script
+library(rpart.plot)
 library(tidyverse)
-library(caret)
-library(party)
-library(partykit)</code></pre>
+library(tidymodels)
+tidymodels_prefer() # to resolve common conflicts</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Run the code below to load each of the datasets listed in the <code>Datasets</code> as new objects.</li>
+<li>We will again work with the <code>airbnb</code> data. Load the dataset using the code below.</li>
 </ol>
-<pre class="r"><code># College data
-college_train &lt;- read_csv(file = &quot;1_Data/college_train.csv&quot;)
-college_test &lt;- read_csv(file = &quot;1_Data/college_test.csv&quot;)</code></pre>
+<pre class="r"><code># airbnb data
+airbnb &lt;- read_csv(file = &quot;1_Data/airbnb.csv&quot;)</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li>Take a look at the first few rows of each dataframe by printing them to the console.</li>
+<li>You should already be familiar with the dataset, but you can refresh your memory by checking the variable names with <code>names()</code> and the contents using <code>View()</code>.</li>
 </ol>
-<pre class="r"><code># Print dataframes to the console
-college_train
-college_test</code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>Open each dataset in a new window using <code>View()</code>. Do they look ok?</li>
+</div>
+<div id="b---splitting-the-data-into-training-and-test-set" class="section level3">
+<h3>B - Splitting the data into training and test set</h3>
+<ol style="list-style-type: decimal">
+<li>In the previous practical, we used the complete <code>airbnb</code> dataset to fit the models. To avoid over-fitting, we will now split the data into a training- and a test-set. Use the <code>initial_split()</code> function to create a split. Pass it the <code>airbnb</code> data as argument and save the output as <code>airbnb_split</code>.</li>
 </ol>
-<pre class="r"><code># Open each dataset in a window.
-View(XXX)
-View(XXX)</code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li>Again, We need to do a little bit of data cleaning. Specifically, we need to convert all character columns to factors: Do this by running the following code:</li>
+<pre class="r"><code># initialize split
+XXX &lt;- XXX(XXX)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Create a training-set using the <code>training()</code> function. Pass it the <code>airbnb_split</code> object as argument and save the output as <code>airbnb_train</code>.</li>
 </ol>
-<pre class="r"><code># Convert all character columns to factor
-college_train &lt;- college_train %&gt;%
-          mutate_if(is.character, factor)
-
-college_test &lt;- college_test %&gt;%
-          mutate_if(is.character, factor)</code></pre>
+<pre class="r"><code># training data
+XXX &lt;- XXX(XXX)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Create a test-set using the <code>testing()</code> function. Pass it the <code>airbnb_split</code> object as argument and save the output as <code>airbnb_test</code>.</li>
+</ol>
+<pre class="r"><code># test data
+XXX &lt;- XXX(XXX)</code></pre>
 </div>
 <div id="b---fitting" class="section level3">
 <h3>B - Fitting</h3>
-<p>Your goal in this set of tasks is again to fit models predicting <code>Grad.Rate</code>, the percentage of attendees who graduate from each college.</p>
-<ol style="list-style-type: decimal">
-<li>Using <code>trainControl()</code>, set your training control method to <code>&quot;none&quot;</code>. Save your object as <code>ctrl_none</code>.</li>
-</ol>
-<pre class="r"><code># Set training method to &quot;none&quot; for simple fitting
-#  Note: This is for demonstration purposes, you would almost
-#   never do this for a &#39;real&#39; prediction task!
-ctrl_none &lt;- trainControl(method = &quot;XXX&quot;)</code></pre>
+<p>Your goal in this set of tasks is again to fit models predicting <code>price</code>, the price of Airbnbs located in Berlin.</p>
 <div id="regression" class="section level4">
 <h4>Regression</h4>
+<ol style="list-style-type: decimal">
+<li>Define a recipe called <code>lm_recipe</code> by calling the <code>recipe()</code> function. Use all available predictors by setting the formula to <code>price ~ .</code> and use the <code>airbnb_train</code> data. Also, add a pipe (<code>%&gt;%</code>) and <code>step_dummy(all_nominal_predictors())</code> to dummy-code all categorical predictors.</li>
+</ol>
+<pre class="r"><code># create recipe
+XXX &lt;- 
+  XXX(XXX, data = XXX) %&gt;% 
+  XXX(XXX())</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Using <code>train()</code> fit a regression model called <code>grad_glm</code> predicting <code>Grad.Rate</code> as a function of all features. Specifically,…</li>
+<li><p>Print the recipe.</p></li>
+<li><p>Create a regression model by</p></li>
 </ol>
 <ul>
-<li>for the <code>form</code> argument, use <code>Grad.Rate ~ .</code>.</li>
-<li>for the <code>data</code> argument, use <code>college_train</code> in the data argument.</li>
-<li>for the <code>method</code> argument, use <code>method = &quot;glm&quot;</code> for regression.</li>
-<li>for the <code>trControl</code> argument, use your <code>ctrl_none</code> object you created before.</li>
+<li>calling the <code>linear_reg()</code> function.</li>
+<li>adding a pipe and setting the enginge to <code>"lm"</code> using <code>set_engine()</code>.</li>
+<li>specifying the problem mode to <code>"regression"</code> using <code>set_mode()</code>.</li>
+<li>saving the output as <code>lm_model</code>.</li>
 </ul>
-<pre class="r"><code>grad_glm &lt;- train(form = XX ~ .,
-                  data = XX,
-                  method = &quot;XXX&quot;,
-                  trControl = ctrl_none)</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Explore your <code>grad_glm</code> object by looking at <code>grad_glm$finalModel</code> and using <code>summary()</code>, what do you find?</li>
-</ol>
-<pre class="r"><code>grad_glm$XXX
-summary(XXX)</code></pre>
+<pre class="r"><code># set up the regression model
+XXX &lt;- 
+  XXX() %&gt;% 
+  XXX(XXX) %&gt;% 
+  XXX(XXX)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Using <code>predict()</code> save the fitted values of <code>grad_glm</code> object as <code>glm_fitted</code>.</li>
+<li><p>Print the model.</p></li>
+<li><p>Create a workflow called <code>lm_workflow</code> using <code>workflow()</code> and add the <code>lm_recipe</code> and <code>lm_model</code> objects using <code>add_recipe()</code> and <code>add_model()</code>.</p></li>
 </ol>
-<pre class="r"><code># Save fitted values of regression model
-glm_fitted &lt;- predict(XXX)</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Print your <code>glm_fitted</code> object, look at summary statistics with <code>summary(glm_fitted)</code>, and create a histogram with <code>hist()</code> do they make sense?</li>
+<pre class="r"><code># lm workflow 
+lm_workflow &lt;- 
+  XXX() %&gt;% 
+  XXX(XXX) %&gt;% 
+  XXX(XXX)</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Print the workflow.</p></li>
+<li><p>Fit the model on the training data by passing the <code>lm_workflow</code> and the <code>aribnb_train</code> data to the <code>fit()</code> function and save the output as <code>price_lm</code>.</p></li>
+<li><p>Using the <code>tidy()</code> function on the <code>price_lm</code> object, take a look at the parameter estimates.</p></li>
+<li><p>Using the <code>predict()</code> function, to extract the model predictions from <code>price_lm</code> and bind them together with the true values from <code>airbnb_train</code> using <code>bind_cols()</code>.</p></li>
 </ol>
-<pre class="r"><code># Explore regression model fits
-XXX
-summary(XXX)
-hist(XXX)</code></pre>
+<pre class="r"><code># get predicted values from training data
+lm_pred &lt;-
+  XXX %&gt;% 
+  XXX(XXX) %&gt;% 
+  XXX(airbnb_train %&gt;% select(price))</code></pre>
+<ol start="10" style="list-style-type: decimal">
+<li>Using the <code>metrics()</code> function, evaluate the model performance. Pass it the <code>price</code> variable as <code>truth</code> and the <code>.pred</code> variable as <code>estimate</code>.</li>
+</ol>
+<pre class="r"><code># evaluate performance
+XXX(lm_pred, truth = XXX, estimate = XXX)</code></pre>
+<ol start="11" style="list-style-type: decimal">
+<li>Using the following code, plot the fitted against the true value, to judge how well our model performed.</li>
+</ol>
+<pre class="r"><code># use the lm_pred object to generate the plot
+ggplot(lm_pred, aes(x = .pred, y = price)) + 
+  # Create a diagonal line:
+  geom_abline(lty = 2) + 
+  # Add data points:
+  geom_point(alpha = 0.5) + 
+  labs(title = &quot;Regression: All Features&quot;,
+       subtitle = &quot;Line indicates perfect performance&quot;,
+       x = &quot;Predicted Airbnb Prices in $&quot;,
+       y = &quot;True Airbnb Prices in $&quot;) +
+  # Scale and size the x- and y-axis uniformly:
+  coord_obs_pred()</code></pre>
 </div>
 <div id="decision-trees" class="section level4">
 <h4>Decision Trees</h4>
-<ol start="6" style="list-style-type: decimal">
-<li>Using <code>train()</code>, fit a decision tree model called <code>grad_rpart</code>. Specifically,…</li>
+<ol start="12" style="list-style-type: decimal">
+<li><p>Decision trees don’t need categorical variables to be dummy coded. Create a new recipe called <code>tree_recipe</code> that uses all available predictors to predict the <code>price</code> of Airbnbs based on the <code>airbnb_train</code> data. In addition, use the pre-proccessing step <code>step_other(all_nominal_predictors(), threshold = 0.005)</code>. This will lump together all cases of categorical variables that make up less than 0.5% of the cases into an <code>other</code> category. This will prevent issues when assessing performance using the test set.</p></li>
+<li><p>Set up a decision tree model. Use the <code>decision_tree()</code> function to specify the model, and set the engine to <code>rpart</code>. Set the mode to <code>"regression"</code>. Call the output <code>dt_model</code>.</p></li>
 </ol>
-<ul>
-<li>for the <code>form</code> argument, use <code>Grad.Rate ~ .</code>.</li>
-<li>for the <code>data</code> argument, use <code>college_train</code>.</li>
-<li>for the <code>method</code> argument, use <code>method = &quot;rpart&quot;</code> to create decision trees.</li>
-<li>for the <code>trControl</code> argument, use your <code>ctrl_none</code> object you created before.</li>
-<li>for the <code>tuneGrid</code> argument, use <code>cp = 0.01</code> to specify the value of the complexity parameter. This is a relatively low value which means your trees will be, relatively, complex, i.e., deep.</li>
-</ul>
-<pre class="r"><code>grad_rpart &lt;- train(form = XX ~ .,
-                  data = XXX,
-                  method = &quot;XX&quot;,
-                  trControl = XX,
-                  tuneGrid = expand.grid(cp = XX))   # Set complexity parameter</code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li><p>Explore your <code>grad_rpart</code> object by looking at <code>grad_rpart$finalModel</code> and plotting it with <code>plot(as.party(grad_rpart$finalModel))</code>, what do you find?</p></li>
-<li><p>Using <code>predict()</code>, save the fitted values of <code>grad_rpart</code> object as <code>rpart_fitted</code>.</p></li>
+<pre class="r"><code># set up the decision tree model
+XXX &lt;- 
+  XXX() %&gt;% 
+  XXX(XXX) %&gt;% 
+  XXX(XXX)</code></pre>
+<ol start="14" style="list-style-type: decimal">
+<li>Create a new workflow <code>dt_workflow</code>, where you add the newly created <code>tree_recipe</code> and the <code>dt_model</code>.</li>
 </ol>
-<pre class="r"><code># Save fitted values of decision tree model
-rpart_fitted &lt;- predict(XXX)</code></pre>
-<ol start="9" style="list-style-type: decimal">
-<li>Print your <code>rpart_fitted</code> object, look at summary statistics with <code>summary(rpart_fitted)</code>, and create a histogram with <code>hist()</code>. Do they make sense?</li>
+<pre class="r"><code># decision tree workflow 
+dt_workflow &lt;- 
+  XXX() %&gt;% 
+  XXX(XXX) %&gt;% 
+  XXX(XXX)</code></pre>
+<ol start="15" style="list-style-type: decimal">
+<li><p>Print the workflow.</p></li>
+<li><p>Fit the model on the training data by passing the <code>dt_workflow</code> and the <code>aribnb_train</code> data to the <code>fit()</code> function and save the output as <code>price_dt</code>.</p></li>
+<li><p>The <code>tidy()</code> function won’t work with decision tree fit objects, but we can print the output using the following code:</p></li>
+<li><p>Alternatively, we can pass the object you printed in the previous task in the <code>rpart.plot</code> function. This will create a visualization of the decision tree (in this case, the plot does not look very usefull, but depending on the variables used by the model it can be).</p></li>
+<li><p>Using the <code>predict()</code> function, to extract the model predictions from <code>price_dt</code> and bind them together with the true values from <code>airbnb_train</code> using <code>bind_cols()</code>.</p></li>
 </ol>
-<pre class="r"><code># Explore decision tree fits
-XXX
-summary(XXX)
-hist(XXX)</code></pre>
+<pre class="r"><code># get predicted values from training data
+dt_pred &lt;-
+  XXX %&gt;% 
+  XXX(XXX) %&gt;% 
+  XXX(airbnb_train %&gt;% select(price))</code></pre>
+<ol start="20" style="list-style-type: decimal">
+<li>Using the <code>metrics()</code> function, evaluate the model performance. Pass it the <code>price</code> variable as <code>truth</code> and the <code>.pred</code> variable as <code>estimate</code>.</li>
+</ol>
+<pre class="r"><code># evaluate performance
+XXX(dt_pred, truth = XXX, estimate = XXX)</code></pre>
+<ol start="21" style="list-style-type: decimal">
+<li><p>How does the model performance of the decision tree compare to the one of the regression model, based on the training data?</p></li>
+<li><p>Using the following code, plot the fitted against the true value, to judge how well our model performed.</p></li>
+</ol>
+<pre class="r"><code># use the dt_pred object to generate the plot
+ggplot(dt_pred, aes(x = .pred, y = price)) + 
+  # Create a diagonal line:
+  geom_abline(lty = 2) + 
+  # Add data points:
+  geom_point(alpha = 0.5) + 
+  labs(title = &quot;Decision Tree: All Features&quot;,
+       subtitle = &quot;Line indicates perfect performance&quot;,
+       x = &quot;Predicted Airbnb Prices in $&quot;,
+       y = &quot;True Airbnb Prices in $&quot;) +
+  # Scale and size the x- and y-axis uniformly:
+  coord_obs_pred()</code></pre>
 </div>
 <div id="random-forests" class="section level4">
 <h4>Random Forests</h4>
-<ol start="10" style="list-style-type: decimal">
-<li>Using <code>train()</code>, fit a random forest model called <code>grad_rf</code>. Speicifically,…</li>
+<ol start="22" style="list-style-type: decimal">
+<li>As random forests are made up of many decision trees, we can use the recipe we defined for the decision tree, so we only have to set up a random forest model. Use the <code>rand_forest()</code> function to specify the model, and set the engine to <code>"ranger"</code>. Set the mode to <code>"regression"</code>. Call the output <code>rf_model</code>.</li>
 </ol>
-<ul>
-<li>for the <code>form</code> argument, use <code>Grad.Rate ~ .</code>.</li>
-<li>for the <code>data</code> argument, use <code>college_train</code>.</li>
-<li>for the <code>method</code> argument, use <code>method = &quot;rf&quot;</code> to fit random forests.</li>
-<li>for the <code>trControl</code> argument, use your <code>ctrl_none</code> object you created before.</li>
-<li>for the <code>mtry</code> parameter, use <code>mtry</code> = 2. This is a relatively low value, so the forest will be very diverse.</li>
-</ul>
-<pre class="r"><code>grad_rf &lt;- train(form = XX ~ .,   # Predict grad
-                 data = XX,
-                 method = &quot;XX&quot;,
-                 trControl = XX,
-                 tuneGrid = expand.grid(mtry = XX))  # Set number of features randomly selected</code></pre>
-<ol start="11" style="list-style-type: decimal">
-<li>Using <code>predict()</code>, save the fitted values of <code>grad_rf</code> object as <code>rf_fitted</code>.</li>
+<pre class="r"><code># set up the random forest model
+XXX &lt;- 
+  XXX() %&gt;% 
+  XXX(XXX) %&gt;% 
+  XXX(XXX)</code></pre>
+<ol start="23" style="list-style-type: decimal">
+<li>Create a new workflow <code>rf_workflow</code>, where you add the <code>tree_recipe</code> and the newly created <code>rf_model</code>.</li>
 </ol>
-<pre class="r"><code># Save fitted values of random forest model
-rf_fitted &lt;- predict(XXX)</code></pre>
-<ol start="12" style="list-style-type: decimal">
-<li>Print your <code>rf_fitted</code> object, look at summary statistics with <code>summary(rf_fitted)</code>, and create a histogram with <code>hist()</code>. Do they make sense?</li>
+<pre class="r"><code># random forest workflow 
+rf_workflow &lt;- 
+  XXX() %&gt;% 
+  XXX(XXX) %&gt;% 
+  XXX(XXX)</code></pre>
+<ol start="24" style="list-style-type: decimal">
+<li><p>Print the workflow.</p></li>
+<li><p>Fit the model on the training data by passing the <code>rf_workflow</code> and the <code>aribnb_train</code> data to the <code>fit()</code> function and save the output as <code>price_rf</code>.</p></li>
+<li><p>The <code>tidy()</code> function won’t work with random forest fit objects, but we can print the output using the following code:</p></li>
+<li><p>Using the <code>predict()</code> function, to extract the model predictions from <code>price_rf</code> and bind them together with the true values from <code>airbnb_train</code> using <code>bind_cols()</code>.</p></li>
 </ol>
-<pre class="r"><code># Explore random forest fits
-XXX
-summary(XXX)
-hist(XXX)</code></pre>
-</div>
-<div id="assess-accuracy" class="section level4">
-<h4>Assess accuracy</h4>
-<ol start="13" style="list-style-type: decimal">
-<li>Save the true training criterion values (<code>college_train$Grad.Rate</code>) as a vector called <code>criterion_train</code>.</li>
+<pre class="r"><code># get predicted values from training data
+rf_pred &lt;-
+  XXX %&gt;% 
+  XXX(XXX) %&gt;% 
+  XXX(airbnb_train %&gt;% select(price))</code></pre>
+<ol start="28" style="list-style-type: decimal">
+<li>Using the <code>metrics()</code> function, evaluate the model performance. Pass it the <code>price</code> variable as <code>truth</code> and the <code>.pred</code> variable as <code>estimate</code>.</li>
 </ol>
-<pre class="r"><code># Save training criterion values
-criterion_train &lt;- XXX$XXX</code></pre>
-<ol start="14" style="list-style-type: decimal">
-<li>Using <code>postResample()</code>, determine the fitting performance of each of your models separately. Make sure to set your <code>criterion_train</code> values to the <code>obs</code> argument, and your true model fits <code>XX_fitted</code> to the <code>pred</code> argument.</li>
+<pre class="r"><code># evaluate performance
+XXX(rf_pred, truth = XXX, estimate = XXX)</code></pre>
+<ol start="29" style="list-style-type: decimal">
+<li><p>How does the training performance of the random forest compare to the ones of the other two models?</p></li>
+<li><p>Using the following code, plot the fitted against the true value, to judge how well our model performed.</p></li>
 </ol>
-<pre class="r"><code># Calculate fitting accuracies of each model
-# pred = XX_fitted
-# obs = criterion_train
-
-# Regression
-postResample(pred = XXX, obs = XXX)
-
-# Decision Trees
-postResample(pred = XXX, obs = XXX)
-
-# Random Forests
-postResample(pred = XXX, obs = XXX)</code></pre>
-<ol start="15" style="list-style-type: decimal">
-<li>Which one had the best fit? What was the fitting MAE of each model? Optional: If you’d like to, try visualizing the fitting results using the plotting code shown in the Examples tab above.</li>
-</ol>
+<pre class="r"><code># use the rf_pred object to generate the plot
+ggplot(rf_pred, aes(x = .pred, y = price)) + 
+  # Create a diagonal line:
+  geom_abline(lty = 2) + 
+  # Add data points:
+  geom_point(alpha = 0.5) + 
+  labs(title = &quot;Random Forest: All Features&quot;,
+       subtitle = &quot;Line indicates perfect performance&quot;,
+       x = &quot;Predicted Airbnb Prices in $&quot;,
+       y = &quot;True Airbnb Prices in $&quot;) +
+  # Scale and size the x- and y-axis uniformly:
+  coord_obs_pred()</code></pre>
 </div>
 </div>
 <div id="c---prediction" class="section level3">
 <h3>C - Prediction</h3>
 <ol style="list-style-type: decimal">
-<li>Save the criterion values from the test data set <code>college_test$Grad.Rate</code> as a new vector called <code>criterion_test</code>.</li>
+<li>Before we compared the training performances. Now, let’s compare the out-of-sample performances on the test-set. First the linear regression. Using the <code>predict()</code> function, to extract the model predictions from <code>price_lm</code>, but this time based on <code>airbnb_test</code> and bind them together with the true values from <code>airbnb_test</code> using <code>bind_cols()</code>. Save the output as <code>lm_pred_test</code></li>
 </ol>
-<pre class="r"><code># Save criterion values
-criterion_test &lt;- XXX$XXX</code></pre>
+<pre class="r"><code># get predicted values from test data
+lm_pred_test &lt;-
+  XXX %&gt;% 
+  XXX(XXX) %&gt;% 
+  XXX(airbnb_test %&gt;% select(price))</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Using <code>predict()</code>, save the predicted values of each model for the test data <code>college_test</code> as <code>glm_pred</code>, <code>rpart_pred</code> and <code>rf_pred</code>.</li>
+<li><p>Repeat the step above with the decision tree and random forest fits, to create <code>dt_pred_test</code> and <code>rf_pred_test</code>.</p></li>
+<li><p>Using the <code>metrics()</code> function, evaluate the models’ out-of-sample performances. Pass it the <code>price</code> variable as <code>truth</code> and the <code>.pred</code> variable as <code>estimate</code>.</p></li>
 </ol>
-<pre class="r"><code># Save model predictions for test data
-# newdata = college_test
-
-# Regression
-glm_pred &lt;- predict(XXX, newdata = XXX)
-
-# Decision Trees
-rpart_pred &lt;- predict(XXX, newdata = XXX)
-
-# Random Forests
-rf_pred &lt;- predict(XXX, newdata = XXX)</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Using <code>postResample()</code>, determine the <em>prediction</em> performance of each of your models against the test criterion <code>criterion_test</code>.</li>
-</ol>
-<pre class="r"><code># Calculate prediction accuracies of each model
-# obs = criterion_test
-# pred = XX_pred
-
-# Regression
-postResample(pred = XXX, obs = XXX)
-
-# Decision Trees
-postResample(pred = XXX, obs = XXX)
-
-# Random Forests
-postResample(pred = XXX, obs = XXX)</code></pre>
+<pre class="r"><code># evaluate performance
+XXX(XXX, truth = XXX, estimate = XXX)
+XXX(XXX, truth = XXX, estimate = XXX)
+XXX(XXX, truth = XXX, estimate = XXX)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li><p>How does each model’s <em>prediction or test</em> performance (on the <code>XXX_test</code> data) compare to its <em>fitting or training</em> performance (on the <code>XXX_train</code> data)? Is it worse? Better? The same? What does the change tell you about the models?</p></li>
+<li><p>Which model performs the best based on the test data?</p></li>
+<li><p>Which performance stays the most constant?</p></li>
 <li><p>Which of the three models has the best prediction performance?</p></li>
-<li><p>If you had to use one of these three models in the real-world, which one would it be? Why?</p></li>
-<li><p>If someone came to you and asked “If I use your model in the future to predict the graduation rate of a new college, how accurate do you think it would be?”, what would you say?</p></li>
 </ol>
 </div>
-<div id="d---a-different-data-set-house-prices-in-king-county-washington" class="section level3">
-<h3>D - A different data Set House Prices in King County, Washington</h3>
-<p>In this section, we will work with a different data set. Specifically, we will predict the prices of houses in King County Washington (home of Seattle, <a href="https://qz.com/208457/a-cartographic-guide-to-starbucks-global-domination/">which you can thank for this</a>) using the <code>house_train</code> and <code>house_test</code> datasets.</p>
-<div id="setup" class="section level4">
-<h4>Setup</h4>
+<div id="d---classification" class="section level3">
+<h3>D - Classification</h3>
 <ol style="list-style-type: decimal">
-<li>Run the code below to load each of the datasets listed in the <code>Datasets</code> as new objects.</li>
+<li>Let’s again turn to a classification example. We will again focus on the <code>host_superhost</code> variable. Like in the previous practical, we first have to change our criterion to be a <code>factor</code>. We again explicitly specify <code>TRUE</code> as first level.</li>
 </ol>
-<pre class="r"><code># house data
-house_train &lt;- read_csv(file = &quot;1_Data/house_train.csv&quot;)
-house_test &lt;- read_csv(file = &quot;1_Data/house_test.csv&quot;)</code></pre>
+<pre class="r"><code># Recode host_superhost to be a factor with TRUE as first level
+airbnb &lt;-
+  airbnb %&gt;% 
+  mutate(host_superhost = factor(host_superhost, levels = c(TRUE, FALSE)))</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Take a look at the first few rows of each dataframe by printing them to the console.</p></li>
-<li><p>Open each dataset in a new window using <code>View()</code>. Do they look ok?</p></li>
+<li>Create a split that balances the proportion of the two levels of <code>host_superhost</code> and that uses 80% of the data for the training.</li>
 </ol>
-<pre class="r"><code># Open each dataset in a window.
-View(XXX)
-View(XXX)</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Again, we need to do a little bit of data cleaning. Convert all character columns to factor.</li>
-</ol>
-<pre class="r"><code># Convert all character columns to factor
-house_train &lt;- house_train %&gt;%
-          mutate_if(is.character, factor)
-
-house_test &lt;- house_test %&gt;%
-          mutate_if(is.character, factor)</code></pre>
-</div>
-<div id="fitting" class="section level4">
-<h4>Fitting</h4>
-<p>Your goal in the following models is to predict <code>price</code>, the selling price of homes in King County WA.</p>
-<ol style="list-style-type: decimal">
-<li>Using <code>trainControl()</code>, set your training control method to <code>&quot;none&quot;</code>. Save your object as <code>ctrl_none</code>.</li>
-</ol>
-<pre class="r"><code># Set training method to &quot;none&quot; for simple fitting
-#  Note: This is for demonstration purposes, you would almost
-#   never do this for a &#39;real&#39; prediction task!
-ctrl_none &lt;- trainControl(method = &quot;XXX&quot;)</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>Using <code>train()</code>, fit a regression model called <code>price_glm</code> predicting <code>price</code> using all features in <code>house_train</code>. Specifically,…</li>
-</ol>
-<ul>
-<li>for the <code>form</code> argument, use <code>price ~ .</code>.</li>
-<li>for the <code>data</code> argument, use <code>house_train</code>.</li>
-<li>for the <code>method</code> argument, use <code>method = &quot;glm&quot;</code> for regression.</li>
-<li>for the <code>trControl</code> argument, use your <code>ctrl_none</code> object you created before.</li>
-</ul>
-<pre class="r"><code>price_glm &lt;- train(form = XX ~ .,
-                  data = XX,
-                  method = &quot;XXX&quot;,
-                  trControl = ctrl_none)</code></pre>
+<pre class="r"><code>airbnb_split &lt;- initial_split(XXX, prop = XXX, strata = XXX)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Using <code>predict()</code>, save the fitted values of <code>price_glm</code> object as <code>glm_fitted</code>.</li>
+<li>From the initial split object, creat a training and a test set, and save them as <code>airbnb_train</code> and <code>airbnb_test</code>.</li>
 </ol>
-<pre class="r"><code># Save fitted values of regression model
-glm_fitted &lt;- predict(XXX)</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Using <code>train()</code>, fit a decision tree model called <code>price_rpart</code> predicting <code>price</code> using all features in <code>house_train</code>. Specifically,…</li>
-</ol>
-<ul>
-<li>for the <code>form</code> argument, use <code>price ~ .</code>.</li>
-<li>for the <code>data</code> argument, use <code>house_train</code>.</li>
-<li>for the <code>method</code> argument, use <code>method = &quot;rpart&quot;</code> to create decision trees.</li>
-<li>for the <code>trControl</code> argument, use your <code>ctrl_none</code> object you created before.</li>
-<li>for the <code>tuneGrid</code> argument, use <code>cp = 0.01</code> to specify the value of the complexity parameter. This is a pretty low value which means your trees will be, relatively, complex.</li>
-</ul>
-<pre class="r"><code>price_rpart &lt;- train(form = XX ~ .,
-                  data = XXX,
-                  method = &quot;XX&quot;,
-                  trControl = XX,
-                  tuneGrid = expand.grid(cp = XX))   # Set complexity parameter</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Using <code>predict()</code> save the fitted values of <code>price_rpart</code> object as <code>rpart_fitted</code>.</li>
-</ol>
-<pre class="r"><code># Save fitted values of decision tree model
-rpart_fitted &lt;- predict(XXX)</code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>Using <code>train()</code>, fit a random forest model called <code>price_rf</code> predicting <code>price</code> using all features in <code>house_train</code>. Specifically,…</li>
-</ol>
-<ul>
-<li>for the <code>form</code> argument, use <code>price ~ .</code>.</li>
-<li>for the <code>data</code> argument, use <code>house_train</code> in the data argument.</li>
-<li>for the <code>method</code> argument, use <code>method = &quot;rf&quot;</code> to fit random forests.</li>
-<li>for the <code>trControl</code> argument, use your <code>ctrl_none</code> object you created before.</li>
-<li>for the <code>mtry</code> parameter, use <code>mtry</code> = 2. This is a relatively low value, so the forest will be very diverse.</li>
-</ul>
-<pre class="r"><code>price_rf &lt;- train(form = XX ~ .,
-                 data = XX,
-                 method = &quot;XX&quot;,
-                 trControl = XX,
-                 tuneGrid = expand.grid(mtry = XX))  # Set number of features randomly selected</code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li>Using <code>predict()</code> save the fitted values of <code>price_rf</code> object as <code>rf_fitted</code>.</li>
-</ol>
-<pre class="r"><code># Save fitted values of random forest model
-rf_fitted &lt;- predict(XXX)</code></pre>
+<pre class="r"><code>XXX &lt;- XXX(XXX)
+XXX &lt;- XXX(XXX)</code></pre>
 </div>
-<div id="assess-fitting-accuracy" class="section level4">
-<h4>Assess fitting accuracy</h4>
-<ol start="13" style="list-style-type: decimal">
-<li>Save the true training criterion values (<code>house_train$price</code>) as a vector called <code>criterion_train</code>.</li>
-</ol>
-<pre class="r"><code># Save training criterion values
-criterion_train &lt;- XXX$XXX</code></pre>
-<ol start="14" style="list-style-type: decimal">
-<li>Using <code>postResample()</code>, determine the fitting performance of each of your models separately. Make sure to set your <code>criterion_train</code> values to the <code>obs</code> argument, and your true model fits <code>XX_fitted</code> to the <code>pred</code> argument.</li>
-</ol>
-<pre class="r"><code># Calculate fitting accuracies of each model
-# pred = XX_fitted
-# obs = criterion_train
-
-# Regression
-postResample(pred = XXX, obs = XXX)
-
-# Decision Trees
-postResample(pred = XXX, obs = XXX)
-
-# Random Forests
-postResample(pred = XXX, obs = XXX)</code></pre>
-<ol start="15" style="list-style-type: decimal">
-<li>Which one had the best fits? What was the fitting MAE of each model? Optional: If you’d like to, try visualizing the fitting results using the plotting code shown in the Examples tab above. Ask for help if you need it!</li>
-</ol>
-</div>
-<div id="assess-prediction-accuracy" class="section level4">
-<h4>Assess prediction accuracy</h4>
+<div id="f---fitting" class="section level3">
+<h3>F - Fitting</h3>
+<div id="regression-1" class="section level4">
+<h4>Regression</h4>
 <ol style="list-style-type: decimal">
-<li>Save the criterion values from the test data set <code>house_test$price</code> as a new vector called <code>criterion_test</code>.</li>
+<li>Specify the recipe for a logistic regression. Specifically…</li>
 </ol>
-<pre class="r"><code># Save criterion values
-criterion_test &lt;- XXX$XXX</code></pre>
+<ul>
+<li>set the formula to <code>host_superhost ~ .</code>, to use all possible features</li>
+<li>use the <code>airbnb_train</code> data</li>
+<li>add <code>step_dummy(all_nominal_predictors())</code> to pre-process nominal features</li>
+<li>call the new object <code>logistic_recipe</code></li>
+</ul>
+<pre class="r"><code># create new recipe
+XXX &lt;- 
+  XXX(XXX, data = XXX) %&gt;% 
+  XXX(XXX())</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Using <code>predict()</code>, save the predicted values of each model for the test data <code>house_test</code> as <code>glm_pred</code>, <code>rpart_pred</code> and <code>rf_pred</code>.</li>
+<li><p>Print the new recipe.</p></li>
+<li><p>Create a new model called <code>logistic_model</code>, with the model type <code>logistic_reg</code>, the engine <code>"glm"</code>, and mode <code>"classification"</code>.</p></li>
 </ol>
-<pre class="r"><code># Save model predictions for test data
-# object: price_XXX
-# newdata: house_test
-
-# Regression
-glm_pred &lt;- predict(XXX, newdata = XXX)
-
-# Decision Trees
-rpart_pred &lt;- predict(XXX, newdata = XXX)
-
-# Random Forests
-rf_pred &lt;- predict(XXX, newdata = XXX)</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Using <code>postResample()</code>, determine the <em>prediction</em> performance of each of your models against the test criterion <code>criterion_test</code>.</li>
-</ol>
-<pre class="r"><code># Calculate prediction accuracies of each model
-# obs = criterion_test
-# pred = XX_pred
-
-# Regression
-postResample(pred = XXX, obs = XXX)
-
-# Decision Trees
-postResample(pred = XXX, obs = XXX)
-
-# Random Forests
-postResample(pred = XXX, obs = XXX)</code></pre>
+<pre class="r"><code># create a logistic regression model 
+XXX_model &lt;-
+  XXX() %&gt;% 
+  set_XXX(XXX) %&gt;% 
+  set_XXX(XXX)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li><p>How does each model’s <em>prediction or test</em> performance (on the <code>XXX_test</code> data) compare to its <em>fitting or training</em> performance (on the <code>XXX_train</code> data)? Is it worse? Better? The same? What does the change tell you about the models?</p></li>
-<li><p>Which of the three models has the best prediction performance?</p></li>
-<li><p>If you had to use one of these three models in the real-world, which one would it be? Why?</p></li>
-<li><p>If someone came to you and asked “If I use your model in the future to predict the price of a new house, how accurate do you think it would be?”, what would you say?</p></li>
+<li><p>Create a new workflow called <code>logistic_workflow</code>, where you add the <code>logistic_model</code> and the <code>logistic_recipe</code> together.</p></li>
+<li><p>Fit the model on the training data (<code>airbnb_train</code>) using <code>fit()</code>. Save the result as <code>superhost_glm</code>.</p></li>
+<li><p>Evaluate the training performance with the <code>metrics()</code> function to do so. First, we again create a dataset containing the predicted and true values. This time, we call the <code>predict()</code> function twice: once to obtain the predicted classes, and once to obtain the probabilities, with which the classes are predicted.</p></li>
+</ol>
+<pre class="r"><code># Get fitted values from the Private_glm object
+logistic_pred &lt;- 
+  predict(superhost_glm, airbnb_train, type = &quot;prob&quot;) %&gt;% 
+  bind_cols(predict(superhost_glm, airbnb_train)) %&gt;% 
+  bind_cols(airbnb_train %&gt;% select(host_superhost))</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>Let’s look at different performance metrics. Use the <code>metrics()</code> function and pass it the <code>host_superhost</code> variable as <code>truth</code>, the <code>.pred_class</code> variable as <code>estimate</code>, and <code>.pred_TRUE</code> as last argument.</li>
+</ol>
+<pre class="r"><code>XXX(logistic_pred, truth = XXX, estimate = XXX, XXX)</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>Plot the ROC-curve using the <code>roc_curve()</code> function, to create sensitivity and specificity values of different cut-offs, and pass this into the <code>autoplot()</code> function, to plot the curve. Add the <code>host_superhost</code> column as <code>truth</code>, and the <code>.pred_TRUE</code> column as third, unnamed argument, to the <code>roc_curve()</code> function and plot the curve.</li>
+</ol>
+<pre class="r"><code>XXX(logistic_pred, truth = XXX, XXX) %&gt;% 
+  autoplot()</code></pre>
+</div>
+<div id="decision-tree" class="section level4">
+<h4>Decision Tree</h4>
+<ol start="10" style="list-style-type: decimal">
+<li><p>Create a new recipe called <code>tree_recipe</code> that uses all available predictors to predict <code>host_superhost</code>. In addition, again use the pre-processing step <code>step_other(all_nominal_predictors(), threshold = 0.005)</code>.</p></li>
+<li><p>Set up a decision tree model. Use the <code>decision_tree()</code> function to specify the model, and set the engine to <code>rpart</code>. Set the mode to <code>"classification"</code>. Call the output <code>dt_model</code>.</p></li>
+<li><p>Create a new workflow <code>dt_workflow</code>, where you add the newly created <code>tree_recipe</code> and the <code>dt_model</code>.</p></li>
+<li><p>Print the workflow.</p></li>
+<li><p>Fit the model on the training data by passing the <code>dt_workflow</code> and the <code>aribnb_train</code> data to the <code>fit()</code> function and save the output as <code>superhost_dt</code>.</p></li>
+<li><p>Evaluate the training performance with the <code>metrics()</code> function to do so. Use the code from the logistic regression above as template. Save the output as <code>dt_pred</code>.</p></li>
+<li><p>Let’s look at different performance metrics. Use the <code>metrics()</code> function and pass it the <code>host_superhost</code> variable as <code>truth</code>, the <code>.pred_class</code> variable as <code>estimate</code>, and <code>.pred_TRUE</code> as last argument.</p></li>
+<li><p>Plot the ROC-curve using the <code>roc_curve()</code> function, to create sensitivity and specificity values of different cut-offs, and pass this into the <code>autoplot()</code> function, to plot the curve. Add the <code>host_superhost</code> column as <code>truth</code>, and the <code>.pred_TRUE</code> column as third, unnamed argument, to the <code>roc_curve()</code> function and plot the curve.</p></li>
+</ol>
+</div>
+<div id="random-forest" class="section level4">
+<h4>Random Forest</h4>
+<ol start="18" style="list-style-type: decimal">
+<li><p>Set up a random forest classification model. Use the <code>rand_forest()</code> function to specify the model, and set the engine to <code>ranger</code>. Set the mode to <code>"classification"</code>. Call the output <code>rf_model</code>.</p></li>
+<li><p>Create a new workflow <code>rf_workflow</code>, where you add the previously created <code>tree_recipe</code> and the new <code>rf_model</code>.</p></li>
+<li><p>Print the workflow.</p></li>
+<li><p>Fit the model on the training data by passing the <code>rf_workflow</code> and the <code>aribnb_train</code> data to the <code>fit()</code> function and save the output as <code>superhost_rf</code>.</p></li>
+<li><p>Evaluate the training performance with the <code>metrics()</code> function to do so and save the output as <code>rf_pred</code>.</p></li>
+<li><p>Let’s look at different performance metrics. Use the <code>metrics()</code> function and pass it the <code>host_superhost</code> variable as <code>truth</code>, the <code>.pred_class</code> variable as <code>estimate</code>, and <code>.pred_TRUE</code> as last argument.</p></li>
+<li><p>Plot the ROC-curve using the <code>roc_curve()</code> function, to create sensitivity and specificity values of different cut-offs, and pass this into the <code>autoplot()</code> function, to plot the curve.</p></li>
 </ol>
 </div>
 </div>
-<div id="e---exploring-model-tuning-parameters" class="section level3">
-<h3>E - Exploring model tuning parameters</h3>
+<div id="g---prediction" class="section level3">
+<h3>G - Prediction</h3>
 <ol style="list-style-type: decimal">
-<li><p>In all of your decision tree models so far, you have been setting the complexity parameter to 0.01. Try setting it to a larger value of 0.2 and see how your decision trees change (by plotting them using <code>plot(as.party(XXX_rpart$finalModel))</code>). Do they get more or less complicated? How does increasing this value affect fitting and prediction performance? If you are interested in learning more about this parameter, look at the help menu with <code>?rpart.control</code>.</p></li>
-<li><p>In each of your random forest models, you have been setting the <code>mtry</code> argument to 2. Try setting it to a larger value such as 5 and re-run your models. How does increasing this value affect fitting and prediction performance? If you are interested in learning more about this parameter, look at the help menu with <code>?randomForest</code>.</p></li>
-<li><p>By default, the <code>train()</code> function uses 500 trees for <code>method = &quot;rf&quot;</code>. How do the number of trees affect performance? To answer this, try setting the number of trees to 1,000 (see example below) and re-evaluating your model’s training and test performance. What do you find? What if you set the number of trees to just 10?</p></li>
+<li><p>Before we compared the training performances. Now, let’s compare the out-of-sample performances on the test-set. First the logistic regression. Using the <code>predict()</code> function twice to extract the model predictions from <code>superhost_glm</code> (as done with the training data), but this time based on <code>airbnb_test</code> and bind them together with the true values from <code>airbnb_test</code> using <code>bind_cols()</code>. Save the output as <code>glm_pred_test</code></p></li>
+<li><p>Repeat the step above with the decision tree and random forest fits, to create <code>dt_pred_test</code> and <code>rf_pred_test</code>.</p></li>
+<li><p>Using the <code>metrics()</code> function, evaluate the models’ out-of-sample performances. Pass it the <code>price</code> variable as <code>truth</code> and the <code>.pred</code> variable as <code>estimate</code>.</p></li>
+<li><p>Which model performs the best based on the test data?</p></li>
+<li><p>Plot the ROC-curves of the test performances.</p></li>
 </ol>
-<pre class="r"><code># Create random forest model with 1000 trees
-mod &lt;- train(form = price ~ .,
-             data = house_train,
-             method = &quot;rf&quot;,
-             trControl = ctrl_none,
-             ntree = 1000,   # use 1000 trees! (Instead of the default value of 500)
-             tuneGrid = expand.grid(mtry = 2))</code></pre>
 </div>
 </div>
 <div id="examples" class="section level2">
 <h2>Examples</h2>
-<pre class="r"><code># Fitting and evaluating regression, decision trees, and random forests
+<pre class="r"><code># Fitting and evaluating a regression model ------------------------------------
 
-# Step 0: Load packages-----------
+# Step 0: Load packages---------------------------------------------------------
 library(tidyverse)    # Load tidyverse for dplyr and tidyr
-library(caret)        # For ML mastery 
-library(partykit)     # For decision trees
-library(party)        # For decision trees
+library(tidymodels)   # For ML mastery 
+tidymodels_prefer()   # To resolve common conflicts
 
-# Step 1: Load and Clean, and Explore Training data ----------------------
+# Step 1: Load and Clean, and Explore Training data ----------------------------
 
-# training data
-data_train &lt;- read_csv(&quot;1_Data/mpg_train.csv&quot;)
-
-# test data
-data_test &lt;- read_csv(&quot;1_Data/mpg_test.csv&quot;)
-
-# Convert all characters to factor
-#  Some ML models require factors
-data_train &lt;- data_train %&gt;%
-  mutate_if(is.character, factor)
-
-data_test &lt;- data_test %&gt;%
-  mutate_if(is.character, factor)
-
+# I&#39;ll use the mpg dataset from the dplyr package 
 # Explore training data
-data_train        # Print the dataset
-View(data_train)  # Open in a new spreadsheet-like window 
-dim(data_train)   # Print dimensions
-names(data_train) # Print the names
+mpg        # Print the dataset
+View(mpg)  # Open in a new spreadsheet-like window 
+dim(mpg)   # Print dimensions
+names(mpg) # Print the names
 
-# Define criterion_train
-#   We&#39;ll use this later to evaluate model accuracy
-criterion_train &lt;- data_train$hwy
+# Step 2: Split the data--------------------------------------------------------
 
-# Step 2: Define training control parameters -------------
+mpg_split &lt;- initial_split(mpg)
+data_train &lt;- training(mpg_split)
+data_test &lt;- testing(mpg_split)
 
-# In this case, I will set method = &quot;none&quot; to fit to 
-#  the entire dataset without any fancy methods
-ctrl_none &lt;- trainControl(method = &quot;none&quot;) 
+# Step 3: Define recipe --------------------------------------------------------
 
-# Step 3: Train model: -----------------------------
-#   Criterion: hwy
-#   Features: year, cyl, displ
+# The recipe defines what to predict with what, and how to pre-process the data
+lm_recipe &lt;- 
+  recipe(hwy ~ year + cyl + displ + trans,  # Specify formula
+         data = data_train) %&gt;%             # Specify the data
+  step_dummy(all_nominal_predictors())      # Dummy code all categorical predictors
 
-# Regression --------------------------
-hwy_glm &lt;- train(form = hwy ~ year + cyl + displ,
-                 data = data_train,
-                 method = &quot;glm&quot;,
-                 trControl = ctrl_none)
 
-# Look at summary information
-hwy_glm$finalModel
-summary(hwy_glm)
+# Step 4: Define model ---------------------------------------------------------
 
-# Save fitted values
-glm_fitted &lt;- predict(hwy_glm)
+# The model definition defines what kind of model we want to use and how to
+# fit it
+lm_model &lt;- 
+  linear_reg() %&gt;%        # Specify model type
+  set_engine(&quot;lm&quot;) %&gt;%    # Specify engine (often package name) to use
+  set_mode(&quot;regression&quot;)  # Specify whether it&#39;s a regressio or classification
+                          #  problem.
 
-#  Calculate fitting accuracies
-postResample(pred = glm_fitted, 
-             obs = criterion_train)
+# Step 5: Define workflow ------------------------------------------------------
 
-# Decision Trees ----------------
-hwy_rpart &lt;- train(form = hwy ~ year + cyl + displ,
-                data = data_train,
-                method = &quot;rpart&quot;,
-                trControl = ctrl_none,
-                tuneGrid = expand.grid(cp = .01))   # Set complexity parameter
+# The workflow combines model and recipe, so that we can fit the model
+lm_workflow &lt;- 
+  workflow() %&gt;%             # Initialize workflow
+  add_model(lm_model) %&gt;%    # Add the model to the workflow
+  add_recipe(lm_recipe)      # Add the recipe to the workflow
 
-# Look at summary information
-hwy_rpart$finalModel
-plot(as.party(hwy_rpart$finalModel))   # Visualise your trees
+# Step 6: Fit the model --------------------------------------------------------
 
-# Save fitted values
-rpart_predfit &lt;- predict(hwy_rpart)
+hwy_lm &lt;- 
+  lm_workflow %&gt;%   # Use the specified workflow
+  fit(data_train)   # Fit the model on the specified data
 
-# Calculate fitting accuracies
-postResample(pred = rpart_predfit, obs = criterion_train)
+tidy(hwy_lm)        # Look at summary information
 
-# Random Forests -------------------------
-hwy_rf &lt;- train(form = hwy ~ year + cyl + displ,
-                data = data_train,
-                method = &quot;rf&quot;,
-                trControl = ctrl_none,
-                tuneGrid = expand.grid(mtry = 2))   # Set number of features randomly selected
+# Step 7: Assess fit -----------------------------------------------------------
 
-# Look at summary information
-hwy_rf$finalModel
+# Save model predictions and observed values
+lm_fitted &lt;- 
+  hwy_lm %&gt;%               # Model from which to extract predictions
+  predict(data_train) %&gt;%  # Obtain predictions, based on entered data (in this
+                           #  case, these predictions are not out-of-sample)
+  bind_cols(data_train %&gt;% select(hwy))  # Extract observed/true values
 
-# Save fitted values
-rf_fitted &lt;- predict(hwy_rf)
+# Obtain performance metrics
+metrics(lm_fitted, truth = hwy, estimate = .pred)
 
-# Calculate fitting accuracies
-postResample(pred = rf_fitted, obs = criterion_train)
+# Step 8: Assess prediction performance ----------------------------------------
+# Save model predictions and observed values
+lm_pred &lt;- 
+  hwy_lm %&gt;%               # Model from which to extract predictions
+  predict(data_test) %&gt;%   # Obtain predictions, based on entered data (in this
+                           #  case, these predictions ARE out-of-sample)
+  bind_cols(data_test %&gt;% select(hwy))  # Extract observed/true values
 
-# Visualise Accuracy -------------------------
-
-# Tidy competition results
-accuracy &lt;- tibble(criterion_train = criterion_train,
-                   Regression = glm_fitted,
-                   DecisionTrees = rpart_predfit,
-                   RandomForest = rf_fitted) %&gt;%
-               gather(model, prediction, -criterion_train) %&gt;%
-               # Add error measures
-               mutate(se = prediction - criterion_train,
-                      ae = abs(prediction - criterion_train))
-
-# Calculate summaries
-accuracy_agg &lt;- accuracy %&gt;%
-                  group_by(model) %&gt;%
-                  summarise(mae = mean(ae))   # Calculate MAE (mean absolute error)
-
-# Plot A) Scatterplot of truth versus predictions
-ggplot(data = accuracy,
-       aes(x = criterion_train, y = prediction, col = model)) +
-  geom_point(alpha = .5) +
-  geom_abline(slope = 1, intercept = 0) +
-  labs(title = &quot;Predicting mpg$hwy&quot;,
-       subtitle = &quot;Black line indicates perfect performance&quot;)
-
-# Plot B) Violin plot of absolute errors
-ggplot(data = accuracy, 
-       aes(x = model, y = ae, fill = model)) + 
-  geom_violin() + 
-  geom_jitter(width = .05, alpha = .2) +
-  labs(title = &quot;Fitting Absolute Errors&quot;,
-       subtitle = &quot;Numbers indicate means&quot;,
-       x = &quot;Model&quot;,
-       y = &quot;Absolute Error&quot;) +
-  guides(fill = FALSE) +
-  annotate(geom = &quot;label&quot;, 
-           x = accuracy_agg$model, 
-           y = accuracy_agg$mae, 
-           label = round(accuracy_agg$mae, 2))
-
-# Step 5: Access prediction ------------------------------
-
-# Define criterion_train
-criterion_test &lt;- data_test$hwy
-
-# Save predicted values
-glm_pred &lt;- predict(hwy_glm, newdata = data_test)
-rpart_pred &lt;- predict(hwy_rpart, newdata = data_test)
-rf_pred &lt;- predict(hwy_rf, newdata = data_test)
-
-#  Calculate fitting accuracies
-postResample(pred = glm_pred, obs = criterion_test)
-postResample(pred = rpart_pred, obs = criterion_test)
-postResample(pred = rf_pred, obs = criterion_test)
-
-# Visualise Accuracy -------------------------
-
-# Tidy competition results
-accuracy &lt;- tibble(criterion_test = criterion_test,
-                   Regression = glm_pred,
-                   DecisionTrees = rpart_pred,
-                   RandomForest = rf_pred) %&gt;%
-               gather(model, prediction, -criterion_test) %&gt;%
-               # Add error measures
-               mutate(se = prediction - criterion_test,
-                      ae = abs(prediction - criterion_test))
-
-# Calculate summaries
-accuracy_agg &lt;- accuracy %&gt;%
-                  group_by(model) %&gt;%
-                  summarise(mae = mean(ae))   # Calculate MAE (mean absolute error)
-
-# Plot A) Scatterplot of truth versus predictions
-ggplot(data = accuracy,
-       aes(x = criterion_test, y = prediction, col = model)) +
-  geom_point(alpha = .5) +
-  geom_abline(slope = 1, intercept = 0) +
-  labs(title = &quot;Predicting mpg$hwy&quot;,
-       subtitle = &quot;Black line indicates perfect performance&quot;)
-
-# Plot B) Violin plot of absolute errors
-ggplot(data = accuracy, 
-       aes(x = model, y = ae, fill = model)) + 
-  geom_violin() + 
-  geom_jitter(width = .05, alpha = .2) +
-  labs(title = &quot;Prediction Absolute Errors&quot;,
-       subtitle = &quot;Numbers indicate means&quot;,
-       x = &quot;Model&quot;,
-       y = &quot;Absolute Error&quot;) +
-  guides(fill = FALSE) +
-  annotate(geom = &quot;label&quot;, 
-           x = accuracy_agg$model, 
-           y = accuracy_agg$mae, 
-           label = round(accuracy_agg$mae, 2))</code></pre>
+# Obtain performance metrics
+metrics(lm_pred, truth = hwy, estimate = .pred)</code></pre>
 </div>
 <div id="datasets" class="section level2">
 <h2>Datasets</h2>
@@ -812,33 +630,14 @@ ggplot(data = accuracy,
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv">college_train.csv</a></td>
-<td align="left">500</td>
-<td align="left">18</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_test.csv">college_test.csv</a></td>
-<td align="left">277</td>
-<td align="left">18</td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/house_train.csv">house_train.csv</a></td>
-<td align="left">5000</td>
-<td align="left">21</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/house_test.csv">house_test.csv</a></td>
-<td align="left">1000</td>
-<td align="left">21</td>
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36">airbnb.csv</a></td>
+<td align="left">7609</td>
+<td align="left">30</td>
 </tr>
 </tbody>
 </table>
-<ul>
-<li><p>The <code>college_train</code> and <code>college_test</code> data are taken from the <code>College</code> dataset in the <code>ISLR</code> package. They contain statistics for a large number of US Colleges from the 1995 issue of US News and World Report.</p></li>
-<li><p>The <code>house_train</code> and <code>house_test</code> data come from <a href="https://www.kaggle.com/harlfoxem/housesalesprediction">https://www.kaggle.com/harlfoxem/housesalesprediction</a></p></li>
-</ul>
-<div id="variable-description-of-college_train-and-college_test" class="section level4">
-<h4>Variable description of <code>college_train</code> and <code>college_test</code></h4>
+<div id="variable-description-of-airbnb" class="section level4">
+<h4>Variable description of <code>airbnb</code></h4>
 <table>
 <colgroup>
 <col width="26%" />
@@ -852,169 +651,120 @@ ggplot(data = accuracy,
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>Private</code></td>
-<td align="left">A factor with levels No and Yes indicating private or public university.</td>
+<td align="left">price</td>
+<td align="left">Price per night (in $s)</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Apps</code></td>
-<td align="left">Number of applications received.</td>
+<td align="left">room_type</td>
+<td align="left">Apartment, Loft, House, etc.</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>Accept</code></td>
-<td align="left">Number of applications accepted.</td>
+<td align="left">accommodates</td>
+<td align="left">Number of people the airbnb accommodates</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Enroll</code></td>
-<td align="left">Number of new students enrolled.</td>
+<td align="left">bedrooms</td>
+<td align="left">Number of bedrooms</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>Top10perc</code></td>
-<td align="left">Pct. new students from top 10% of H.S. class.</td>
+<td align="left">bathrooms</td>
+<td align="left">Number of bathrooms</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Top25perc</code></td>
-<td align="left">Pct. new students from top 25% of H.S. class.</td>
+<td align="left">cleaning_fee</td>
+<td align="left">Amount of cleaning fee (in $s)</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>F.Undergrad</code></td>
-<td align="left">Number of fulltime undergraduates.</td>
+<td align="left">availability_90_days</td>
+<td align="left">How many of the following 90 days the airbnb is available</td>
 </tr>
 <tr class="even">
-<td align="left"><code>P.Undergrad</code></td>
-<td align="left">Number of parttime undergraduates.</td>
+<td align="left">neighbourhood</td>
+<td align="left">The neighbourhood the Airbnb is located in</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>Outstate</code></td>
-<td align="left">Out-of-state tuition.</td>
+<td align="left">district</td>
+<td align="left">The district the Airbnb is located in</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Room.Board</code></td>
-<td align="left">Room and board costs.</td>
+<td align="left">host_since</td>
+<td align="left">Experience of the hosts in days</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>Books</code></td>
-<td align="left">Estimated book costs.</td>
+<td align="left">host_respons_time</td>
+<td align="left">Host average response time</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Personal</code></td>
-<td align="left">Estimated personal spending.</td>
+<td align="left">host_response_rate</td>
+<td align="left">Host response rate</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>PhD</code></td>
-<td align="left">Pct. of faculty with Ph.D.’s.</td>
+<td align="left">host_superhost</td>
+<td align="left">Whether host is a superhost TRUE/FALSE</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Terminal</code></td>
-<td align="left">Pct. of faculty with terminal degree.</td>
+<td align="left">host_listings_count</td>
+<td align="left">Number of listings the host has</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>S.F.Ratio</code></td>
-<td align="left">Student/faculty ratio.</td>
+<td align="left">review_scores_rating</td>
+<td align="left">Overall rating [0, 100]</td>
 </tr>
 <tr class="even">
-<td align="left"><code>perc.alumni</code></td>
-<td align="left">Pct. alumni who donate.</td>
+<td align="left">review_scores_accuracy</td>
+<td align="left">Accuracy of information rating [0, 10]</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>Expend</code></td>
-<td align="left">Instructional expenditure per student.</td>
+<td align="left">review_scores_cleanliness</td>
+<td align="left">Cleanliness rating [0, 10]</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Grad.Rate</code></td>
-<td align="left">Graduation rate.</td>
+<td align="left">review_scores_checkin</td>
+<td align="left">Check in rating [0, 10]</td>
 </tr>
-</tbody>
-</table>
-</div>
-<div id="variable-description-of-house_train-and-house_test" class="section level4">
-<h4>Variable description of <code>house_train</code> and <code>house_test</code></h4>
-<table>
-<colgroup>
-<col width="26%" />
-<col width="73%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Name</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
 <tr class="odd">
-<td align="left"><code>price</code></td>
-<td align="left">Price of the house in $.</td>
+<td align="left">review_scores_communication</td>
+<td align="left">Communication rating [0, 10]</td>
 </tr>
 <tr class="even">
-<td align="left"><code>bedrooms</code></td>
-<td align="left">Number of bedrooms.</td>
+<td align="left">review_scores_location</td>
+<td align="left">Location rating [0, 10]</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>bathrooms</code></td>
-<td align="left">Number of bathrooms.</td>
+<td align="left">review_scores_value</td>
+<td align="left">Value rating [0, 10]</td>
 </tr>
 <tr class="even">
-<td align="left"><code>sqft_living</code></td>
-<td align="left">Square footage of the home.</td>
+<td align="left">kitchen</td>
+<td align="left">Kitchen available TRUE/FALSE</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>sqft_lot</code></td>
-<td align="left">Square footage of the lot.</td>
+<td align="left">wifi</td>
+<td align="left">Wifi available TRUE/FALSE</td>
 </tr>
 <tr class="even">
-<td align="left"><code>floors</code></td>
-<td align="left">Total floors (levels) in house.</td>
+<td align="left">tv</td>
+<td align="left">TV available TRUE/FALSE</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>waterfront</code></td>
-<td align="left">House which has a view to a waterfront.</td>
+<td align="left">coffe_machine</td>
+<td align="left">Coffee machine available TRUE/FALSE</td>
 </tr>
 <tr class="even">
-<td align="left"><code>view</code></td>
-<td align="left">Has been viewed.</td>
+<td align="left">dishwasher</td>
+<td align="left">Dishwasher available TRUE/FALSE</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>condition</code></td>
-<td align="left">How good the condition is (Overall).</td>
+<td align="left">terrace</td>
+<td align="left">Terrace/balcony available TRUE/FALSE</td>
 </tr>
 <tr class="even">
-<td align="left"><code>grade</code></td>
-<td align="left">Overall grade given to the housing unit, based on King County grading system.</td>
+<td align="left">bathtub</td>
+<td align="left">Bathtub available TRUE/FALSE</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>sqft_above</code></td>
-<td align="left">Square footage of house apart from basement.</td>
-</tr>
-<tr class="even">
-<td align="left"><code>sqft_basement</code></td>
-<td align="left">Square footage of the basement.</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>yr_built</code></td>
-<td align="left">Built Year.</td>
-</tr>
-<tr class="even">
-<td align="left"><code>yr_renovated</code></td>
-<td align="left">Year when house was renovated.</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>zipcode</code></td>
-<td align="left">Zip code.</td>
-</tr>
-<tr class="even">
-<td align="left"><code>lat</code></td>
-<td align="left">Latitude coordinate.</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>long</code></td>
-<td align="left">Longitude coordinate.</td>
-</tr>
-<tr class="even">
-<td align="left"><code>sqft_living15</code></td>
-<td align="left">Living room area in 2015 (implies some renovations). This might or might not have affected the lotsize area.</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>sqft_lot15</code></td>
-<td align="left">lot-size area in 2015 (implies some renovations).</td>
+<td align="left">check_in_24h</td>
+<td align="left">24h Check-In available TRUE/FALSE</td>
 </tr>
 </tbody>
 </table>
@@ -1034,19 +784,15 @@ ggplot(data = accuracy,
 <tbody>
 <tr class="odd">
 <td align="left"><code>tidyverse</code></td>
-<td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
+<td align="left"><code>install.packages("tidyverse")</code></td>
 </tr>
 <tr class="even">
-<td align="left"><code>caret</code></td>
-<td align="left"><code>install.packages(&quot;caret&quot;)</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left"><code>install.packages("tidymodels")</code></td>
 </tr>
 <tr class="odd">
-<td align="left"><code>partykit</code></td>
-<td align="left"><code>install.packages(&quot;partykit&quot;)</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>party</code></td>
-<td align="left"><code>install.packages(&quot;party&quot;)</code></td>
+<td align="left"><code>rpart.plot</code></td>
+<td align="left"><code>install.packages("rpart.plot")</code></td>
 </tr>
 </tbody>
 </table>
@@ -1068,29 +814,124 @@ ggplot(data = accuracy,
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>trainControl()</code></td>
-<td align="left"><code>caret</code></td>
-<td align="left">Define modelling control parameters</td>
+<td align="left"><code>read_csv()</code></td>
+<td align="left"><code>tidyverse</code></td>
+<td align="left">Read in data</td>
 </tr>
 <tr class="even">
-<td align="left"><code>train()</code></td>
-<td align="left"><code>caret</code></td>
-<td align="left">Train a model</td>
+<td align="left"><code>mutate()</code></td>
+<td align="left"><code>tidyverse</code></td>
+<td align="left">Manipulate or create columns</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>predict(object, newdata)</code></td>
-<td align="left"><code>stats</code></td>
-<td align="left">Predict the criterion values of <code>newdata</code> based on <code>object</code></td>
+<td align="left"><code>bind_cols()</code></td>
+<td align="left"><code>tidyverse</code></td>
+<td align="left">Bind columns together and return a tibble</td>
 </tr>
 <tr class="even">
-<td align="left"><code>postResample()</code></td>
-<td align="left"><code>caret</code></td>
-<td align="left">Calculate aggregate model performance in regression tasks</td>
+<td align="left"><code>pluck()</code></td>
+<td align="left"><code>tidyverse</code></td>
+<td align="left">Extract element from list</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>confusionMatrix()</code></td>
-<td align="left"><code>caret</code></td>
-<td align="left">Calculate aggregate model performance in classification tasks</td>
+<td align="left"><code>initial_split()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Initialize splitting dataset into training and test data</td>
+</tr>
+<tr class="even">
+<td align="left"><code>training()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Create training data from <code>initial_split</code> output</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>testing()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Create training data from <code>initial_split</code> output</td>
+</tr>
+<tr class="even">
+<td align="left"><code>linear_reg()</code>/<code>logistic_reg()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Initialize linear/logistic regression model</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>set_engine()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Specify which engine to use for the modeling (e.g., “lm” to use <code>stats::lm()</code>, or “stan” to use <code>rstanarm::stan_lm()</code>)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>set_mode()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Specify whether it’s a regression or classification problem</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>recipe()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Initialize recipe</td>
+</tr>
+<tr class="even">
+<td align="left"><code>step_dummy()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">pre-process data into dummy variables</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>workflow()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Initialize workflow</td>
+</tr>
+<tr class="even">
+<td align="left"><code>add_recipe()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Add recipe to workflow</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>update_recipe()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Update workflow with a new recipe</td>
+</tr>
+<tr class="even">
+<td align="left"><code>add_model()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Add model to workflow</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>fit()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Fit model</td>
+</tr>
+<tr class="even">
+<td align="left"><code>tidy()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Show model parameters</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>predict()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Create model predictions based on specified data</td>
+</tr>
+<tr class="even">
+<td align="left"><code>metrics()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Evaluate model performance</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>conf_mat()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Create confusion matrix</td>
+</tr>
+<tr class="even">
+<td align="left"><code>roc_curve()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Calculate sensitivity and specificity with different thresholds for ROC-curve</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>autoplot()</code></td>
+<td align="left"><code>tidymodels</code></td>
+<td align="left">Plot methods for different objects such as those created from <code>roc_curve()</code> to plot the ROC-curve</td>
+</tr>
+<tr class="even">
+<td align="left"><code>rpart.plot()</code></td>
+<td align="left"><code>rpart.plot</code></td>
+<td align="left">Plot a decision tree from an <code>rpart</code> fit object</td>
 </tr>
 </tbody>
 </table>
@@ -1098,13 +939,10 @@ ggplot(data = accuracy,
 </div>
 <div id="resources" class="section level2">
 <h2>Resources</h2>
-<div id="cheatsheet" class="section level3">
-<h3>Cheatsheet</h3>
-<figure>
-<center>
-<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf"> <img src="https://www.rstudio.com/wp-content/uploads/2015/01/caret-cheatsheet.png" alt="Trulli" style="width:70%"></a><br> <font style="font-size:10px"> from <a href= "https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</figcaption">github.com/rstudio</a></font>
-</figure>
-</div>
+<ul>
+<li><a href="https://www.tidymodels.org/"><strong>tidymodels webpage</strong></a>: Can be used as cheat sheet. Also has some tutorials.</li>
+<li>The, not yet completed, book <a href="https://www.tmwr.org"><strong>Tidymodeling with R</strong></a>: More detailed introduction into the <code>tidymodels</code> framework.</li>
+</ul>
 </div>
 </div>
 
@@ -1117,7 +955,7 @@ ggplot(data = accuracy,
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -1135,7 +973,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
