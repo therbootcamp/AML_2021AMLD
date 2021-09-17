@@ -1,33 +1,35 @@
 ---
 title: "Tuning"
 author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0'><col width='10%'><col width='10%'>
+  </tr></table>"
   <tr style='border:none'>
+    </td>
+    </td>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
+      </a>
+      </a>
+      </a>
+      </a>
+      </a>
       <font style='font-style:normal'>Applied Machine Learning with R</font><br>
       <a href='https://therbootcamp.github.io/AML_2021AMLD/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
-      </a>
       <a href='https://therbootcamp.github.io'>
         <i class='fas fa-home' style='font-size:.9em;'></i>
-      </a>
       <a href='mailto:therbootcamp@gmail.com'>
         <i class='fas fa-envelope' style='font-size: .9em;'></i>
-      </a>
       <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
         <i class='fab fa-linkedin' style='font-size: .9em;'></i>
-      </a>
       <a href='https://therbootcamp.github.io'>
         <font style='font-style:normal'>The R Bootcamp @ AMLD</font>
-      </a>
-    </td>
     <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
       <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style='height:15px;width:80px'/>
-    </td>
-  </tr></table>"
 output:
   html_document:
     css: practical.css
     self_contained: no
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, echo = FALSE}
@@ -260,7 +262,7 @@ ridge_grid <-
 6. Use `collect_metrics()` to evaluate the cross-validation performance of the model across the different values of the penalty parameter.
 
 ```{r}
-collect_metrics(ridge_res)
+collect_metrics(ridge_grid)
 
 ```
 
@@ -289,7 +291,7 @@ penalty_grid <- tibble(penalty = 10 ^ (seq(-4, 5, length = 150)))
 ```
 
 ```{r}
-penalty_grid <- tibble(penalty = 10 ^ (seq(-4, 5, length = 150)))
+penalty_grid <- tibble(penalty = 10 ^ (seq(0, 3, length = 150)))
 
 # step 5
 ridge_grid <-
@@ -298,18 +300,18 @@ ridge_grid <-
             grid = penalty_grid)
 
 # step 6
-collect_metrics(ridge_res)
+collect_metrics(ridge_reg)
 
 # step 7
 ridge_grid %>%
   collect_metrics() %>%
   ggplot(aes(penalty, mean, color = .metric)) +
-  geom_errorbar(aes(
-    ymin = mean - std_err,
-    ymax = mean + std_err
-  ),
-  alpha = 0.5
-  ) +
+  #geom_errorbar(aes(
+  #  ymin = mean - std_err,
+  #  ymax = mean + std_err
+  #),
+  #alpha = 0.5
+  #) +
   geom_line(size = 1.5) +
   facet_wrap(~.metric, scales = "free", nrow = 2) +
   scale_x_log10() +
@@ -400,7 +402,7 @@ penalty_grid <- tibble(penalty = 10 ^ (seq(-4, 5, length = 150)))
 ```
 
 ```{r}
-penalty_grid <- tibble(penalty = 10 ^ (seq(-4, 5, length = 150)))
+penalty_grid <- tibble(penalty = 10 ^ (seq(-1, 1, length = 150)))
 ```
 
 
@@ -429,12 +431,12 @@ collect_metrics(lasso_grid)
 lasso_grid %>%
   collect_metrics() %>%
   ggplot(aes(penalty, mean, color = .metric)) +
-  geom_errorbar(aes(
-    ymin = mean - std_err,
-    ymax = mean + std_err
-  ),
-  alpha = 0.5
-  ) +
+  #geom_errorbar(aes(
+  #  ymin = mean - std_err,
+  #  ymax = mean + std_err
+  #),
+  #alpha = 0.5
+  #) +
   geom_line(size = 1.5) +
   facet_wrap(~.metric, scales = "free", nrow = 2) +
   scale_x_log10() +
@@ -512,7 +514,7 @@ dt_workflow <-
 4. Set up a grid of tuning parameters. Use the following code to do so:
 
 ```{r, echo = TRUE}
-complexity_grid <- tibble(cost_complexity =  seq(from = 0, to = 1, length = 50))
+complexity_grid <- tibble(cost_complexity =  seq(from = 0, to = .01, length = 50))
 ```
 
 5. To speed up the model tuning, execute the following code (this will parallelize the tuning process).
@@ -539,12 +541,12 @@ dt_grid <-
 dt_grid %>%
   collect_metrics() %>%
   ggplot(aes(cost_complexity, mean, color = .metric)) +
-  geom_errorbar(aes(
-    ymin = mean - std_err,
-    ymax = mean + std_err
-  ),
-  alpha = 0.5
-  ) +
+  #geom_errorbar(aes(
+  #  ymin = mean - std_err,
+  #  ymax = mean + std_err
+  #),
+  #alpha = 0.5
+  #) +
   geom_line(size = 1.5) +
   facet_wrap(~.metric, scales = "free", nrow = 2) +
   theme(legend.position = "none")
