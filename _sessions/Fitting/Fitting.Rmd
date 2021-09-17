@@ -5,7 +5,7 @@ author: "Applied Machine Learning with R<br>
     The R Bootcamp @ AMLD
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/AML_2020AMLD/'>
+  <a href='https://therbootcamp.github.io/AML_2021AMLD/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "Applied Machine Learning with R<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "January 2020"
+date: "November 2021"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-      Applied Machine Learning with R @ AMLD  | January 2020
+      Applied Machine Learning with R @ AMLD  | November 2021
       </font>
     </a>
     </span>
@@ -77,10 +77,12 @@ knitr::opts_chunk$set(comment=NA, fig.width=6, fig.height=6, echo = TRUE, eval =
 library(tidyverse)
 library(ggthemes)
 library(ggpubr)
-library(caret)
+library(tidymodels)
+tidymodels_prefer()
 library(ISLR)
 
-baselers <- read_csv("1_Data/baselers.csv")
+baselers <- read_csv("1_Data/baselers.csv") %>% 
+  mutate(eyecor = factor(eyecor, levels = c("yes", "no")))
 
 set.seed(102)
 x <- rnorm(10)
@@ -424,7 +426,6 @@ $$\boldsymbol \beta_{n+1} = \boldsymbol \beta_{n}+\gamma \nabla F(\boldsymbol \b
 
 
 ---
-
 
 .pull-left45[
 
@@ -785,572 +786,370 @@ class: center,  middle
 
 <br><br>
 
-# Fitting regression models with `caret`
+# Fitting regression models with `tidymodels`
 
-```{r, echo = FALSE, out.width = "70%"}
-knitr::include_graphics("https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png")
+```{r, echo = FALSE, out.width = "30%"}
+knitr::include_graphics("image/tidymodels.svg")
 ```
-
-
-```{r, echo = FALSE}
-library(caret)
-data(cars)
-```
-
 
 ---
 
-# `caret`s fitting functions
-
-.pull-left45[
-
-<table style="cellspacing:0; cellpadding:0; border:none;">
-<tr>
-  <td>
-  <b>Function</b>
-  </td>
-  <td>
-    <b>Description</b>
-  </td>
-</tr>
-<tr>
-  <td bgcolor="white">
-    <mono>trainControl()</mono>
-  </td>
-  <td bgcolor="white">
-    Choose <high>settings</high> for how fitting should be carried out.
-  </td>
-</tr>
-<tr>
-  <td>
-    <mono>train()</mono>
-  </td>
-  <td>
-    Specify the model and <high>find 'best' parameters</high>.
-  </td>
-</tr>
-<tr>
-  <td bgcolor="white">
-    <mono>postResample()</mono>
-  </td>
-  <td bgcolor="white">
-    <high>Evaluate</high> model performance (fitting or prediction) for regression.
-  </td>
-</tr>
-<tr>
-  <td>
-    <mono>confusionMatrix()</mono>
-  </td>
-  <td bgcolor="white">
-    <high>Evaluate</high> model performance (fitting or prediction) for classification.
-  </td>
-</tr>
-</table>
-
-]
-
-.pull-right45[
-
-```{r, eval = FALSE}
-# Step 1: Define control parameters
-#   trainControl()
-
-ctrl <- trainControl(...) 
-
-# Step 2: Train and explore model
-#   train()
-
-mod <- train(...)
-summary(mod)
-mod$finalModel   # see final model
-
-# Step 3: Assess fit
-#   predict(), postResample(), fon
-
-fit <- predict(mod)
-postResample(fit, truth)
-confusionMatrix(fit, truth)
-
-```
-
-
-
-<!-- Caret documentation: [http://topepo.github.io/caret/](http://topepo.github.io/caret/) -->
-
-<!-- <iframe src="http://topepo.github.io/caret/" height="480px" width = "500px"></iframe> -->
-
-]
-
----
-
-# `trainControl()`
+# 5 Steps to fit a model in `tidymodels`
 
 .pull-left45[
 
 <ul>
-  <li class="m1"><span><mono>trainControl()</mono> controls <high>how <mono>caret</mono> fits an ML model</high>.</span></li>
-  <li class="m2"><span>For now, we set <mono>method = "none"</mono> to keep things simple. More in the session on <b>optimization</b>.</span></li>
+  <li class="m1"><span>Define the <mono>recipe</mono>.</span></li>
+  <li class="m2"><span>Define the model.</span></li>
+  <li class="m3"><span>Define the <mono>workflow</mono>.</span></li>
+  <li class="m4"><span>Fit the <mono>workflow</mono></span></li>
+  <li class="m5"><span>Assess model performance.</span></li>
 </ul>
-
-<br>
-
-```{r}
-# Fit the model without any 
-# advanced parameter tuning methods
-ctrl <- trainControl(method = "none")
-
-# show help file
-?trainControl
-
-```
 
 ]
 
 .pull-right45[
-
-```{r, echo = FALSE, out.width = "100%"}
-knitr::include_graphics("image/traincontrol_help.jpg")
+```{r, echo = FALSE, out.width = "90%"}
+knitr::include_graphics("image/tidymodels_packages.png")
 ```
 
 ]
 
 ---
 
-# `train()`
+# Step 1: Define the <mono>recipe</mono>
 
-.pull-left4[
+.pull-left45[
 
+The <mono>recipe</mono> specifies two things: 
 <ul>
-  <li class="m1"><span><mono>train()</mono> is the <high>fitting workhorse</high> of <mono>caret</mono>, offering you <high>200+ models</high> by merely changing the <high>method</high> argument!.</span></li>
+  <li class="m1"><span>The criterion and the features, i.e., the <mono>formula</mono> to use.</span></li>
+  <li class="m2"><span>How the features should be pre-processed before the model fitting.</span></li>
 </ul>
 
 <br>
 
-<table style="cellspacing:0; cellpadding:0; border:none;">
-<tr>
-  <td>
-  <b>Argument</b>
-  </td>
-  <td>
-    <b>Description</b>
-  </td>
-</tr>
-<tr>
-  <td bgcolor="white">
-    <mono>form</mono>
-  </td>
-  <td bgcolor="white">
-    Formula specifying features and criterion.
-  </td>
-</tr>
-<tr>
-  <td>
-    <mono>data</mono>
-  </td>
-  <td>
-    Training data.
-  </td>
-</tr>
-<tr>
-  <td bgcolor="white">
-    <mono>method</mono>
-  </td>
-  <td bgcolor="white">
-    The model (algorithm). 
-  </td>
-</tr>
-<tr>
-  <td>
-    <mono>trControl</mono>
-  </td>
-  <td bgcolor="white">
-    Control parameters for fitting.
-  </td>
-</tr>
-<tr>
-  <td bgcolor="white">
-    <mono>tuneGrid</mono>, <mono>preProcess</mono>
-  </td>
-  <td bgcolor="white">
-    Cool stuff for later.
-  </td>
-</tr>
-</table>
-
-]
-
-
-.pull-right5[
-```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
-# Fit a regression model predicting Price
-
-income_mod <- 
-  train(form = income ~ ., # Formula
-        data = baselers,   # Training data
-        method = "glm",    # Regression
-        trControl = ctrl)  # Control Param's
-income_mod
-```
-
-
-]
-
-
----
-
-# `train()`
-
-.pull-left4[
-
+To set up a <mono>recipe</mono>:
 <ul>
-  <li class="m1"><span><mono>train()</mono> is the <high>fitting workhorse</high> of <mono>caret</mono>, offering you <high>200+ models</high> by merely changing the <high>method</high> argument!.</span></li>
+  <li class="m1"><span>Initialize it with <mono>recipe()</mono>, wherein the formula and data are specified.</span></li>
+  <li class="m2"><span>Add pre-processing steps, using <mono>step_*()</mono> functions and <mono>dplyr</mono>-like selectors.</span></li>
 </ul>
-
-<br>
-
-<table style="cellspacing:0; cellpadding:0; border:none;">
-<tr>
-  <td>
-  <b>Argument</b>
-  </td>
-  <td>
-    <b>Description</b>
-  </td>
-</tr>
-<tr>
-  <td bgcolor="white">
-    <mono>form</mono>
-  </td>
-  <td bgcolor="white">
-    Formula specifying features and criterion.
-  </td>
-</tr>
-<tr>
-  <td>
-    <mono>data</mono>
-  </td>
-  <td>
-    Training data.
-  </td>
-</tr>
-<tr>
-  <td bgcolor="white">
-    <mono>method</mono>
-  </td>
-  <td bgcolor="white">
-    The model (algorithm). 
-  </td>
-</tr>
-<tr>
-  <td>
-    <mono>trControl</mono>
-  </td>
-  <td bgcolor="white">
-    Control parameters for fitting.
-  </td>
-</tr>
-<tr>
-  <td bgcolor="white">
-    <mono>tuneGrid</mono>, <mono>preProcess</mono>
-  </td>
-  <td bgcolor="white">
-    Cool stuff for later.
-  </td>
-</tr>
-</table>
-
 ]
 
-
-.pull-right5[
+.pull-right45[
 
 ```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
-# Fit a random forest predicting Price
+# set up recipe for regression model
+lm_recipe <- 
+  recipe(income ~ ., data = baselers) %>% 
+  step_dummy(all_nominal_predictors())
 
-income_mod <- 
-  train(form = income ~ .,# Formula
-        data = baselers,  # Training data
-        method = "rf",    # Random Forest
-        trControl = ctrl) # Control Param's
-income_mod
+lm_recipe
 ```
-
-]
-
-
----
-
-.pull-left4[
-
-# `train()`
-
-<ul>
-  <li class="m1"><span><mono>train()</mono> is the <high>fitting workhorse</high> of <mono>caret</mono>, offering you <high>200+ models</high> by merely changing the <high>method</high> argument!.</span></li>
-  <li class="m2"><span>Find all 200+ models <a href="http://topepo.github.io/caret/available-models.html">here</a>.</span></li>
-</ul>
-
-]
-
-
-.pull-right5[
-
-<br><br>
-
-<iframe width="600" height="480" src="https://topepo.github.io/caret/available-models.html" frameborder="0"></iframe>
-
 
 ]
 
 ---
 
-# `train()`
-
-.pull-left4[
-
-<ul style="margin-bottom:-20px">
-  <li class="m1"><span>The criterion must be the right type:
-  <br><br>
-  <ul class="level">
-    <li><span><high><mono>numeric</mono></high> criterion &rarr; <high>Regression</high><br></span></li>
-    <li><span><high><mono>factor</mono></high> criterion &rarr; <high>Classification</high><br></span></li>
-  </ul>
-  </span></li>
-</ul>
-
-<br>
-
-```{r, echo = FALSE}
-Loans <- tibble::tibble(Default = c(0, 1, 0, 1, 1),
-              Age = c(45, 36, 76, 25, 36),
-             Gender = c("M", "F", "F", "M", "F"),
-             Cards = c(3, 2, 5, 2, 3),
-             Education = c(11, 14, 12, 17, 12)
-             )
-
-Loans
-```
-
-]
-
-.pull-right5[
-
-```{r, eval = FALSE}
-# Will be a regression task 
-
-loan_mod <- train(form = Default ~ .,
-                  data = Loans,
-                  method = "glm",
-                  trControl = ctrl)
-
-# Will be a classification task
-
-load_mod <- train(form = factor(Default) ~ .,
-                  data = Loans,
-                  method = "glm",
-                  trControl = ctrl)
-```
-
-]
-
-
----
-
-# <mono>mod$finalModel</mono>
-
-.pull-left4[
-
-<ul>
-  <li class="m1"><span>The <mono>train()</mono> function returns a <mono>list</mono> with an object called <mono>finalModel</mono> - this is your <high>fitted machine learning model</high>!</span></li>
-  <li class="m2"><span><high>Access</high> the model with <mono>mod$finalModel<mono> and <high>explore</high> the object with generic functions.</span></li>
-</ul>
-
-<br>
-
-<table style="cellspacing:0; cellpadding:0; border:none;">
-<tr>
-  <td>
-  <b>Function</b>
-  </td>
-  <td>
-    <b>Description</b>
-  </td>
-</tr>
-<tr>
-  <td bgcolor="white">
-    <mono>summary()</mono>
-  </td>
-  <td bgcolor="white">
-    <high>Overview</high> of the most important results.
-  </td>
-</tr>
-<tr>
-  <td bgcolor="white">
-    <mono>names()</mono>
-  </td>
-  <td bgcolor="white">
-    See all <high>named elements</high> you can access with $.
-  </td>
-</tr>
-</table>
-
-]
-
-.pull-right5[
-
-```{r, eval = FALSE, echo = TRUE}
-# Create a regression object
-income_mod <- 
-  train(form = income ~ age + height,
-        data = baselers)  # Training data
-
-# Look at all named outputs
-names(income_mod$finalModel)
-```
-
-```{r, eval = TRUE, echo = FALSE}
-income_mod <- train(form = income ~ age + height, # Formula
-             data = baselers,   # Training data
-             method = "glm",    # Regression
-             trControl = ctrl)  # Control Parameters
-```
-
-```{r, echo =F}
-options(width=60, max.print=6)
-
-# Look at all named outputs
-names(income_mod$finalModel)
-```
-
-```{r, eval = F}
-# Access specific outputs
-income_mod$finalModel$coefficients
-```
-
-```{r, echo =F}
-# Access specific outputs
-income_mod$finalModel$coefficients
-options(width=104, max.print=1000)
-```
-
-]
-
-
-
----
-
-# `predict()`
+# Step 2: Define the model
 
 .pull-left45[
 
+The model specifies: 
 <ul>
-  <li class="m1"><span>The <mono>predict()</mono> function <high>produces predictions</high> from a model. Simply put model object as the first argument.</span></li>
+  <li class="m1"><span>Which model (e.g. linear regression) to use.</span></li>
+  <li class="m2"><span>Which engine (underlying model-fitting algorithm) to use.</span></li>
+  <li class="m3"><span>The problem mode, i.e., <high>regression vs. classification</high>.</span></li>
 </ul>
 
 <br>
 
-```{r}
-# Get fitted values
-glm_fits <- predict(object = income_mod)
-glm_fits[1:8]
-```
-
+To set up a model:
+<ul>
+  <li class="m1"><span>Specify the model, e.g., using <mono>linear_reg()</mono> or <mono>logistic_reg()</mono>.</span></li>
+  <li class="m2"><span>Specify the engine using <mono>set_engine()</mono>.</span></li>
+  <li class="m3"><span>Specify the problem mode using <mono>set_mode()</mono>.</span></li>
+</ul>
 ]
 
 .pull-right45[
 
+```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
+# set up model for regression model
+lm_model <- 
+  linear_reg() %>% 
+  set_engine("lm") %>% 
+  set_mode("regression")
 
-```{r, echo = FALSE, fig.width = 3, fig.height = 3, dpi = 200, out.width = "90%"}
-great_err + labs(title=element_blank(),subtitle = element_blank())
+lm_model
 ```
 
 ]
 
 ---
 
-# `postResample()`
+# Step 3: Define the <mono>workflow</mono>
 
 .pull-left45[
 
+A <mono>workflow</mono> combines the recipe and model and facilitates fitting the model. 
+To set up a <mono>workflow</mono>:
 <ul>
-  <li class="m1"><span>The <nono>postResample()</nono> function <high>gives a simple summary</high> of a models' performance in a <high>regression task</high>. Simply put the predicted values and the true values inside the function.</span></li>
+  <li class="m1"><span>Initialize it using the <mono>workflow()</mono> function.</span></li>
+  <li class="m2"><span>Add a recipe using <mono>add_recipe()</mono>.</span></li>
+  <li class="m3"><span>Add a model using <mono>add_model()</mono>.</span></li>
 </ul>
-
-<br>
-
-```{r}
-# evaluate
-postResample(glm_fits,
-             baselers$income)
-```
-
 ]
 
 .pull-right45[
 
-```{r, echo = FALSE, fig.width = 3, fig.height = 3, dpi = 200, out.width = "90%"}
-great_err + labs(title=element_blank(),subtitle = element_blank())
+```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
+# set up workflow for regression model
+lm_workflow <- 
+  workflow() %>% 
+  add_recipe(lm_recipe) %>% 
+  add_model(lm_model)
+
+lm_workflow
 ```
 
 ]
 
 ---
 
-.pull-left5[
+# Step 4: Fit the <mono>workflow</mono>
 
-<p style="padding-top:10px"></p>
+.pull-left35[
 
-## `confusionMatrix()`
-
-<p style="padding-top:10px"></p>
-
+A <mono>workflow</mono> is fitted using the <mono>fit()</mono> function. This will:
 <ul>
-  <li class="m1"><span>The <nono>confusionMatrix()</nono> does the same for a models' performance in a <high>classification task</high>. Simply put the predicted values and the true values inside the function..</span></li>
+  <li class="m1"><span>Apply the recipe with the pre-processing steps.</span></li>
+  <li class="m2"><span>Run the specified algorithm (i.e., model).</span></li>
 </ul>
+]
 
+.pull-right55[
 
+```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
+# fit the workflow
+income_lm <- fit(lm_workflow,
+                 data = baselers)
 
-```{r, eval = F}
-# eyecor to factor
-baselers$eyecor <- factor(baselers$eyecor)
-
-# run glm model for classification
-eyecor_mod <- 
-  train(form = eyecor ~ age + height,
-        data = baselers,   
-        method = "glm",   
-        trControl = ctrl) 
-
-# evaluate
-confusionMatrix(predict(eyecor_mod), 
-                baselers$eyecor)
-```
-
-```{r, echo = F}
-# eyecor to factor
-baselers$eyecor <- factor(baselers$eyecor)
-
-# run glm model for classification
-eyecor_mod <- 
-  train(form = eyecor ~ age + height,
-        data = baselers,   # Training data
-        method = "glm",    # Regression
-        trControl = ctrl)  # Control Parameters
-
-# evaluate
-res = confusionMatrix(predict(eyecor_mod), 
-                baselers$eyecor)
+tidy(income_lm)
 ```
 
 ]
 
-.pull-right4[
+---
 
-<br>
+# Step 5: Assess model fit
 
-```{r, echo  = F}
-res
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>Use <mono>predict()</mono> to obtain model predictions on specified data.</span></li>
+  <li class="m2"><span>Use <mono>metrics()</mono> to obtain performance metrics, suited for the current problem mode.</span></li>
+</ul>
+]
+
+.pull-right45[
+
+```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
+# generate predictions
+lm_pred <-
+  income_lm %>% 
+  predict(baselers) %>% 
+  bind_cols(baselers %>% select(income))
+
+metrics(lm_pred, truth = income,
+        estimate = .pred)
 ```
 
+]
+
+---
+
+# Logistic regression model example
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>Define the <mono>recipe</mono>.</span></li>
+  <li class="m2"><span>Define the model.</span></li>
+  <li class="m3"><span>Define the <mono>workflow</mono>.</span></li>
+  <li class="m4"><span>Fit the <mono>workflow</mono>.</span></li>
+  <li class="m5"><span>Assess model performance.</span></li>
+</ul>
+]
+
+.pull-right45[
+
+```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
+# generate predictions
+lm_pred <-
+  income_lm %>% 
+  predict(baselers) %>% 
+  bind_cols(baselers %>% select(income))
+
+metrics(lm_pred, truth = income,
+        estimate = .pred)
+```
+
+]
+
+---
+
+# Logistic regression model example
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span><high>Define the <mono>recipe</mono>.</high></span></li>
+  <li class="m2"><span>Define the model.</span></li>
+  <li class="m3"><span>Define the <mono>workflow</mono>.</span></li>
+  <li class="m4"><span>Fit the <mono>workflow</mono>.</span></li>
+  <li class="m5"><span>Assess model performance.</span></li>
+</ul>
+]
+
+.pull-right45[
+
+```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
+logistic_recipe <- 
+  recipe(eyecor ~., data = baselers) %>% 
+  step_dummy(all_nominal_predictors())
+```
+
+]
+
+---
+
+# Logistic regression model example
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>Define the <mono>recipe</mono>.</span></li>
+  <li class="m2"><span><high>Define the model.</high></span></li>
+  <li class="m3"><span>Define the <mono>workflow</mono>.</span></li>
+  <li class="m4"><span>Fit the <mono>workflow</mono>.</span></li>
+  <li class="m5"><span>Assess model performance.</span></li>
+</ul>
+]
+
+.pull-right45[
+
+```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
+logistic_model <- 
+  logistic_reg() %>% 
+  set_engine("glm") %>% 
+  set_mode("classification")
+```
+
+]
+
+---
+
+# Logistic regression model example
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>Define the <mono>recipe</mono>.</span></li>
+  <li class="m2"><span>Define the model.</span></li>
+  <li class="m3"><span><high>Define the <mono>workflow</mono>.</high></span></li>
+  <li class="m4"><span>Fit the <mono>workflow</mono>.</span></li>
+  <li class="m5"><span>Assess model performance.</span></li>
+</ul>
+]
+
+.pull-right45[
+
+```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
+logistic_workflow <- 
+  workflow() %>% 
+  add_recipe(logistic_recipe) %>% 
+  add_model(logistic_model)
+```
+
+]
+
+---
+
+# Logistic regression model example
+
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>Define the <mono>recipe</mono>.</span></li>
+  <li class="m2"><span>Define the model.</span></li>
+  <li class="m3"><span>Define the <mono>workflow</mono>.</span></li>
+  <li class="m4"><span><high>Fit the <mono>workflow</mono>.</high></span></li>
+  <li class="m5"><span>Assess model performance.</span></li>
+</ul>
+]
+
+.pull-right45[
+
+```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
+eyecor_glm <- fit(logistic_workflow,
+                  data = baselers)
+```
+
+]
+
+---
+
+# Logistic regression model example
+
+.pull-left4[
+
+<ul>
+  <li class="m1"><span>Define the <mono>recipe</mono>.</span></li>
+  <li class="m2"><span>Define the model.</span></li>
+  <li class="m3"><span>Define the <mono>workflow</mono>.</span></li>
+  <li class="m4"><span>Fit the <mono>workflow</mono>.</span></li>
+  <li class="m5"><span><high>Assess model performance.</high></span></li>
+</ul>
+]
+
+.pull-right5[
+
+```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
+logistic_pred <- 
+  predict(eyecor_glm, baselers,
+          type = "prob") %>% 
+  bind_cols(predict(eyecor_glm, baselers)) %>% 
+  bind_cols(baselers %>% select(eyecor))
+
+metrics(logistic_pred, truth = eyecor,
+        estimate = .pred_class, .pred_yes)
+```
+
+]
+
+---
+
+# Logistic regression model example
+
+.pull-left4[
+
+<ul>
+  <li class="m1"><span>Define the <mono>recipe</mono>.</span></li>
+  <li class="m2"><span>Define the model.</span></li>
+  <li class="m3"><span>Define the <mono>workflow</mono>.</span></li>
+  <li class="m4"><span>Fit the <mono>workflow</mono>.</span></li>
+  <li class="m5"><span><high>Assess model performance.</high></span></li>
+</ul>
+]
+
+.pull-right5[
+
+```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE, fig.height = 4, dpi = 300}
+logistic_pred %>% 
+  roc_curve(truth = eyecor, .pred_yes) %>% 
+  autoplot()
+```
 
 ]
 
@@ -1358,6 +1157,6 @@ res
 
 class: middle, center
 
-<h1><a href=https://therbootcamp.github.io/AML_2020AMLD/_sessions/Fitting/Fitting_practical.html>Practical</a></h1>
+<h1><a href=https://therbootcamp.github.io/AML_2021AMLD/_sessions/Fitting/Fitting_practical.html>Practical</a></h1>
 
 

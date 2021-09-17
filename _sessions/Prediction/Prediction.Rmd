@@ -5,7 +5,7 @@ author: "Applied Machine Learning with R<br>
     The R Bootcamp @ AMLD
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/AML_2020AMLD/'>
+  <a href='https://therbootcamp.github.io/AML_2021AMLD/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "Applied Machine Learning with R<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "January 2020"
+date: "November 2021"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-      Applied Machine Learning with R @ AMLD  | January 2020
+      Applied Machine Learning with R @ AMLD  | November 2021
       </font>
     </a>
     </span>
@@ -68,14 +68,16 @@ options(digits = 4)
 source("https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/_materials/code/baselrbootcamp_palettes.R")
 
 
-baselers <- read_csv("1_Data/baselers.csv")
+baselers <- read_csv("1_Data/baselers.csv") %>% 
+  mutate(eyecor = factor(eyecor, levels = c("yes", "no")))
 ```
 
 ```{r, echo = FALSE ,message = FALSE, warning = FALSE}
 knitr::opts_chunk$set(comment=NA, fig.width=6, fig.height=6, echo = TRUE, eval = TRUE, 
                       message = FALSE, warning = FALSE, fig.align = 'center', dpi = 200)
 library(tidyverse)
-library(caret)
+library(tidymodels)
+tidymodels_prefer()
 library(ggthemes)
 library(knitr)
 
@@ -450,13 +452,13 @@ $$\large SSE = \sum_{i \in S_1}(y_i - \bar{y}_1)^2+\sum_{i \in S_2}(y_i - \bar{y
 
 ---
 
-# CART in <mono>caret</mono>
+# CART in <mono>tidymodels</mono>
 
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Fit <high>decision trees</high> in <mono>caret</mono> using <mono>method = "rpart"</mono>.</span></li>
-  <li class="m2"><span><mono>caret</mono> will <high>choose automatically</high> whether to use classification or regression trees depending on whether the criterion is a <mono>factor</mono> or not.</span></li>
+  <li class="m1"><span>Fit <high>decision trees</high> in <mono>tidymodels</mono> using <mono>decision_tree()</mono> in the model definition.</span></li>
+  <li class="m2"><span>Set the engine to <mono>rpart</mono>.</span></li>
 </ul>
 
 ]
@@ -464,19 +466,18 @@ $$\large SSE = \sum_{i \in S_1}(y_i - \bar{y}_1)^2+\sum_{i \in S_2}(y_i - \bar{y
 .pull-right45[
 
 ```{r, eval = FALSE}
-# Fit a decision tree predicting default
 
-train(form = default ~ .,
-      data = Loans,
-      method = "rpart", # Decision Tree
-      trControl = ctrl)
+# specify a CART in regression mode
+dt_model <- 
+  decision_tree() %>% 
+  set_engine("rpart") %>% 
+  set_mode("regression")
 
-# Fit a decision tree predicting income
-
-train(form = income ~ .,
-      data = baselers,
-      method = "rpart", # Decision Tree
-      trControl = ctrl)
+# specify a CART in classification mode
+dt_model <- 
+  decision_tree() %>% 
+  set_engine("rpart") %>% 
+  set_mode("classification")
 
 ```
 
@@ -589,37 +590,62 @@ class: center, middle
 ---
 
 
-# Random forests in <mono>caret</mono>
+# Random forests in <mono>tidymodels</mono>
 
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Fit <high>decision trees</high> in <mono>caret</mono> using <mono>method = "rf"</mono>.</span></li><br>
-  <li class="m2"><span>Just like CART, random forests can be used for <high>classification or regression</high>.</span></li><br>
-  <li class="m3"><span><mono>caret</mono> will <high>choose automatically</high> whether to use classification or regression trees depending on whether the crition is a <mono>factor</mono> or not.</span></li>
+  <li class="m1"><span>Fit <high>random forests</high> in <mono>tidymodels</mono> using <mono>rand_forest()</mono> in the model definition.</span></li>
+  <li class="m2"><span>Set the engine to, e.g., <mono>ranger</mono>.</span></li>
+</ul>
+
+]
+
+.pull-right5[
+
+```{r, eval = FALSE}
+# specify a random forest in regression
+# mode
+rf_model <- 
+  rand_forest() %>% 
+  set_engine("ranger") %>% 
+  set_mode("regression")
+
+# specify a random forest in classification
+# mode
+rf_model <- 
+  rand_forest() %>% 
+  set_engine("ranger") %>% 
+  set_mode("classification")
+
+```
+
+
+]
+
+
+
+---
+
+
+
+# Random forest engines in <mono>tidymodels</mono>
+
+.pull-left4[
+
+<ul>
+  <li class="m1"><span>Show all available engines with <mono>show_engines("rand_forest")</mono>.</span></li>
 </ul>
 
 ]
 
 .pull-right45[
 
-```{r, eval = FALSE}
-# Fit a decision tree predicting default
 
-train(form = default ~ .,
-      data = Loans,
-      method = "rf", # Decision Tree
-      trControl = ctrl)
-
-# Fit a decision tree predicting income
-
-train(form = income ~ .,
-      data = baselers,
-      method = "rf", # Decision Tree
-      trControl = ctrl)
-
+```{r eval=T, echo=T}
+# show possible engines
+show_engines("rand_forest")
 ```
-
 
 ]
 
@@ -630,27 +656,22 @@ class: center,  middle
 
 <br><br>
 
-# Evaluating model predictions with <mono>caret</mono>
+# Evaluating model predictions with <mono>tidymodels</mono>
 
-```{r, echo = FALSE, out.width = "70%"}
-knitr::include_graphics("https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png")
+```{r, echo = FALSE, out.width = "30%"}
+knitr::include_graphics("image/tidymodels.svg")
 ```
 
-
-```{r, echo = FALSE}
-library(caret)
-data(cars)
-```
 
 
 ---
 
-# <mono>createDataPartition()</mono>
+# Split data into training and test set
 
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>Use <mono>createDataPartition()</mono> to <high>split a dataset</high> into separate training and test datasets.</span></li>
+  <li class="m1"><span>Use <mono>initial_split()</mono> to <high>split a dataset</high> into separate training and test datasets.</span></li>
 </ul>
 
 <br>
@@ -668,18 +689,26 @@ data(cars)
 </tr>
 <tr>
   <td bgcolor="white">
-    <mono>y</mono>
+    <mono>data</mono>
   </td>
   <td bgcolor="white">
-    The criterion. Used to create a <high>balanced split</high>.  
+    The dataset. Used to create a <high>balanced split</high>.  
   </td>  
 </tr>
 <tr>
   <td bgcolor="white">
-    <mono>p</mono>
+    <mono>prop</mono>
   </td>
   <td bgcolor="white">
-    The <high>proportion of data</high> going into the training set. Often <mono>.8</mono> or <mono>.5</mono>.    
+    The <high>proportion of data</high> going into the training set. Often <mono>.75</mono> (default) or <mono>.5</mono>.    
+  </td>  
+</tr>
+<tr>
+  <td bgcolor="white">
+    <mono>strata</mono>
+  </td>
+  <td bgcolor="white">
+    The criterion or another stratification variable. Used to create a <high>balanced split</high>.     
   </td>  
 </tr>
 </table>
@@ -689,24 +718,19 @@ data(cars)
 
 .pull-right5[
 
-```{r, eval = FALSE, echo = TRUE}
-# Set the randomisation seed to get the 
-#  same results each time
-set.seed(100)
+```{r, eval = T, echo = TRUE}
 
-# Get indices for training
-index <- 
-  createDataPartition(y = baselers$income,
-                             p = .8,
-                             list = FALSE)
+# Get initial split
+baselers_split <-
+  initial_split(baselers,
+                prop = .8,
+                strata = income)
 
 # Create training data
-baselers_train <- baselers %>% 
-  slice(index)
+baselers_train <- training(baselers_split)
 
 # Create test data
-baselers_test <- baselers %>% 
-  slice(-index)
+baselers_test <- testing(baselers_split)
 ```
 
 
@@ -722,7 +746,7 @@ baselers_test <- baselers %>%
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>To <high>test model predictions</high> with <mono>caret</mono>, all you need to do is get a vector of predictions from a new dataframe <mono>newdata</mono> using the <mono>predict()</mono> function.</span></li>
+  <li class="m1"><span>To <high>test model predictions</high> with <mono>tidymodels</mono>, all you need to do is get a vector of predictions from a new dataframe <mono>newdata</mono> using the <mono>predict()</mono> function.</span></li>
 </ul>
 
 <br>
@@ -743,7 +767,7 @@ baselers_test <- baselers %>%
     <mono>object</mono>
   </td>
   <td bgcolor="white">
-    <mono>caret</mono> fit object.  
+    <mono>tidymodels</mono> fit object.  
   </td>  
 </tr>
 <tr>
@@ -760,22 +784,86 @@ baselers_test <- baselers %>%
 
 .pull-right5[
 
-```{r, eval = FALSE}
-# Fit model to training data
-mod <- train(form = income ~ .,
-             method = "glm",
-             data = baselers_train)
+```{r, eval = T}
+# fit regression model
 
-# Get fitted values (for training data)
-mod_fit <- predict(mod)
+lm_recipe <- 
+  recipe(income ~ ., data = baselers_train) %>% 
+  step_dummy(all_nominal_predictors())
 
-# Predictions for NEW data_test data!
-mod_pred <- predict(mod, 
-                    newdata = baselers_test)
+lm_model <- 
+  linear_reg() %>% 
+  set_engine("lm") %>% 
+  set_mode("regression")
 
-# Evaluate prediction results
-postResample(pred = mod_pred, 
-             obs = baselers_test$income)
+lm_workflow <- 
+  workflow() %>% 
+  add_recipe(lm_recipe) %>% 
+  add_model(lm_model)
+
+income_lm <- fit(lm_workflow,
+                 data = baselers_train)
+
+```
+
+]
+
+
+---
+
+# <mono>predict(, newdata)</mono>
+
+.pull-left4[
+
+<ul>
+  <li class="m1"><span>To <high>test model predictions</high> with <mono>tidymodels</mono>, all you need to do is get a vector of predictions from a new dataframe <mono>newdata</mono> using the <mono>predict()</mono> function.</span></li>
+</ul>
+
+<br>
+
+<table style="cellspacing:0; cellpadding:0; border:none;">
+  <col width="30%">
+  <col width="70%">
+<tr>
+  <td bgcolor="white">
+    <b>Argument</b>
+  </td>
+  <td bgcolor="white">
+    <b>Description</b>
+  </td>  
+</tr>
+<tr>
+  <td bgcolor="white">
+    <mono>object</mono>
+  </td>
+  <td bgcolor="white">
+    <mono>tidymodels</mono> fit object.  
+  </td>  
+</tr>
+<tr>
+  <td bgcolor="white">
+    <mono>newdata</mono>
+  </td>
+  <td bgcolor="white">
+    Test data sest. Must contain same features as provided in <mono>object</mono>.    
+  </td>  
+</tr>
+</table>
+
+]
+
+.pull-right5[
+
+```{r, eval = T}
+
+# generate out-of-sample predictions
+lm_pred <-
+  income_lm %>% 
+  predict(baselers_test) %>% 
+  bind_cols(baselers_test %>% select(income))
+
+metrics(lm_pred, truth = income,
+        estimate = .pred)
 ```
 
 ]
@@ -784,7 +872,7 @@ postResample(pred = mod_pred,
 ---
 class: middle, center
 
-<h1><a href=https://therbootcamp.github.io/AML_2020AMLD/_sessions/Prediction/Prediction_practical.html>Practical</a></h1>
+<h1><a href=https://therbootcamp.github.io/AML_2021AMLD/_sessions/Prediction/Prediction_practical.html>Practical</a></h1>
 
 
 

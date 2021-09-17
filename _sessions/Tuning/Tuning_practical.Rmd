@@ -103,7 +103,7 @@ airbnb <- read_csv(file = "1_Data/airbnb.csv")
 1. Create an initial split of the data, where you allocate only 50% of the data to the training set (usually this proportion is higher, but then model fitting takes ages) and where you stratify for the `price` variable. Save it as `airbnb_split`
 
 ```{r}
-airbnb_split <- initial_split(airbnb, stata = price, prop = .5)
+airbnb_split <- initial_split(airbnb, stata = price, prop = .75)
 ```
 
 2. Using the `training()` function, create a training set and call it `airbnb_train`.
@@ -132,61 +132,36 @@ airbnb_folds <- XXX(XXX, XXX = XXX)
 airbnb_folds <- vfold_cv(airbnb_train, v = 10) 
 ```
 
-2. Use `control_resamples()` to set up the info for our resampling function such that it will save the predictions and the workflow. To do so, set the `save_pred` and `save_workflow` arguments to `TRUE`. Call the output `keep_pred`.
+2. To speed up the model tuning afterwards, execute the following code (this will parallelize the tuning process).
 
-```{r, eval = FALSE, echo = TRUE}
-XXX <- XXX(XXX = XXX, XXX = XXX)
+```{r echo=TRUE}
+doParallel::registerDoParallel()
 ```
-
-
-```{r}
-keep_pred <- control_resamples(save_pred = TRUE, save_workflow = TRUE)
-```
-
 
 
 ### D - Regression (standard)
 
 
-1. Define a recipe called `lm_recipe` by calling the `recipe()` function. Use all available predictors by setting the formula to `price ~ .` and use the `airbnb_train` data. Also, add a pipe (`%>%`) and `step_dummy(all_nominal_predictors())` to dummy-code all categorical predictors.
+1. Fit a standard regression model on the training data. By now you know how to do that =)
 
 ```{r}
 # create recipe
 lm_recipe <- 
   recipe(price ~ ., data = airbnb_train) %>% 
   step_dummy(all_nominal_predictors())
-```
 
-2. Create a regression model using the `lm` engine and the regression mode.
-
-```{r}
 # set up the regression model
 lm_model <- 
   linear_reg() %>% 
   set_engine("lm") %>% 
   set_mode("regression")
-```
 
-3. Create a workflow called `lm_workflow` using `workflow()` and add the `lm_recipe` and `lm_model` objects.
-
-```{r}
 # lm workflow 
 lm_workflow <- 
   workflow() %>% 
   add_recipe(lm_recipe) %>% 
   add_model(lm_model)
-```
 
-4. Fit the model on the training data. Here, using resampling doesn't make any sense, as we are not tuning any parameters. Use the `fit()` function that you already know from previous practicals and save the output as `lm_res`. We will compare the model performances afterwards.
-
-```{r, eval = FALSE, echo = TRUE}
-# Fit the regression model
-XXX <-
-  XXX %>% 
-  XXX(XXX, XXX = XXX, XXX = XXX)
-```
-
-```{r}
 # Fit the regression model using resampling
 lm_res <-
   lm_workflow %>% 
@@ -195,7 +170,7 @@ lm_res <-
 
 ### E - Ridge Regression
 
-1. Define a recipe called `ridge_recipe`. Use the same recipe as with the regression above (`lm_recipe`), but add an additional pre-processing step: `step_normalize(all_numeric_predictors())`. This is to ensure that all parameters are penalized equally.
+1. Define a recipe called `ridge_recipe`. Use the same recipe as with the regression above (`lm_recipe`).
 
 ```{r}
 # create recipe
@@ -206,7 +181,19 @@ ridge_recipe <-
   
 ```
 
-2. Create a ridge regression model, again using the `linear_reg()` model, but this time with the  `glmnet` engine. Within `linear_reg()`, set the argument `mixture` to 0 and `penalty` to `tune()`. Save the output as `ridge_model`
+
+2. To ensure that all parameters are penalized equally, let's add an additional pre-processing step: `step_normalize(all_numeric_predictors())`. Add this step to the `ridge_recipe`.
+
+```{r}
+# create recipe
+ridge_recipe <- 
+  recipe(price ~ ., data = airbnb_train) %>% 
+  step_dummy(all_nominal_predictors()) %>% 
+  step_normalize(all_numeric_predictors())
+  
+```
+
+3. Create a ridge regression model, again using the `linear_reg()` model, but this time with the  `glmnet` engine. Within `linear_reg()`, set the argument `mixture` to 0 and `penalty` to `tune()`. Save the output as `ridge_model`
 
 ```{r, eval = FALSE, echo = TRUE}
 # set up the ridge regression model
@@ -224,7 +211,7 @@ ridge_model <-
   set_mode("regression")
 ```
 
-3. Create a workflow called `ridge_workflow` using `workflow()` and add the `ridge_recipe` and `ridge_model` objects.
+4. Create a workflow called `ridge_workflow` using `workflow()` and add the `ridge_recipe` and `ridge_model` objects.
 
 ```{r}
 # ridge workflow 
@@ -234,7 +221,7 @@ ridge_workflow <-
   add_model(ridge_model)
 ```
 
-4. Set up a grid of tuning parameters. Here we only have one parameter `penalty`. Use `grid_regular()` to do so, and pass it `penalty()` as first argument and `levels = 50`as second argument. Call it `penalty_grid`.
+5. Set up a grid of tuning parameters. Here we only have one parameter `penalty`. Use `grid_regular()` to do so, and pass it `penalty()` as first argument and `levels = 50`as second argument. Call it `penalty_grid`.
 
 ```{r, eval = FALSE, echo = TRUE}
 XXX <- XXX(XXX, XXX = XXX)
@@ -245,7 +232,7 @@ penalty_grid <- grid_regular(penalty(), levels = 50)
 ```
 
 
-5. Tune the model on the training data. To do so using our resampling scheme, use the `tune_grid()` function instead of the `fit()` or `fit_resamples()` function. Pass it the defined workflow as first argument and set the `resamples` argument to `airbnb_folds`, and the `grid` argument to `penalty_grid`. Save the output as `ridge_grid`.
+6. Tune the model on the training data. To do so using our resampling scheme, use the `tune_grid()` function instead of the `fit()` or `fit_resamples()` function. Pass it the defined workflow as first argument and set the `resamples` argument to `airbnb_folds`, and the `grid` argument to `penalty_grid`. Save the output as `ridge_grid`.
 
 
 ```{r}
@@ -257,39 +244,33 @@ ridge_grid <-
 
 ```
 
-6. Use `collect_metrics()` to evaluate the cross-validation performance of the model across the different values of the penalty parameter.
+7. Use `collect_metrics()` to evaluate the cross-validation performance of the model across the different values of the penalty parameter.
 
 ```{r}
 collect_metrics(ridge_res)
 
 ```
 
-7. OK, that's kind of hard to interpret, given that we'd have to scan 100 rows. Instead, let's plot the `penalty` value on the x axis, and the performance metrics on the y axis. Use the code below to do so.
+8. OK, that's kind of hard to interpret, given that we'd have to scan 100 rows. Instead, let's plot the `penalty` value on the x axis, and the performance metrics on the y axis. Use the code below to do so.
 
 ```{r echo=TRUE}
 ridge_grid %>%
   collect_metrics() %>%
   ggplot(aes(penalty, mean, color = .metric)) +
-  geom_errorbar(aes(
-    ymin = mean - std_err,
-    ymax = mean + std_err
-  ),
-  alpha = 0.5
-  ) +
   geom_line(size = 1.5) +
   facet_wrap(~.metric, scales = "free", nrow = 2) +
   scale_x_log10() +
   theme(legend.position = "none")
 ```
 
-8. Hm, the tuning did not seem to have a large effect. But the maximum penalty value automatically chosen by the `grid_regular` function was only 1. Specify your own grid of parameter values and repeat steps 5 to 7 above.
+9. Hm, the tuning did not seem to have a large effect. But the maximum penalty value automatically chosen by the `grid_regular` function was only 1. Specify your own grid of parameter values and repeat steps 5 to 7 above.
 
 ```{r, eval = FALSE, echo = TRUE}
-penalty_grid <- tibble(penalty = 10 ^ (seq(-4, 5, length = 150)))
+penalty_grid <- tibble(penalty = seq(0, 50, length.out = 200))
 ```
 
 ```{r}
-penalty_grid <- tibble(penalty = 10 ^ (seq(-4, 5, length = 150)))
+penalty_grid <- tibble(penalty = seq(0, 50, length.out = 200))
 
 # step 5
 ridge_grid <-
@@ -298,25 +279,18 @@ ridge_grid <-
             grid = penalty_grid)
 
 # step 6
-collect_metrics(ridge_res)
+collect_metrics(ridge_grid)
 
 # step 7
 ridge_grid %>%
   collect_metrics() %>%
   ggplot(aes(penalty, mean, color = .metric)) +
-  geom_errorbar(aes(
-    ymin = mean - std_err,
-    ymax = mean + std_err
-  ),
-  alpha = 0.5
-  ) +
   geom_line(size = 1.5) +
   facet_wrap(~.metric, scales = "free", nrow = 2) +
-  scale_x_log10() +
   theme(legend.position = "none")
 ```
 
-9. Now we see a drop in the RMSE at higher `penalty` values. Select the best `penalty` value by passing `ridge_grid` into the `select_best()` function and save the output as `best_ridge`.
+10. Now we see a drop in the RMSE at higher `penalty` values. Select the best `penalty` value by passing `ridge_grid` into the `select_best()` function and save the output as `best_ridge`.
 
 
 ```{r, eval = FALSE, echo = TRUE}
@@ -327,7 +301,7 @@ XXX <- XXX(XXX, "rmse")
 best_ridge <- select_best(ridge_grid, "rmse")
 ```
 
-10. Now let's finalize our workflow using the `finalize_workflow()` function. Pass it the `ridge_workflow` and the `best_ridge` objects as first and second arguments. Save the output as `final_ridge`.
+11. Now let's finalize our workflow using the `finalize_workflow()` function. Pass it the `ridge_workflow` and the `best_ridge` objects as first and second arguments. Save the output as `final_ridge`.
 
 
 ```{r}
@@ -336,19 +310,19 @@ final_ridge <-
   finalize_workflow(best_ridge)
 ```
 
-11. Now we can fit the model using the final workflow. Use the `fit()` function to this end, by passing it the `final_ridge` workflow and `airbnb_train`. Save the output as `ridge_res`.
+12. Now we can fit the model using the final workflow. Use the `fit()` function to this end, by passing it the `final_ridge` workflow and `airbnb_train`. Save the output as `ridge_res`.
 
 ```{r}
 ridge_res <- fit(final_ridge, airbnb_train) 
 ```
 
-12. Use the `tidy()` function to look at the parameter values of `ridge_res`.
+13. Use the `tidy()` function to look at the parameter values of `ridge_res`.
 
 ```{r}
 tidy(ridge_res) 
 ```
 
-13. The `last_fit()` function, which you can use with the `final_ridge` workflow instead of the `fit()` function, let's you directly evaluate the model performance. Pass the `final_ridge` and `airbnb_split` (! instead of the `airbnb_train`) objects into `last_fit()` and directly pipe the output into `collect_metrics()`.
+14. The `last_fit()` function, which you can use with the `final_ridge` workflow instead of the `fit()` function, let's you directly evaluate the model performance. Pass the `final_ridge` and `airbnb_split` (! instead of the `airbnb_train`) objects into `last_fit()` and directly pipe the output into `collect_metrics()`.
 
 ```{r, eval = FALSE, echo = TRUE}
 XXX(XXX, XXX) %>% 
@@ -396,11 +370,11 @@ lasso_workflow <-
 3. Set up a grid of tuning parameters. Here we will directly specify our own grid. We'll use the same as with the ridge regression:
 
 ```{r, eval = FALSE, echo = TRUE}
-penalty_grid <- tibble(penalty = 10 ^ (seq(-4, 5, length = 150)))
+penalty_grid <- tibble(penalty = seq(0, 10, length.out = 200))
 ```
 
 ```{r}
-penalty_grid <- tibble(penalty = 10 ^ (seq(-4, 5, length = 150)))
+penalty_grid <- tibble(penalty = seq(0, 10, length.out = 200))
 ```
 
 
@@ -429,15 +403,8 @@ collect_metrics(lasso_grid)
 lasso_grid %>%
   collect_metrics() %>%
   ggplot(aes(penalty, mean, color = .metric)) +
-  geom_errorbar(aes(
-    ymin = mean - std_err,
-    ymax = mean + std_err
-  ),
-  alpha = 0.5
-  ) +
   geom_line(size = 1.5) +
   facet_wrap(~.metric, scales = "free", nrow = 2) +
-  scale_x_log10() +
   theme(legend.position = "none")
 ```
 
@@ -512,13 +479,7 @@ dt_workflow <-
 4. Set up a grid of tuning parameters. Use the following code to do so:
 
 ```{r, echo = TRUE}
-complexity_grid <- tibble(cost_complexity =  seq(from = 0, to = 1, length = 50))
-```
-
-5. To speed up the model tuning, execute the following code (this will parallelize the tuning process).
-
-```{r echo=TRUE}
-doParallel::registerDoParallel()
+complexity_grid <- tibble(cost_complexity =  seq(from = 0, to = .05, length.out = 100))
 ```
 
 5. Tune the model on the training data. To do so using our resampling scheme, use the `tune_grid()` function and pass it the defined workflow as first argument and set the `resamples` argument to `airbnb_folds`, and the `grid` argument to `complexity_grid`. Save the output as `dt_grid`. (Note: This will take some time...)
@@ -539,12 +500,6 @@ dt_grid <-
 dt_grid %>%
   collect_metrics() %>%
   ggplot(aes(cost_complexity, mean, color = .metric)) +
-  geom_errorbar(aes(
-    ymin = mean - std_err,
-    ymax = mean + std_err
-  ),
-  alpha = 0.5
-  ) +
   geom_line(size = 1.5) +
   facet_wrap(~.metric, scales = "free", nrow = 2) +
   theme(legend.position = "none")
@@ -604,7 +559,7 @@ rf_workflow <-
 3. Set up a grid of tuning parameters. Use the following code to do so:
 
 ```{r, echo = TRUE}
-mtry_grid <- tibble(mtry = 1:10)
+mtry_grid <- tibble(mtry = 1:15)
 ```
 
 
@@ -626,12 +581,6 @@ rf_grid <-
 rf_grid %>%
   collect_metrics() %>%
   ggplot(aes(mtry, mean, color = .metric)) +
-  geom_errorbar(aes(
-    ymin = mean - std_err,
-    ymax = mean + std_err
-  ),
-  alpha = 0.5
-  ) +
   geom_line(size = 1.5) +
   facet_wrap(~.metric, scales = "free", nrow = 2) +
   theme(legend.position = "none")
@@ -843,9 +792,11 @@ library(tidyverse)
 library(tidymodels)
 ```
 
+The dataset contains data of the 1191 apartments that were added on Airbnb for the Berlin area in the year 2018.
+
 |File  |Rows | Columns |
 |:----|:-----|:------|
-|[airbnb.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36)| 7609 | 30|
+|[airbnb.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36)| 1191 | 23|
 
 
 #### Variable description of `airbnb`
@@ -853,20 +804,16 @@ library(tidymodels)
 | Name | Description |
 |:-------------|:-------------------------------------|
 |price| Price per night (in \$s)|
-|room_type| Apartment, Loft, House, etc.|
 |accommodates| Number of people the airbnb accommodates |
 |bedrooms| Number of bedrooms |
 |bathrooms| Number of bathrooms |
 |cleaning_fee| Amount of cleaning fee (in \$s) |
 |availability_90_days| How many of the following 90 days the airbnb is available |
-|neighbourhood| The neighbourhood the Airbnb is located in |
 |district| The district the Airbnb is located in |
-|host_since| Experience of the hosts in days |
 |host_respons_time| Host average response time|
 |host_response_rate| Host response rate |
 |host_superhost| Whether host is a superhost TRUE/FALSE |
 |host_listings_count| Number of listings the host has |
-|review_scores_rating| Overall rating [0, 100]|
 |review_scores_accuracy| Accuracy of information rating [0, 10] |
 |review_scores_cleanliness| Cleanliness rating  [0, 10]|
 |review_scores_checkin| Check in rating [0, 10] |
@@ -874,13 +821,11 @@ library(tidymodels)
 |review_scores_location| Location rating [0, 10] |
 |review_scores_value| Value rating [0, 10] |
 |kitchen| Kitchen available TRUE/FALSE |
-|wifi| Wifi available TRUE/FALSE |
 |tv| TV available TRUE/FALSE |
 |coffe_machine| Coffee machine available TRUE/FALSE|
 |dishwasher| Dishwasher available TRUE/FALSE|
 |terrace| Terrace/balcony available TRUE/FALSE|
 |bathtub| Bathtub available TRUE/FALSE|
-|check_in_24h| 24h Check-In available TRUE/FALSE|
 
 
 ## Functions
