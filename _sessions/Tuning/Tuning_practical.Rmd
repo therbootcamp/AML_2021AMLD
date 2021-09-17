@@ -272,11 +272,7 @@ penalty_grid <- tibble(penalty = seq(0, 50, length.out = 200))
 ```
 
 ```{r}
-<<<<<<< HEAD
-penalty_grid <- tibble(penalty = 10 ^ (seq(0, 3, length = 150)))
-=======
 penalty_grid <- tibble(penalty = seq(0, 50, length.out = 200))
->>>>>>> 1bb9df46415bbd551e3416ac7416109a85479d1f
 
 # step 5
 ridge_grid <-
@@ -285,25 +281,12 @@ ridge_grid <-
             grid = penalty_grid)
 
 # step 6
-<<<<<<< HEAD
-collect_metrics(ridge_reg)
-=======
 collect_metrics(ridge_grid)
->>>>>>> 1bb9df46415bbd551e3416ac7416109a85479d1f
 
 # step 7
 ridge_grid %>%
   collect_metrics() %>%
   ggplot(aes(penalty, mean, color = .metric)) +
-<<<<<<< HEAD
-  #geom_errorbar(aes(
-  #  ymin = mean - std_err,
-  #  ymax = mean + std_err
-  #),
-  #alpha = 0.5
-  #) +
-=======
->>>>>>> 1bb9df46415bbd551e3416ac7416109a85479d1f
   geom_line(size = 1.5) +
   facet_wrap(~.metric, scales = "free", nrow = 2) +
   theme(legend.position = "none")
@@ -393,11 +376,7 @@ penalty_grid <- tibble(penalty = seq(0, 10, length.out = 200))
 ```
 
 ```{r}
-<<<<<<< HEAD
-penalty_grid <- tibble(penalty = 10 ^ (seq(-1, 1, length = 150)))
-=======
 penalty_grid <- tibble(penalty = seq(0, 10, length.out = 200))
->>>>>>> 1bb9df46415bbd551e3416ac7416109a85479d1f
 ```
 
 
@@ -426,15 +405,6 @@ collect_metrics(lasso_grid)
 lasso_grid %>%
   collect_metrics() %>%
   ggplot(aes(penalty, mean, color = .metric)) +
-<<<<<<< HEAD
-  #geom_errorbar(aes(
-  #  ymin = mean - std_err,
-  #  ymax = mean + std_err
-  #),
-  #alpha = 0.5
-  #) +
-=======
->>>>>>> 1bb9df46415bbd551e3416ac7416109a85479d1f
   geom_line(size = 1.5) +
   facet_wrap(~.metric, scales = "free", nrow = 2) +
   theme(legend.position = "none")
@@ -511,7 +481,6 @@ dt_workflow <-
 4. Set up a grid of tuning parameters. Use the following code to do so:
 
 ```{r, echo = TRUE}
-<<<<<<< HEAD
 complexity_grid <- tibble(cost_complexity =  seq(from = 0, to = .01, length = 50))
 ```
 
@@ -519,12 +488,9 @@ complexity_grid <- tibble(cost_complexity =  seq(from = 0, to = .01, length = 50
 
 ```{r echo=TRUE}
 doParallel::registerDoParallel()
-=======
-complexity_grid <- tibble(cost_complexity =  seq(from = 0, to = .05, length.out = 100))
->>>>>>> 1bb9df46415bbd551e3416ac7416109a85479d1f
 ```
 
-5. Tune the model on the training data. To do so using our resampling scheme, use the `tune_grid()` function and pass it the defined workflow as first argument and set the `resamples` argument to `airbnb_folds`, and the `grid` argument to `complexity_grid`. Save the output as `dt_grid`. (Note: This will take some time...)
+6. Tune the model on the training data. To do so using our resampling scheme, use the `tune_grid()` function and pass it the defined workflow as first argument and set the `resamples` argument to `airbnb_folds`, and the `grid` argument to `complexity_grid`. Save the output as `dt_grid`. (Note: This will take some time...)
 
 
 ```{r}
@@ -542,15 +508,6 @@ dt_grid <-
 dt_grid %>%
   collect_metrics() %>%
   ggplot(aes(cost_complexity, mean, color = .metric)) +
-<<<<<<< HEAD
-  #geom_errorbar(aes(
-  #  ymin = mean - std_err,
-  #  ymax = mean + std_err
-  #),
-  #alpha = 0.5
-  #) +
-=======
->>>>>>> 1bb9df46415bbd551e3416ac7416109a85479d1f
   geom_line(size = 1.5) +
   facet_wrap(~.metric, scales = "free", nrow = 2) +
   theme(legend.position = "none")
