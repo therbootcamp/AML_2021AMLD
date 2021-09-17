@@ -1067,9 +1067,11 @@ library(tidyverse)
 library(tidymodels)
 ```
 
+The dataset contains data of the 1191 apartments that were added on Airbnb for the Berlin area in the year 2018.
+
 |File  |Rows | Columns |
 |:----|:-----|:------|
-|[airbnb.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36)| 7609 | 30|
+|[airbnb.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36)| 1191 | 23|
 
 
 #### Variable description of `airbnb`
@@ -1077,20 +1079,16 @@ library(tidymodels)
 | Name | Description |
 |:-------------|:-------------------------------------|
 |price| Price per night (in \$s)|
-|room_type| Apartment, Loft, House, etc.|
 |accommodates| Number of people the airbnb accommodates |
 |bedrooms| Number of bedrooms |
 |bathrooms| Number of bathrooms |
 |cleaning_fee| Amount of cleaning fee (in \$s) |
 |availability_90_days| How many of the following 90 days the airbnb is available |
-|neighbourhood| The neighbourhood the Airbnb is located in |
 |district| The district the Airbnb is located in |
-|host_since| Experience of the hosts in days |
 |host_respons_time| Host average response time|
 |host_response_rate| Host response rate |
 |host_superhost| Whether host is a superhost TRUE/FALSE |
 |host_listings_count| Number of listings the host has |
-|review_scores_rating| Overall rating [0, 100]|
 |review_scores_accuracy| Accuracy of information rating [0, 10] |
 |review_scores_cleanliness| Cleanliness rating  [0, 10]|
 |review_scores_checkin| Check in rating [0, 10] |
@@ -1098,13 +1096,11 @@ library(tidymodels)
 |review_scores_location| Location rating [0, 10] |
 |review_scores_value| Value rating [0, 10] |
 |kitchen| Kitchen available TRUE/FALSE |
-|wifi| Wifi available TRUE/FALSE |
 |tv| TV available TRUE/FALSE |
 |coffe_machine| Coffee machine available TRUE/FALSE|
 |dishwasher| Dishwasher available TRUE/FALSE|
 |terrace| Terrace/balcony available TRUE/FALSE|
 |bathtub| Bathtub available TRUE/FALSE|
-|check_in_24h| 24h Check-In available TRUE/FALSE|
 
 
 ## Functions

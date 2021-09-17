@@ -211,7 +211,7 @@ library(tidyverse)
 library(tidymodels)
 tidymodels_prefer() # to resolve common conflicts</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>For this practical, we’ll use a dataset of airbnbs in Berlin. The data is stored in <code>airbnb.csv</code>. Using the following template, load the dataset into R as <code>airbnb</code>:</li>
+<li>For this practical, we’ll use a dataset of apartments that were added to Airbnb in 2018 and are located in Berlin. The data is stored in <code>airbnb.csv</code>. Using the following template, load the dataset into R as <code>airbnb</code>:</li>
 </ol>
 <pre class="r"><code># Load in airbnb.csv data as airbnb
 airbnb &lt;- read_csv(file = &quot;1_Data/airbnb.csv&quot;)</code></pre>
@@ -624,6 +624,7 @@ ggplot(lm_fitted, aes(x = .pred, y = hwy)) +
 </div>
 <div id="datasets" class="section level2">
 <h2>Datasets</h2>
+<p>The dataset contains data of the 1191 apartments that were added on Airbnb for the Berlin area in the year 2018.</p>
 <table>
 <thead>
 <tr class="header">
@@ -635,8 +636,8 @@ ggplot(lm_fitted, aes(x = .pred, y = hwy)) +
 <tbody>
 <tr class="odd">
 <td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36">airbnb.csv</a></td>
-<td align="left">7609</td>
-<td align="left">30</td>
+<td align="left">1191</td>
+<td align="left">23</td>
 </tr>
 </tbody>
 </table>
@@ -659,60 +660,44 @@ ggplot(lm_fitted, aes(x = .pred, y = hwy)) +
 <td align="left">Price per night (in $s)</td>
 </tr>
 <tr class="even">
-<td align="left">room_type</td>
-<td align="left">Apartment, Loft, House, etc.</td>
-</tr>
-<tr class="odd">
 <td align="left">accommodates</td>
 <td align="left">Number of people the airbnb accommodates</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">bedrooms</td>
 <td align="left">Number of bedrooms</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">bathrooms</td>
 <td align="left">Number of bathrooms</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">cleaning_fee</td>
 <td align="left">Amount of cleaning fee (in $s)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">availability_90_days</td>
 <td align="left">How many of the following 90 days the airbnb is available</td>
-</tr>
-<tr class="even">
-<td align="left">neighbourhood</td>
-<td align="left">The neighbourhood the Airbnb is located in</td>
 </tr>
 <tr class="odd">
 <td align="left">district</td>
 <td align="left">The district the Airbnb is located in</td>
 </tr>
 <tr class="even">
-<td align="left">host_since</td>
-<td align="left">Experience of the hosts in days</td>
-</tr>
-<tr class="odd">
 <td align="left">host_respons_time</td>
 <td align="left">Host average response time</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">host_response_rate</td>
 <td align="left">Host response rate</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">host_superhost</td>
 <td align="left">Whether host is a superhost TRUE/FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">host_listings_count</td>
 <td align="left">Number of listings the host has</td>
-</tr>
-<tr class="odd">
-<td align="left">review_scores_rating</td>
-<td align="left">Overall rating [0, 100]</td>
 </tr>
 <tr class="even">
 <td align="left">review_scores_accuracy</td>
@@ -743,32 +728,24 @@ ggplot(lm_fitted, aes(x = .pred, y = hwy)) +
 <td align="left">Kitchen available TRUE/FALSE</td>
 </tr>
 <tr class="odd">
-<td align="left">wifi</td>
-<td align="left">Wifi available TRUE/FALSE</td>
-</tr>
-<tr class="even">
 <td align="left">tv</td>
 <td align="left">TV available TRUE/FALSE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">coffe_machine</td>
 <td align="left">Coffee machine available TRUE/FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">dishwasher</td>
 <td align="left">Dishwasher available TRUE/FALSE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">terrace</td>
 <td align="left">Terrace/balcony available TRUE/FALSE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">bathtub</td>
 <td align="left">Bathtub available TRUE/FALSE</td>
-</tr>
-<tr class="odd">
-<td align="left">check_in_24h</td>
-<td align="left">24h Check-In available TRUE/FALSE</td>
 </tr>
 </tbody>
 </table>

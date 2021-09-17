@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Prediction</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Applied Machine Learning with R   The R Bootcamp @ AMLD" />
+    <meta name="author" content="Applied Machine Learning with R   The R Bootcamp @ AMLD                  " />
+    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
   </head>
@@ -12,8 +13,8 @@
 class: center, middle, inverse, title-slide
 
 # Prediction
-### Applied Machine Learning with R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp @ AMLD </a> <br> <a href='https://therbootcamp.github.io/AML_2020AMLD/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
-### January 2020
+### Applied Machine Learning with R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp @ AMLD </a> <br> <a href='https://therbootcamp.github.io/AML_2021AMLD/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### November 2021
 
 ---
 
@@ -34,7 +35,7 @@ layout: true
     &lt;/a&gt;
     &lt;a href="https://therbootcamp.github.io/"&gt;
       &lt;font color="#7E7E7E"&gt;
-      Applied Machine Learning with R @ AMLD  | January 2020
+      Applied Machine Learning with R @ AMLD  | November 2021
       &lt;/font&gt;
     &lt;/a&gt;
     &lt;/span&gt;
@@ -334,13 +335,13 @@ $$
 
 ---
 
-# CART in &lt;mono&gt;caret&lt;/mono&gt;
+# CART in &lt;mono&gt;tidymodels&lt;/mono&gt;
 
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Fit &lt;high&gt;decision trees&lt;/high&gt; in &lt;mono&gt;caret&lt;/mono&gt; using &lt;mono&gt;method = "rpart"&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;caret&lt;/mono&gt; will &lt;high&gt;choose automatically&lt;/high&gt; whether to use classification or regression trees depending on whether the criterion is a &lt;mono&gt;factor&lt;/mono&gt; or not.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Fit &lt;high&gt;decision trees&lt;/high&gt; in &lt;mono&gt;tidymodels&lt;/mono&gt; using &lt;mono&gt;decision_tree()&lt;/mono&gt; in the model definition.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Set the engine to &lt;mono&gt;rpart&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 ]
@@ -349,19 +350,17 @@ $$
 
 
 ```r
-# Fit a decision tree predicting default
+# specify a CART in regression mode
+dt_model &lt;- 
+  decision_tree() %&gt;% 
+  set_engine("rpart") %&gt;% 
+  set_mode("regression")
 
-train(form = default ~ .,
-      data = Loans,
-      method = "rpart", # Decision Tree
-      trControl = ctrl)
-
-# Fit a decision tree predicting income
-
-train(form = income ~ .,
-      data = baselers,
-      method = "rpart", # Decision Tree
-      trControl = ctrl)
+# specify a CART in classification mode
+dt_model &lt;- 
+  decision_tree() %&gt;% 
+  set_engine("rpart") %&gt;% 
+  set_mode("classification")
 ```
 
 
@@ -473,14 +472,51 @@ class: center, middle
 ---
 
 
-# Random forests in &lt;mono&gt;caret&lt;/mono&gt;
+# Random forests in &lt;mono&gt;tidymodels&lt;/mono&gt;
 
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Fit &lt;high&gt;decision trees&lt;/high&gt; in &lt;mono&gt;caret&lt;/mono&gt; using &lt;mono&gt;method = "rf"&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Just like CART, random forests can be used for &lt;high&gt;classification or regression&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
-  &lt;li class="m3"&gt;&lt;span&gt;&lt;mono&gt;caret&lt;/mono&gt; will &lt;high&gt;choose automatically&lt;/high&gt; whether to use classification or regression trees depending on whether the crition is a &lt;mono&gt;factor&lt;/mono&gt; or not.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Fit &lt;high&gt;random forests&lt;/high&gt; in &lt;mono&gt;tidymodels&lt;/mono&gt; using &lt;mono&gt;rand_forest()&lt;/mono&gt; in the model definition.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Set the engine to, e.g., &lt;mono&gt;ranger&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+# specify a random forest in regression
+# mode
+rf_model &lt;- 
+  rand_forest() %&gt;% 
+  set_engine("ranger") %&gt;% 
+  set_mode("regression")
+
+# specify a random forest in classification
+# mode
+rf_model &lt;- 
+  rand_forest() %&gt;% 
+  set_engine("ranger") %&gt;% 
+  set_mode("classification")
+```
+
+
+]
+
+
+
+---
+
+
+
+# Random forest engines in &lt;mono&gt;tidymodels&lt;/mono&gt;
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Show all available engines with &lt;mono&gt;show_engines("rand_forest")&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 ]
@@ -488,22 +524,23 @@ class: center, middle
 .pull-right45[
 
 
+
 ```r
-# Fit a decision tree predicting default
-
-train(form = default ~ .,
-      data = Loans,
-      method = "rf", # Decision Tree
-      trControl = ctrl)
-
-# Fit a decision tree predicting income
-
-train(form = income ~ .,
-      data = baselers,
-      method = "rf", # Decision Tree
-      trControl = ctrl)
+# show possible engines
+show_engines("rand_forest")
 ```
 
+```
+# A tibble: 6 x 2
+  engine       mode          
+  &lt;chr&gt;        &lt;chr&gt;         
+1 ranger       classification
+2 ranger       regression    
+3 randomForest classification
+4 randomForest regression    
+5 spark        classification
+6 spark        regression    
+```
 
 ]
 
@@ -514,22 +551,20 @@ class: center,  middle
 
 &lt;br&gt;&lt;br&gt;
 
-# Evaluating model predictions with &lt;mono&gt;caret&lt;/mono&gt;
+# Evaluating model predictions with &lt;mono&gt;tidymodels&lt;/mono&gt;
 
-&lt;img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png" width="70%" style="display: block; margin: auto;" /&gt;
-
-
+&lt;img src="image/tidymodels.svg" width="30%" style="display: block; margin: auto;" /&gt;
 
 
 
 ---
 
-# &lt;mono&gt;createDataPartition()&lt;/mono&gt;
+# Split data into training and test set
 
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Use &lt;mono&gt;createDataPartition()&lt;/mono&gt; to &lt;high&gt;split a dataset&lt;/high&gt; into separate training and test datasets.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Use &lt;mono&gt;initial_split()&lt;/mono&gt; to &lt;high&gt;split a dataset&lt;/high&gt; into separate training and test datasets.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -547,18 +582,26 @@ class: center,  middle
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;y&lt;/mono&gt;
+    &lt;mono&gt;data&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    The criterion. Used to create a &lt;high&gt;balanced split&lt;/high&gt;.  
+    The dataset. Used to create a &lt;high&gt;balanced split&lt;/high&gt;.  
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;p&lt;/mono&gt;
+    &lt;mono&gt;prop&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    The &lt;high&gt;proportion of data&lt;/high&gt; going into the training set. Often &lt;mono&gt;.8&lt;/mono&gt; or &lt;mono&gt;.5&lt;/mono&gt;.    
+    The &lt;high&gt;proportion of data&lt;/high&gt; going into the training set. Often &lt;mono&gt;.75&lt;/mono&gt; (default) or &lt;mono&gt;.5&lt;/mono&gt;.    
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;strata&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    The criterion or another stratification variable. Used to create a &lt;high&gt;balanced split&lt;/high&gt;.     
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -570,23 +613,17 @@ class: center,  middle
 
 
 ```r
-# Set the randomisation seed to get the 
-#  same results each time
-set.seed(100)
-
-# Get indices for training
-index &lt;- 
-  createDataPartition(y = baselers$income,
-                             p = .8,
-                             list = FALSE)
+# Get initial split
+baselers_split &lt;-
+  initial_split(baselers,
+                prop = .8,
+                strata = income)
 
 # Create training data
-baselers_train &lt;- baselers %&gt;% 
-  slice(index)
+baselers_train &lt;- training(baselers_split)
 
 # Create test data
-baselers_test &lt;- baselers %&gt;% 
-  slice(-index)
+baselers_test &lt;- testing(baselers_split)
 ```
 
 
@@ -602,7 +639,7 @@ baselers_test &lt;- baselers %&gt;%
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;To &lt;high&gt;test model predictions&lt;/high&gt; with &lt;mono&gt;caret&lt;/mono&gt;, all you need to do is get a vector of predictions from a new dataframe &lt;mono&gt;newdata&lt;/mono&gt; using the &lt;mono&gt;predict()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;To &lt;high&gt;test model predictions&lt;/high&gt; with &lt;mono&gt;tidymodels&lt;/mono&gt;, all you need to do is get a vector of predictions from a new dataframe &lt;mono&gt;newdata&lt;/mono&gt; using the &lt;mono&gt;predict()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -623,7 +660,7 @@ baselers_test &lt;- baselers %&gt;%
     &lt;mono&gt;object&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;caret&lt;/mono&gt; fit object.  
+    &lt;mono&gt;tidymodels&lt;/mono&gt; fit object.  
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -642,21 +679,93 @@ baselers_test &lt;- baselers %&gt;%
 
 
 ```r
-# Fit model to training data
-mod &lt;- train(form = income ~ .,
-             method = "glm",
-             data = baselers_train)
+# fit regression model
 
-# Get fitted values (for training data)
-mod_fit &lt;- predict(mod)
+lm_recipe &lt;- 
+  recipe(income ~ ., data = baselers_train) %&gt;% 
+  step_dummy(all_nominal_predictors())
 
-# Predictions for NEW data_test data!
-mod_pred &lt;- predict(mod, 
-                    newdata = baselers_test)
+lm_model &lt;- 
+  linear_reg() %&gt;% 
+  set_engine("lm") %&gt;% 
+  set_mode("regression")
 
-# Evaluate prediction results
-postResample(pred = mod_pred, 
-             obs = baselers_test$income)
+lm_workflow &lt;- 
+  workflow() %&gt;% 
+  add_recipe(lm_recipe) %&gt;% 
+  add_model(lm_model)
+
+income_lm &lt;- fit(lm_workflow,
+                 data = baselers_train)
+```
+
+]
+
+
+---
+
+# &lt;mono&gt;predict(, newdata)&lt;/mono&gt;
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;To &lt;high&gt;test model predictions&lt;/high&gt; with &lt;mono&gt;tidymodels&lt;/mono&gt;, all you need to do is get a vector of predictions from a new dataframe &lt;mono&gt;newdata&lt;/mono&gt; using the &lt;mono&gt;predict()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+  &lt;col width="30%"&gt;
+  &lt;col width="70%"&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Argument&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;object&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;tidymodels&lt;/mono&gt; fit object.  
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;newdata&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Test data sest. Must contain same features as provided in &lt;mono&gt;object&lt;/mono&gt;.    
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+# generate out-of-sample predictions
+lm_pred &lt;-
+  income_lm %&gt;% 
+  predict(baselers_test) %&gt;% 
+  bind_cols(baselers_test %&gt;% select(income))
+
+metrics(lm_pred, truth = income,
+        estimate = .pred)
+```
+
+```
+# A tibble: 3 x 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard    1024.   
+2 rsq     standard       0.846
+3 mae     standard     821.   
 ```
 
 ]
@@ -665,7 +774,12 @@ postResample(pred = mod_pred,
 ---
 class: middle, center
 
-&lt;h1&gt;&lt;a href=https://therbootcamp.github.io/AML_2020AMLD/_sessions/Prediction/Prediction_practical.html&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+&lt;h1&gt;&lt;a href=https://therbootcamp.github.io/AML_2021AMLD/_sessions/Prediction/Prediction_practical.html&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+
+
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -714,6 +828,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -731,17 +871,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {

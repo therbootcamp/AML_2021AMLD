@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Tuning</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Applied Machine Learning with R   The R Bootcamp @ AMLD" />
+    <meta name="author" content="Applied Machine Learning with R   The R Bootcamp @ AMLD                  " />
+    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
   </head>
@@ -12,8 +13,8 @@
 class: center, middle, inverse, title-slide
 
 # Tuning
-### Applied Machine Learning with R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp @ AMLD </a> <br> <a href='https://therbootcamp.github.io/AML_2020AMLD/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
-### January 2020
+### Applied Machine Learning with R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp @ AMLD </a> <br> <a href='https://therbootcamp.github.io/AML_2021AMLD/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### November 2021
 
 ---
 
@@ -34,7 +35,7 @@ layout: true
     &lt;/a&gt;
     &lt;a href="https://therbootcamp.github.io/"&gt;
       &lt;font color="#7E7E7E"&gt;
-      Applied Machine Learning with R @ AMLD  | January 2020
+      Applied Machine Learning with R @ AMLD  | November 2021
       &lt;/font&gt;
     &lt;/a&gt;
     &lt;/span&gt;
@@ -390,8 +391,8 @@ $$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $
 
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;To fit Lasso or Ridge penalized regression in R, use &lt;mono&gt;method = "glmnet"&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Specify the &lt;high&gt;type of penalty&lt;/high&gt; and the &lt;high&gt;penalty weight&lt;/high&gt; using the &lt;mono&gt;tuneGrid&lt;/mono&gt; argument.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;To fit Lasso or Ridge penalized regression in R, use the &lt;mono&gt;glmnet&lt;/mono&gt; engine.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Specify the &lt;high&gt;type of penalty&lt;/high&gt; and the &lt;high&gt;penalty weight&lt;/high&gt;in the model definition.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -407,7 +408,7 @@ $$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;alpha = 1&lt;/mono&gt;
+    &lt;mono&gt;mixture = 1&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
     Regression with Lasso penalty.
@@ -415,7 +416,7 @@ $$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;alpha = 0&lt;/mono&gt;
+    &lt;mono&gt;mixture = 0&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
     Regression with Ridge penalty.
@@ -423,7 +424,7 @@ $$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;lambda&lt;/mono&gt;
+    &lt;mono&gt;penalty&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
   Regularization penalty weight.
@@ -438,23 +439,19 @@ $$Regularized \;loss = \sum_i^n (y_i-\hat{y}_i)^2+\lambda \sum_j^p f(\beta_j)) $
 
 
 ```r
-# Train ridge regression
-train(form = criterion ~ .,
-      data = data_train,
-      method = "glmnet",  
-      trControl = ctrl,
-      tuneGrid = 
-        expand.grid(alpha = 0,   # Ridge 
-                    lambda = 1)) # Lambda
+# Ridge regression model
+ridge_model &lt;- 
+  linear_reg(mixture = 0,
+             penalty = 1) %&gt;% 
+  set_engine("glmnet") %&gt;% 
+  set_mode("regression")
 
-# Train lasso regression
-train(form = criterion ~ .,
-      data = data_train,
-      method = "glmnet",  
-      trControl = ctrl,
-      tuneGrid = 
-        expand.grid(alpha = 1,   # Lasso 
-                    lambda = 1)) # Lambda
+# Lasso regression model
+lasso_model &lt;- 
+  linear_reg(mixture = 1,
+             penalty = 1) %&gt;% 
+  set_engine("glmnet") %&gt;% 
+  set_mode("regression")
 ```
 
 ]
@@ -540,7 +537,7 @@ $$
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Decision trees have a &lt;high&gt;complexity parameter&lt;/high&gt; called &lt;high&gt;cp&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Decision trees have a &lt;high&gt;complexity parameter&lt;/high&gt; called &lt;high&gt;cost_complexity&lt;/high&gt; (or, often, &lt;high&gt;cp&lt;/high&gt;).&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -567,7 +564,7 @@ $$
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td bgcolor="white"&gt;
-    Small &lt;mono&gt;cp&lt;/mono&gt;, e.g., &lt;mono&gt;cp&lt;.01&lt;/mono&gt;
+    Small &lt;mono&gt;cost_complexity&lt;/mono&gt;, e.g., &lt;mono&gt;cp&lt;.01&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
     Low penalty leading to &lt;high&gt;complex trees&lt;/high&gt;.
@@ -575,7 +572,7 @@ $$
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td bgcolor="white"&gt;
-    Large &lt;mono&gt;cp&lt;/mono&gt;, e.g., &lt;mono&gt;cp&lt;.20&lt;/mono&gt;
+    Large &lt;mono&gt;cost_complexity&lt;/mono&gt;, e.g., &lt;mono&gt;cp&lt;.20&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
     Large penalty leading to &lt;high&gt;simple trees&lt;/high&gt;.
@@ -590,20 +587,16 @@ $$
 
 ```r
 # Decision tree with a defined cp = .01
-train(form = income ~ .,
-      data = baselers,
-      method = "rpart",  # Decision Tree
-      trControl = ctrl,
-      tuneGrid = 
-        expand.grid(cp = .01)) # cp
+dt_model &lt;- 
+  decision_tree(cost_complexity = .1) %&gt;% 
+  set_engine("rpart") %&gt;% 
+  set_mode("regression")
 
 # Decision tree with a defined cp = .2
-train(form = income ~ .,
-      data = baselers,
-      method = "rpart",  # Decision Tree
-      trControl = ctrl,
-      tuneGrid = 
-        expand.grid(cp = .2)) # cp
+dt_model &lt;- 
+  decision_tree(cost_complexity = .2) %&gt;% 
+  set_engine("rpart") %&gt;% 
+  set_mode("regression")
 ```
 
 ]
@@ -712,20 +705,16 @@ class: center, middle
 
 ```r
 # Random forest with a defined mtry = 2
-train(form = income ~ .,
-      data = baselers,
-      method = "rf",  # Random forest
-      trControl = ctrl,
-      tuneGrid = 
-        expand.grid(mtry = 2)) # mtry
+rf_model &lt;-
+  rand_forest(mtry = 2) %&gt;% 
+  set_engine("ranger") %&gt;% 
+  set_mode("regression")
 
 # Random forest with a defined mtry = 5
-train(form = income ~ .,
-      data = baselers,
-      method = "rf",  # Random forest
-      trControl = ctrl,
-      tuneGrid = 
-        expand.grid(mtry = 5)) # mtry
+rf_model &lt;-
+  rand_forest(mtry = 5) %&gt;% 
+  set_engine("ranger") %&gt;% 
+  set_mode("regression")
 ```
 
 ]
@@ -739,16 +728,16 @@ class: center,  middle
 
 &lt;br&gt;&lt;br&gt;
 
-# Parameter tuning with k-fold cross-validation with `caret`
+# Parameter tuning with v-fold cross-validation with &lt;mono&gt;tidymodels&lt;/mono&gt;
 
-&lt;img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="image/tidymodels.svg" width="30%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
 .pull-left45[
 
-# &lt;i&gt;k&lt;/i&gt;-fold cross validation for Ridge and Lasso
+# &lt;i&gt;v&lt;/i&gt;-fold cross validation for Ridge and Lasso
 
 &lt;p style="padding-top:1px"&gt;&lt;/p&gt;
 
@@ -785,12 +774,12 @@ class: center,  middle
 
 ---
 
-# &lt;mono&gt;trainControl()&lt;/mono&gt;
+# &lt;mono&gt;vfold_cv()&lt;/mono&gt;
 
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Specify the use of k-fold cross-validation using the &lt;mono&gt;trainControl()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Specify the use of v-fold cross-validation using the &lt;mono&gt;vfold_cv()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -806,18 +795,34 @@ class: center,  middle
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;method&lt;/mono&gt;
+    &lt;mono&gt;data&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    The resampling method, use &lt;mono&gt;"cv"&lt;/mono&gt; for cross validation.
+    The training data.
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;number&lt;/mono&gt;
+    &lt;mono&gt;v&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
     The number of folds.
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;repeats&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    The number of repeats
+  &lt;/td&gt;  
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    &lt;mono&gt;strata&lt;/mono&gt;
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    A stratification variable.
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -830,28 +835,26 @@ class: center,  middle
 
 ```r
 # Specify 10 fold cross-validation
-ctrl_cv &lt;- trainControl(method = "cv",
-                        number = 10)
+baselers_folds &lt;- vfold_cv(baselers,
+                           v = 10)
 
-# Predict income using glmnet
-glmnet_mod &lt;- train(form = income ~ .,
-                    data = baselers,
-                    method = "glmnet",  
-                    trControl = ctrl_cv)
+# Predict income using a workflow
+wf_res &lt;- fit_resamples(workflow,
+                        baselers_folds)
+collect_metrics(wf_res)
 ```
 
 ]
 
 ---
 
-# &lt;mono&gt;tuneGrid&lt;/mono&gt;
+# Parameter tuning
 
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Specify the tuning parameter values to consider using the &lt;high&gt;&lt;mono&gt;tuneGrid&lt;/mono&gt;&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;tuneGrid&lt;/mono&gt; expects a &lt;high&gt;list or data frame&lt;/high&gt; as input.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m3"&gt;&lt;span&gt;&lt;high&gt;Parameter combinations&lt;/high&gt; can be easily created using &lt;mono&gt;expand.grid&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Parameters that should be tuned have to be specified in the model definition.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;To do so, set the respective parameter argument to &lt;mono&gt;tune()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 ]
@@ -860,231 +863,388 @@ glmnet_mod &lt;- train(form = income ~ .,
 
 
 ```r
-# Specify 10 fold cross-validation
-ctrl_cv &lt;- trainControl(method = "cv",
-                        number = 10)
-
-# Predict income using glmnet
-glmnet_mod &lt;- train(form = income ~ .,
-                    data = baselers,
-                    method = "glmnet",  
-                    trControl = ctrl_cv,
-                    tuneGrid = expand.grid(
-                      alpha = c(0, .5, 1),
-                      lambda = 1:100))
+# glmnet where mixture and penalty is tuned
+glmnet_model &lt;- 
+  linear_reg(mixture = tune(),
+             penalty = tune()) %&gt;% 
+  set_engine("glmnet") %&gt;% 
+  set_mode("regression")
 ```
 
 ]
 
 
 ---
+
+# Specify a parameter grid
 
 .pull-left4[
 
-# &lt;i&gt;k&lt;/i&gt;-Fold Cross validation
-
-&lt;p style="padding-top:1px"&gt;&lt;/p&gt;
-
-
-```r
-# Print summary information
-glmnet_mod
-```
-
-&lt;br&gt;
-
-At the end...
-
-`RMSE was used to select the optimal model using the smallest value.
-The final values used for the model were alpha = 1 and lambda = 27.`
-
-
-]
-
-.pull-right5[
-
-&lt;br&gt;
-
-
-```
-glmnet 
-
-1000 samples
-  19 predictor
-
-No pre-processing
-Resampling: Cross-Validated (10 fold) 
-Summary of sample sizes: 900, 901, 900, 901, 901, 899, ... 
-Resampling results across tuning parameters:
-
-  alpha  lambda  RMSE  Rsquared  MAE  
-  0.0      1     1047  0.8614    823.3
-  0.0      2     1047  0.8614    823.3
-  0.0      3     1047  0.8614    823.3
-  0.0      4     1047  0.8614    823.3
-  0.0      5     1047  0.8614    823.3
-  0.0      6     1047  0.8614    823.3
-  0.0      7     1047  0.8614    823.3
-  0.0      8     1047  0.8614    823.3
-  0.0      9     1047  0.8614    823.3
-  0.0     10     1047  0.8614    823.3
-  0.0     11     1047  0.8614    823.3
-  0.0     12     1047  0.8614    823.3
-```
-
-]
-
----
-
-# &lt;i&gt;k&lt;/i&gt;-Fold Cross validation
-
-.pull-left4[
-
-
-```r
-# Visualise tuning error curve
-plot(glmnet_mod)
-```
-
-&lt;br&gt;
-
-At the end...
-
-`RMSE was used to select the optimal model using the smallest value.
-The final values used for the model were alpha = 1 and lambda = 27.`
-
-
-]
-
-.pull-right5[
-
-&lt;img src="Tuning_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
-
-]
-
----
-
-.pull-left35[
-
-# Final model
-
-
-```r
-# Model coefficients for best 
-#   alpha and lambda
-coef(glmnet_mod$finalModel,
-     glmnet_mod$bestTune$lambda)
-```
-]
-
-.pull-right5[
-
-&lt;br&gt;
-
-
-```
-25 x 1 sparse Matrix of class "dgCMatrix"
-                                       1
-(Intercept)                     462.1958
-id                                .     
-sexmale                           .     
-age                             116.1387
-height                            1.8865
-weight                            .     
-educationobligatory_school        .     
-educationSEK_II                   .     
-educationSEK_III                  1.1857
-confessionconfessionless          3.9774
-confessionevangelical-reformed    .     
-confessionmuslim                  .     
-confessionother                   .     
-children                        -21.0502
-happiness                      -128.5448
-fitness                           .     
-food                              2.3193
-alcohol                          22.2351
-tattoos                         -24.8320
-rhine                             0.4256
-```
-
-]
-
----
-
-# Model comparison
-
-.pull-left35[
-
+Two ways to specify a grid of parameter values to try:
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Compare the prediction performance of several models with &lt;mono&gt;resamples()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;The &lt;mono&gt;summary()&lt;/mono&gt; of this object will print 'prediction' error statistics from cross-validation during training. This is your &lt;high&gt;estimate of future prediction performance&lt;/high&gt;!&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Use &lt;mono&gt;grid_regular()&lt;/mono&gt; and respective parameter functions.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Specify a &lt;mono&gt;tibble&lt;/mono&gt; and enter specify values yourself.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 ]
 
-.pull-right55[
+.pull-right5[
 
 
 ```r
-# Simple competitor model
-glm_mod &lt;-  train(form = income ~ .,
-                  data = baselers,  
-                  method = "glm",
-                  trControl = ctrl_cv)
+# using tidymodels to generate values
+parameters_grid &lt;- grid_regular(mixture(),
+                                penalty(),
+                                levels = 50)
 
-# Determine prediction statistics 
-resamples_mod &lt;- resamples(
-  list(glmnet = glmnet_mod,
-       glm = glm_mod))
-
-# Print result summary
-summary(resamples_mod)
+# determine values yourself
+parameters_grid &lt;-
+  crossing(mixture = c(0, .5, 1),
+           penalty = 1:100)
 ```
 
 ]
 
+
 ---
 
-.pull-left35[
+# Tune parameters with &lt;mono&gt;tune_grid()&lt;/mono&gt;
 
-# Model comparison
 
-&lt;p style="padding-top:1px"&gt;&lt;/p&gt;
+.pull-left4[
 
+&lt;mono&gt;tune_grid()&lt;/mono&gt; needs
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Compare the prediction performance of several models with &lt;mono&gt;resamples()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;The &lt;mono&gt;summary()&lt;/mono&gt; of this object will print 'prediction' error statistics from cross-validation during training. This is your &lt;high&gt;estimate of future prediction performance&lt;/high&gt;!&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;A &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;A resampling scheme.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;A parameter grid.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 ]
 
-.pull-right55[
-
-&lt;br&gt;&lt;br&gt;
+.pull-right5[
 
 
+```r
+# tune parameters using 10 fold CV
+glmnet_grid &lt;- 
+  tune_grid(ridge_workflow,
+            resamples = baselers_folds,
+            grid = penalty_grid)
 ```
 
-Call:
-summary.resamples(object = resamples_mod)
+]
 
-Models: glmnet, glm 
-Number of resamples: 10 
 
-MAE 
-        Min. 1st Qu. Median  Mean 3rd Qu.  Max. NA's
-glmnet 743.1   761.2  818.3 807.8   836.7 891.7    0
-glm    734.8   777.7  801.6 812.8   844.5 892.2    0
+---
 
-RMSE 
-        Min. 1st Qu. Median Mean 3rd Qu. Max. NA's
-glmnet 936.5   990.3   1042 1028    1076 1098    0
-glm    950.7  1008.9   1016 1034    1063 1128    0
+# Select best hyper parameter
 
-Rsquared 
-         Min. 1st Qu. Median   Mean 3rd Qu.   Max. NA's
-glmnet 0.8386  0.8440 0.8582 0.8638  0.8865 0.9021    0
-glm    0.8268  0.8549 0.8694 0.8624  0.8740 0.8825    0
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;tune_grid()&lt;/mono&gt; returns fit values of the models with the different hyper-parameter values.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;mono&gt;select_best()&lt;/mono&gt; selects the best hyper-parameter values.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;These values can then be added to the workflow using &lt;mono&gt;finalize_workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;With this final workflow, the model can be fitted using &lt;mono&gt;fit()&lt;/mono&gt; and evaluated.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+best_glmnet &lt;- select_best(glmnet_grid)
+
+final_glmnet &lt;-
+  finalize_workflow(glmnet_workflow,
+                    best_glmnet)
+```
+
+]
+
+
+---
+
+# Recap - Steps of model tuning
+
+
+.pull-left4[
+
+&lt;ul&gt;
+ &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Split data.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Set up resampling scheme.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Set up workflow, using &lt;mono&gt;tune()&lt;/mono&gt; in the model specification.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;Set up grid of hyper parameters.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;Tune the model with &lt;mono&gt;tune_grid()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m6"&gt;&lt;span&gt;Select best hyper-parameter values.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m7"&gt;&lt;span&gt;Finalize workflow with best hyper-parameter values.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m8"&gt;&lt;span&gt;Fit and evaluate final workflow as usual.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+baselers_split &lt;- initial_split(baselers)
+baselers_train &lt;- training(baselers_split)
+baselers_test &lt;- testing(baselers_split)
+```
+
+]
+
+
+---
+
+
+# Recap - Steps of model tuning
+
+
+.pull-left4[
+
+&lt;ul&gt;
+ &lt;li class="m1"&gt;&lt;span&gt;Split data.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;high&gt;Set up resampling scheme.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Set up workflow, using &lt;mono&gt;tune()&lt;/mono&gt; in the model specification.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;Set up grid of hyper parameters.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;Tune the model with &lt;mono&gt;tune_grid()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m6"&gt;&lt;span&gt;Select best hyper-parameter values.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m7"&gt;&lt;span&gt;Finalize workflow with best hyper-parameter values.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m8"&gt;&lt;span&gt;Fit and evaluate final workflow as usual.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+baselers_folds &lt;- vfold_cv(baselers,
+                           v = 10)
+```
+
+]
+
+
+---
+
+# Recap - Steps of model tuning
+
+
+.pull-left4[
+
+&lt;ul&gt;
+ &lt;li class="m1"&gt;&lt;span&gt;Split data.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Set up resampling scheme.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;high&gt;Set up workflow, using &lt;mono&gt;tune()&lt;/mono&gt; in the model specification.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;Set up grid of hyper parameters.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;Tune the model with &lt;mono&gt;tune_grid()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m6"&gt;&lt;span&gt;Select best hyper-parameter values.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m7"&gt;&lt;span&gt;Finalize workflow with best hyper-parameter values.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m8"&gt;&lt;span&gt;Fit and evaluate final workflow as usual.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+lasso_recipe &lt;- 
+  recipe(income ~ .,
+         data = baselers) %&gt;%
+  step_dummy(all_nominal_predictors()) %&gt;% 
+  step_normalize(all_numeric_predictors())
+
+lasso_model &lt;- 
+  linear_reg(mixture = 1,
+             penalty = tune()) %&gt;% 
+  set_engine("glmnet") %&gt;% 
+  set_mode("regression")
+
+lasso_workflow &lt;- 
+  workflow() %&gt;% 
+  add_recipe(lasso_recipe) %&gt;% 
+  add_model(lasso_model)
+```
+
+]
+
+
+---
+
+# Recap - Steps of model tuning
+
+
+.pull-left4[
+
+&lt;ul&gt;
+ &lt;li class="m1"&gt;&lt;span&gt;Split data.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Set up resampling scheme.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Set up workflow, using &lt;mono&gt;tune()&lt;/mono&gt; in the model specification.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;&lt;high&gt;Set up grid of hyper parameters.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;Tune the model with &lt;mono&gt;tune_grid()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m6"&gt;&lt;span&gt;Select best hyper-parameter values.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m7"&gt;&lt;span&gt;Finalize workflow with best hyper-parameter values.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m8"&gt;&lt;span&gt;Fit and evaluate final workflow as usual.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+penalty_grid &lt;-
+  tibble(penalty = seq(0, 10,
+                       length.out = 200))
+```
+
+]
+
+
+---
+
+# Recap - Steps of model tuning
+
+
+.pull-left4[
+
+&lt;ul&gt;
+ &lt;li class="m1"&gt;&lt;span&gt;Split data.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Set up resampling scheme.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Set up workflow, using &lt;mono&gt;tune()&lt;/mono&gt; in the model specification.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;Set up grid of hyper parameters.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;&lt;high&gt;Tune the model with &lt;mono&gt;tune_grid()&lt;/mono&gt;.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m6"&gt;&lt;span&gt;Select best hyper-parameter values.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m7"&gt;&lt;span&gt;Finalize workflow with best hyper-parameter values.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m8"&gt;&lt;span&gt;Fit and evaluate final workflow as usual.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+lasso_grid &lt;-
+  lasso_workflow %&gt;%
+  tune_grid(resamples = baselers_folds,
+            grid = penalty_grid)
+```
+
+]
+
+
+---
+
+# Recap - Steps of model tuning
+
+
+.pull-left4[
+
+&lt;ul&gt;
+ &lt;li class="m1"&gt;&lt;span&gt;Split data.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Set up resampling scheme.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Set up workflow, using &lt;mono&gt;tune()&lt;/mono&gt; in the model specification.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;Set up grid of hyper parameters.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;Tune the model with &lt;mono&gt;tune_grid()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m6"&gt;&lt;span&gt;&lt;high&gt;Select best hyper-parameter values.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m7"&gt;&lt;span&gt;Finalize workflow with best hyper-parameter values.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m8"&gt;&lt;span&gt;Fit and evaluate final workflow as usual.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+best_lasso &lt;- select_best(lasso_grid)
+```
+
+]
+
+
+---
+
+# Recap - Steps of model tuning
+
+
+.pull-left4[
+
+&lt;ul&gt;
+ &lt;li class="m1"&gt;&lt;span&gt;Split data.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Set up resampling scheme.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Set up workflow, using &lt;mono&gt;tune()&lt;/mono&gt; in the model specification.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;Set up grid of hyper parameters.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;Tune the model with &lt;mono&gt;tune_grid()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m6"&gt;&lt;span&gt;Select best hyper-parameter values.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m7"&gt;&lt;span&gt;&lt;high&gt;Finalize workflow with best hyper-parameter values.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m8"&gt;&lt;span&gt;Fit and evaluate final workflow as usual.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+final_lasso &lt;- 
+  finalize_workflow(lasso_workflow,
+                    best_lasso)
+```
+
+]
+
+
+---
+
+# Recap - Steps of model tuning
+
+
+.pull-left4[
+
+&lt;ul&gt;
+ &lt;li class="m1"&gt;&lt;span&gt;Split data.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Set up resampling scheme.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Set up workflow, using &lt;mono&gt;tune()&lt;/mono&gt; in the model specification.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;Set up grid of hyper parameters.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;Tune the model with &lt;mono&gt;tune_grid()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m6"&gt;&lt;span&gt;Select best hyper-parameter values.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m7"&gt;&lt;span&gt;Finalize workflow with best hyper-parameter values.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m8"&gt;&lt;span&gt;&lt;high&gt;Fit and evaluate final workflow as usual.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+lasso_res &lt;- fit(final_lasso,
+                 baselers_train) 
+
+lasso_pred &lt;- 
+  lasso_res %&gt;%
+  predict(baselers_test) %&gt;% 
+  bind_cols(baselers_test %&gt;%select(income))
+
+metrics(lasso_pred, truth = income,
+        estimate = .pred)
+```
+
+```
+# A tibble: 3 x 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard     982.   
+2 rsq     standard       0.884
+3 mae     standard     788.   
 ```
 
 ]
@@ -1142,6 +1302,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -1159,17 +1345,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Fitting</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Applied Machine Learning with R   The R Bootcamp @ AMLD" />
+    <meta name="author" content="Applied Machine Learning with R   The R Bootcamp @ AMLD                  " />
+    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
   </head>
@@ -12,8 +13,8 @@
 class: center, middle, inverse, title-slide
 
 # Fitting
-### Applied Machine Learning with R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp @ AMLD </a> <br> <a href='https://therbootcamp.github.io/AML_2020AMLD/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
-### January 2020
+### Applied Machine Learning with R<br> <a href='https://therbootcamp.github.io'> The R Bootcamp @ AMLD </a> <br> <a href='https://therbootcamp.github.io/AML_2021AMLD/'> <i class='fas fa-clock' style='font-size:.9em;'></i> </a>  <a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:.9em;' ></i> </a>  <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: .9em;'></i> </a>  <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: .9em;'></i> </a>
+### November 2021
 
 ---
 
@@ -34,7 +35,7 @@ layout: true
     &lt;/a&gt;
     &lt;a href="https://therbootcamp.github.io/"&gt;
       &lt;font color="#7E7E7E"&gt;
-      Applied Machine Learning with R @ AMLD  | January 2020
+      Applied Machine Learning with R @ AMLD  | November 2021
       &lt;/font&gt;
     &lt;/a&gt;
     &lt;/span&gt;
@@ -279,7 +280,6 @@ $$ MAE = \frac{1}{n}\sum_{i \in 1,...,n} \lvert Y_{i} - \hat{Y}_{i} \rvert$$
 
 
 ---
-
 
 .pull-left45[
 
@@ -634,608 +634,461 @@ class: center,  middle
 
 &lt;br&gt;&lt;br&gt;
 
-# Fitting regression models with `caret`
+# Fitting regression models with `tidymodels`
 
-&lt;img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png" width="70%" style="display: block; margin: auto;" /&gt;
-
-
-
-
+&lt;img src="image/tidymodels.svg" width="30%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-# `caret`s fitting functions
+# 5 Steps to fit a model in `tidymodels`
 
 .pull-left45[
 
-&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
-&lt;tr&gt;
-  &lt;td&gt;
-  &lt;b&gt;Function&lt;/b&gt;
-  &lt;/td&gt;
-  &lt;td&gt;
-    &lt;b&gt;Description&lt;/b&gt;
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;trainControl()&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    Choose &lt;high&gt;settings&lt;/high&gt; for how fitting should be carried out.
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;
-    &lt;mono&gt;train()&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td&gt;
-    Specify the model and &lt;high&gt;find 'best' parameters&lt;/high&gt;.
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;postResample()&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;high&gt;Evaluate&lt;/high&gt; model performance (fitting or prediction) for regression.
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;
-    &lt;mono&gt;confusionMatrix()&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;high&gt;Evaluate&lt;/high&gt; model performance (fitting or prediction) for classification.
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Define the &lt;mono&gt;recipe&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Define the model.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Define the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;Fit the &lt;mono&gt;workflow&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;Assess model performance.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
+]
+
+.pull-right45[
+&lt;img src="image/tidymodels_packages.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Step 1: Define the &lt;mono&gt;recipe&lt;/mono&gt;
+
+.pull-left45[
+
+The &lt;mono&gt;recipe&lt;/mono&gt; specifies two things: 
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;The criterion and the features, i.e., the &lt;mono&gt;formula&lt;/mono&gt; to use.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;How the features should be pre-processed before the model fitting.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
+
+To set up a &lt;mono&gt;recipe&lt;/mono&gt;:
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Initialize it with &lt;mono&gt;recipe()&lt;/mono&gt;, wherein the formula and data are specified.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Add pre-processing steps, using &lt;mono&gt;step_*()&lt;/mono&gt; functions and &lt;mono&gt;dplyr&lt;/mono&gt;-like selectors.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 ]
 
 .pull-right45[
 
 
 ```r
-# Step 1: Define control parameters
-#   trainControl()
+# set up recipe for regression model
+lm_recipe &lt;- 
+  recipe(income ~ ., data = baselers) %&gt;% 
+  step_dummy(all_nominal_predictors())
 
-ctrl &lt;- trainControl(...) 
-
-# Step 2: Train and explore model
-#   train()
-
-mod &lt;- train(...)
-summary(mod)
-mod$finalModel   # see final model
-
-# Step 3: Assess fit
-#   predict(), postResample(), fon
-
-fit &lt;- predict(mod)
-postResample(fit, truth)
-confusionMatrix(fit, truth)
+lm_recipe
 ```
 
+```
+Data Recipe
 
+Inputs:
 
-&lt;!-- Caret documentation: [http://topepo.github.io/caret/](http://topepo.github.io/caret/) --&gt;
+      role #variables
+   outcome          1
+ predictor         19
 
-&lt;!-- &lt;iframe src="http://topepo.github.io/caret/" height="480px" width = "500px"&gt;&lt;/iframe&gt; --&gt;
+Operations:
+
+Dummy variables from all_nominal_predictors()
+```
 
 ]
 
 ---
 
-# `trainControl()`
+# Step 2: Define the model
 
 .pull-left45[
 
+The model specifies: 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;trainControl()&lt;/mono&gt; controls &lt;high&gt;how &lt;mono&gt;caret&lt;/mono&gt; fits an ML model&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;For now, we set &lt;mono&gt;method = "none"&lt;/mono&gt; to keep things simple. More in the session on &lt;b&gt;optimization&lt;/b&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Which model (e.g. linear regression) to use.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Which engine (underlying model-fitting algorithm) to use.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;The problem mode, i.e., &lt;high&gt;regression vs. classification&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
 
-
-```r
-# Fit the model without any 
-# advanced parameter tuning methods
-ctrl &lt;- trainControl(method = "none")
-
-# show help file
-?trainControl
-```
-
-]
-
-.pull-right45[
-
-&lt;img src="image/traincontrol_help.jpg" width="100%" style="display: block; margin: auto;" /&gt;
-
-]
-
----
-
-# `train()`
-
-.pull-left4[
-
+To set up a model:
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; is the &lt;high&gt;fitting workhorse&lt;/high&gt; of &lt;mono&gt;caret&lt;/mono&gt;, offering you &lt;high&gt;200+ models&lt;/high&gt; by merely changing the &lt;high&gt;method&lt;/high&gt; argument!.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Specify the model, e.g., using &lt;mono&gt;linear_reg()&lt;/mono&gt; or &lt;mono&gt;logistic_reg()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Specify the engine using &lt;mono&gt;set_engine()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Specify the problem mode using &lt;mono&gt;set_mode()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;br&gt;
-
-&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
-&lt;tr&gt;
-  &lt;td&gt;
-  &lt;b&gt;Argument&lt;/b&gt;
-  &lt;/td&gt;
-  &lt;td&gt;
-    &lt;b&gt;Description&lt;/b&gt;
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;form&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    Formula specifying features and criterion.
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;
-    &lt;mono&gt;data&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td&gt;
-    Training data.
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;method&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    The model (algorithm). 
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;
-    &lt;mono&gt;trControl&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    Control parameters for fitting.
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;tuneGrid&lt;/mono&gt;, &lt;mono&gt;preProcess&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    Cool stuff for later.
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-
-]
-
-
-.pull-right5[
-
-```r
-# Fit a regression model predicting Price
-
-income_mod &lt;- 
-  train(form = income ~ ., # Formula
-        data = baselers,   # Training data
-        method = "glm",    # Regression
-        trControl = ctrl)  # Control Param's
-income_mod
-```
-
-```
-Generalized Linear Model 
-
-1000 samples
-  19 predictor
-
-No pre-processing
-Resampling: None 
-```
-
-
-]
-
-
----
-
-# `train()`
-
-.pull-left4[
-
-&lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; is the &lt;high&gt;fitting workhorse&lt;/high&gt; of &lt;mono&gt;caret&lt;/mono&gt;, offering you &lt;high&gt;200+ models&lt;/high&gt; by merely changing the &lt;high&gt;method&lt;/high&gt; argument!.&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;br&gt;
-
-&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
-&lt;tr&gt;
-  &lt;td&gt;
-  &lt;b&gt;Argument&lt;/b&gt;
-  &lt;/td&gt;
-  &lt;td&gt;
-    &lt;b&gt;Description&lt;/b&gt;
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;form&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    Formula specifying features and criterion.
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;
-    &lt;mono&gt;data&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td&gt;
-    Training data.
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;method&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    The model (algorithm). 
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;
-    &lt;mono&gt;trControl&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    Control parameters for fitting.
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;tuneGrid&lt;/mono&gt;, &lt;mono&gt;preProcess&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    Cool stuff for later.
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-
-]
-
-
-.pull-right5[
-
-
-```r
-# Fit a random forest predicting Price
-
-income_mod &lt;- 
-  train(form = income ~ .,# Formula
-        data = baselers,  # Training data
-        method = "rf",    # Random Forest
-        trControl = ctrl) # Control Param's
-income_mod
-```
-
-```
-Random Forest 
-
-1000 samples
-  19 predictor
-
-No pre-processing
-Resampling: None 
-```
-
-]
-
-
----
-
-.pull-left4[
-
-# `train()`
-
-&lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;train()&lt;/mono&gt; is the &lt;high&gt;fitting workhorse&lt;/high&gt; of &lt;mono&gt;caret&lt;/mono&gt;, offering you &lt;high&gt;200+ models&lt;/high&gt; by merely changing the &lt;high&gt;method&lt;/high&gt; argument!.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Find all 200+ models &lt;a href="http://topepo.github.io/caret/available-models.html"&gt;here&lt;/a&gt;.&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-]
-
-
-.pull-right5[
-
-&lt;br&gt;&lt;br&gt;
-
-&lt;iframe width="600" height="480" src="https://topepo.github.io/caret/available-models.html" frameborder="0"&gt;&lt;/iframe&gt;
-
-
-]
-
----
-
-# `train()`
-
-.pull-left4[
-
-&lt;ul style="margin-bottom:-20px"&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;The criterion must be the right type:
-  &lt;br&gt;&lt;br&gt;
-  &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;&lt;high&gt;&lt;mono&gt;numeric&lt;/mono&gt;&lt;/high&gt; criterion &amp;rarr; &lt;high&gt;Regression&lt;/high&gt;&lt;br&gt;&lt;/span&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;span&gt;&lt;high&gt;&lt;mono&gt;factor&lt;/mono&gt;&lt;/high&gt; criterion &amp;rarr; &lt;high&gt;Classification&lt;/high&gt;&lt;br&gt;&lt;/span&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;br&gt;
-
-
-```
-# A tibble: 5 x 5
-  Default   Age Gender Cards Education
-    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;     &lt;dbl&gt;
-1       0    45 M          3        11
-2       1    36 F          2        14
-3       0    76 F          5        12
-4       1    25 M          2        17
-5       1    36 F          3        12
-```
-
-]
-
-.pull-right5[
-
-
-```r
-# Will be a regression task 
-
-loan_mod &lt;- train(form = Default ~ .,
-                  data = Loans,
-                  method = "glm",
-                  trControl = ctrl)
-
-# Will be a classification task
-
-load_mod &lt;- train(form = factor(Default) ~ .,
-                  data = Loans,
-                  method = "glm",
-                  trControl = ctrl)
-```
-
-]
-
-
----
-
-# &lt;mono&gt;mod$finalModel&lt;/mono&gt;
-
-.pull-left4[
-
-&lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;The &lt;mono&gt;train()&lt;/mono&gt; function returns a &lt;mono&gt;list&lt;/mono&gt; with an object called &lt;mono&gt;finalModel&lt;/mono&gt; - this is your &lt;high&gt;fitted machine learning model&lt;/high&gt;!&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;&lt;high&gt;Access&lt;/high&gt; the model with &lt;mono&gt;mod$finalModel&lt;mono&gt; and &lt;high&gt;explore&lt;/high&gt; the object with generic functions.&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;br&gt;
-
-&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
-&lt;tr&gt;
-  &lt;td&gt;
-  &lt;b&gt;Function&lt;/b&gt;
-  &lt;/td&gt;
-  &lt;td&gt;
-    &lt;b&gt;Description&lt;/b&gt;
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;summary()&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;high&gt;Overview&lt;/high&gt; of the most important results.
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;names()&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    See all &lt;high&gt;named elements&lt;/high&gt; you can access with $.
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-
-]
-
-.pull-right5[
-
-
-```r
-# Create a regression object
-income_mod &lt;- 
-  train(form = income ~ age + height,
-        data = baselers)  # Training data
-
-# Look at all named outputs
-names(income_mod$finalModel)
-```
-
-
-
-
-```
-[1] "coefficients"  "residuals"     "fitted.values"
-[4] "effects"       "R"             "rank"         
- [ reached getOption("max.print") -- omitted 28 entries ]
-```
-
-
-```r
-# Access specific outputs
-income_mod$finalModel$coefficients
-```
-
-
-```
-(Intercept)         age      height 
-    177.084     151.786       3.466 
-```
-
-]
-
-
-
----
-
-# `predict()`
-
-.pull-left45[
-
-&lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;The &lt;mono&gt;predict()&lt;/mono&gt; function &lt;high&gt;produces predictions&lt;/high&gt; from a model. Simply put model object as the first argument.&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;br&gt;
-
-
-```r
-# Get fitted values
-glm_fits &lt;- predict(object = income_mod)
-glm_fits[1:8]
-```
-
-```
-    1     2     3     4     5     6     7     8 
- 5508  6960  6982  8645  5325 10648  8663  4592 
-```
-
 ]
 
 .pull-right45[
 
 
-&lt;img src="Fitting_files/figure-html/unnamed-chunk-25-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+```r
+# set up model for regression model
+lm_model &lt;- 
+  linear_reg() %&gt;% 
+  set_engine("lm") %&gt;% 
+  set_mode("regression")
+
+lm_model
+```
+
+```
+Linear Regression Model Specification (regression)
+
+Computational engine: lm 
+```
 
 ]
 
 ---
 
-# `postResample()`
+# Step 3: Define the &lt;mono&gt;workflow&lt;/mono&gt;
 
 .pull-left45[
 
+A &lt;mono&gt;workflow&lt;/mono&gt; combines the recipe and model and facilitates fitting the model. 
+To set up a &lt;mono&gt;workflow&lt;/mono&gt;:
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;The &lt;nono&gt;postResample()&lt;/nono&gt; function &lt;high&gt;gives a simple summary&lt;/high&gt; of a models' performance in a &lt;high&gt;regression task&lt;/high&gt;. Simply put the predicted values and the true values inside the function.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Initialize it using the &lt;mono&gt;workflow()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Add a recipe using &lt;mono&gt;add_recipe()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Add a model using &lt;mono&gt;add_model()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;br&gt;
-
-
-```r
-# evaluate
-postResample(glm_fits,
-             baselers$income)
-```
-
-```
-    RMSE Rsquared      MAE 
-1173.079    0.821  937.113 
-```
-
 ]
 
 .pull-right45[
 
-&lt;img src="Fitting_files/figure-html/unnamed-chunk-27-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+```r
+# set up workflow for regression model
+lm_workflow &lt;- 
+  workflow() %&gt;% 
+  add_recipe(lm_recipe) %&gt;% 
+  add_model(lm_model)
+
+lm_workflow
+```
+
+```
+== Workflow ==================================================================================================
+Preprocessor: Recipe
+Model: linear_reg()
+
+-- Preprocessor ----------------------------------------------------------------------------------------------
+1 Recipe Step
+
+* step_dummy()
+
+-- Model -----------------------------------------------------------------------------------------------------
+Linear Regression Model Specification (regression)
+
+Computational engine: lm 
+```
 
 ]
 
 ---
 
-.pull-left5[
+# Step 4: Fit the &lt;mono&gt;workflow&lt;/mono&gt;
 
-&lt;p style="padding-top:10px"&gt;&lt;/p&gt;
+.pull-left35[
 
-## `confusionMatrix()`
-
-&lt;p style="padding-top:10px"&gt;&lt;/p&gt;
-
+A &lt;mono&gt;workflow&lt;/mono&gt; is fitted using the &lt;mono&gt;fit()&lt;/mono&gt; function. This will:
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;The &lt;nono&gt;confusionMatrix()&lt;/nono&gt; does the same for a models' performance in a &lt;high&gt;classification task&lt;/high&gt;. Simply put the predicted values and the true values inside the function..&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Apply the recipe with the pre-processing steps.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Run the specified algorithm (i.e., model).&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
+]
 
-
+.pull-right55[
 
 
 ```r
-# eyecor to factor
-baselers$eyecor &lt;- factor(baselers$eyecor)
+# fit the workflow
+income_lm &lt;- fit(lm_workflow,
+                 data = baselers)
 
-# run glm model for classification
-eyecor_mod &lt;- 
-  train(form = eyecor ~ age + height,
-        data = baselers,   
-        method = "glm",   
-        trControl = ctrl) 
-
-# evaluate
-confusionMatrix(predict(eyecor_mod), 
-                baselers$eyecor)
+tidy(income_lm)
 ```
 
-
+```
+# A tibble: 25 x 5
+   term           estimate std.error statistic   p.value
+   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+ 1 (Intercept) -192.         631.     -0.304   7.61e-  1
+ 2 id             0.000895     0.113   0.00792 9.94e-  1
+ 3 age          115.           2.88   40.1     2.23e-208
+ 4 height         4.95         3.02    1.64    1.02e-  1
+ 5 weight         1.01         3.27    0.307   7.59e-  1
+ 6 children     -48.9         31.9    -1.54    1.25e-  1
+ 7 happiness   -156.          31.1    -5.02    6.00e-  7
+ 8 fitness        6.94        17.9     0.389   6.97e-  1
+ 9 food           2.50         0.142  17.6     2.33e- 60
+10 alcohol       26.1          2.47   10.6     8.05e- 25
+# ... with 15 more rows
+```
 
 ]
 
-.pull-right4[
+---
 
-&lt;br&gt;
+# Step 5: Assess model fit
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Use &lt;mono&gt;predict()&lt;/mono&gt; to obtain model predictions on specified data.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Use &lt;mono&gt;metrics()&lt;/mono&gt; to obtain performance metrics, suited for the current problem mode.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]
+
+.pull-right45[
 
 
-```
-Confusion Matrix and Statistics
+```r
+# generate predictions
+lm_pred &lt;-
+  income_lm %&gt;% 
+  predict(baselers) %&gt;% 
+  bind_cols(baselers %&gt;% select(income))
 
-          Reference
-Prediction  no yes
-       no    0   0
-       yes 353 647
-                                        
-               Accuracy : 0.647         
-                 95% CI : (0.616, 0.677)
-    No Information Rate : 0.647         
-    P-Value [Acc &gt; NIR] : 0.514         
-                                        
-                  Kappa : 0             
-                                        
- Mcnemar's Test P-Value : &lt;2e-16        
-                                        
-            Sensitivity : 0.000         
-            Specificity : 1.000         
-         Pos Pred Value :   NaN         
-         Neg Pred Value : 0.647         
-             Prevalence : 0.353         
-         Detection Rate : 0.000         
-   Detection Prevalence : 0.000         
-      Balanced Accuracy : 0.500         
-                                        
-       'Positive' Class : no            
-                                        
+metrics(lm_pred, truth = income,
+        estimate = .pred)
 ```
 
+```
+# A tibble: 3 x 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard    1008.   
+2 rsq     standard       0.868
+3 mae     standard     792.   
+```
+
+]
+
+---
+
+# Logistic regression model example
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Define the &lt;mono&gt;recipe&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Define the model.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Define the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;Fit the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;Assess model performance.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]
+
+.pull-right45[
+
+
+```r
+# generate predictions
+lm_pred &lt;-
+  income_lm %&gt;% 
+  predict(baselers) %&gt;% 
+  bind_cols(baselers %&gt;% select(income))
+
+metrics(lm_pred, truth = income,
+        estimate = .pred)
+```
+
+```
+# A tibble: 3 x 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard    1008.   
+2 rsq     standard       0.868
+3 mae     standard     792.   
+```
+
+]
+
+---
+
+# Logistic regression model example
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Define the &lt;mono&gt;recipe&lt;/mono&gt;.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Define the model.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Define the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;Fit the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;Assess model performance.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]
+
+.pull-right45[
+
+
+```r
+logistic_recipe &lt;- 
+  recipe(eyecor ~., data = baselers) %&gt;% 
+  step_dummy(all_nominal_predictors())
+```
+
+]
+
+---
+
+# Logistic regression model example
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Define the &lt;mono&gt;recipe&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;high&gt;Define the model.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Define the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;Fit the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;Assess model performance.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]
+
+.pull-right45[
+
+
+```r
+logistic_model &lt;- 
+  logistic_reg() %&gt;% 
+  set_engine("glm") %&gt;% 
+  set_mode("classification")
+```
+
+]
+
+---
+
+# Logistic regression model example
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Define the &lt;mono&gt;recipe&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Define the model.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;&lt;high&gt;Define the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;Fit the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;Assess model performance.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]
+
+.pull-right45[
+
+
+```r
+logistic_workflow &lt;- 
+  workflow() %&gt;% 
+  add_recipe(logistic_recipe) %&gt;% 
+  add_model(logistic_model)
+```
+
+]
+
+---
+
+# Logistic regression model example
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Define the &lt;mono&gt;recipe&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Define the model.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Define the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;&lt;high&gt;Fit the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;Assess model performance.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]
+
+.pull-right45[
+
+
+```r
+eyecor_glm &lt;- fit(logistic_workflow,
+                  data = baselers)
+```
+
+]
+
+---
+
+# Logistic regression model example
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Define the &lt;mono&gt;recipe&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Define the model.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Define the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;Fit the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;&lt;high&gt;Assess model performance.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]
+
+.pull-right5[
+
+
+```r
+logistic_pred &lt;- 
+  predict(eyecor_glm, baselers,
+          type = "prob") %&gt;% 
+  bind_cols(predict(eyecor_glm, baselers)) %&gt;% 
+  bind_cols(baselers %&gt;% select(eyecor))
+
+metrics(logistic_pred, truth = eyecor,
+        estimate = .pred_class, .pred_yes)
+```
+
+```
+# A tibble: 4 x 3
+  .metric     .estimator .estimate
+  &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy    binary        0.647 
+2 kap         binary        0.0566
+3 mn_log_loss binary        0.634 
+4 roc_auc     binary        0.605 
+```
+
+]
+
+---
+
+# Logistic regression model example
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Define the &lt;mono&gt;recipe&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Define the model.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Define the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;Fit the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m5"&gt;&lt;span&gt;&lt;high&gt;Assess model performance.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]
+
+.pull-right5[
+
+
+```r
+logistic_pred %&gt;% 
+  roc_curve(truth = eyecor, .pred_yes) %&gt;% 
+  autoplot()
+```
+
+&lt;img src="Fitting_files/figure-html/unnamed-chunk-23-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -1243,7 +1096,9 @@ Prediction  no yes
 
 class: middle, center
 
-&lt;h1&gt;&lt;a href=https://therbootcamp.github.io/AML_2020AMLD/_sessions/Fitting/Fitting_practical.html&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+&lt;h1&gt;&lt;a href=https://therbootcamp.github.io/AML_2021AMLD/_sessions/Fitting/Fitting_practical.html&gt;Practical&lt;/a&gt;&lt;/h1&gt;
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -1292,6 +1147,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -1309,17 +1190,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {
