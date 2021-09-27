@@ -5,7 +5,7 @@ author: "Applied Machine Learning with R<br>
     The R Bootcamp
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/AML_2020AMLD/'>
+  <a href='https://therbootcamp.github.io/AML_2021AMLD/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "Applied Machine Learning with R<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "January 2020"
+date: "November 2021"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-       Applied Machine Learning with R | January 2020
+       Applied Machine Learning with R | November 2021
       </font>
     </a>
     </span>
@@ -55,21 +55,15 @@ layout: true
 
 class: middle, center
 
-```{r, eval = FALSE, echo = FALSE}
-# Code to knit slides
-xaringan::inf_mr('_sessions/D1S2_Wrangling/Wrangling.Rmd')
-baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt")
-```
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 options(width=110)
 options(digits = 4)
 library(tidyverse)
-baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt")
+#baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt")
 ```
 
----
 
 # What is machine learning?
 
@@ -116,273 +110,6 @@ baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/ma
 <div align="center">
 <iframe width="800" height="450" src="https://www.youtube.com/embed/cNxadbrN_aI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
----
-
-# Easy to confuse
-
-.pull-left45[
-
-<font style="font-size:24px"><b>AI</b></font> is <high>intelligence demonstrated by machines</high>, in contrast to the natural intelligence displayed by humans and animals.
-
-<font style="font-size:24px"><b>Statistics</b></font> is a <high>branch of mathematics</high> dealing with data collection, organization, analysis, interpretation and presentation.
-
-<font style="font-size:24px"><b>Big Data</b></font> deals with data sets that are <high>too large or complex</high> to be dealt with by traditional data-processing application software.
-
-<font style="font-size:24px"><b>Data Science</b></font> is a multi-disciplinary field that uses scientific methods, processes, algorithms and systems to <high>extract knowledge and insights</high> from structured and unstructured data.
-
-
-]
-
-.pull-right45[
-
-<p align = "center">
-<img src="image/areas.png" height=390px><br>
-</p>
-
-]
-
----
-
-# Data-driven decisions
-
-.pull-left5[
-
-<p>
-<font style="font-size:24px;"><b>Predicting Heart Attacks</b></font><br><br>
-
-You are an intake nurse at an emergency room.<br><br2>
-
-A patient comes in complaining of chest pain and thinks he is having a heart attack<br><br2>
-
-<high><i>How do you decide whether or not the patient is really having a heart attack?</i></high><br><br><br2>
-
-<font style="font-size:24px"><b>Predicting Sales</b></font><br><br>
-
-You are an analyst at a retail corporation.<br><br2>
-
-The executive team is considering whether or not to open a new retail location in Basel.<br><br2>
-
-<high><i>How can you predict what the sales of the new store would be?</i></high>
-</p>
-]
-
-.pull-right4[
-
-
-<p align = "center">
-<img src="image/chestpain.jpg" height=180px width=260px><br>
-<font style="font-size:10px">from <a href="https://medium.com/@dkwok94/machine-learning-for-my-grandma-ca242e97ef62">medium.com</a></font>
-</p>
-
-<p align = "center">
-<img src="image/storefront.jpg" height=180px width=260px><br>
-<font style="font-size:10px">from <a href="https://thirdmanrecords.com/locations/detroit-storefront">thirdmanrecords.com</a></font>
-</p>
-
-]
-
----
-
-<p align = "center">
-<img src="image/trump_gut_statement.jpg"><br>
-<font style="font-size:10px">from <a href="cnn.com">cnn.com</a></font>
-</p>
-
----
-
-# Can we trust our intuition?
-
-.pull-left45[
-
-<p align = "center">
-<img src="image/gigi.jpg" width=310px height=412px><br>
-<font style="font-size:10px">from <a href="https://www.amazon.co.uk/Gut-Feelings-Better-Decision-Making/dp/0141015918">amazon.uk</a></font>
-</p>
-
-]
-
-.pull-right45[
-
-<p align = "center">
-<img src="image/chestpain_quote.png" height=180px><br>
-<font style="font-size:10px">from <a href="https://medium.com/@dkwok94/machine-learning-for-my-grandma-ca242e97ef62">medium.com</a></font>
-</p>
-
-<p align = "center">
-<img src="image/storefront_quote.png" height=180px><br>
-<font style="font-size:10px">from <a href="https://thirdmanrecords.com/locations/detroit-storefront">thirdmanrecords.com</a></font>
-</p>
-
-]
-
----
-
-# Problems with intuition
-
-.pull-left45[
-
-<b>Intuition</b>...
-
-<p align="center" style="padding-left:100px;padding-right:100px">
-  <br><br>
-  <font style="font-size:40px"><i>What problems arise from trusting one's intuition?</i></font>
-</p>
-
-
-]
-
-.pull-right45[
-
-
-<p align = "center">
-<img src="image/chestpain_quote.png" height=180px><br>
-<font style="font-size:10px">from <a href="https://medium.com/@dkwok94/machine-learning-for-my-grandma-ca242e97ef62">medium.com</a></font>
-</p>
-
-<p align = "center">
-<img src="image/storefront_quote.png" height=180px><br>
-<font style="font-size:10px">from <a href="https://thirdmanrecords.com/locations/detroit-storefront">thirdmanrecords.com</a></font>
-</p>
-
-]
-
----
-
-# Problems with intuition
-
-.pull-left45[
-
-<b>Intuition</b>...
-
-<p style="padding-left:20px">
-...might not tell you anything about <high>how the prediction</high> has been made.<br><br>
-
-...could be based on <high>reasons other than accuracy</high>, e.g., self protection.<br><br>
-
-...impossible to know if <high>critical information is being ignored</high>.<br><br>
-
-...is <high>difficult to reproduce</high> and rarely permits rigorous evaluation.<br><br>
-
-...can always be <high>defended in hindsight</high>.
-</p>
-]
-
-.pull-right45[
-
-
-<p align = "center">
-<img src="image/chestpain_quote.png" height=180px><br>
-<font style="font-size:10px">from <a href="https://medium.com/@dkwok94/machine-learning-for-my-grandma-ca242e97ef62">medium.com</a></font>
-</p>
-
-<p align = "center">
-<img src="image/storefront_quote.png" height=180px><br>
-<font style="font-size:10px">from <a href="https://thirdmanrecords.com/locations/detroit-storefront">thirdmanrecords.com</a></font>
-</p>
-
-]
-
-
----
-
-# Machine learning is data-driven
-
-.pull-left45[
-
-<b>Data-driven, ML-based heart rate prediction</b>
-
-Based on <high>data</high> from past patients <high>at this hospital</high>, a <high>regression model</high>, using the patient's <high>age, cholesterol level, and ecg</high>, <high>predicts</high> the probability that this patient is having a heart attack is only <high>45%</high>.
-
-<p align = "center">
-<img src="image/heartdisease_data_ss.jpg">
-</p>
-
-
-] 
-
-.pull-right45[
-
-<p align = "center">
-<img src="image/chestpain_quote_ml.png" height=180px><br>
-<font style="font-size:10px">from <a href="https://medium.com/@dkwok94/machine-learning-for-my-grandma-ca242e97ef62">medium.com</a></font>
-</p>
-
-<p align = "center">
-<img src="image/storefront_quote_ml.png" height=180px><br>
-<font style="font-size:10px">from <a href="https://thirdmanrecords.com/locations/detroit-storefront">thirdmanrecords.com</a></font>
-</p>
-
-] 
-
-
-
----
-
-# Benefits of ML
-
-.pull-left45[
-
-<b>Machine learning <i>algorithms</i></b>....
-
-<p align="center" style="padding-left:100px;padding-right:100px">
-  <br><br><br>
-  <font style="font-size:40px"><i>What are benefits of machine learning?</i></font>
-</p>
-
-] 
-
-.pull-right45[
-
-<p align = "center">
-<img src="image/chestpain_quote_ml.png" height=180px><br>
-<font style="font-size:10px">from <a href="https://medium.com/@dkwok94/machine-learning-for-my-grandma-ca242e97ef62">medium.com</a></font>
-</p>
-
-<p align = "center">
-<img src="image/storefront_quote_ml.png" height=180px><br>
-<font style="font-size:10px">from <a href="https://thirdmanrecords.com/locations/detroit-storefront">thirdmanrecords.com</a></font>
-</p>
-
-] 
-
----
-
-# Benefits of ML
-
-.pull-left45[
-
-<b>Machine learning <i>algorithms</i></b>....
-
-<p style="padding-left:20px">
-...can integrate all available <high>data</high>.<br><br>
-
-...make <high>explicit, reproducible, and quantitative</high> predictions of variables of interest.<br><br>
-
-...can tell you <high>which variables are important</high> and which are not.<br><br>
-
-...can give you <high>probability estimates</high>, and estimated errors, rather than single decisions or point estimates.<br><br>
-
-...can reveal <high>novel insights</high> about your data.<br><br>
-
-...can be <high>automated</high>.
-</p>
-
-] 
-
-.pull-right45[
-
-<p align = "center">
-<img src="image/chestpain_quote_ml.png" height=180px><br>
-<font style="font-size:10px">from <a href="https://medium.com/@dkwok94/machine-learning-for-my-grandma-ca242e97ef62">medium.com</a></font>
-</p>
-
-<p align = "center">
-<img src="image/storefront_quote_ml.png" height=180px><br>
-<font style="font-size:10px">from <a href="https://thirdmanrecords.com/locations/detroit-storefront">thirdmanrecords.com</a></font>
-</p>
-
-] 
-
 
 ---
 
@@ -406,154 +133,6 @@ There are many types of machine learning tasks, each of which call for different
 </p>
 ]
 
-
-
----
-
-# Data terminology
-
-
-.pull-left5[
-<p>
-<table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px">
-
-<tr>
-  <td bgcolor="white">
-    <b>Term</b>
-  </td>
-  <td bgcolor="white">
-    <b>Definition</b>
-  </td>  
-  <td bgcolor="white">
-    <b>Example</b>
-  </td>  
-</tr>
-<tr>
-  <td bgcolor="white">
-    <i>Case</i>
-  </td>
-  <td bgcolor="white">
-   A specific <high>observation</high> of data.
-  </td>  
-  <td bgcolor="white">
-   A patient, a site, etc.
-  </td>  
-</tr>
-<tr>
-  <td bgcolor="white">
-    <i>Feature</i>
-  </td>
-  <td bgcolor="white">
-   An measurable <high>property</high> of cases. Also called predictors. 
-  </td>  
-  <td bgcolor="white">
-   Age, temperature, country, etc.
-  </td>  
-</tr>
-<tr>
-  <td bgcolor="white">
-    <i>Criterion</i>
-  </td>
-  <td bgcolor="white">
-   The <high>feature</high> that you want to <high>predict</high>.
-  </td>  
-  <td bgcolor="white">
-   Heart attack, sales, etc.
-  </td>  
-</tr>
-<tr>
-  <td bgcolor="white">
-    <i>Data</i>
-  </td>
-  <td bgcolor="white">
-   Typically <high>rectangular</high> representation of cases (rows) and features (columns).
-  </td>  
-  <td bgcolor="white">
-   <mono>.csv</mono>, <mono>.xls</mono>, <mono>.sav</mono>, etc.
-  </td>  
-</tr>
-</table>
-</p>
-]
-
-
-.pull-right4[
-
-<p align = "center">
-<img src="image/terminology.png"><br>
-</p>
-
-]
-
-
-
----
-
-# Supervised learning
-
-.pull-left5[
-
-The <high>dominant type</high> of machine learning.  
-
-Supervised learning uses <high>labeled data</high> to learn <high>a model</high> that relates the criterion to the features.  
-
-<br>
-<u>Verbal model</u>
-
-<font style="font-size:24px"><mono>if cp (chest pain) is not a (asymptomatic) and age is larger than 60 then high probability of hearth attack, otherwise low probability.</mono></font>
-
-
-
-
-]
-
-.pull-right4[
-
-<p align = "center">
-<img src="image/supervised.png"><br>
-</p>
-]
-
----
-
-# 3 key (supervised) models
-
-<p align = "center" style="padding-top:20px">
-<img src="image/models.png"><br>
-</p>
-
-
----
-
-# 2 types of supervised problems
-
-.pull-left5[
-
-There are two types of supervised learning problems that can often be approached using the same model.
-
-<font style="font-size:24px"><b>Regression</b></font>
-
-Regression problems involve the <high>prediction of a quantitative feature</high>. 
-
-E.g., predicting the cholesterol level as a function of age. 
-
-<font style="font-size:24px"><b>Classification</b></font>
-
-Classification problems involve the <high>prediction of a categorical feature</high>.   
-
-E.g., predicting the origin of chest pain as a function of age and heart attack risk. 
-
-
-
-]
-
-.pull-right4[
-
-<p align = "center">
-<img src="image/twotypes.png" height=440px><br>
-</p>
-
-]
 
 
 ---
@@ -680,61 +259,178 @@ RL is closely <high>related to psychological theories of learning</high>.
 ]
 
 
+
 ---
 
-# Reinforcement learning
+# Supervised learning
+
+EXAMPLES
+
+---
+
+# Supervised learning
 
 .pull-left5[
 
-<high>Learns iteratively</high> from minimal supervision provided by <high>performance feedback</high>.   
+The <high>dominant type</high> of machine learning.  
 
-RL is closely <high>related to psychological theories of learning</high>. 
+Supervised learning uses <high>labeled data</high> to learn <high>a model</high> that relates the criterion to the features.  
 
-<u>Examples</u>
+<br>
+<u>Verbal model</u>
 
-<table style="cellspacing:0; cellpadding:0; border:none;">
-  <col width="30%">
-  <col width="70%">
-<tr>
-  <td bgcolor="white">
-    <b>Application</b>
-  </td>
-  <td bgcolor="white">
-    <b>Description</b>
-  </td>  
-</tr>
-<tr>
-  <td bgcolor="white">
-    <i>Model fitting</i>
-  </td>
-  <td bgcolor="white">
-   Iteratively <high>change model parameters</high> to improve prediction.  
-</tr>
-<tr>
-  <td bgcolor="white">
-    <i>Robot movements</i>
-  </td>
-  <td bgcolor="white">
-   Iteratively <high>change movement</high> patterns to increase pancake-catch probability.  
-</tr>
-<tr>
-  <td bgcolor="white">
-    <i>Games</i>
-  </td>
-  <td bgcolor="white">
-   Iteratively <high>change controller input</high> patterns to improve Mario Kart racing time.  
-</tr>
-</table>
+<font style="font-size:24px"><mono>if cp (chest pain) is not a (asymptomatic) and age is larger than 60 then high probability of hearth attack, otherwise low probability.</mono></font>
+
+
+
 
 ]
 
 .pull-right4[
 
-<br><br>
+<p align = "center">
+<img src="image/supervised.png"><br>
+</p>
+]
 
-<iframe width=550px height=310px src="https://www.youtube.com/embed/tXlM99xPQC8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+---
+
+# Data terminology
+
+
+.pull-left5[
+<p>
+<table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px">
+
+<tr>
+  <td bgcolor="white">
+    <b>Term</b>
+  </td>
+  <td bgcolor="white">
+    <b>Definition</b>
+  </td>  
+  <td bgcolor="white">
+    <b>Example</b>
+  </td>  
+</tr>
+<tr>
+  <td bgcolor="white">
+    <i>Case</i>
+  </td>
+  <td bgcolor="white">
+   A specific <high>observation</high> of data.
+  </td>  
+  <td bgcolor="white">
+   A patient, a site, etc.
+  </td>  
+</tr>
+<tr>
+  <td bgcolor="white">
+    <i>Feature</i>
+  </td>
+  <td bgcolor="white">
+   An measurable <high>property</high> of cases. Also called predictors. 
+  </td>  
+  <td bgcolor="white">
+   Age, temperature, country, etc.
+  </td>  
+</tr>
+<tr>
+  <td bgcolor="white">
+    <i>Criterion</i>
+  </td>
+  <td bgcolor="white">
+   The <high>feature</high> that you want to <high>predict</high>.
+  </td>  
+  <td bgcolor="white">
+   Heart attack, sales, etc.
+  </td>  
+</tr>
+<tr>
+  <td bgcolor="white">
+    <i>Data</i>
+  </td>
+  <td bgcolor="white">
+   Typically <high>rectangular</high> representation of cases (rows) and features (columns).
+  </td>  
+  <td bgcolor="white">
+   <mono>.csv</mono>, <mono>.xls</mono>, <mono>.sav</mono>, etc.
+  </td>  
+</tr>
+</table>
+</p>
+]
+
+
+.pull-right4[
+
+<p align = "center">
+<img src="image/terminology.png"><br>
+</p>
 
 ]
+
+
+---
+
+# Machine learning in R
+
+packages available
+
+mlr, caret, rtensorflow
+
+---
+
+# tidymodels
+
+follow tidyverse style
+
+own verse
+
+
+---
+
+# 2 types of supervised problems
+
+.pull-left5[
+
+There are two types of supervised learning problems that can often be approached using the same model.
+
+<font style="font-size:24px"><b>Regression</b></font>
+
+Regression problems involve the <high>prediction of a quantitative feature</high>. 
+
+E.g., predicting the cholesterol level as a function of age. 
+
+<font style="font-size:24px"><b>Classification</b></font>
+
+Classification problems involve the <high>prediction of a categorical feature</high>.   
+
+E.g., predicting the origin of chest pain as a function of age and heart attack risk. 
+
+
+
+]
+
+.pull-right4[
+
+<p align = "center">
+<img src="image/twotypes.png" height=440px><br>
+</p>
+
+]
+
+
+---
+
+# 3 key (supervised) models
+
+<p align = "center" style="padding-top:20px">
+<img src="image/models.png"><br>
+</p>
+
+
 
 
 ---
