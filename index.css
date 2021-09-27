@@ -1,80 +1,251 @@
 @import url(https://use.fontawesome.com/releases/v5.6.3/css/all.css);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import url(https://fonts.googleapis.com/icon?family=Montserrat:100,400);
+
+:root {
+  font-size: 62.5%;
+  body {
+    margin: 0;
+    // Body font size 16px
+    font-size: 1.6rem;
+  }
+}
+
+
+#header {
+ background: url("https://raw.githubusercontent.com/therbootcamp/I2R_2020Aug/master/src/img/background_narrow.jpeg");
+ background-size: cover;
+ color: white;
+ padding: 30px 22% 70px 22%;
+ margin-left: calc(-50vw + 50%);
+ margin-right: calc(-50vw + 50%);
+ margin-top: -20px;
+ font-family: 'Montserrat';
+
+}
+
+#header h1 {
+ font-weight: 700;
+ font-size: 4.4rem;
+ margin-bottom: .3em;
+}
+
+#header h1, h2, h3, h4, h5, font {
+ color: white;
+}
+
+#header a {
+ color: white;
+}
+
+#header i, #header a {
+  font-size: 2rem;
+  text-decoration: none;
+  padding-right: 3px;
+}
+
+@media (min-width: 480px) {
+  #header h1 {font-size: 4.8rem;}
+}
+
+@media (min-width: 768px) {
+  #header h1 {font-size: 5.6rem;}
+}
+
+@media (min-width: 992px) {
+  #header h1 {font-size: 6.4rem;}
+
+}
+
+@media (min-width: 1200px) {
+  #header h1 {font-size: 7rem;}
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: Montserrat;
+  color: #212529;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  padding-top: 20px;
+  font-size: 2.4rem;
+}
 
 .my-table {
-  font-size:20px;
-  font-family: 'Droid-serif';
-  border-spacing:6px 4px;
+  font-size:2rem;
+  font-family: Montserrat;
+  border-spacing: 8px 4px;
   line-height: 1.2;
+  margin-top: 20px;
+  margin-bottom: 20px;
   }
 
-.my-table th {
-  font-size:16px;
-  font-weight:400;
-  width: 100;
+.my-table .time {
+  font-size:.7em;
+  font-weight:100;
   text-align: right;
   vertical-align: top;
-  padding: 4px 4px;
+  padding: 6px 0px 6px 0px;
   }
 
 .my-table td {
-  font-weight:300;
+  font-weight:100;
   vertical-align: top;
-  padding: 4px 4px;
+  padding: 6px 0px 6px 6px;
+  border-radius:8px;
+  height: 40px;
+  }
+
+.my-table img {
+  height: 20px;
 }
 
 .td-special {
-  font-weight:300;
+  font-weight:100;
   font-style: italic;
 }
 
 .td-special-blue {
-  font-weight:300;
+  font-weight:100;
   font-style: italic;
   background-color:#7FBDF7;
   color:#ffffff;
-  border: 4px solid #ffffff;
 }
 
 .td-special-grey {
-  font-weight:300;
+  font-weight:100;
   font-style: italic;
   background-color:#DDDEE0;
-  color:#ffffff;
-  border: 4px solid #ffffff;
+  color:#000000;
 }
 
 .td-red {
   background-color:#F8716F;
   color:#ffffff;
-  border: 4px solid #ffffff;
 }
 
 .td-grey {
   background-color:#626870;
   color:#ffffff;
-  border: 4px solid #ffffff;
 }
 
+a {
+  text-decoration: none;
+}
 
+.zoom {
+  border-spacing: 8px 4px;
+}
+
+.zoom td {
+  border-radius:8px;
+  min-width: 260px;
+}
+
+.zoom a {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 2rem;
+  font-weight: 100;
+  font-family: Montserrat;
+}
 
 .cont {
-        font-weight:300;
+        font-weight:400;
 	font-size:10px;
 	line-height: 1.1;
     margin-top: 4px;
 }
 
-.sub {
-        font-weight:400;
+.sub {font-weight:400;}
+e {font-weight: 100;}
+r {color: #FF3A2A;}
+
+.my-table a {
+  color: white;
+  font-weight: 100;
+  }
+
+.my-table a:hover {
+  color: white;
 }
 
-e {
-        font-weight: 900;
+el {
+  font-size: .8em;
 }
 
-r {
- /*       font-weight: 900; */
-        color: #FF3A2A;
+.downloads h4 {
+  font-weight: 400;
+  margin-bottom: 4px;
+  }
+
+.downloads .active {
+  color: #626870;
+}
+.downloads .inactive {
+  color: #DDDEE0;
+}
+
+.courses td {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.courses h4 {
+  font-weight: 400;
+  margin-bottom: 11px;
+  }
+
+.course-img {
+  max-width: 120px;
+  border-radius: 50%;
+  border: 7px solid #e9ecef;
+}
+
+.literature td {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.literature h4 {
+  font-weight: 400;
+  margin-bottom: 11px;
+  }
+
+.literature-img {
+  max-height: 150px;
+  border: 2px solid #e9ecef;
+}
+
+.partner-img {
+  max-height: 150px;
+}
+
+.xlogo {
+  /*float:right;*/
+  padding: 10px 10px 30px 30px;
+  max-width:280px;
+  max-height:180px;
+  width: auto;
+  height: auto;
+}
+
+
+.logo {
+  padding: 20px;
+  max-width:230px;
+  max-height:120px;
+  width: auto;
+  height: auto;
+}
+
+.partners td {
+
+  padding-bottom:20px;
+
 }

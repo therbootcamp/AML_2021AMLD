@@ -1,288 +1,241 @@
-<!DOCTYPE html>
-
 <html>
+  <head>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="index.css">
+  </head>
 
-<head>
+  <body>
 
-<meta charset="utf-8" />
-<meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <div align="center">
+      <div id="header" align=left style="display:inline-block">
+        <h1>Applied Machine Learning with R</h1>
+        <span style="white-space: nowrap">
+          <a href='http://therbootcamp.github.io/'><i class='fas fa-home'></i></a>
+          <a href='http://therbootcamp.github.io/AML_2021AMLD'><i class='fas fa-clock'></i></a>
+          <a href='mailto:therbootcamp@gmail.com'><i class='fas fa-envelope'></i></a>
+          <a href='https://www.linkedin.com/company/27090302'><i class='fab fa-linkedin'></i></a>
+          <a href='http://therbootcamp.github.io/'>
+            <font style='font-style:normal;font-size:20px;padding-left:5px'>The R Bootcamp @ AMLD</font>
+          </a>
+        </span>
+        <br>
+        <span style="white-space: nowrap">
+          <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style= 'height:2rem; vertical-align:baseline'/>
+          <font style='font-size:2rem;font-style:normal;padding-left:8px'>November 2021</font>
+        <span>
+    </div>
 
-
-<meta name="author" content="             The R Bootcamp @ AMLD    January 2020" />
-
-
-<title>Applied Machine Learning with R</title>
-
-<script src="index_files/jquery-1.11.3/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="index_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="index_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="index_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="index_files/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="index_files/navigation-1.1/tabsets.js"></script>
-<link href="index_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="index_files/highlightjs-9.12.0/highlight.js"></script>
-
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
+    <br><br>
 
 
+    <!---
+    <div align="center" style="max-width:940px">
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+      <h2>ZOOM</h2>
+      <table width=50% cellspacing=0 cellpadding=0 class="zoom">
+        <tr>
+          <td class="td-grey">
+            <a href="https://unibas.zoom.us/j/67214322116?pwd=aGh5M0o1a3VUMzBZd3A0TzF4ek1Ndz09" style="display:block;height:100%;width:100%">
+              <div style="display:table;height:60px;width:100%">
+               <div style="display:table-cell;vertical-align:middle;text-align:center;width:100%">eintreten</div>
+             </div>
+            </a>
+          </td>
+        </tr>
+      </table>
 
-<link rel="stylesheet" href="index.css" type="text/css" />
+      <br><br>
+      --->
 
+      <h2>Materials</h2>
+      <table width=30% cellspacing=0 cellpadding=0 class="downloads">
+        <col width=50%>
+        <col width=50%>
+        <tr>
+          <td align=center>
+            <h4>Project</h4>
+            <a href="https://www.dropbox.com/s/utz1tblgn003e3k/NewStats.zip?dl=1">
+            <span class="fa-stack fa-3x active">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-code fa-stack-1x fa-inverse"></i>
+            </span>
+            </a>
+          </td>
+          <td align=center>
+            <h4>Installation</h4>
+            <a href="install.html">
+            <span class="fa-stack fa-3x active"> <!--- inactive --->
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fas fa-clipboard-check fa-stack-1x fa-inverse"></i>
+            </span>
+            </a>
+          </td>
+        </tr>
+      </table>
 
+      <br><br>
 
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-}
-.tabbed-pane {
-  padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
-}
-button.code-folding-btn:focus {
-  outline: none;
-}
-summary {
-  display: list-item;
-}
-</style>
-
-
-
-<!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-  background-color: transparent;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
-<!-- code folding -->
-
-
-
-
-</head>
-
-<body>
-
-
-<div class="container-fluid main-container">
-
-
-
-
-<div class="fluid-row" id="header">
-
-
-
-<h1 class="title toc-ignore">Applied Machine Learning with R</h1>
-<h4 class="author"><a href='https://therbootcamp.github.io'> <i class='fas fa-home' style='font-size:1em;'></i> </a> <a href='https://therbootcamp.github.io/AML_2020AMLD/'> <i class='fas fa-clock' style='font-size:1em;' ></i> </a> <a href='mailto:therbootcamp@gmail.com'> <i class='fas fa-envelope' style='font-size: 1em;'></i> </a> <a href='https://www.linkedin.com/company/basel-r-bootcamp/'> <i class='fab fa-linkedin' style='font-size: 1em;'></i> </a> <a href='https://therbootcamp.github.io/AML_2020AMLD/'> <font style='font-style:normal;font-size:20px;padding-left:5px'>The R Bootcamp @ AMLD</font> </a> <br> <img src='https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/by-sa.png' style= 'height:16.7px;vertical-align:baseline'/><font style='font-style:normal;font-size:20px;padding-left:9.3px'>January 2020</font></h4>
-
-</div>
-
-
-<p><br></p>
-<div id="preparations" class="section level3">
-<h3>Preparations</h3>
-<p>Before attending, please…</p>
-<ul>
-<li><p>go through the <a href="https://therbootcamp.github.io/AML_2020AMLD/installation/instructions.html"><strong>installation instructions</strong></a>.</p></li>
-<li><p>fill out this <a href="https://docs.google.com/forms/d/e/1FAIpQLSf9CO6tehkFG7hQElxXBmCZvEnV-4aGTiqmGAmTpie1eG7rnQ/viewform?usp=sf_link"><strong>survey</strong></a>.</p></li>
-</ul>
-<p><br></p>
-</div>
-<div id="materials" class="section level3">
-<h3>Materials</h3>
-<table>
-<thead>
-<tr class="header">
-<th align="left"></th>
-<th align="left">Day 1</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">0</td>
-<td align="left"><a href="_sessions/Introduction/Introduction.html">Intro</a></td>
-</tr>
-<tr class="even">
-<td align="left">1</td>
-<td align="left"><a href="_sessions/Intro2R/Intro2R.html">Intro to R</a></td>
-</tr>
-<tr class="odd">
-<td align="left">2</td>
-<td align="left"><a href="_sessions/Fitting/Fitting.html">Fitting</a>, <a href="_sessions/Fitting/Fitting_practical.html">practical</a></td>
-</tr>
-<tr class="even">
-<td align="left">3</td>
-<td align="left"><a href="_sessions/Prediction/Prediction.html">Prediction</a>, <a href="_sessions/Prediction/Prediction_practical.html">practical</a></td>
-</tr>
-<tr class="odd">
-<td align="left">4</td>
-<td align="left"><a href="_sessions/Tuning/Tuning.html">Tuning</a>, <a href="_sessions/Tuning/Tuning_practical.html">practical</a></td>
-</tr>
-<tr class="even">
-<td align="left">5</td>
-<td align="left"><a href="_sessions/Wrapup/Wrapup.html">Wrap-up</a></td>
-</tr>
-</tbody>
-</table>
-<p><br></p>
-</div>
-<div id="schedule" class="section level3">
-<h3>Schedule</h3>
-<p align="left">
-<br> <img border="0" alt="Schedule" src="https://raw.githubusercontent.com/therbootcamp/AML_2020AMLD/master/_sessions/Introduction/image/schedule.png" style="width:360px">
-</p>
-</div>
+      <h2>PROGRAM</h2>
+      <table width=30% cellspacing=0 cellpadding=0 class="my-table">
+      <col width="10%">
+      <col width="90%">
+      <tr>
+         <td class="time">0930</td>
+         <td class="td-special-blue">
+           <a href="_sessions/welcome/welcome.html" style="display:block;height:100%;width:100%">
+             <div style="display:table;height:100%;width:100%">
+              <div style="display:table-cell;vertical-align:top;width:75%"><e>Welcome!</e></div>
+              <div style="display:table-cell;vertical-align:top"><img src="https://raw.githubusercontent.com/dwulff/Intro2R_Unibe_2021/main/src/img/slide.png"></div>
+            </div>
+           </a>
+         </td>
+      </tr>
+      <tr>
+         <td class="time">0945</td>
+         <td class="td-red" rowspan=2>
+           <a href="_sessions/welcome/welcome.html" style="display:block;height:100%;width:100%">
+             <div style="display:table;height:100%;width:100%">
+              <div style="display:table-cell;vertical-align:top;width:75%"><e>Intro to tidymodels</e></div>
+              <div style="display:table-cell;vertical-align:top"><img src="https://raw.githubusercontent.com/dwulff/Intro2R_Unibe_2021/main/src/img/slide.png"></div>
+            </div>
+           </a>
+         </td>
+      </tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr>
+         <td class="time">1015</td>
+         <td class="td-special-grey" rowspan=1>Break</td>
+      </tr>
+      <tr>
+        <td class="time">1030</td>
+         <td class="td-grey" rowspan=3>
+           <a href="_sessions/power_analysis/power_analysis.html" style="display:block;height:40px;width:100%">
+             <div style="display:table;height:40px;width:100%">
+              <div style="display:table-cell;vertical-align:top;width:100%">Fitting</div>
+            </div>
+           </a>
+           <a href="_sessions/power_analysis/power_analysis.html" style="display:block;height:28px;width:100%">
+             <div style="display:table;height:28px;width:100%">
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:10%"><img src="https://raw.githubusercontent.com/dwulff/Intro2R_Unibe_2021/main/src/img/slide.png"></div>
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:90%"><el>Intro</el></div>
+            </div>
+           </a>
+           <a href="_sessions/power_analysis/power_analysis_practical.html" style="display:block;height:28px;width:100%">
+             <div style="display:table;height:28px;width:100%">
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:10%"><i class="fas fa-dumbbell" style="font-size:16px;opacity:.3"></i></div>
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:90%"><el>Practical</el></div>
+            </div>
+           </a>
+         </td>
+      </tr>
+      <tr><td></td><td></td><td></td></tr>  <tr><td></td><td></td><td></td></tr>
+      <tr>
+         <td class="time">1200</td>
+         <td class="td-special-grey" rowspan=2>Break</td>
+      </tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr>
+         <td class="time">1300</td>
+         <td class="td-grey" rowspan=3>
+           <a href="_sessions/bayesian_statistics/bayesian_statistics.html" style="display:block;height:40px;width:100%">
+             <div style="display:table;height:40px;width:100%">
+              <div style="display:table-cell;vertical-align:top;width:100%">Bayesian statistics</div>
+            </div>
+           </a>
+           <a href="_sessions/bayesian_statistics/bayesian_statistics.html" style="display:block;height:28px;width:100%">
+             <div style="display:table;height:28px;width:100%">
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:10%"><img src="https://raw.githubusercontent.com/dwulff/Intro2R_Unibe_2021/main/src/img/slide.png"></div>
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:90%"><el>Intro</el></div>
+            </div>
+           </a>
+           <a href="_sessions/bayesian_statistics/bayesian_statistics_practical.html" style="display:block;height:28px;width:100%">
+             <div style="display:table;height:28px;width:100%">
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:10%"><i class="fas fa-dumbbell" style="font-size:16px;opacity:.3"></i></div>
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:90%"><el>Practical</el></div>
+            </div>
+           </a>
+         </td>
+      </tr>
+      <tr><td></td><td></td><td></td></tr>  <tr><td></td><td></td><td></td></tr>
+      <tr>
+         <td class="time">1430</td>
+         <td class="td-special-grey" rowspan=2>Break</td>
+      </tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr>
+         <td class="time">1530</td>
+         <td class="td-grey" rowspan=3>
+           <a href="_sessions/sequential_analysis/sequential_analysis.html" style="display:block;height:40px;width:100%">
+             <div style="display:table;height:40px;width:100%">
+              <div style="display:table-cell;vertical-align:top;width:75%">Sequential analysis</div>
+            </div>
+           </a>
+           <a href="_sessions/sequential_analysis/sequential_analysis.html" style="display:block;height:28px;width:100%">
+             <div style="display:table;height:28px;width:100%">
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:10%"><img src="https://raw.githubusercontent.com/dwulff/Intro2R_Unibe_2021/main/src/img/slide.png" height=20px></div>
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:90%"><el>Intro</el></div>
+            </div>
+           </a>
+           <a href="_sessions/sequential_analysis/sequential_analysis_practical.html" style="display:block;height:28px;width:100%">
+             <div style="display:table;height:28px;width:100%">
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:10%"><i class="fas fa-dumbbell" style="font-size:16px;opacity:.3"></i></div>
+              <div style="display:table-cell;text-align:left;vertical-align:top;width:90%"><el>Practical</el></div>
+            </div>
+           </a>
+         </td>
+      </tr>
+      <tr><td></td><td></td><td></td></tr> <tr><td></td><td></td><td></td></tr>
+        <tr>
+          <td class="time">1715</td>
+      <td class="td-red" rowspan=1>
+      <a href="_sessions/wrap_up/wrap_up.html" style="display:block;height:100%;width:100%">
+        <div style="display:table;height:100%;width:100%">
+         <div style="display:table-cell;vertical-align:middle;width:75%"><e>Wrap up</e></div>
+         <div style="display:table-cell;vertical-align:middle"><img src="https://raw.githubusercontent.com/dwulff/Intro2R_Unibe_2021/main/src/img/slide.png"></div>
+       </div>
+      </a>
+    </td>
+  </tr>
+      </table>
 
 
+      <br><br>
 
+      <h2>LITERATURE</h2>
+      <table width=30% cellspacing=0 cellpadding=0 class="literature">
+        <col width=50%>
+        <col width=50%>
+        <tr>
+          <td align=center>
+            <a href="https://www.bookdepository.com/Introduction-to-the-New-Statistics-Geoff-Cumming/9781138825529?redirected=true&utm_medium=Google&utm_campaign=Base3&utm_source=CH&utm_content=Introduction-to-the-New-Statistics&selectCurrency=CHF&w=AF72AU9S2JS3KLA8V9L4&gclid=Cj0KCQjws4aKBhDPARIsAIWH0JXy__Q9wSRiE7IU9b7GZKGtXfYkqYLODMXX9vLe-ARr40i87FIXP5QaAugfEALw_wcB">
+            <h4>Cummings et al.<br><i>Introduction to the New Statistics</i></h4>
+              <img class="literature-img" src="https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/1388/9781138825529.jpg">
+            </a>
+          </td>
+          <td align=center>
+            <a href="https://elevanth.org/blog/2018/07/14/statistical-rethinking-edition-2-eta-2020/">
+            <h4>Richard McElreath<br><i>Rethinking statistics</i></h4>
+              <img class="literature-img" src="https://images-na.ssl-images-amazon.com/images/I/41BIZCbFfDL._SX330_BO1,204,203,200_.jpg">
+            </a>
+          </td>
+        </tr>
+      </table>
 
-</div>
+      <br><br>
 
-<script>
+      <h2>CHECK OUT</h2>
 
-// add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-}
-$(document).ready(function () {
-  bootstrapStylePandocTables();
-});
+      <table width=30% cellspacing=0 cellpadding=0 class="partners">
+        <tr>
+          <td align=center>
+            <a href="https://www.sdghackathon.io/">
+              <img style="width:80%" src="https://raw.githubusercontent.com/dwulff/newstats/main/src/img/hack.png">
+            </a>
+          </td>
+        </tr>
 
+      </table>
 
-</script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
-
-</body>
+    </div>
+  </body>
 </html>
