@@ -1,0 +1,1192 @@
+price,accommodates,bedrooms,bathrooms,cleaning_fee,availability_90_days,district,host_respons_time,host_response_rate,host_superhost,host_listings_count,review_scores_accuracy,review_scores_cleanliness,review_scores_checkin,review_scores_communication,review_scores_location,review_scores_value,kitchen,tv,coffe_machine,dishwasher,terrace,bathtub
+99,3,1,2,30,3,Pankow,within a day,100,TRUE,1,10,9,9,10,10,10,yes,yes,no,yes,yes,no
+61,4,1,1,35,0,Mitte,within a few hours,100,TRUE,3,10,10,10,10,9,9,yes,yes,no,no,no,no
+50,2,2,0.5,0,0,Mitte,within a day,100,FALSE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+30,2,1,1.5,25,31,Mitte,within a day,63,FALSE,2,10,8,10,10,10,10,yes,no,no,no,no,no
+60,2,1,1,40,87,Tempelhof - Schöneberg,within an hour,100,FALSE,1,10,10,10,10,10,9,yes,yes,no,no,no,no
+45,2,1,1.5,10,0,Friedrichshain-Kreuzberg,within a day,83,FALSE,1,10,9,10,10,10,10,yes,no,yes,no,no,no
+32,2,0,1,0,14,Lichtenberg,within an hour,100,FALSE,9,10,10,10,10,10,10,yes,yes,yes,no,no,no
+62,6,2,1,30,76,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,no,yes,no
+50,2,1,1,0,53,Charlottenburg-Wilm.,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+60,2,1,1,0,16,Charlottenburg-Wilm.,within a few hours,100,FALSE,0,10,9,10,10,10,10,yes,yes,no,no,no,no
+57,2,1,1,39,28,Tempelhof - Schöneberg,within an hour,90,FALSE,1,9,7,10,9,9,8,yes,no,yes,no,no,yes
+85,4,1,1,50,0,Charlottenburg-Wilm.,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,no,no,yes,no
+110,6,3,2,50,8,Treptow - Köpenick,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+150,4,2,1,30,20,Mitte,within an hour,100,FALSE,1,9,9,9,10,9,9,yes,yes,yes,no,no,no
+45,2,1,1,20,15,Friedrichshain-Kreuzberg,within an hour,90,FALSE,3,10,10,10,10,10,10,yes,no,yes,yes,yes,no
+30,2,1,1,12,0,Lichtenberg,within an hour,100,TRUE,1,10,9,10,10,9,10,yes,yes,yes,yes,yes,no
+50,2,1,1,0,32,Mitte,within a few hours,100,TRUE,2,10,10,10,10,10,9,no,no,no,no,no,no
+38,3,1,1.5,10,47,Pankow,within an hour,90,FALSE,2,9,9,9,10,10,9,yes,no,yes,no,yes,no
+35,2,1,1,15,10,Neukölln,within an hour,100,FALSE,2,9,8,10,10,9,9,yes,no,yes,yes,yes,no
+98,2,1,0,45,22,Mitte,a few days or more,0,FALSE,2,9,10,10,10,10,9,yes,yes,no,no,no,no
+30,2,1,1,10,86,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,1,10,10,10,10,10,9,yes,no,no,no,no,no
+45,4,2,1,50,33,Pankow,within an hour,96,FALSE,7,10,10,10,10,10,10,yes,yes,yes,no,no,no
+55,3,1,1,50,36,Pankow,within an hour,96,FALSE,7,10,10,10,10,10,9,yes,yes,no,no,no,no
+50,4,1,1,30,5,Neukölln,within an hour,100,FALSE,2,10,10,10,10,10,10,yes,no,no,yes,yes,no
+85,4,2,1,100,61,Mitte,within an hour,100,FALSE,17,9,10,10,10,10,9,yes,yes,no,no,no,no
+120,2,2,1,45,0,Friedrichshain-Kreuzberg,within a day,100,FALSE,1,10,10,10,10,10,10,yes,no,yes,no,yes,no
+80,4,1,2.5,60,0,Pankow,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,yes,yes,yes,yes,yes
+90,3,1,1,20,13,Charlottenburg-Wilm.,within a day,67,FALSE,1,10,10,10,10,10,10,yes,yes,yes,no,yes,no
+41,2,1,0.5,0,0,Pankow,within an hour,100,FALSE,0,10,9,10,10,9,9,yes,no,yes,no,yes,no
+79,5,3,1,35,14,Pankow,within a day,80,FALSE,2,10,10,10,10,9,10,yes,no,no,no,yes,no
+70,2,1,1,35,25,Neukölln,within a few hours,80,FALSE,1,10,10,10,10,9,10,yes,yes,yes,no,yes,no
+45,3,1,1,15,83,Mitte,within an hour,100,TRUE,2,10,9,10,10,9,9,yes,no,yes,yes,no,no
+50,2,1,1,40,0,Pankow,within a few hours,86,FALSE,1,10,9,10,9,10,10,yes,yes,yes,yes,no,yes
+50,2,1,1,20,75,Pankow,within a few hours,100,TRUE,2,10,10,10,10,9,9,yes,no,no,no,no,no
+59,4,1,1,39,61,Pankow,within a few hours,100,TRUE,6,10,9,10,10,10,8,yes,yes,yes,yes,yes,yes
+25,1,1,1,0,39,Friedrichshain-Kreuzberg,a few days or more,0,FALSE,1,10,7,10,10,10,9,yes,no,no,no,no,no
+45,4,2,1,30,3,Mitte,within a few hours,100,FALSE,1,10,8,9,10,10,9,yes,no,no,no,yes,no
+100,2,1,1,45,49,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+60,2,1,1,50,90,Pankow,within a day,100,FALSE,1,10,10,9,9,9,9,yes,yes,no,yes,yes,no
+50,2,1,1,30,0,Neukölln,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,yes
+119,8,4,1,50,0,Mitte,within an hour,100,TRUE,5,10,10,10,10,10,10,yes,no,no,no,no,no
+129,4,1,1,70,85,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+230,6,2,1,40,22,Mitte,within an hour,100,FALSE,2,9,10,9,9,9,9,yes,no,no,no,yes,no
+105,4,1,1,50,49,Tempelhof - Schöneberg,within a few hours,100,TRUE,2,10,10,10,10,10,10,yes,no,no,no,no,no
+46,2,0,1,50,12,Pankow,within a few hours,100,TRUE,4,10,9,10,10,10,8,yes,no,no,no,no,no
+92,2,1,1,15,4,Neukölln,within a day,100,FALSE,1,10,10,10,9,10,9,yes,no,yes,no,yes,no
+279,6,3,2,60,41,Neukölln,within an hour,100,TRUE,9,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+24,2,1,1,10,3,Lichtenberg,within an hour,100,TRUE,3,10,10,10,10,9,10,yes,yes,no,no,no,no
+90,2,1,1,50,1,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,yes,no
+70,4,2,1,30,47,Tempelhof - Schöneberg,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+45,2,1,1,35,40,Friedrichshain-Kreuzberg,within a day,50,FALSE,1,10,9,10,10,9,9,yes,no,yes,yes,no,no
+100,4,1,1,25,85,Mitte,a few days or more,40,FALSE,0,10,9,9,9,9,9,yes,no,no,yes,yes,yes
+29,2,1,1.5,20,90,Neukölln,within an hour,100,FALSE,2,10,10,10,10,9,10,no,no,yes,yes,yes,no
+58,2,1,1,0,61,Charlottenburg-Wilm.,a few days or more,38,FALSE,1,8,9,10,10,9,9,yes,yes,yes,no,no,no
+50,2,1,1.5,0,0,Neukölln,within a day,100,FALSE,1,10,9,10,10,10,10,yes,yes,yes,no,no,no
+39,3,1,1,70,0,Mitte,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,yes,no
+60,4,2,1,15,5,Lichtenberg,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,no,yes,yes,yes,yes
+145,6,2,1,50,83,Charlottenburg-Wilm.,within an hour,100,FALSE,6,5,7,7,8,6,5,yes,yes,yes,no,yes,yes
+40,5,2,1,45,0,Neukölln,within a few hours,100,FALSE,1,10,10,10,10,10,9,yes,no,no,no,yes,no
+130,6,3,1,40,45,Friedrichshain-Kreuzberg,within an hour,100,FALSE,7,10,10,10,9,10,9,yes,yes,yes,yes,yes,no
+27,2,1,1,45,0,Spandau,within a few hours,100,FALSE,7,9,8,10,9,9,7,yes,yes,no,no,no,no
+45,1,1,1,35,61,Neukölln,within a day,90,FALSE,4,10,10,9,10,10,10,yes,no,yes,no,yes,no
+36,2,1,1,40,88,Pankow,within an hour,100,FALSE,1,3,4,5,5,9,3,yes,no,no,yes,no,no
+50,4,1,1,75,1,Lichtenberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,no,yes,no,no
+65,2,1,1,60,51,Pankow,within an hour,100,FALSE,1,10,9,10,10,10,9,yes,yes,no,no,yes,no
+50,2,1,1,25,0,Pankow,within a day,100,FALSE,2,9,9,10,10,10,10,yes,no,yes,no,no,no
+77,6,2,1,40,27,Friedrichshain-Kreuzberg,within an hour,100,FALSE,2,10,10,10,10,9,10,yes,no,yes,yes,yes,yes
+150,6,3,2,20,0,Neukölln,within an hour,100,FALSE,1,10,8,10,10,10,9,yes,no,no,no,no,no
+45,2,1,1,20,88,Friedrichshain-Kreuzberg,within a day,100,TRUE,1,10,9,10,10,10,10,yes,no,no,no,no,no
+40,1,1,1,0,0,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,9,10,10,10,9,9,yes,no,no,yes,no,no
+45,2,1,1.5,15,28,Pankow,within a day,80,FALSE,1,10,9,10,10,10,10,yes,no,yes,yes,yes,no
+50,3,1,1,20,0,Tempelhof - Schöneberg,within a few hours,100,FALSE,1,10,9,10,10,10,10,yes,no,no,no,no,no
+100,5,2,2,100,63,Mitte,within an hour,100,TRUE,3,10,10,9,10,10,10,yes,yes,yes,yes,yes,no
+90,6,3,1.5,70,40,Steglitz - Zehlendorf,within a few hours,100,TRUE,2,10,10,10,10,10,10,yes,yes,no,no,no,no
+1000,16,5,2,0,36,Mitte,within an hour,100,TRUE,8,10,10,10,10,9,10,yes,yes,yes,yes,yes,no
+45,2,1,1,50,0,Tempelhof - Schöneberg,within a few hours,100,FALSE,5,10,10,9,8,9,8,yes,yes,yes,no,no,no
+59,2,1,1,10,86,Treptow - Köpenick,within a few hours,100,TRUE,1,10,10,10,10,10,9,yes,yes,yes,yes,yes,yes
+49,2,1,1,5,0,Pankow,within an hour,100,FALSE,1,10,9,10,10,10,10,yes,no,no,no,no,no
+35,1,1,1,13,90,Mitte,within a few hours,100,FALSE,2,9,9,10,9,10,9,yes,yes,yes,no,no,no
+28,3,1,1,50,0,Spandau,within an hour,100,FALSE,19,10,9,9,10,8,8,yes,yes,no,no,no,no
+36,5,2,1,50,33,Spandau,within an hour,100,FALSE,19,10,8,7,9,6,7,yes,yes,no,no,no,no
+72,1,1,1,50,90,Friedrichshain-Kreuzberg,within a day,75,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,yes,no
+28,2,1,1,20,0,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,3,10,9,10,10,10,9,yes,no,no,no,no,no
+25,2,1,1,10,39,Pankow,within a few hours,90,TRUE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+23,1,1,2,35,0,Friedrichshain-Kreuzberg,within a few hours,90,FALSE,10,10,9,10,10,10,10,yes,no,no,no,no,no
+55,2,1,1,0,38,Mitte,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,no,no,no
+38,7,0,1,15,45,Treptow - Köpenick,a few days or more,33,FALSE,1,9,8,10,10,8,9,yes,no,no,no,no,no
+60,2,1,1,40,9,Friedrichshain-Kreuzberg,within a day,80,TRUE,3,10,9,10,10,10,10,yes,no,no,no,no,no
+65,4,1,1,120,46,Friedrichshain-Kreuzberg,within an hour,100,FALSE,3,9,9,10,10,10,8,yes,yes,no,yes,no,no
+27,1,1,1,15,25,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,2,9,7,9,9,9,9,yes,no,no,no,no,no
+24,4,1,1,9,68,Neukölln,within a day,92,FALSE,1,10,9,10,10,9,10,yes,yes,yes,yes,no,no
+33,1,1,1.5,7,0,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,no,no,no,no,no,no
+40,3,1,1,0,18,Mitte,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,yes
+75,6,2,1,55,69,Treptow - Köpenick,within an hour,100,TRUE,3,10,10,10,10,10,10,yes,yes,yes,yes,yes,yes
+70,3,1,1,45,89,Treptow - Köpenick,within a few hours,100,FALSE,2,9,9,10,10,10,9,yes,yes,no,no,no,no
+60,2,1,1,65,0,Steglitz - Zehlendorf,within a few hours,100,TRUE,2,10,10,10,10,10,10,yes,yes,no,no,no,no
+52,4,1,1,75,57,Pankow,within an hour,100,FALSE,1,10,9,10,10,10,9,yes,yes,no,no,no,no
+50,3,1,1,20,89,Friedrichshain-Kreuzberg,within a day,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,no,no,no
+120,2,2,1,50,0,Friedrichshain-Kreuzberg,within a day,100,TRUE,3,9,9,9,9,10,9,yes,no,yes,yes,no,no
+60,2,1,1,20,0,Neukölln,within a few hours,100,FALSE,1,9,8,10,10,9,9,no,no,no,no,no,no
+30,1,1,1,5,28,Tempelhof - Schöneberg,within an hour,92,FALSE,2,9,9,9,9,10,9,no,no,no,yes,no,no
+120,2,1,1,19,0,Mitte,within a day,100,FALSE,2,9,9,10,10,9,9,yes,no,no,yes,yes,no
+80,2,1,1,10,0,Tempelhof - Schöneberg,within an hour,100,FALSE,1,10,9,9,9,10,9,yes,no,yes,no,no,no
+70,4,2,1,100,55,Mitte,within an hour,100,FALSE,20,10,8,10,9,10,9,yes,yes,yes,yes,no,no
+70,2,2,1,35,6,Lichtenberg,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,yes,no
+100,3,1,1,40,90,Mitte,within an hour,100,FALSE,5,10,9,10,9,10,9,yes,yes,yes,no,yes,no
+35,2,1,1,0,43,Neukölln,within a day,90,TRUE,1,10,10,10,10,9,10,yes,no,no,yes,no,no
+90,4,2,1,100,87,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,yes,no,no,no,no
+180,4,2,1,50,0,Mitte,within a day,50,TRUE,1,10,10,10,10,10,10,yes,yes,no,yes,no,no
+35,5,2,1,50,89,Spandau,within an hour,100,FALSE,19,10,9,10,9,9,10,yes,yes,no,no,no,no
+23,2,1,1.5,0,0,Charlottenburg-Wilm.,within an hour,100,FALSE,4,9,10,10,10,9,9,yes,no,no,yes,yes,no
+75,4,1,1,20,34,Mitte,within an hour,100,FALSE,1,10,9,9,9,10,9,yes,yes,yes,no,yes,no
+89,2,1,1,20,80,Mitte,within a day,100,TRUE,7,10,10,10,9,10,9,yes,yes,yes,no,no,no
+145,4,2,1,30,17,Friedrichshain-Kreuzberg,a few days or more,0,FALSE,2,9,10,9,9,10,10,yes,yes,no,yes,yes,yes
+99,5,3,1,60,90,Pankow,within a few hours,100,FALSE,4,10,10,10,10,9,9,yes,yes,yes,yes,yes,yes
+40,2,0,1,15,0,Tempelhof - Schöneberg,within a day,100,FALSE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+89,2,1,1,30,59,Mitte,within an hour,67,FALSE,1,10,10,10,10,10,10,no,no,no,no,no,no
+99,5,2,1.5,30,0,Friedrichshain-Kreuzberg,within a day,100,FALSE,0,10,10,10,10,10,10,yes,yes,yes,yes,yes,yes
+60,2,1,1,30,89,Pankow,within a day,67,FALSE,1,10,9,9,10,10,9,yes,yes,yes,no,no,no
+40,1,1,1,20,14,Neukölln,within a few hours,100,FALSE,2,10,9,9,10,10,10,yes,no,yes,yes,no,no
+60,4,2,1,38,7,Mitte,within a few hours,100,TRUE,2,10,10,10,10,10,10,yes,no,yes,no,yes,no
+75,2,2,1,15,0,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,2,10,10,10,10,10,10,yes,yes,no,yes,yes,no
+49,3,0,1,28,84,Tempelhof - Schöneberg,within an hour,100,FALSE,3,9,9,9,9,9,8,yes,yes,yes,no,yes,no
+25,4,1,2.5,15,88,Friedrichshain-Kreuzberg,within an hour,100,FALSE,2,9,9,10,10,10,9,yes,no,yes,yes,no,no
+25,2,1,1,0,0,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,2,10,8,10,10,10,10,yes,no,yes,no,no,no
+82,5,2,1,60,54,Mitte,within a day,80,FALSE,1,10,9,10,10,10,9,yes,yes,no,yes,yes,yes
+65,2,1,1,75,0,Neukölln,within a day,100,TRUE,2,10,9,10,10,10,9,yes,no,no,no,yes,no
+120,4,1,1,44,53,Friedrichshain-Kreuzberg,within an hour,100,TRUE,4,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+40,2,0,1,0,68,Friedrichshain-Kreuzberg,within a day,70,FALSE,1,10,9,10,10,10,9,yes,yes,no,no,no,no
+50,2,1,1,10,20,Pankow,within a day,60,FALSE,0,10,9,10,10,10,10,yes,no,yes,no,yes,no
+30,2,1,1,25,15,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,9,9,9,9,10,9,no,no,no,no,no,no
+80,4,2,1,30,18,Mitte,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+34,2,1,1,50,40,Tempelhof - Schöneberg,within a day,90,TRUE,2,10,10,10,10,9,9,yes,yes,yes,no,no,no
+35,2,1,1.5,0,14,Neukölln,within a day,70,FALSE,3,10,9,10,10,10,9,yes,no,no,no,no,no
+110,3,0,1,50,26,Mitte,within an hour,100,FALSE,1,9,9,9,9,9,9,yes,no,no,no,no,no
+73,2,1,1,55,30,Pankow,within an hour,100,TRUE,3,9,7,9,9,10,9,yes,yes,yes,no,yes,no
+70,2,1,1,50,0,Neukölln,within an hour,100,TRUE,0,10,10,10,10,10,9,yes,no,no,no,yes,no
+30,1,1,1,30,33,Friedrichshain-Kreuzberg,within an hour,88,TRUE,1,10,9,10,10,10,9,yes,yes,no,yes,no,yes
+130,6,3,1,40,14,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,9,10,10,10,10,yes,yes,no,yes,yes,no
+60,2,1,1,20,68,Mitte,within a few hours,100,FALSE,1,10,10,10,9,10,10,yes,no,no,no,no,no
+49,2,1,1,35,35,Tempelhof - Schöneberg,within an hour,100,FALSE,5,9,8,9,9,10,8,yes,yes,yes,no,yes,no
+179,6,3,2,60,37,Neukölln,within an hour,100,TRUE,9,10,10,9,10,9,9,yes,yes,yes,yes,yes,no
+70,4,2,1,35,0,Neukölln,within an hour,100,TRUE,2,10,10,10,10,9,9,yes,no,no,no,no,no
+74,2,1,1,150,75,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+109,4,2,1,25,0,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,no,no,no,no
+25,2,1,1,35,0,Neukölln,within an hour,100,TRUE,2,10,10,10,10,10,9,yes,no,yes,no,yes,no
+49,2,0,1,15,35,Lichtenberg,within a few hours,100,FALSE,1,10,10,10,10,9,10,yes,yes,no,yes,no,no
+80,2,1,1,40,0,Neukölln,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,no,no,yes
+79,3,1,1,80,61,Pankow,within an hour,100,FALSE,3,10,9,10,10,10,10,yes,yes,no,no,no,no
+76,3,1,1,25,77,Charlottenburg-Wilm.,within an hour,100,FALSE,1,10,10,10,10,9,9,yes,yes,yes,yes,yes,no
+28,2,1,1,20,0,Mitte,within an hour,100,FALSE,1,10,10,10,10,10,9,yes,no,yes,yes,yes,no
+75,2,1,1,70,21,Charlottenburg-Wilm.,within an hour,100,FALSE,1,10,9,10,10,10,9,yes,no,no,no,no,no
+150,5,2,1,60,32,Pankow,within an hour,100,FALSE,1,10,10,10,10,10,9,yes,yes,yes,yes,yes,yes
+80,4,1,1,50,77,Pankow,within an hour,100,FALSE,2,9,10,9,9,9,9,yes,yes,yes,no,no,no
+60,2,1,1,100,16,Mitte,within a day,90,TRUE,5,9,9,9,10,10,9,yes,yes,no,no,yes,no
+50,2,1,1,30,43,Mitte,within an hour,100,FALSE,1,10,8,10,10,10,9,yes,no,no,no,no,no
+50,4,2,1,40,58,Friedrichshain-Kreuzberg,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+69,6,3,1.5,20,53,Charlottenburg-Wilm.,within a few hours,70,FALSE,2,9,9,9,9,10,9,yes,yes,yes,yes,yes,yes
+40,4,2,1,15,46,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,no,no,yes,no,no,no
+109,4,2,1,56,70,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+50,2,1,1,30,84,Charlottenburg-Wilm.,within a few hours,100,FALSE,4,10,10,10,10,10,9,no,yes,yes,no,no,no
+20,1,1,1,20,12,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,no,yes,yes,yes,no
+50,1,1,1,20,14,Neukölln,within a few hours,75,FALSE,2,10,10,10,10,10,10,yes,no,no,no,no,no
+90,6,2,1,50,26,Marzahn - Hellersdorf,within an hour,100,FALSE,1,10,10,10,10,9,10,yes,yes,yes,no,no,no
+80,2,1,1,25,56,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,no,no,no
+57,1,1,1.5,90,0,Mitte,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,no,no,no
+25,2,1,1,10,81,Pankow,within an hour,100,FALSE,1,10,10,10,10,9,10,yes,no,no,no,no,no
+30,2,1,1,20,0,Mitte,within an hour,100,TRUE,1,10,10,10,10,9,9,yes,no,yes,no,no,no
+24,2,1,1,8,71,Charlottenburg-Wilm.,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,no,no
+45,3,1,1,10,44,Treptow - Köpenick,within an hour,100,TRUE,1,10,10,10,10,9,9,yes,no,yes,no,no,no
+40,3,1,1,35,36,Reinickendorf,within an hour,98,TRUE,12,10,10,10,10,9,9,yes,yes,no,no,no,no
+35,2,1,1,0,12,Lichtenberg,within a few hours,100,FALSE,1,10,9,10,10,9,9,yes,yes,yes,no,no,yes
+40,2,1,1,15,90,Steglitz - Zehlendorf,within an hour,100,TRUE,2,10,10,10,10,9,9,yes,no,no,yes,no,no
+40,2,1,1,40,89,Steglitz - Zehlendorf,within a day,100,FALSE,1,9,8,9,9,9,8,yes,yes,yes,no,no,no
+75,2,1,1,60,76,Pankow,within a few hours,90,FALSE,1,10,10,10,10,10,10,yes,yes,no,yes,no,yes
+70,3,1,1,55,65,Neukölln,within a few hours,70,FALSE,2,10,10,10,10,10,9,yes,no,yes,no,no,no
+45,2,1,1,0,0,Neukölln,within a few hours,100,FALSE,1,10,9,10,10,10,9,yes,no,no,yes,no,no
+50,2,1,1,20,44,Mitte,within a day,90,FALSE,1,10,9,10,10,10,10,yes,no,yes,no,no,no
+170,4,2,1,70,68,Mitte,within an hour,100,FALSE,9,10,10,10,9,10,10,yes,yes,yes,yes,no,no
+288,14,4,3,70,58,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,9,9,10,10,10,9,yes,yes,yes,no,no,no
+84,2,1,1,30,0,Charlottenburg-Wilm.,within a day,83,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+120,4,1,1,0,58,Tempelhof - Schöneberg,within an hour,100,TRUE,3,10,10,10,10,10,10,yes,yes,no,no,no,no
+50,3,1,1,52,8,Charlottenburg-Wilm.,within an hour,100,FALSE,1,10,9,9,10,10,9,yes,yes,no,no,no,no
+64,5,1,1,19,85,Friedrichshain-Kreuzberg,within a few hours,99,FALSE,16,8,8,9,9,10,8,yes,no,no,no,no,no
+47,4,0,1,15,0,Lichtenberg,within an hour,89,FALSE,1,10,9,9,9,9,9,yes,no,no,no,yes,no
+49,2,1,1,15,8,Tempelhof - Schöneberg,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,no,no,yes,no
+49,2,1,1,39,83,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,9,10,10,10,10,9,yes,yes,yes,no,no,no
+50,4,1,1,20,44,Friedrichshain-Kreuzberg,within an hour,100,FALSE,7,9,9,9,10,10,9,yes,no,yes,yes,no,no
+65,1,1,1,35,23,Pankow,within a day,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+85,2,0,1.5,0,87,Mitte,within a day,100,TRUE,1,10,10,10,10,9,10,yes,yes,no,no,no,no
+170,3,1,1,35,0,Pankow,within a day,89,FALSE,1,9,8,9,9,9,9,yes,yes,no,no,no,no
+66,4,1,1,40,87,Friedrichshain-Kreuzberg,within an hour,100,FALSE,3,9,9,10,10,10,9,yes,yes,yes,yes,no,no
+66,4,1,1,40,86,Friedrichshain-Kreuzberg,within an hour,100,FALSE,3,10,10,10,10,10,9,yes,yes,yes,no,no,no
+42,2,1,1,0,77,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+30,2,1,1,0,74,Mitte,within an hour,80,FALSE,1,10,10,10,10,10,10,yes,no,no,yes,no,yes
+70,3,1,1,125,66,Mitte,within a few hours,100,FALSE,6,10,10,10,10,10,9,yes,yes,yes,yes,no,no
+37,3,1,1,35,58,Reinickendorf,within an hour,98,TRUE,12,10,10,10,10,9,10,yes,yes,no,no,no,no
+40,2,1,1,0,43,Treptow - Köpenick,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+21,2,1,1,20,27,Tempelhof - Schöneberg,within an hour,100,FALSE,3,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+126,6,2,1,65,65,Charlottenburg-Wilm.,within a day,86,FALSE,4,10,10,9,10,10,9,yes,yes,yes,no,no,no
+75,4,1,1,30,42,Pankow,within an hour,94,FALSE,1,10,9,10,10,10,9,yes,no,no,yes,yes,no
+100,5,2,1,50,74,Mitte,within an hour,100,FALSE,9,8,8,9,9,10,8,yes,yes,yes,yes,no,no
+85,2,1,1.5,50,76,Neukölln,within an hour,100,FALSE,2,10,10,10,10,10,9,yes,no,no,yes,no,no
+25,2,1,1,12,75,Friedrichshain-Kreuzberg,within a day,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,yes
+86,8,2,1.5,65,0,Mitte,within an hour,100,FALSE,2,9,9,10,10,9,8,yes,yes,yes,no,no,no
+150,12,4,2,65,0,Mitte,within an hour,100,FALSE,2,10,9,9,10,9,9,yes,yes,no,no,no,no
+29,2,1,1,10,58,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,9,10,10,10,9,yes,yes,yes,no,no,no
+129,8,3,2,95,38,Pankow,within a day,100,FALSE,3,10,9,10,10,10,10,yes,no,yes,no,no,no
+75,2,1,1,25,0,Friedrichshain-Kreuzberg,within an hour,75,FALSE,1,10,8,10,10,10,9,yes,yes,yes,no,no,yes
+95,3,1,1.5,50,0,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,no,no,no
+17,1,1,1,15,59,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,10,10,10,10,10,no,yes,yes,no,no,no
+55,2,1,1,25,35,Mitte,within an hour,100,FALSE,0,9,9,9,9,10,9,yes,yes,yes,yes,no,no
+29,2,1,1,0,27,Mitte,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,no,yes,no,yes
+71,4,1,1,48,61,Pankow,within an hour,100,TRUE,1,10,10,10,9,9,10,yes,no,yes,yes,yes,no
+60,3,0,1,0,48,Mitte,within an hour,100,TRUE,5,10,10,10,10,10,9,yes,yes,yes,no,no,no
+120,3,1,1,0,0,Tempelhof - Schöneberg,within an hour,100,TRUE,3,10,10,10,10,10,10,yes,yes,no,no,no,no
+89,3,1,1,40,85,Friedrichshain-Kreuzberg,within an hour,94,TRUE,10,10,9,10,10,10,9,yes,yes,yes,yes,yes,no
+500,15,4,2,80,65,Friedrichshain-Kreuzberg,within an hour,94,TRUE,10,10,9,10,9,10,9,yes,yes,yes,yes,no,no
+43,2,1,1,15,7,Mitte,within an hour,86,FALSE,2,10,10,10,10,9,10,yes,no,yes,no,yes,no
+51,2,1,1,18,37,Neukölln,within an hour,100,TRUE,4,10,10,10,10,10,10,yes,no,yes,yes,no,yes
+55,3,1,1,20,86,Mitte,within an hour,100,FALSE,1,10,8,10,10,10,10,yes,no,yes,yes,no,yes
+450,16,5,3,153,65,Charlottenburg-Wilm.,within an hour,100,TRUE,21,10,10,10,10,9,9,yes,yes,yes,yes,yes,yes
+126,2,1,1,62,69,Friedrichshain-Kreuzberg,within an hour,100,TRUE,40,10,10,10,10,10,10,yes,yes,no,yes,no,no
+43,3,1,1,10,0,Neukölln,within an hour,100,FALSE,2,10,9,10,10,9,9,yes,no,no,no,no,no
+69,3,1,1,50,59,Mitte,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,no,no,no
+42,2,1,1,35,66,Tempelhof - Schöneberg,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,yes,yes
+88,6,4,1,60,0,Friedrichshain-Kreuzberg,within an hour,100,FALSE,2,10,9,10,10,9,9,yes,no,yes,no,no,yes
+20,2,1,1,14,1,Lichtenberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,no,yes,no
+24,2,1,1,8,68,Neukölln,within an hour,100,FALSE,1,9,7,9,9,10,9,yes,yes,yes,no,no,no
+233,11,3,1,65,67,Friedrichshain-Kreuzberg,within an hour,100,FALSE,13,9,9,10,10,9,9,yes,yes,yes,yes,no,yes
+1,2,1,1,10,41,Mitte,within an hour,100,FALSE,1,10,8,10,10,10,9,yes,yes,no,no,no,no
+69,3,1,1,50,82,Mitte,within an hour,100,FALSE,13,9,9,9,9,10,8,yes,yes,yes,no,no,no
+38,2,1,1,20,61,Pankow,within an hour,100,FALSE,1,10,9,10,10,9,9,yes,no,yes,no,no,no
+85,6,2,1,60,30,Steglitz - Zehlendorf,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,no,no,yes,no
+25,2,1,1,8,2,Steglitz - Zehlendorf,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,no,yes
+28,3,1,1,30,51,Tempelhof - Schöneberg,within an hour,100,TRUE,2,10,10,10,10,10,10,no,no,yes,no,no,no
+90,3,1,1.5,50,57,Neukölln,within a few hours,100,TRUE,3,10,9,10,10,10,9,yes,no,yes,no,no,no
+240,11,5,2,60,84,Charlottenburg-Wilm.,within an hour,100,FALSE,6,8,9,10,10,8,8,yes,yes,yes,no,yes,yes
+30,2,1,1,9,8,Treptow - Köpenick,within a few hours,100,TRUE,1,10,10,10,10,9,9,no,no,no,no,no,no
+40,3,1,1,35,38,Reinickendorf,within an hour,98,TRUE,12,10,10,10,10,9,10,yes,yes,no,no,no,no
+30,3,1,1,35,46,Reinickendorf,within an hour,98,TRUE,12,10,10,10,10,9,9,yes,no,no,no,no,no
+26,1,1,1,6,14,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,9,10,10,10,9,yes,yes,yes,yes,yes,no
+149,6,1,1,40,90,Pankow,within a few hours,90,FALSE,1,10,9,10,10,9,9,yes,yes,no,no,no,no
+90,6,3,2,49,10,Neukölln,within an hour,57,FALSE,1,8,8,9,9,9,8,yes,yes,no,no,no,no
+45,2,1,1,10,58,Friedrichshain-Kreuzberg,within an hour,80,FALSE,2,9,8,9,10,10,9,yes,no,yes,no,no,no
+36,2,1,1,50,6,Mitte,within an hour,100,FALSE,1,9,9,10,10,10,9,yes,no,yes,no,yes,no
+110,3,2,1,50,0,Friedrichshain-Kreuzberg,within a few hours,100,TRUE,4,10,10,9,10,10,9,yes,yes,yes,yes,no,yes
+110,3,2,1,50,0,Pankow,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+140,9,3,2,100,63,Pankow,within an hour,100,FALSE,3,10,10,10,10,9,9,yes,yes,yes,yes,yes,no
+160,9,4,2,100,34,Pankow,within an hour,100,FALSE,3,10,10,10,10,9,9,yes,yes,yes,yes,no,no
+36,3,1,1.5,37,88,Lichtenberg,within an hour,100,TRUE,1,9,9,10,10,9,9,yes,yes,yes,yes,yes,no
+35,2,0,1,15,11,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,9,10,10,10,10,yes,no,yes,no,no,no
+27,2,1,3,15,19,Friedrichshain-Kreuzberg,within a day,67,FALSE,2,9,9,10,10,10,9,yes,no,yes,no,yes,no
+22,2,1,1,30,88,Pankow,within an hour,67,TRUE,1,10,9,10,10,9,10,yes,no,no,no,yes,no
+14,4,1,1,0,90,Tempelhof - Schöneberg,within a few hours,100,FALSE,2,9,10,10,10,9,9,yes,no,no,no,no,no
+21,2,1,1,0,14,Neukölln,within a day,100,FALSE,0,10,9,10,10,10,10,yes,no,no,no,no,no
+20,4,2,1,20,39,Friedrichshain-Kreuzberg,within a day,100,FALSE,1,10,10,10,10,10,10,yes,no,yes,no,no,no
+25,1,1,1,10,11,Charlottenburg-Wilm.,within a day,88,FALSE,1,10,10,10,10,10,10,no,no,no,no,no,no
+50,2,1,1,25,31,Pankow,within a few hours,90,FALSE,3,10,10,10,10,10,10,yes,no,yes,no,no,no
+75,3,1,1,20,38,Mitte,within a few hours,100,TRUE,1,10,10,10,9,10,10,yes,yes,yes,no,no,no
+2500,16,5,2,0,41,Mitte,within an hour,100,TRUE,8,10,10,10,10,9,9,yes,yes,yes,yes,yes,no
+35,2,1,1,20,0,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,8,10,10,10,10,yes,no,no,no,no,no
+29,2,1,1,9,64,Mitte,within an hour,100,FALSE,1,9,8,9,10,9,9,yes,no,yes,no,no,no
+75,2,1,1,0,45,Mitte,within a day,80,TRUE,1,10,10,10,10,10,10,yes,yes,no,yes,no,no
+70,6,1,1,37,50,Pankow,within an hour,100,FALSE,2,10,9,9,10,9,9,yes,no,no,yes,yes,no
+65,2,1,1.5,40,64,Mitte,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+55,4,1,1,75,14,Mitte,within a few hours,100,FALSE,4,10,10,10,10,10,10,yes,yes,no,yes,no,no
+25,2,1,1,25,0,Friedrichshain-Kreuzberg,within a few hours,89,FALSE,4,10,9,10,10,10,10,yes,no,no,no,no,no
+40,2,1,1,5,22,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,no,no,no,yes,no
+39,2,1,1,25,23,Mitte,within an hour,100,TRUE,4,10,9,10,10,10,10,no,no,yes,yes,no,no
+40,4,1,1,20,44,Pankow,within a few hours,100,TRUE,1,10,10,10,10,10,9,yes,yes,yes,yes,yes,no
+24,2,1,1,15,28,Neukölln,within an hour,100,FALSE,1,10,10,10,10,10,9,yes,no,no,no,no,no
+90,6,1,1,95,7,Friedrichshain-Kreuzberg,within an hour,100,TRUE,5,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+120,6,2,1,35,53,Pankow,within an hour,100,TRUE,2,10,10,10,10,9,9,yes,yes,yes,yes,yes,no
+40,2,0,1,25,30,Charlottenburg-Wilm.,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+69,2,0,1,40,3,Friedrichshain-Kreuzberg,within an hour,100,FALSE,7,7,8,9,9,9,9,yes,yes,no,no,no,no
+40,2,1,1,0,86,Neukölln,within a day,100,FALSE,1,10,10,10,10,9,9,no,no,no,no,no,no
+69,3,0,1,67,61,Pankow,within an hour,100,TRUE,4,10,9,10,10,10,9,yes,no,no,no,no,no
+59,4,1,1,55,28,Mitte,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+59,6,2,1,35,44,Friedrichshain-Kreuzberg,within an hour,100,FALSE,3,10,10,10,10,9,9,yes,yes,no,no,no,no
+164,4,2,1.5,48,63,Charlottenburg-Wilm.,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+120,4,1,1,0,30,Tempelhof - Schöneberg,within an hour,100,TRUE,3,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+35,2,1,1,20,15,Charlottenburg-Wilm.,within an hour,100,TRUE,2,9,9,10,10,10,9,yes,no,yes,no,no,no
+120,5,1,1,45,72,Mitte,within an hour,97,FALSE,14,9,9,9,10,8,9,yes,yes,no,no,no,no
+45,2,1,1,30,11,Mitte,within an hour,97,FALSE,4,10,10,10,9,10,9,yes,yes,yes,no,no,no
+50,2,1,1,40,17,Mitte,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+40,2,1,1,30,38,Charlottenburg-Wilm.,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,no,no,no
+29,2,1,1,10,6,Pankow,within an hour,100,TRUE,1,9,9,10,10,10,9,yes,no,yes,yes,no,no
+100,3,1,1,60,12,Friedrichshain-Kreuzberg,within a day,57,FALSE,1,10,10,9,10,10,10,yes,yes,no,no,no,no
+75,2,1,1,0,86,Pankow,within a few hours,92,FALSE,1,10,9,10,10,10,9,yes,no,yes,no,no,no
+60,2,1,1,10,0,Pankow,within a few hours,100,FALSE,2,10,9,10,10,10,10,yes,no,yes,yes,no,no
+25,2,1,1,15,39,Pankow,within an hour,100,FALSE,4,10,9,10,10,10,10,no,no,no,no,no,no
+35,2,1,1,20,79,Lichtenberg,within a day,60,FALSE,1,8,6,7,7,8,8,yes,yes,yes,no,yes,no
+55,3,0,1,35,67,Charlottenburg-Wilm.,within an hour,100,FALSE,1,10,9,10,10,10,9,yes,yes,yes,no,no,no
+70,5,1,1,15,0,Neukölln,within an hour,100,FALSE,1,10,9,10,10,10,10,yes,no,no,no,no,no
+80,2,1,1,40,0,Mitte,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,no,no,no
+89,2,1,1,39,0,Mitte,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,no,yes,yes,yes,no
+130,7,2,1.5,60,79,Friedrichshain-Kreuzberg,within an hour,100,FALSE,8,9,10,10,9,9,9,yes,yes,no,no,no,no
+39,2,0,1,10,62,Lichtenberg,within an hour,100,FALSE,1,9,8,10,9,9,9,yes,no,no,no,no,no
+82,6,2,2,50,9,Mitte,within an hour,100,FALSE,1,8,8,9,8,8,8,yes,yes,yes,yes,no,no
+29,3,1,1,29,25,Mitte,within an hour,100,FALSE,2,10,10,10,10,9,10,no,no,yes,no,yes,no
+29,3,1,1,50,0,Friedrichshain-Kreuzberg,within an hour,100,FALSE,4,9,7,8,10,9,9,yes,no,no,no,no,no
+44,1,1,1,40,89,Reinickendorf,within a few hours,100,TRUE,2,10,10,10,10,10,10,yes,yes,yes,no,no,no
+70,3,1,1,20,7,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,no,no,yes
+70,2,1,1,20,0,Pankow,within a few hours,67,FALSE,1,10,9,9,10,9,10,yes,no,no,no,yes,no
+40,2,1,1,12,10,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+100,8,4,1.5,50,52,Marzahn - Hellersdorf,within a few hours,100,TRUE,1,10,10,9,9,9,9,yes,yes,yes,yes,yes,no
+32,2,1,1,20,0,Neukölln,within an hour,100,FALSE,1,10,10,9,10,10,10,yes,no,yes,no,no,no
+50,3,1,1,10,13,Friedrichshain-Kreuzberg,within an hour,75,TRUE,2,10,8,10,10,10,10,yes,no,no,no,no,no
+85,2,1,1,55,0,Mitte,within an hour,100,FALSE,1,9,9,9,10,9,8,yes,yes,yes,yes,yes,no
+22,2,1,1,10,8,Pankow,within a few hours,100,FALSE,1,10,10,10,10,9,10,yes,no,no,yes,no,no
+69,2,1,1,72,0,Pankow,within an hour,100,FALSE,1,10,9,10,10,10,10,yes,yes,yes,yes,yes,no
+75,2,1,1,0,0,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,10,10,10,10,9,yes,no,yes,no,no,no
+40,2,1,1,10,29,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,2,10,8,9,10,10,9,yes,no,no,no,no,no
+74,3,1,1,19,70,Charlottenburg-Wilm.,within an hour,99,FALSE,30,10,9,10,9,9,9,yes,yes,no,yes,no,no
+25,1,1,1,10,90,Charlottenburg-Wilm.,within a few hours,100,FALSE,1,8,8,9,9,9,8,yes,no,no,no,no,no
+33,2,1,2,15,29,Mitte,within a day,80,FALSE,3,10,9,9,9,9,9,yes,no,yes,yes,no,no
+64,2,1,1.5,40,64,Mitte,within an hour,100,TRUE,7,10,9,10,10,10,9,yes,yes,yes,yes,yes,no
+79,3,0,1,19,75,Charlottenburg-Wilm.,within an hour,99,FALSE,30,10,9,9,9,9,9,yes,yes,no,no,no,no
+60,2,0,1,50,0,Pankow,within an hour,100,FALSE,1,9,9,10,10,10,9,yes,yes,yes,no,yes,no
+200,9,3,1,50,67,Pankow,within an hour,100,FALSE,6,10,9,10,10,9,10,yes,yes,yes,no,no,no
+55,2,1,1,35,0,Neukölln,within a day,100,TRUE,3,10,10,10,10,10,10,yes,no,yes,yes,no,no
+19,1,1,1,10,5,Lichtenberg,within an hour,100,TRUE,3,10,10,10,10,9,10,yes,yes,no,no,no,no
+29,3,1,1,20,61,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,9,7,9,10,10,8,yes,yes,no,no,no,no
+25,1,1,1,15,44,Pankow,within an hour,100,FALSE,4,10,9,10,10,9,10,no,no,no,no,no,no
+49,4,0,1,35,43,Tempelhof - Schöneberg,within an hour,100,FALSE,2,9,9,10,10,9,9,yes,no,no,no,no,no
+19,2,1,1,0,0,Pankow,within a day,100,FALSE,1,9,8,10,10,9,8,yes,no,no,no,no,no
+200,6,3,1,100,18,Pankow,within an hour,100,FALSE,3,9,9,10,10,9,9,yes,no,yes,no,yes,no
+35,2,1,1,30,31,Neukölln,within an hour,100,FALSE,2,10,10,10,10,9,10,yes,yes,yes,yes,yes,no
+42,1,1,1,20,37,Mitte,within an hour,60,FALSE,1,10,10,10,10,10,10,yes,yes,no,no,no,no
+49,4,0,1,35,40,Tempelhof - Schöneberg,within an hour,100,FALSE,2,10,8,9,9,10,9,yes,no,yes,no,no,no
+225,4,2,2,350,0,Mitte,within an hour,100,TRUE,11,10,9,9,10,10,9,yes,yes,no,no,no,no
+40,2,1,1,8,0,Lichtenberg,within a day,50,FALSE,1,10,9,10,10,9,9,yes,yes,no,no,no,no
+31,2,0,1,10,42,Spandau,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+40,2,1,1,10,27,Neukölln,within a few hours,90,TRUE,1,10,10,10,10,10,10,no,no,yes,no,no,no
+24,1,1,1,20,55,Neukölln,within an hour,100,FALSE,1,10,10,10,9,8,9,yes,no,yes,no,no,no
+21,2,1,1,20,89,Tempelhof - Schöneberg,within an hour,100,FALSE,1,9,9,10,10,10,9,yes,no,no,yes,no,no
+120,7,3,2,40,63,Mitte,within an hour,100,TRUE,4,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+99,4,1,1,25,0,Lichtenberg,within an hour,100,FALSE,1,10,8,10,10,9,9,yes,yes,yes,no,yes,no
+74,2,1,1,5,42,Mitte,within an hour,90,TRUE,1,10,10,10,10,10,10,yes,yes,no,yes,no,no
+45,2,1,1,15,0,Mitte,within an hour,100,FALSE,2,10,10,10,10,9,10,yes,no,yes,yes,no,yes
+45,2,1,1,5,56,Lichtenberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+32,3,1,1,30,0,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,10,9,10,10,9,yes,no,yes,no,yes,no
+25,2,1,1,30,0,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,no,no,yes,no,no,no
+50,4,2,1,40,62,Reinickendorf,within an hour,98,TRUE,12,10,10,10,10,9,9,yes,yes,no,no,no,no
+75,5,2,1,79,60,Tempelhof - Schöneberg,within a few hours,100,TRUE,2,10,10,10,9,10,10,yes,yes,yes,yes,yes,no
+38,2,1,1,8,29,Lichtenberg,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,no,yes,yes,yes,yes
+32,1,1,1,20,13,Tempelhof - Schöneberg,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,no,yes,no
+20,2,1,1,5,0,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,no,yes,yes,yes,yes
+42,2,1,1,10,0,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,9,9,9,10,10,9,yes,yes,no,yes,no,no
+75,5,2,1,60,0,Neukölln,within a day,100,FALSE,1,10,10,9,10,10,10,yes,yes,yes,yes,yes,no
+49,2,1,1,25,15,Mitte,within a few hours,100,FALSE,1,9,10,9,10,9,9,yes,no,yes,yes,yes,no
+20,2,1,1,50,0,Mitte,within an hour,100,FALSE,2,9,9,10,9,10,9,no,no,no,no,yes,no
+85,2,0,1,30,56,Tempelhof - Schöneberg,within an hour,100,TRUE,2,10,10,10,10,10,9,yes,yes,yes,no,no,no
+30,4,1,1.5,20,1,Lichtenberg,within a few hours,100,FALSE,1,9,9,10,9,9,9,yes,no,no,no,no,yes
+90,3,1,2,30,85,Mitte,within an hour,100,TRUE,2,10,9,9,10,10,9,yes,yes,yes,yes,yes,no
+32,1,0,1,0,22,Charlottenburg-Wilm.,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+120,8,1,2,10,56,Charlottenburg-Wilm.,within a few hours,80,FALSE,5,8,8,9,8,9,7,yes,yes,no,no,no,no
+42,2,0,1,5,57,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,yes,yes,no,no,no
+40,1,1,1,20,0,Pankow,within an hour,100,FALSE,4,10,10,10,10,10,9,yes,no,no,no,no,no
+45,2,1,1,50,89,Tempelhof - Schöneberg,within an hour,100,FALSE,1,10,9,10,9,10,9,yes,no,no,no,no,no
+24,4,1,1,18,40,Reinickendorf,within an hour,100,TRUE,1,10,10,10,10,9,10,yes,no,no,yes,no,yes
+220,8,2,1,100,81,Neukölln,within a day,50,FALSE,2,9,9,10,10,10,9,yes,no,yes,no,yes,no
+95,4,2,1,50,46,Mitte,within a few hours,78,FALSE,1,10,9,10,10,10,9,no,yes,no,no,yes,yes
+25,2,1,1,20,60,Pankow,within an hour,100,TRUE,1,10,10,10,10,9,10,yes,yes,yes,yes,yes,no
+39,3,1,1,15,90,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,1,10,9,10,10,10,9,yes,no,yes,yes,no,no
+42,4,1,1,0,39,Friedrichshain-Kreuzberg,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,no,no,yes,yes,no
+28,2,1,1,25,47,Friedrichshain-Kreuzberg,within a few hours,100,TRUE,1,9,10,10,10,10,9,yes,no,no,no,no,no
+65,2,1,1,20,72,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,no,yes,yes,no,no
+15,2,1,1,5,0,Mitte,within an hour,100,FALSE,1,10,9,9,10,8,9,yes,no,no,no,no,no
+30,1,1,1,0,0,Friedrichshain-Kreuzberg,within a day,75,FALSE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+129,6,0,1,50,67,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,yes,yes,yes,no,no
+89,2,1,1,0,1,Mitte,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,no,no,no,no,no
+30,2,1,1.5,20,0,Pankow,within a day,100,FALSE,0,9,8,10,10,10,9,yes,no,no,no,no,no
+50,2,1,1,0,75,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,1,10,9,9,9,10,9,yes,yes,yes,yes,yes,no
+58,5,0,1,28,59,Lichtenberg,within an hour,100,FALSE,7,10,9,10,10,9,9,yes,yes,yes,no,no,no
+44,2,1,1,35,20,Pankow,within an hour,80,FALSE,1,9,9,9,9,10,9,yes,yes,yes,yes,yes,no
+32,2,1,1,10,0,Treptow - Köpenick,within an hour,100,FALSE,1,10,9,10,10,10,10,yes,no,yes,no,no,no
+78,4,1,1,49,49,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,yes
+50,6,2,1,35,75,Neukölln,a few days or more,35,FALSE,18,9,9,8,7,9,8,yes,no,no,no,no,no
+29,2,1,1,10,9,Friedrichshain-Kreuzberg,within an hour,100,FALSE,2,9,9,10,10,10,9,yes,no,yes,no,no,no
+75,3,1,1,5,19,Pankow,within an hour,100,FALSE,1,10,9,10,10,10,9,yes,yes,yes,yes,no,no
+25,2,1,1.5,5,78,Mitte,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,no,yes,yes,no,no
+60,2,1,1,35,88,Pankow,within an hour,100,TRUE,4,10,10,10,10,10,10,yes,yes,yes,no,yes,no
+55,1,1,1,20,74,Pankow,within a few hours,100,FALSE,1,10,9,10,10,10,9,yes,yes,no,no,yes,no
+75,3,1,1,35,86,Pankow,within a few hours,92,FALSE,3,9,9,9,9,10,9,yes,yes,no,yes,no,no
+39,2,1,1,15,83,Pankow,within a day,100,FALSE,1,10,9,10,10,10,9,no,no,no,no,no,no
+300,8,2,1.5,90,87,Pankow,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,no,no,yes,no
+120,4,2,1,59,13,Mitte,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+70,2,1,1,45,2,Neukölln,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,no,yes,no
+39,2,1,1,15,42,Mitte,within an hour,100,TRUE,2,10,10,10,10,10,9,no,no,no,no,no,yes
+160,6,3,1,20,0,Friedrichshain-Kreuzberg,within a day,100,FALSE,2,9,9,10,10,10,9,yes,yes,yes,no,yes,no
+50,2,0,1,20,1,Treptow - Köpenick,within a day,86,FALSE,1,10,9,10,10,9,9,yes,no,no,no,no,no
+75,4,1,1.5,47,10,Pankow,within an hour,100,FALSE,1,10,9,10,10,9,9,yes,yes,yes,yes,yes,no
+40,2,1,1,10,22,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,9,10,10,10,9,yes,yes,yes,yes,yes,yes
+29,1,1,1,0,66,Steglitz - Zehlendorf,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+150,4,2,1,30,86,Friedrichshain-Kreuzberg,within an hour,80,TRUE,1,10,9,10,9,10,9,yes,yes,no,no,yes,no
+95,2,1,1.5,210,46,Mitte,within an hour,100,TRUE,11,10,10,10,10,10,10,yes,yes,no,no,no,no
+30,2,1,1,6,41,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,no,yes,no,no
+25,2,1,1.5,30,87,Pankow,within an hour,100,TRUE,3,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+45,3,1,1,15,64,Neukölln,within an hour,100,FALSE,2,9,10,9,9,10,9,yes,no,no,no,no,no
+30,2,1,1,10,67,Steglitz - Zehlendorf,within a few hours,90,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,yes,no
+50,2,1,1,12,0,Pankow,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+14,1,0,1,0,15,Treptow - Köpenick,within an hour,100,FALSE,2,10,9,10,9,8,10,yes,yes,yes,yes,yes,yes
+80,4,2,1.5,20,41,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,yes
+320,6,3,2,80,34,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,no,no,no
+59,3,1,1,45,89,Charlottenburg-Wilm.,within a few hours,70,FALSE,1,10,10,10,10,10,9,yes,yes,yes,yes,yes,no
+154,5,2,1,62,61,Mitte,within a day,100,TRUE,5,9,10,10,10,9,9,yes,yes,yes,yes,no,no
+25,2,1,1,12,57,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,8,10,10,10,9,yes,yes,yes,no,no,no
+99,4,2,1,45,18,Mitte,within a day,100,FALSE,1,10,10,10,10,10,9,yes,no,no,no,no,no
+200,2,1,1.5,25,1,Mitte,within an hour,88,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+33,2,1,1,15,71,Neukölln,within an hour,100,TRUE,1,10,10,10,10,9,10,yes,yes,yes,yes,yes,yes
+80,4,2,2,49,0,Reinickendorf,within an hour,100,FALSE,1,10,9,10,10,9,9,yes,no,yes,yes,yes,no
+95,4,2,1,55,57,Mitte,within an hour,100,FALSE,13,9,8,10,9,10,9,yes,yes,yes,no,no,yes
+58,2,1,1,0,32,Pankow,within an hour,100,TRUE,3,10,10,10,10,10,10,yes,no,yes,no,no,no
+50,2,1,1,10,14,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,1,9,10,10,10,10,10,yes,no,yes,yes,yes,yes
+360,12,6,6,120,0,Friedrichshain-Kreuzberg,within a day,60,FALSE,7,10,9,10,10,10,9,yes,no,yes,yes,no,no
+35,2,1,1,12,51,Charlottenburg-Wilm.,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,no,yes,yes
+38,2,1,1.5,0,33,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,yes,no
+100,2,1,1,20,43,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,no,yes,yes
+16,1,1,1,8,0,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+60,3,1,1,60,0,Pankow,within an hour,90,TRUE,2,10,9,10,10,10,9,yes,no,no,no,no,no
+40,1,1,1,10,69,Charlottenburg-Wilm.,within a day,88,FALSE,1,10,10,10,10,10,10,yes,yes,no,no,no,no
+90,4,1,1,0,12,Spandau,within an hour,100,FALSE,1,10,10,10,10,10,9,no,no,no,no,no,no
+40,2,1,1,50,21,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,yes,yes,yes,no,yes
+60,5,2,1,40,74,Reinickendorf,within an hour,98,TRUE,12,9,9,10,10,9,9,yes,yes,no,no,no,no
+58,2,1,1,10,3,Pankow,within a few hours,100,FALSE,1,9,9,10,10,10,9,yes,yes,no,yes,no,no
+50,4,1,1,20,39,Tempelhof - Schöneberg,within an hour,100,TRUE,3,10,10,10,10,10,10,yes,yes,no,no,no,no
+169,6,2,1,95,44,Mitte,within a day,100,FALSE,2,10,10,10,9,10,9,yes,yes,yes,yes,no,no
+60,2,1,1,10,0,Friedrichshain-Kreuzberg,within an hour,100,FALSE,2,10,10,10,10,10,10,yes,no,no,no,no,no
+35,2,1,1,5,16,Mitte,within an hour,90,FALSE,1,9,8,9,10,10,9,yes,no,no,yes,no,no
+90,4,2,1,100,43,Friedrichshain-Kreuzberg,within a day,50,FALSE,1,10,10,10,10,10,10,yes,no,no,yes,no,no
+69,2,1,1,19,80,Charlottenburg-Wilm.,within an hour,99,FALSE,30,10,9,10,9,9,9,yes,yes,no,no,no,no
+100,4,1,1,35,6,Mitte,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+60,3,1,1,20,70,Pankow,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,no,yes,yes,yes,yes
+150,8,4,1,58,79,Pankow,within a few hours,92,FALSE,3,9,9,9,9,10,9,yes,yes,yes,yes,yes,no
+85,5,2,1,28,64,Pankow,within an hour,100,TRUE,7,10,10,10,10,10,10,yes,yes,yes,no,no,no
+130,5,2,2,75,70,Charlottenburg-Wilm.,within an hour,100,TRUE,3,10,9,10,10,10,9,yes,no,yes,no,yes,no
+30,1,1,1,15,89,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,9,10,10,10,9,yes,no,no,no,no,no
+32,2,1,1,0,26,Neukölln,within a few hours,90,FALSE,3,10,9,10,10,9,9,yes,no,no,no,yes,no
+45,2,1,1,35,77,Reinickendorf,within an hour,98,TRUE,12,10,10,10,10,9,10,yes,yes,no,no,no,no
+50,2,1,1,50,24,Mitte,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+66,5,2,2,50,58,Mitte,within an hour,100,TRUE,6,10,10,10,10,9,9,yes,yes,yes,yes,no,yes
+69,2,1,1,10,41,Pankow,within an hour,100,FALSE,1,10,10,10,10,10,9,yes,no,yes,yes,no,yes
+20,3,1,1,20,65,Tempelhof - Schöneberg,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,no,yes,no
+50,2,1,1,15,50,Mitte,within a few hours,100,FALSE,2,10,10,10,10,10,9,yes,no,yes,yes,yes,no
+40,2,1,1,25,2,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,10,10,10,9,9,no,no,no,no,no,no
+50,3,1,1,0,0,Neukölln,within a day,67,FALSE,1,10,9,10,10,10,10,yes,no,no,no,no,no
+29,2,1,1,29,30,Treptow - Köpenick,within a few hours,90,TRUE,3,10,10,10,10,9,10,yes,no,yes,yes,yes,no
+119,10,4,2,50,57,Mitte,within a few hours,90,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,no,no
+89,2,1,1,25,42,Friedrichshain-Kreuzberg,within an hour,100,TRUE,5,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+185,4,2,1,60,22,Neukölln,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+59,2,1,1,0,32,Friedrichshain-Kreuzberg,within a day,100,FALSE,1,10,9,10,10,10,9,yes,no,yes,yes,yes,no
+50,2,1,1,10,53,Pankow,within an hour,90,TRUE,1,10,9,10,10,10,9,no,no,no,no,no,no
+33,2,1,1,0,54,Charlottenburg-Wilm.,within an hour,100,TRUE,1,10,10,10,10,10,10,no,no,no,no,no,no
+89,3,2,1,55,75,Pankow,within an hour,100,TRUE,2,10,10,10,10,9,9,yes,no,yes,yes,no,no
+115,5,2,2,50,45,Pankow,within a day,100,FALSE,2,10,9,10,9,10,9,yes,yes,yes,yes,yes,no
+55,4,1,1,35,37,Charlottenburg-Wilm.,within an hour,100,TRUE,2,10,10,10,10,10,9,yes,yes,yes,yes,yes,no
+36,2,1,2.5,5,4,Neukölln,within a day,75,FALSE,1,10,10,9,10,10,10,yes,no,no,no,no,no
+15,1,1,1,25,24,Charlottenburg-Wilm.,a few days or more,40,FALSE,3,10,10,10,10,10,10,yes,yes,no,no,no,no
+70,2,1,1,55,16,Pankow,within an hour,100,FALSE,1,9,9,10,10,10,9,yes,yes,no,yes,yes,no
+62,2,1,1,30,14,Mitte,within an hour,90,FALSE,2,10,9,10,10,10,9,yes,no,no,no,no,no
+37,2,1,1,25,32,Mitte,within an hour,100,FALSE,1,9,9,10,9,10,9,yes,yes,no,no,no,no
+95,2,1,1,0,5,Pankow,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,no,no,yes,yes,yes
+28,2,1,1,15,13,Friedrichshain-Kreuzberg,a few days or more,0,FALSE,1,10,9,9,10,10,10,yes,no,no,no,no,no
+59,4,0,1,29,4,Treptow - Köpenick,within a few hours,90,TRUE,3,9,9,9,10,10,9,yes,yes,no,no,no,no
+38,2,1,1,10,9,Pankow,within an hour,100,TRUE,2,10,9,10,10,10,10,yes,no,no,no,no,no
+169,7,2,1,55,85,Charlottenburg-Wilm.,within an hour,98,FALSE,9,9,9,10,10,10,8,yes,yes,yes,no,no,no
+65,4,1,1,70,62,Mitte,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+60,3,2,1,0,0,Tempelhof - Schöneberg,within a day,100,FALSE,1,10,10,10,10,10,10,yes,yes,no,yes,yes,no
+25,1,0,1,0,6,Steglitz - Zehlendorf,within a day,56,FALSE,1,10,9,9,9,9,9,yes,no,no,no,no,no
+27,2,1,1,30,90,Pankow,within an hour,100,FALSE,5,9,9,9,9,9,9,yes,no,yes,yes,no,no
+55,2,1,1,30,27,Pankow,within an hour,100,FALSE,3,9,10,10,10,9,9,yes,no,no,yes,no,yes
+25,1,1,1,30,56,Mitte,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,no,no,no
+55,5,2,1,40,64,Reinickendorf,within an hour,98,TRUE,12,10,10,10,10,9,9,yes,yes,no,no,no,no
+50,4,1,1,15,0,Mitte,within an hour,90,TRUE,4,10,10,10,10,10,10,yes,no,yes,yes,no,no
+35,2,1,1.5,45,5,Charlottenburg-Wilm.,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+80,4,1,1,40,59,Mitte,within a few hours,100,FALSE,1,10,9,10,10,10,9,yes,no,no,no,no,no
+180,7,2,1,77,72,Tempelhof - Schöneberg,within an hour,100,TRUE,21,10,10,10,10,10,9,yes,yes,yes,yes,no,yes
+140,4,2,1,0,10,Pankow,within a few hours,100,TRUE,5,9,9,9,9,9,9,yes,no,yes,yes,yes,no
+25,2,1,1,10,0,Steglitz - Zehlendorf,within a few hours,100,FALSE,1,10,10,9,10,10,10,yes,yes,no,no,no,no
+29,2,1,1,9,0,Friedrichshain-Kreuzberg,within a day,86,FALSE,1,10,10,10,10,10,10,yes,no,yes,no,no,no
+30,4,1,1,15,5,Neukölln,within an hour,100,FALSE,3,10,10,10,10,10,10,yes,no,no,no,no,no
+65,3,1,1,14,12,Pankow,within an hour,86,TRUE,1,10,9,10,10,10,10,yes,yes,yes,yes,yes,yes
+49,3,1,1,20,55,Charlottenburg-Wilm.,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+30,1,1,1,8,76,Neukölln,within an hour,100,TRUE,1,10,10,10,10,10,10,no,no,no,no,no,no
+48,2,0,1,30,54,Mitte,within an hour,100,FALSE,2,10,10,10,10,10,9,yes,yes,yes,no,no,no
+58,2,1,1,14,33,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,yes,no
+250,4,2,2,100,53,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,yes,yes,yes,yes,yes
+25,2,1,1.5,20,6,Charlottenburg-Wilm.,within a few hours,100,TRUE,1,10,9,10,10,10,10,yes,no,no,yes,no,no
+60,2,1,1,30,59,Pankow,within a day,100,TRUE,1,10,10,10,10,10,9,no,yes,yes,no,no,no
+49,2,1,1,15,70,Steglitz - Zehlendorf,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,no,no,yes,no
+97,6,3,1,49,9,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,no,yes,yes,yes,yes
+65,3,1,1,30,23,Neukölln,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+35,3,2,1,30,62,Friedrichshain-Kreuzberg,within an hour,80,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+85,3,1,1,87,0,Mitte,within an hour,100,FALSE,3,10,9,9,9,10,9,yes,yes,no,yes,yes,no
+95,2,1,1,200,7,Mitte,within an hour,100,FALSE,4,10,10,9,10,10,9,yes,yes,yes,yes,yes,no
+67,2,1,1,15,89,Pankow,within a few hours,100,FALSE,5,10,10,10,10,10,10,yes,no,no,no,no,no
+35,2,1,1,0,64,Charlottenburg-Wilm.,within an hour,71,TRUE,1,10,9,10,10,10,10,yes,no,no,no,no,no
+90,2,1,1,55,12,Pankow,within an hour,100,FALSE,1,10,10,9,10,10,10,yes,no,yes,yes,yes,no
+32,3,1,1,25,15,Mitte,within a day,100,TRUE,1,10,9,10,10,9,9,yes,no,no,yes,yes,no
+60,3,1,1,50,25,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,9,no,no,no,no,yes,no
+69,2,1,1,50,82,Pankow,within an hour,100,FALSE,2,9,9,9,10,8,8,yes,no,no,yes,yes,no
+50,4,1,1,15,73,Steglitz - Zehlendorf,within a few hours,100,TRUE,1,10,10,10,9,9,10,yes,yes,yes,no,yes,no
+80,6,2,1,50,55,Charlottenburg-Wilm.,within an hour,94,TRUE,10,10,9,10,9,10,9,yes,yes,yes,yes,no,no
+90,7,1,1,50,78,Friedrichshain-Kreuzberg,within an hour,94,TRUE,10,9,9,9,9,10,9,yes,yes,yes,yes,no,no
+100,5,2,1,35,25,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,8,10,10,10,9,yes,yes,no,no,yes,no
+30,2,1,1,20,9,Neukölln,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,no,yes,no
+70,2,1,1,50,2,Neukölln,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+85,6,2,1,40,54,Treptow - Köpenick,within an hour,92,FALSE,2,10,10,10,10,10,10,yes,yes,no,no,no,no
+30,2,1,1.5,0,0,Mitte,within an hour,100,FALSE,3,9,7,10,10,10,8,yes,no,no,no,no,no
+29,2,1,1,24,15,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,no,yes,no,no
+120,6,2,1.5,40,90,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,3,9,9,10,9,10,9,yes,yes,no,no,no,no
+60,2,1,1,30,0,Pankow,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,no,yes,no,yes,no
+180,6,2,1.5,65,58,Mitte,within an hour,97,FALSE,14,10,9,10,10,9,9,yes,yes,yes,no,no,no
+80,4,1,1,20,74,Neukölln,within an hour,100,FALSE,1,9,9,10,10,9,9,yes,yes,yes,no,no,yes
+39,2,1,1,15,14,Friedrichshain-Kreuzberg,within a day,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+37,2,1,1,20,35,Pankow,within an hour,90,TRUE,1,10,9,10,10,10,10,yes,no,no,no,no,no
+75,6,1,1,50,39,Neukölln,within an hour,100,FALSE,0,9,10,10,9,10,9,yes,no,no,no,no,no
+27,2,1,1,30,32,Pankow,within an hour,100,FALSE,5,9,9,10,10,9,9,yes,no,yes,yes,yes,no
+25,2,1,1,10,90,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,1,10,9,10,10,10,10,yes,no,yes,no,no,no
+49,2,1,1,30,76,Pankow,within an hour,100,TRUE,1,10,9,10,10,10,10,yes,no,no,no,no,no
+39,2,1,1,9,18,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,8,10,10,10,9,yes,no,yes,no,no,yes
+50,2,1,1,20,45,Mitte,within a day,80,FALSE,1,10,9,10,10,10,9,yes,no,yes,no,no,no
+359,12,2,2,80,72,Friedrichshain-Kreuzberg,within an hour,94,TRUE,10,10,10,10,10,10,9,yes,yes,yes,yes,no,no
+80,6,2,1,40,45,Lichtenberg,within an hour,100,TRUE,1,10,9,10,10,8,9,yes,yes,yes,yes,yes,yes
+58,3,0,1,40,35,Pankow,within an hour,100,TRUE,2,10,10,10,10,10,9,yes,no,yes,yes,no,no
+55,3,1,1,40,66,Reinickendorf,within an hour,98,TRUE,12,10,10,10,10,9,9,yes,yes,no,no,no,no
+30,2,1,1,0,35,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,no,no,no
+180,5,2,1,50,64,Mitte,within an hour,100,FALSE,1,9,9,10,10,10,9,yes,yes,no,no,no,no
+100,2,1,1,20,0,Mitte,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,yes,yes
+31,3,1,1,10,11,Neukölln,within an hour,100,FALSE,2,10,9,10,10,10,9,yes,yes,yes,no,no,no
+28,2,1,1,10,40,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,10,10,10,10,9,no,no,no,no,no,yes
+90,3,1,1,0,6,Friedrichshain-Kreuzberg,within an hour,70,FALSE,2,10,9,10,10,9,9,yes,no,no,no,no,no
+35,2,1,1,15,0,Neukölln,within an hour,100,FALSE,2,10,10,10,10,10,10,yes,no,yes,yes,no,yes
+125,6,3,1,70,18,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,no,yes,yes,no,yes
+30,2,1,1,0,0,Neukölln,within an hour,100,TRUE,1,10,9,10,10,10,10,yes,no,yes,no,no,yes
+170,2,1,1,60,42,Mitte,within an hour,100,TRUE,3,10,10,10,10,10,9,yes,yes,yes,yes,no,no
+20,2,1,1,5,79,Lichtenberg,within an hour,100,FALSE,2,10,8,10,10,10,9,yes,no,yes,no,yes,no
+35,3,1,1,20,12,Neukölln,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+15,1,0,1,30,18,Treptow - Köpenick,within a few hours,90,TRUE,3,10,9,10,10,10,9,yes,no,yes,no,no,no
+45,1,2,1,15,1,Tempelhof - Schöneberg,within an hour,100,TRUE,3,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+29,2,1,1,30,29,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,no,yes,no
+29,1,0,1,0,0,Charlottenburg-Wilm.,within a few hours,100,FALSE,2,7,10,10,9,10,10,yes,yes,no,no,no,no
+35,2,1,1,12,80,Pankow,within an hour,100,TRUE,2,9,10,10,10,10,10,yes,no,no,no,no,no
+50,2,1,1,0,72,Mitte,within an hour,82,TRUE,1,10,10,10,10,10,10,yes,no,no,yes,no,no
+35,1,1,1,10,15,Neukölln,within an hour,70,FALSE,1,10,10,10,10,10,10,yes,no,yes,no,no,no
+33,2,1,1,20,0,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,no,yes,no,no,no
+25,2,1,1,10,0,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+95,2,1,1,40,19,Friedrichshain-Kreuzberg,within an hour,100,FALSE,2,10,10,10,10,10,9,yes,no,yes,yes,no,no
+70,4,2,1,35,11,Pankow,within a few hours,100,FALSE,1,10,9,10,10,8,9,yes,yes,yes,no,no,no
+80,2,2,1,35,2,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,9,10,10,10,9,yes,no,yes,no,no,no
+40,1,1,1,10,0,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,1,10,9,10,10,10,10,yes,no,yes,no,yes,no
+25,2,1,1,30,34,Steglitz - Zehlendorf,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,yes,no
+23,1,1,1,5,34,Charlottenburg-Wilm.,within a few hours,89,FALSE,1,10,9,10,10,9,10,yes,yes,yes,yes,yes,yes
+25,2,1,1,20,89,Reinickendorf,within an hour,100,TRUE,1,10,10,10,10,9,9,yes,no,yes,yes,no,no
+90,2,1,1.5,20,87,Pankow,within a few hours,100,TRUE,1,10,10,10,10,9,9,no,no,yes,yes,yes,no
+45,3,0,1,35,64,Reinickendorf,within an hour,98,TRUE,12,10,10,10,10,9,9,yes,yes,no,no,no,no
+42,2,1,1,0,72,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,no,no
+80,2,1,1,10,2,Pankow,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,yes,no,no,no,no
+120,6,3,1.5,45,60,Mitte,within a day,92,FALSE,1,10,10,9,10,10,10,yes,yes,yes,yes,yes,no
+85,2,0,1,25,10,Mitte,within an hour,100,FALSE,1,9,10,10,10,10,9,yes,no,no,no,no,no
+80,2,1,1,55,32,Pankow,within an hour,100,TRUE,1,10,10,10,10,9,9,yes,no,yes,yes,yes,no
+35,1,1,1,15,14,Mitte,within an hour,100,TRUE,1,10,10,10,10,10,10,no,no,no,yes,no,no
+30,2,1,1,8,2,Lichtenberg,within an hour,57,FALSE,2,10,8,10,9,9,9,yes,no,yes,no,no,no
+45,2,1,1,150,87,Charlottenburg-Wilm.,within a day,100,TRUE,1,10,10,10,10,10,9,yes,yes,yes,yes,no,no
+140,6,3,1,50,15,Friedrichshain-Kreuzberg,within an hour,100,FALSE,7,9,9,9,9,9,9,yes,yes,yes,no,no,no
+42,2,1,1,19,36,Mitte,within a day,88,FALSE,1,10,9,10,10,10,9,yes,yes,yes,yes,no,no
+100,2,1,1,50,90,Mitte,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+44,4,1,1,18,0,Mitte,within an hour,100,FALSE,1,10,9,10,10,10,10,yes,yes,no,no,yes,no
+129,6,3,2,60,15,Steglitz - Zehlendorf,within a day,67,FALSE,1,10,10,10,10,10,10,yes,no,no,yes,yes,no
+69,2,1,1,40,88,Friedrichshain-Kreuzberg,within an hour,100,FALSE,5,9,9,10,9,10,9,yes,no,yes,no,no,no
+42,3,1,1,0,0,Friedrichshain-Kreuzberg,within an hour,100,FALSE,2,10,9,10,10,10,10,yes,yes,yes,no,no,no
+22,1,1,1,10,0,Mitte,within an hour,100,FALSE,3,9,9,8,9,9,9,yes,no,no,no,no,no
+39,2,1,1,120,90,Friedrichshain-Kreuzberg,within an hour,87,FALSE,15,9,8,8,8,9,7,yes,yes,no,no,no,no
+23,1,1,1,0,90,Pankow,within a day,100,FALSE,1,10,10,9,9,10,10,yes,no,no,no,no,no
+48,2,1,1,0,10,Neukölln,within a day,100,FALSE,1,10,10,10,10,9,10,yes,no,no,no,no,no
+77,2,1,1,0,84,Pankow,within an hour,100,FALSE,1,10,9,10,9,10,9,yes,no,yes,no,yes,no
+75,2,1,1,30,87,Marzahn - Hellersdorf,within an hour,90,FALSE,1,10,10,9,10,9,10,yes,yes,yes,yes,yes,yes
+55,5,2,1,60,0,Pankow,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,yes
+35,1,1,1.5,5,36,Pankow,within an hour,100,FALSE,1,10,9,10,10,10,9,yes,no,yes,no,no,no
+40,2,1,1,15,0,Neukölln,within an hour,100,FALSE,1,10,9,10,10,10,10,yes,no,yes,no,no,no
+32,2,1,1,15,52,Pankow,within a few hours,90,FALSE,1,10,10,10,10,10,10,yes,no,yes,no,no,no
+45,1,1,1.5,20,30,Mitte,within an hour,90,FALSE,3,10,9,10,10,10,9,yes,yes,yes,yes,no,no
+100,3,1,1,0,22,Friedrichshain-Kreuzberg,within a day,100,FALSE,1,9,9,10,9,9,9,yes,no,yes,yes,yes,no
+25,2,1,1,0,4,Neukölln,within a few hours,100,FALSE,1,10,9,9,10,10,9,yes,no,no,no,no,no
+60,2,1,1,20,28,Neukölln,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,no,no,yes,no,no
+25,3,1,1,20,60,Neukölln,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+30,1,1,1,0,80,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,no,no,yes,no
+40,2,1,1.5,5,0,Mitte,within a day,100,FALSE,1,10,10,10,9,10,10,yes,no,no,yes,no,no
+74,4,1,1,10,65,Friedrichshain-Kreuzberg,within a day,100,FALSE,1,10,10,10,10,10,9,yes,no,no,no,no,yes
+65,2,1,1,0,15,Mitte,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,no,yes,no
+159,8,3,1,60,84,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,9,10,10,10,9,yes,yes,yes,no,no,no
+200,4,2,1,50,13,Friedrichshain-Kreuzberg,within a few hours,83,TRUE,1,10,9,10,10,10,9,yes,no,no,no,no,no
+45,2,1,1,12,6,Friedrichshain-Kreuzberg,a few days or more,0,TRUE,1,10,10,10,10,10,10,no,no,no,yes,yes,no
+50,2,1,1,30,0,Neukölln,within an hour,100,FALSE,1,9,9,10,10,10,9,yes,no,yes,yes,yes,no
+150,6,3,1,135,26,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+80,4,2,1,45,60,Mitte,within a day,73,FALSE,2,9,9,9,9,10,9,yes,no,no,no,no,no
+125,6,2,1,15,64,Friedrichshain-Kreuzberg,within an hour,100,FALSE,2,9,8,9,9,9,8,yes,yes,no,no,no,no
+30,1,1,1.5,20,70,Mitte,within an hour,90,FALSE,3,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+119,4,2,1,25,35,Pankow,within an hour,100,FALSE,2,9,8,9,9,10,9,yes,yes,yes,yes,no,yes
+50,2,1,1,25,89,Friedrichshain-Kreuzberg,within a day,100,FALSE,2,10,10,10,10,10,10,yes,yes,no,yes,yes,no
+41,3,1,1,0,27,Neukölln,within an hour,100,FALSE,2,10,9,10,10,10,9,yes,no,yes,no,no,no
+20,1,1,1,0,66,Neukölln,within a few hours,100,TRUE,1,10,9,10,10,10,10,yes,no,yes,yes,no,no
+35,2,1,1,30,29,Neukölln,within an hour,100,TRUE,2,10,10,10,10,9,10,yes,no,yes,yes,yes,no
+79,5,1,1,45,71,Friedrichshain-Kreuzberg,within an hour,100,TRUE,18,10,9,10,10,10,9,yes,no,yes,yes,no,no
+55,2,1,1,10,1,Pankow,within an hour,100,FALSE,2,9,9,10,10,10,9,yes,no,no,no,no,no
+50,2,1,1,40,33,Steglitz - Zehlendorf,within a few hours,100,TRUE,2,10,9,10,10,10,9,yes,yes,yes,yes,no,no
+30,2,1,1,0,10,Neukölln,within an hour,100,FALSE,2,10,9,10,10,10,10,yes,no,yes,no,no,no
+25,2,1,1,25,10,Charlottenburg-Wilm.,within an hour,89,FALSE,1,10,10,10,10,10,9,yes,no,yes,yes,yes,no
+45,2,1,1,25,0,Pankow,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,no,yes,yes,yes,no
+32,2,1,1,40,45,Friedrichshain-Kreuzberg,within a day,80,FALSE,3,10,10,10,10,9,9,yes,no,yes,no,no,yes
+80,2,0,1,0,35,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+27,2,1,1,0,0,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,2,9,9,10,10,10,9,yes,no,no,no,no,no
+93,3,2,2,40,0,Mitte,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,no,no,no,no
+75,4,2,1,0,42,Mitte,within a few hours,100,FALSE,2,10,10,10,10,9,8,yes,yes,yes,no,no,no
+35,1,1,1,25,0,Neukölln,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,no,no,no
+51,5,2,1,30,71,Tempelhof - Schöneberg,within an hour,100,FALSE,2,9,10,10,9,9,9,yes,yes,yes,no,no,yes
+29,1,1,1,16,88,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,no,yes,no,no
+49,3,1,1,20,0,Pankow,within a few hours,100,FALSE,2,10,10,10,10,9,9,yes,no,yes,yes,no,no
+30,2,0,1,0,0,Mitte,within an hour,100,FALSE,0,10,9,10,10,10,10,yes,no,yes,no,yes,yes
+25,2,1,1,5,37,Mitte,within an hour,100,FALSE,5,10,10,9,10,9,10,yes,yes,yes,yes,no,no
+48,3,1,1,12,0,Mitte,within an hour,100,FALSE,1,10,9,10,10,10,9,no,no,no,no,no,no
+52,2,1,1,28,0,Neukölln,within an hour,100,FALSE,1,10,10,10,10,10,9,yes,no,no,no,no,no
+22,2,1,1,0,90,Tempelhof - Schöneberg,within a few hours,100,FALSE,2,10,10,9,10,10,10,yes,no,no,no,no,no
+47,2,1,1,40,36,Treptow - Köpenick,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,no,yes,no
+40,3,1,1,20,50,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,no,no,yes,no,no,no
+34,1,1,1,40,40,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,no,no,no,no,no
+65,2,1,1,15,0,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+35,1,1,1.5,30,78,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,9,10,10,10,10,yes,no,yes,no,yes,no
+30,2,1,1,25,72,Neukölln,within a few hours,94,FALSE,9,9,8,9,9,9,9,yes,no,no,no,no,no
+23,2,1,1,12,33,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,9,10,10,10,9,no,no,no,no,no,no
+35,2,1,1,10,90,Neukölln,within a day,100,FALSE,2,10,9,10,10,10,9,yes,no,yes,yes,no,yes
+100,2,1,1,0,70,Steglitz - Zehlendorf,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+28,1,1,1,40,82,Lichtenberg,within a few hours,100,FALSE,1,9,10,9,9,9,9,yes,yes,yes,no,no,no
+105,4,2,1,55,0,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,no,no,no,no,no
+90,4,1,1,40,44,Pankow,within an hour,100,TRUE,1,10,10,10,10,9,9,yes,yes,yes,no,yes,yes
+83,5,1,1,50,79,Mitte,within an hour,100,FALSE,1,9,9,8,9,9,9,yes,yes,yes,yes,no,no
+299,10,4,1,60,73,Mitte,within an hour,100,FALSE,1,9,10,10,9,10,9,yes,yes,yes,yes,no,no
+100,5,2,1,60,0,Tempelhof - Schöneberg,within an hour,100,TRUE,2,10,9,10,10,10,10,yes,yes,yes,yes,no,yes
+45,2,1,1.5,5,12,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+35,2,1,1,10,32,Charlottenburg-Wilm.,within a few hours,100,TRUE,2,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+90,3,2,1,30,26,Mitte,within a few hours,100,TRUE,2,10,10,10,10,10,10,yes,yes,no,no,no,no
+40,2,1,1,25,86,Neukölln,within a day,100,TRUE,2,10,10,10,10,9,10,yes,yes,yes,yes,yes,no
+45,2,1,1,20,75,Charlottenburg-Wilm.,within a few hours,100,FALSE,1,10,10,10,10,10,9,yes,yes,no,yes,yes,no
+60,2,1,1,20,26,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,no,yes
+17,2,1,1,4,38,Marzahn - Hellersdorf,within a few hours,90,TRUE,1,10,10,10,10,9,10,yes,no,yes,no,yes,no
+49,2,1,1,10,75,Friedrichshain-Kreuzberg,within an hour,94,FALSE,2,10,10,10,9,10,10,yes,no,yes,yes,no,no
+35,2,1,1,25,33,Mitte,within an hour,90,FALSE,1,10,10,10,10,10,9,yes,no,no,no,no,no
+350,6,2,1.5,100,63,Mitte,within an hour,100,FALSE,6,10,10,10,10,9,10,yes,yes,yes,yes,yes,yes
+45,3,1,1,20,33,Tempelhof - Schöneberg,within a day,58,FALSE,2,9,8,9,9,10,9,yes,no,no,no,no,no
+35,2,1,1,15,4,Charlottenburg-Wilm.,within a day,67,FALSE,1,9,9,9,8,9,9,yes,no,yes,no,no,no
+125,1,3,1,50,87,Neukölln,within a day,100,FALSE,1,10,9,10,10,10,9,yes,yes,no,no,yes,no
+140,4,3,2.5,80,14,Pankow,within an hour,100,TRUE,2,10,10,9,10,10,10,yes,yes,yes,yes,yes,yes
+90,2,1,1,40,34,Friedrichshain-Kreuzberg,within a few hours,90,FALSE,1,10,10,10,10,10,10,yes,no,no,yes,no,yes
+55,4,1,1,29,0,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,yes,yes,no,yes,no
+140,4,2,1,67,0,Neukölln,within an hour,100,TRUE,1,10,9,9,10,9,9,yes,no,no,yes,yes,no
+31,1,1,1,15,17,Mitte,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+25,1,1,1,0,55,Neukölln,within an hour,100,FALSE,5,9,8,9,9,10,9,yes,no,no,no,no,no
+50,2,1,1,40,0,Pankow,within a few hours,100,FALSE,1,10,10,9,10,10,9,yes,yes,no,no,no,no
+20,1,1,1,5,29,Tempelhof - Schöneberg,within an hour,92,FALSE,2,9,9,9,9,10,8,no,no,no,no,no,no
+70,4,1,1,20,42,Tempelhof - Schöneberg,within an hour,100,TRUE,2,10,9,10,10,10,10,yes,yes,yes,yes,no,no
+40,2,1,1,30,15,Friedrichshain-Kreuzberg,within a few hours,88,TRUE,2,10,9,10,10,10,10,yes,no,yes,no,no,no
+280,6,3,1.5,50,82,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,no,no,yes,no,no
+75,2,0,1,16,75,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,9,9,10,9,9,yes,yes,no,no,yes,yes
+25,2,1,1,0,31,Neukölln,within a few hours,100,FALSE,0,10,8,10,10,9,9,yes,no,yes,yes,no,no
+22,2,1,1,0,1,Pankow,within a day,90,FALSE,2,9,9,10,10,10,9,yes,no,no,no,no,no
+80,4,1,1,40,80,Mitte,within an hour,70,FALSE,1,9,8,9,9,10,9,yes,yes,yes,yes,no,yes
+27,3,1,1,20,14,Charlottenburg-Wilm.,within an hour,100,TRUE,2,10,9,10,10,10,10,yes,no,yes,no,no,no
+30,2,1,1,15,0,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,9,10,10,10,10,yes,no,no,yes,no,no
+100,3,1,1,0,42,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,9,9,10,10,10,9,yes,no,no,no,no,no
+60,2,1,1,29,40,Pankow,within an hour,100,FALSE,1,10,10,10,10,9,9,yes,yes,yes,yes,no,no
+97,4,1,1,50,15,Tempelhof - Schöneberg,within an hour,90,FALSE,3,10,10,9,10,9,10,yes,yes,no,no,yes,no
+95,2,1,1,50,51,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+43,2,1,1,5,45,Lichtenberg,within a day,67,FALSE,1,10,10,10,9,10,10,yes,no,no,yes,yes,no
+48,4,2,1,40,54,Charlottenburg-Wilm.,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,yes,yes,yes,yes,no
+70,4,1,1,10,81,Friedrichshain-Kreuzberg,within an hour,90,TRUE,2,10,10,10,10,10,9,yes,yes,yes,no,no,no
+45,3,0,1,35,54,Reinickendorf,within an hour,98,TRUE,12,10,10,10,10,9,9,yes,yes,no,no,no,no
+30,2,1,1,18,83,Friedrichshain-Kreuzberg,within a day,71,FALSE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+100,3,2,1,40,74,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,no,no
+45,1,1,1,15,90,Tempelhof - Schöneberg,within a day,75,FALSE,3,9,8,10,9,10,7,no,no,no,no,yes,no
+50,2,1,1,5,0,Neukölln,within an hour,100,FALSE,1,10,10,8,9,10,9,yes,yes,no,no,yes,no
+65,4,1,1,65,51,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,9,10,10,10,10,9,yes,yes,no,yes,yes,no
+63,3,1,1,22,0,Pankow,within an hour,100,FALSE,1,9,8,10,10,10,9,yes,yes,yes,no,yes,no
+20,1,1,1,20,6,Charlottenburg-Wilm.,within a few hours,100,FALSE,2,10,9,10,10,9,10,yes,no,no,no,no,no
+99,4,1,2.5,50,90,Charlottenburg-Wilm.,within a day,80,FALSE,1,9,8,9,10,10,9,yes,yes,yes,yes,yes,no
+45,3,2,1,20,0,Pankow,within an hour,100,FALSE,1,9,8,10,10,10,9,yes,yes,yes,yes,yes,no
+250,6,2,2,70,60,Mitte,within an hour,100,TRUE,3,10,10,10,10,10,10,yes,no,yes,yes,yes,no
+30,1,1,1.5,8,0,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,no,no,no,no,no,no
+35,2,1,1,25,0,Neukölln,within an hour,100,FALSE,1,10,10,10,10,9,10,yes,yes,no,no,no,no
+60,4,1,1,35,16,Neukölln,within an hour,100,TRUE,3,10,10,10,10,10,9,yes,no,no,yes,yes,no
+45,2,1,1,25,0,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,10,10,10,10,10,no,yes,yes,no,no,no
+129,6,2,1.5,25,65,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,9,yes,yes,yes,no,no,no
+55,4,1,1,0,0,Pankow,within a few hours,100,FALSE,1,10,10,10,10,9,9,yes,yes,yes,yes,no,no
+70,1,1,1.5,0,90,Pankow,within an hour,100,FALSE,2,10,10,10,10,10,10,yes,yes,no,no,no,no
+70,2,1,1,40,25,Pankow,within an hour,100,TRUE,1,10,9,10,9,10,9,yes,yes,yes,yes,yes,no
+130,3,1,1,30,51,Friedrichshain-Kreuzberg,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+150,6,2,1,45,70,Pankow,within an hour,100,FALSE,6,9,10,10,10,10,9,yes,yes,yes,no,no,no
+60,2,1,1,30,90,Pankow,within an hour,100,FALSE,3,10,10,9,10,10,9,yes,yes,no,yes,yes,no
+100,3,1,1,50,0,Mitte,within an hour,100,FALSE,1,10,9,10,10,10,9,yes,yes,yes,yes,yes,no
+120,6,2,1,40,63,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+80,4,2,1,0,7,Pankow,within a day,100,FALSE,1,10,8,10,10,10,10,yes,yes,no,no,no,no
+320,3,1,2,120,14,Mitte,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+35,2,1,1,15,89,Pankow,within an hour,88,FALSE,4,10,9,10,10,9,9,yes,no,no,no,no,no
+25,2,1,1,15,15,Pankow,within an hour,88,FALSE,4,10,9,10,10,10,9,yes,no,yes,no,no,no
+225,11,2,1,88,67,Pankow,within an hour,100,TRUE,21,10,10,10,10,10,9,yes,yes,yes,yes,no,no
+28,2,1,1.5,5,24,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,9,8,10,10,9,8,yes,no,no,no,no,no
+62,2,0,1,30,55,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,yes,yes,yes,yes,no
+40,2,1,1,5,81,Friedrichshain-Kreuzberg,within a few hours,90,TRUE,2,10,10,10,10,9,10,yes,no,yes,yes,no,no
+35,2,1,1,42,89,Mitte,within a few hours,100,FALSE,4,9,9,10,10,9,8,yes,no,no,no,no,no
+35,2,1,1,42,82,Mitte,within a few hours,100,FALSE,4,9,9,10,10,9,9,yes,no,no,no,no,no
+30,2,1,1,20,8,Charlottenburg-Wilm.,within a day,75,FALSE,0,10,10,10,10,10,10,yes,no,no,no,no,no
+90,4,2,2,50,80,Spandau,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,no,no,no
+50,3,1,1,12,79,Pankow,within an hour,100,FALSE,1,10,10,10,10,10,9,yes,yes,yes,yes,no,no
+55,3,2,1,20,7,Neukölln,within an hour,100,TRUE,1,10,10,10,10,9,9,yes,yes,yes,yes,no,no
+27,1,1,1,0,0,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,10,10,10,9,10,yes,no,yes,no,yes,no
+23,1,1,1,4,0,Pankow,within an hour,100,FALSE,2,8,7,9,9,8,8,yes,no,no,no,no,no
+87,2,1,1,30,7,Treptow - Köpenick,within an hour,100,FALSE,1,10,10,10,10,9,9,yes,yes,yes,yes,yes,no
+59,2,1,1,0,78,Neukölln,within a day,100,TRUE,1,10,10,10,10,10,9,yes,no,yes,yes,no,no
+109,5,1,1,55,66,Friedrichshain-Kreuzberg,within an hour,100,FALSE,4,10,9,10,10,10,9,yes,yes,yes,no,no,no
+23,2,1,1,0,30,Steglitz - Zehlendorf,within an hour,100,TRUE,1,10,10,10,10,9,10,yes,yes,yes,no,yes,no
+129,9,1,1,40,54,Mitte,within an hour,97,FALSE,24,9,8,10,10,9,9,yes,yes,no,yes,no,yes
+59,2,2,1,25,0,Pankow,within an hour,100,FALSE,1,10,9,10,10,9,10,yes,no,yes,no,yes,no
+70,3,1,1,25,2,Mitte,within an hour,100,FALSE,1,10,8,10,10,10,9,yes,no,no,no,no,no
+65,4,0,1,10,2,Pankow,within an hour,100,FALSE,2,10,9,10,10,10,9,yes,yes,yes,no,no,no
+34,2,1,1,5,90,Charlottenburg-Wilm.,within an hour,100,FALSE,3,10,8,10,10,10,9,yes,no,yes,no,no,no
+25,1,1,1,20,63,Charlottenburg-Wilm.,within an hour,100,FALSE,3,10,10,10,10,9,9,yes,no,yes,no,no,no
+80,4,2,1.5,30,10,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,8,7,9,9,9,9,yes,yes,yes,yes,yes,yes
+41,2,0,1,0,74,Pankow,within an hour,90,FALSE,1,10,9,10,10,10,9,yes,no,yes,yes,no,no
+69,4,2,1,30,0,Tempelhof - Schöneberg,within a day,100,FALSE,1,10,10,10,10,10,10,yes,no,yes,no,no,no
+109,6,1,1,40,79,Mitte,within an hour,97,FALSE,24,9,9,10,9,10,9,yes,yes,no,no,no,no
+69,2,0,1,40,90,Mitte,within an hour,97,FALSE,24,10,9,10,10,10,9,yes,yes,no,no,no,yes
+79,2,1,1,40,90,Mitte,within an hour,97,FALSE,24,9,9,9,9,10,8,yes,yes,yes,yes,no,yes
+104,5,1,1,40,84,Mitte,within an hour,97,FALSE,24,9,8,10,10,10,8,yes,yes,yes,yes,yes,yes
+89,3,0,1,40,90,Mitte,within an hour,97,FALSE,24,9,9,9,10,9,8,yes,yes,yes,no,yes,yes
+88,4,1,1,40,79,Mitte,within an hour,97,FALSE,24,10,9,10,10,10,9,yes,yes,no,no,yes,no
+99,5,1,1,40,77,Mitte,within an hour,97,FALSE,24,9,9,10,10,10,9,yes,yes,yes,yes,no,no
+89,4,0,1,40,90,Mitte,within an hour,97,FALSE,24,9,9,10,10,10,9,yes,yes,no,yes,no,yes
+74,3,0,1,40,90,Mitte,within an hour,97,FALSE,24,9,9,9,10,10,9,yes,yes,no,no,no,no
+20,1,1,1,5,0,Mitte,within a few hours,100,FALSE,1,10,10,10,10,9,9,yes,no,yes,no,no,no
+39,2,1,1,0,5,Pankow,within a few hours,100,FALSE,1,10,8,9,10,9,9,yes,no,yes,yes,no,no
+25,2,1,1,0,88,Mitte,within a few hours,90,FALSE,1,9,7,10,10,10,9,yes,no,no,no,no,no
+60,2,1,1,80,50,Friedrichshain-Kreuzberg,within an hour,100,FALSE,6,10,10,10,10,10,10,yes,yes,no,no,no,no
+39,2,1,1,7,26,Pankow,within a day,100,FALSE,1,10,10,10,10,10,10,yes,no,yes,no,yes,no
+45,2,1,1,20,78,Neukölln,within an hour,100,TRUE,2,10,9,10,10,10,9,yes,no,yes,yes,yes,no
+29,2,1,1,20,1,Lichtenberg,within an hour,100,FALSE,1,9,8,10,10,9,9,yes,no,yes,no,no,no
+60,6,2,1,118,66,Friedrichshain-Kreuzberg,within an hour,100,FALSE,22,9,9,9,9,10,9,yes,yes,yes,no,no,no
+60,6,2,1,118,69,Friedrichshain-Kreuzberg,within an hour,100,FALSE,22,9,9,9,9,10,9,yes,yes,yes,no,no,no
+60,6,2,1,118,65,Friedrichshain-Kreuzberg,within an hour,100,FALSE,22,9,9,9,9,9,9,yes,yes,yes,no,no,no
+65,7,2,1,124,63,Friedrichshain-Kreuzberg,within an hour,100,FALSE,22,9,9,10,10,10,9,yes,yes,yes,no,yes,no
+60,6,2,1,118,59,Friedrichshain-Kreuzberg,within an hour,100,FALSE,22,10,9,9,9,9,9,yes,yes,yes,no,no,no
+65,7,2,2,124,49,Friedrichshain-Kreuzberg,within an hour,100,FALSE,22,9,9,9,9,9,9,yes,yes,yes,no,no,no
+65,6,2,2,118,45,Friedrichshain-Kreuzberg,within an hour,100,FALSE,22,10,9,9,10,10,9,yes,yes,yes,no,no,no
+65,7,2,2,124,38,Friedrichshain-Kreuzberg,within an hour,100,FALSE,22,9,9,9,9,9,9,yes,yes,yes,no,no,no
+60,6,1,1,98,55,Friedrichshain-Kreuzberg,within an hour,100,FALSE,22,9,9,9,9,10,9,yes,yes,yes,no,no,yes
+60,6,1,1,98,50,Friedrichshain-Kreuzberg,within an hour,100,FALSE,22,10,9,10,10,10,9,yes,yes,yes,no,no,no
+60,6,2,1,118,47,Friedrichshain-Kreuzberg,within an hour,100,FALSE,22,10,9,10,10,10,9,yes,yes,yes,no,no,no
+60,6,2,1,118,57,Friedrichshain-Kreuzberg,within an hour,100,FALSE,22,9,9,9,9,10,8,yes,yes,yes,no,no,no
+39,4,0,1,45,90,Mitte,within a few hours,100,FALSE,5,9,9,9,9,10,9,no,no,no,no,no,no
+68,2,1,1,50,76,Neukölln,within a few hours,100,FALSE,2,10,10,10,10,9,9,yes,yes,yes,no,no,no
+45,2,1,1,10,84,Charlottenburg-Wilm.,within a day,100,FALSE,1,10,10,10,10,10,10,yes,yes,no,no,no,no
+40,2,1,1,20,0,Friedrichshain-Kreuzberg,within a few hours,90,FALSE,1,10,9,10,10,9,9,yes,no,yes,yes,yes,no
+25,3,2,1,25,0,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,10,10,10,10,9,yes,yes,no,no,no,no
+18,3,1,1,6,65,Treptow - Köpenick,within an hour,100,TRUE,1,10,10,10,10,9,10,yes,no,no,yes,no,yes
+30,4,2,1,25,0,Mitte,within a few hours,100,FALSE,1,9,8,10,9,9,9,yes,no,yes,yes,no,no
+95,4,1,1,75,85,Pankow,within an hour,100,FALSE,9,10,10,10,10,10,9,yes,no,no,no,no,no
+56,3,0,1,0,44,Mitte,within an hour,100,TRUE,5,10,10,10,10,10,9,yes,yes,yes,no,no,no
+39,2,1,1.5,10,36,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+89,3,2,1,25,0,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,yes,no,yes,yes,no
+45,4,1,1,30,43,Charlottenburg-Wilm.,within an hour,100,FALSE,1,10,10,10,10,10,9,yes,yes,yes,yes,no,no
+49,2,1,1,9,64,Pankow,within an hour,100,TRUE,2,10,10,10,10,10,10,no,no,yes,no,yes,yes
+129,5,1,1.5,25,59,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,no,yes,no,no
+155,6,3,1,0,38,Mitte,within an hour,100,TRUE,4,10,10,10,10,10,9,yes,yes,yes,yes,no,yes
+49,2,1,1,10,0,Neukölln,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,yes
+49,4,1,1,30,0,Lichtenberg,within an hour,100,FALSE,1,9,8,9,10,9,9,yes,no,no,no,no,no
+100,4,1,1,30,0,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,9,8,10,10,10,9,yes,no,no,no,no,no
+129,5,2,1,25,55,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,yes,yes,no,no,no
+45,2,1,1,5,0,Mitte,within an hour,67,FALSE,1,10,10,10,10,10,10,yes,no,yes,yes,no,no
+97,3,2,1,40,4,Neukölln,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,no,no,no,no,no
+28,2,1,1,15,58,Friedrichshain-Kreuzberg,within a day,100,TRUE,2,10,10,10,10,10,10,yes,no,yes,no,yes,no
+48,2,0,1,10,90,Pankow,within an hour,100,TRUE,1,10,9,10,10,10,10,yes,no,yes,no,yes,no
+280,5,2,1,50,0,Mitte,within an hour,100,FALSE,1,10,9,10,10,10,10,yes,yes,yes,yes,yes,yes
+79,2,1,1,75,45,Mitte,within a few hours,100,TRUE,6,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+30,2,1,1,5,0,Friedrichshain-Kreuzberg,within a day,63,FALSE,1,10,9,10,10,10,10,yes,no,no,no,no,no
+65,5,1,1,10,0,Neukölln,within an hour,100,FALSE,1,9,9,10,10,10,10,yes,no,no,yes,yes,no
+85,2,1,1.5,20,60,Tempelhof - Schöneberg,within a day,80,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+119,5,2,2,29,67,Reinickendorf,within an hour,99,FALSE,30,9,8,9,9,8,8,yes,yes,no,yes,no,no
+50,2,1,1,15,67,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,9,10,9,yes,yes,yes,no,no,yes
+30,2,1,1,6,50,Neukölln,within a day,50,FALSE,1,10,10,10,10,9,10,yes,yes,yes,yes,no,yes
+200,8,2,1.5,80,66,Friedrichshain-Kreuzberg,within an hour,97,FALSE,14,10,9,10,10,10,9,yes,yes,yes,yes,no,no
+80,4,1,1,0,6,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,9,10,10,9,10,yes,no,yes,yes,no,no
+40,2,1,1,20,86,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,no,yes,no,no
+22,2,1,1,0,0,Mitte,within an hour,100,FALSE,2,10,9,10,10,10,10,yes,yes,no,no,no,no
+33,2,1,1,15,39,Mitte,within an hour,100,FALSE,1,10,9,10,10,9,10,no,no,no,no,no,no
+39,1,1,1,10,76,Pankow,within a day,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,no,yes,no
+25,2,1,1,20,45,Lichtenberg,within an hour,100,FALSE,2,9,8,10,9,9,9,yes,yes,yes,yes,yes,yes
+50,4,1,1,20,88,Mitte,within an hour,100,FALSE,1,10,9,10,10,10,10,yes,yes,yes,yes,no,no
+48,6,2,1,32,14,Treptow - Köpenick,within a day,80,FALSE,2,10,9,10,10,10,9,yes,no,no,no,no,no
+59,6,1,1,15,35,Treptow - Köpenick,within a day,80,FALSE,2,8,9,8,9,9,9,yes,no,no,no,no,no
+90,2,1,1,40,27,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,1,10,10,9,10,10,9,yes,yes,no,no,no,no
+130,5,2,1,30,18,Friedrichshain-Kreuzberg,within an hour,100,TRUE,3,10,9,10,10,10,9,yes,no,no,no,no,no
+80,6,2,1,9,65,Mitte,within an hour,100,FALSE,1,9,9,10,10,10,9,yes,no,no,no,no,no
+90,4,1,1,30,7,Friedrichshain-Kreuzberg,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,no,no,no
+47,2,1,1,40,7,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,no,yes,yes,no,no
+100,4,2,2,40,1,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,no,yes,yes,no
+95,2,1,1,25,61,Steglitz - Zehlendorf,within an hour,100,TRUE,3,10,10,10,10,9,9,yes,yes,yes,yes,no,no
+17,2,1,1,25,1,Pankow,within a few hours,100,FALSE,3,10,10,10,10,9,10,yes,no,yes,yes,yes,no
+80,2,1,1,20,0,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,9,10,10,10,9,yes,no,no,no,yes,no
+120,3,1,2,80,32,Mitte,within an hour,100,FALSE,1,10,10,10,10,10,9,yes,no,no,yes,yes,yes
+58,2,1,1,20,88,Friedrichshain-Kreuzberg,within a day,100,FALSE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+50,2,1,1,80,85,Neukölln,within a day,70,FALSE,1,10,10,10,10,9,10,yes,no,no,no,yes,no
+39,2,1,1,15,28,Neukölln,within an hour,100,FALSE,1,10,10,9,10,10,10,yes,no,yes,no,no,no
+30,2,1,1.5,20,76,Charlottenburg-Wilm.,within an hour,100,FALSE,1,10,8,10,10,10,9,yes,yes,yes,yes,no,yes
+119,4,2,1.5,75,60,Mitte,within an hour,90,FALSE,2,10,10,9,9,10,10,yes,yes,yes,yes,no,no
+65,4,2,1,69,0,Steglitz - Zehlendorf,within an hour,100,FALSE,2,9,9,10,9,9,9,yes,yes,no,no,no,no
+125,6,1,1,45,66,Friedrichshain-Kreuzberg,within an hour,100,TRUE,18,10,9,10,10,9,9,yes,no,yes,no,no,no
+90,4,1,1,45,38,Mitte,within an hour,100,FALSE,1,10,10,10,10,9,9,yes,yes,yes,yes,no,no
+189,7,2,2,70,71,Mitte,within an hour,100,FALSE,13,9,9,10,9,9,9,yes,yes,yes,yes,yes,yes
+20,2,1,1,20,8,Mitte,within an hour,100,TRUE,1,10,10,10,10,9,10,yes,no,yes,no,no,no
+35,2,1,1,10,16,Pankow,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,no,yes
+80,2,1,1,30,14,Pankow,within an hour,100,FALSE,1,9,8,10,9,9,8,yes,no,no,no,no,no
+135,2,2,1.5,35,71,Friedrichshain-Kreuzberg,within a few hours,100,TRUE,2,10,10,10,10,10,10,yes,yes,yes,no,no,no
+36,2,1,1,17,0,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,no,no,no,no
+60,2,1,1.5,10,16,Mitte,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,no,yes,yes,no,no
+95,5,2,1,49,38,Charlottenburg-Wilm.,within an hour,100,TRUE,1,10,10,10,10,9,9,yes,yes,yes,yes,yes,yes
+50,2,0,1,20,18,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,9,10,10,10,10,yes,yes,yes,no,no,no
+80,2,0,1,25,12,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,9,10,10,10,9,yes,yes,yes,no,no,no
+27,2,1,1,25,83,Pankow,within an hour,100,FALSE,1,9,9,9,9,9,9,yes,yes,yes,no,yes,yes
+25,2,1,1,45,44,Mitte,within a few hours,100,FALSE,2,10,9,10,10,10,10,yes,no,yes,no,yes,yes
+59,2,1,1,15,85,Tempelhof - Schöneberg,within a day,100,FALSE,1,10,10,10,10,10,10,yes,no,no,no,yes,yes
+110,4,3,1,55,15,Neukölln,within a day,100,FALSE,2,9,9,9,10,9,9,yes,no,no,no,no,no
+50,2,1,1,59,20,Tempelhof - Schöneberg,within a day,90,FALSE,2,9,9,9,9,9,9,yes,no,no,no,no,no
+40,3,0,1,20,12,Lichtenberg,within a few hours,86,FALSE,1,8,6,9,8,8,7,yes,yes,no,no,no,no
+17,1,1,1,15,25,Tempelhof - Schöneberg,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,no,no,no,no
+39,2,1,1,34,14,Charlottenburg-Wilm.,within a few hours,100,TRUE,1,10,9,10,10,10,9,yes,no,yes,no,no,no
+28,2,1,1,50,7,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,no,yes,yes,no,no
+60,3,1,1,25,0,Friedrichshain-Kreuzberg,within a day,100,FALSE,1,10,10,10,10,10,9,yes,no,yes,no,no,no
+30,1,1,1,15,63,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,9,10,10,9,10,no,no,no,yes,no,no
+70,2,1,1,50,5,Pankow,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,no,no,no
+34,2,1,1,10,88,Charlottenburg-Wilm.,within an hour,60,FALSE,1,9,10,10,10,10,9,yes,no,no,no,no,no
+25,2,1,1,0,46,Friedrichshain-Kreuzberg,within an hour,100,FALSE,2,9,8,10,10,10,9,no,no,no,no,no,no
+45,3,1,1,28,81,Charlottenburg-Wilm.,within an hour,100,TRUE,3,10,9,10,10,10,9,yes,yes,yes,yes,no,no
+45,4,1,1.5,10,74,Neukölln,within a day,70,FALSE,1,10,10,10,10,9,10,yes,no,yes,no,no,no
+19,1,1,1,0,14,Steglitz - Zehlendorf,within an hour,100,FALSE,1,10,9,10,10,9,10,yes,no,no,no,no,no
+25,2,1,1,10,35,Pankow,within an hour,100,TRUE,1,10,10,10,10,9,9,yes,no,yes,no,no,no
+149,4,0,1,50,65,Tempelhof - Schöneberg,within an hour,100,FALSE,9,9,9,10,9,10,9,yes,yes,yes,no,no,no
+80,4,1,1,40,49,Tempelhof - Schöneberg,within an hour,100,FALSE,9,9,9,9,10,10,9,yes,yes,yes,no,no,no
+60,4,1,1,40,48,Tempelhof - Schöneberg,within an hour,100,FALSE,9,10,9,9,9,10,9,yes,yes,yes,no,no,no
+149,4,1,1,40,65,Tempelhof - Schöneberg,within an hour,100,FALSE,9,9,9,9,9,10,9,yes,no,yes,no,no,no
+80,2,1,1,40,51,Tempelhof - Schöneberg,within an hour,100,FALSE,9,9,9,9,10,10,9,yes,yes,yes,no,no,no
+149,4,1,1,50,44,Tempelhof - Schöneberg,within an hour,100,FALSE,9,9,9,9,9,10,9,yes,yes,yes,no,no,no
+149,4,1,1,50,55,Tempelhof - Schöneberg,within an hour,100,FALSE,9,9,9,9,9,10,9,yes,yes,yes,no,no,no
+149,4,1,1,40,56,Tempelhof - Schöneberg,within an hour,100,FALSE,9,9,9,9,9,10,9,yes,yes,yes,no,no,no
+80,4,1,1,40,60,Tempelhof - Schöneberg,within an hour,100,FALSE,9,9,9,9,9,10,9,yes,yes,yes,no,no,no
+65,2,1,1,25,0,Friedrichshain-Kreuzberg,within an hour,100,TRUE,3,9,10,10,10,10,9,yes,no,yes,no,no,no
+24,2,1,1,4,0,Pankow,within an hour,100,FALSE,1,9,8,10,9,10,9,yes,no,yes,yes,no,yes
+30,2,1,1,10,27,Friedrichshain-Kreuzberg,within a few hours,100,TRUE,1,10,9,10,10,10,9,yes,no,no,yes,no,no
+38,2,1,1,20,0,Pankow,within a few hours,100,FALSE,1,10,8,10,10,10,9,yes,no,no,no,no,no
+80,2,2,1,0,9,Tempelhof - Schöneberg,within a few hours,100,FALSE,1,10,9,10,10,10,10,yes,no,no,no,yes,no
+80,4,1,1,40,69,Charlottenburg-Wilm.,within an hour,100,FALSE,1,10,10,10,10,9,10,yes,yes,yes,yes,no,yes
+45,2,1,2,35,22,Friedrichshain-Kreuzberg,within an hour,100,FALSE,2,10,9,10,10,10,9,no,no,yes,yes,no,no
+70,2,0,1,15,0,Mitte,within an hour,100,FALSE,1,10,9,10,10,10,10,yes,no,no,no,no,no
+35,1,1,1,0,0,Neukölln,within a few hours,100,FALSE,2,10,10,10,10,10,10,yes,no,no,no,no,no
+21,2,1,1.5,10,0,Neukölln,within an hour,100,FALSE,6,9,8,10,10,9,9,no,no,no,no,no,no
+90,2,0,1,30,69,Mitte,within a day,50,FALSE,1,10,9,10,9,10,9,yes,yes,no,no,no,no
+40,3,1,1,10,66,Mitte,within an hour,100,TRUE,2,10,9,10,10,9,10,yes,yes,yes,no,no,no
+70,2,1,1,40,37,Mitte,within a few hours,93,FALSE,1,10,10,10,9,10,10,yes,yes,no,no,no,no
+70,2,1,1,40,37,Mitte,within a day,83,FALSE,1,10,10,10,9,10,10,yes,yes,no,no,no,no
+100,2,1,1.5,0,0,Lichtenberg,within an hour,100,TRUE,1,10,10,10,10,9,9,yes,yes,yes,yes,no,no
+40,2,1,1.5,12,40,Pankow,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,yes,no
+25,1,1,1,10,44,Reinickendorf,within a day,100,TRUE,1,10,10,10,10,9,10,yes,no,yes,yes,yes,no
+155,4,2,1,60,60,Mitte,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,no,yes,yes,no,no
+150,4,1,1,60,80,Charlottenburg-Wilm.,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,yes,yes,yes,no,no
+50,1,1,1,10,5,Mitte,within an hour,100,FALSE,2,10,9,10,10,10,9,yes,no,no,no,no,no
+48,2,1,1,25,56,Friedrichshain-Kreuzberg,within a day,100,TRUE,2,10,10,10,10,10,10,yes,no,yes,yes,yes,no
+28,1,1,1,10,14,Tempelhof - Schöneberg,within an hour,100,TRUE,2,10,9,10,10,10,10,yes,yes,yes,no,no,no
+38,2,1,1,15,79,Lichtenberg,within an hour,100,TRUE,2,10,10,10,10,9,10,no,no,yes,yes,no,no
+70,3,1,1,25,24,Neukölln,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,yes,no
+35,4,2,1,30,0,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,no,no,no
+40,2,1,1,5,28,Friedrichshain-Kreuzberg,within a day,90,TRUE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+85,3,1,1,45,4,Charlottenburg-Wilm.,within an hour,100,TRUE,7,10,10,10,10,10,9,yes,yes,no,no,yes,no
+75,3,1,1,45,2,Charlottenburg-Wilm.,within an hour,100,TRUE,7,10,10,10,10,10,9,yes,yes,no,no,no,no
+80,4,1,1,25,47,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,10,10,10,10,9,yes,no,yes,no,no,no
+35,2,1,1,10,50,Neukölln,within an hour,90,TRUE,1,10,9,10,10,10,10,yes,no,no,no,no,no
+30,2,1,1,12,61,Mitte,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,no,no,yes,yes,no
+45,2,1,1,20,76,Reinickendorf,within an hour,100,TRUE,1,10,9,10,10,9,10,yes,yes,no,yes,yes,no
+20,1,1,1,10,90,Neukölln,within a day,83,FALSE,1,10,10,9,10,10,10,yes,no,yes,yes,no,no
+50,3,1,1,20,73,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,9,7,9,8,9,8,yes,no,no,no,no,no
+100,3,2,1,84,0,Pankow,within a few hours,100,FALSE,1,10,9,9,10,9,9,yes,no,yes,yes,yes,yes
+40,2,1,1,25,88,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,10,10,10,10,10,no,no,yes,no,no,no
+69,1,1,1,60,0,Mitte,within an hour,100,FALSE,2,10,10,10,10,10,9,yes,yes,no,no,no,no
+33,2,1,1,0,72,Steglitz - Zehlendorf,within an hour,100,FALSE,1,10,9,10,10,10,9,yes,no,yes,no,no,yes
+100,2,1,1,30,89,Friedrichshain-Kreuzberg,within a day,50,FALSE,1,10,10,9,10,10,10,yes,yes,yes,yes,no,no
+16,1,1,1,8,37,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,yes,yes,no,no,no
+60,2,1,1,20,0,Marzahn - Hellersdorf,within an hour,100,TRUE,1,10,10,10,10,9,10,yes,yes,yes,yes,yes,no
+42,2,1,1,15,44,Steglitz - Zehlendorf,within a few hours,83,FALSE,2,10,10,10,10,10,10,no,no,no,no,no,no
+40,1,1,1,15,59,Charlottenburg-Wilm.,within a few hours,89,FALSE,1,10,9,10,10,10,10,yes,yes,yes,no,yes,no
+105,2,1,1,60,12,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,9,10,10,10,yes,yes,no,yes,yes,no
+52,2,1,1,24,7,Pankow,within an hour,75,TRUE,1,10,10,10,10,10,9,yes,no,no,yes,no,no
+35,2,1,1,10,37,Charlottenburg-Wilm.,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,no,no
+88,2,1,1,35,5,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+125,6,1,1,45,64,Friedrichshain-Kreuzberg,within an hour,100,TRUE,18,10,10,10,10,9,9,yes,no,yes,no,no,no
+155,8,1,1,45,56,Friedrichshain-Kreuzberg,within an hour,100,TRUE,18,10,10,10,10,9,9,yes,no,yes,no,no,no
+25,2,1,1.5,0,0,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,8,10,10,10,9,yes,no,yes,no,no,no
+39,2,1,1,20,11,Neukölln,within an hour,100,FALSE,4,9,9,10,10,9,9,yes,no,no,no,no,no
+70,2,1,1,5,22,Friedrichshain-Kreuzberg,within a day,80,FALSE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+100,3,1,1.5,25,52,Mitte,within a few hours,100,TRUE,3,10,10,10,10,10,9,yes,yes,yes,yes,yes,yes
+32,3,1,0.5,12,90,Tempelhof - Schöneberg,within an hour,100,TRUE,5,9,10,9,10,10,9,no,no,yes,no,no,yes
+40,1,1,1,19,0,Mitte,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,yes,no
+39,2,1,1,0,14,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,no,yes,yes,no,no
+105,3,1,1,62,85,Mitte,within an hour,100,FALSE,1,9,9,9,9,10,9,yes,yes,no,no,yes,yes
+25,2,1,1,15,0,Neukölln,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,no,no
+60,3,1,1,0,0,Mitte,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,no,no,no,no,yes
+36,5,2,1,50,89,Spandau,within an hour,100,FALSE,19,10,8,10,10,9,9,yes,yes,no,no,no,no
+23,2,1,1,15,19,Neukölln,within a few hours,100,FALSE,1,10,10,10,10,9,10,no,no,no,no,no,no
+65,3,0,1,0,69,Mitte,within an hour,100,TRUE,5,10,10,10,10,10,10,yes,yes,yes,no,no,no
+99,4,1,1,35,71,Pankow,within an hour,100,TRUE,1,10,10,10,10,9,10,yes,no,yes,no,no,no
+45,2,1,1,15,6,Neukölln,within a day,100,FALSE,0,9,9,10,10,10,9,yes,no,no,no,no,no
+125,6,1,1,45,56,Friedrichshain-Kreuzberg,within an hour,100,TRUE,18,10,9,10,10,9,9,yes,no,yes,no,no,no
+40,2,1,1,25,10,Neukölln,within a day,70,FALSE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+99,4,2,1,50,13,Pankow,within a few hours,100,FALSE,1,10,9,10,10,10,10,yes,no,yes,yes,yes,no
+45,2,1,1,25,25,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+155,8,1,1,45,64,Friedrichshain-Kreuzberg,within an hour,100,TRUE,18,10,10,10,10,9,9,yes,no,yes,no,no,no
+29,2,1,1,0,35,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,10,no,no,yes,yes,no,no
+155,7,1,2,45,61,Friedrichshain-Kreuzberg,within an hour,100,TRUE,18,10,9,10,10,9,10,yes,no,yes,no,no,no
+78,2,1,1,25,28,Mitte,within a few hours,100,TRUE,1,10,10,10,10,10,9,yes,yes,yes,yes,yes,no
+18,1,1,1,0,0,Pankow,within a few hours,88,FALSE,2,10,9,10,10,9,10,yes,no,no,no,no,no
+155,6,1,1,45,61,Friedrichshain-Kreuzberg,within an hour,100,TRUE,18,10,10,10,10,9,9,yes,no,yes,no,no,no
+50,2,1,1,0,5,Neukölln,within a day,80,TRUE,1,10,9,10,10,10,9,yes,yes,yes,no,yes,no
+40,2,1,1,25,90,Pankow,within an hour,100,FALSE,1,9,10,10,9,8,9,yes,no,no,no,no,no
+149,6,3,1.5,55,46,Mitte,within an hour,100,FALSE,1,9,10,10,10,10,9,yes,yes,yes,no,no,no
+50,4,1,1,15,5,Friedrichshain-Kreuzberg,within a day,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,yes
+65,2,1,1,30,3,Treptow - Köpenick,within a few hours,100,FALSE,1,10,10,10,10,9,10,yes,yes,no,no,no,no
+34,2,1,1,20,36,Mitte,within a day,90,FALSE,1,10,9,10,10,10,9,yes,yes,yes,no,no,no
+68,2,0,1,30,32,Pankow,within a few hours,100,FALSE,1,10,9,10,10,10,10,yes,no,yes,yes,no,no
+39,3,1,1,30,15,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,10,10,10,9,9,yes,no,no,yes,no,no
+26,2,1,2,15,0,Friedrichshain-Kreuzberg,within a day,60,FALSE,3,9,8,10,9,10,9,yes,no,no,no,no,no
+99,4,1,1,36,73,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+70,3,1,1,5,24,Neukölln,within an hour,100,FALSE,2,10,10,10,10,10,10,yes,no,yes,no,no,no
+50,1,1,1,40,1,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,9,yes,no,no,no,no,no
+40,2,0,1,15,0,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,10,10,10,10,9,yes,no,no,yes,yes,yes
+39,2,1,1,5,0,Neukölln,within an hour,100,FALSE,0,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+310,6,3,2,50,66,Friedrichshain-Kreuzberg,within an hour,94,FALSE,11,10,10,9,9,10,9,yes,yes,yes,yes,yes,yes
+155,4,2,1,0,84,Friedrichshain-Kreuzberg,within an hour,94,FALSE,11,10,10,10,10,10,9,yes,yes,yes,yes,yes,yes
+400,8,4,4.5,60,58,Friedrichshain-Kreuzberg,within an hour,94,FALSE,11,10,10,10,9,10,9,yes,yes,yes,yes,no,yes
+129,4,1,1,30,34,Pankow,within an hour,100,TRUE,2,10,10,10,10,9,9,yes,yes,no,no,no,no
+32,2,1,1,20,0,Mitte,within an hour,100,FALSE,1,10,9,10,10,10,10,yes,yes,yes,no,yes,no
+55,2,0,1,150,45,Pankow,within an hour,96,TRUE,16,10,10,10,10,9,9,yes,no,yes,yes,yes,yes
+199,5,2,1.5,95,75,Mitte,within a few hours,100,TRUE,1,10,10,10,10,10,9,yes,yes,yes,yes,yes,no
+35,2,1,1,25,30,Steglitz - Zehlendorf,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,no,yes,no
+40,3,2,1,30,0,Friedrichshain-Kreuzberg,within a day,100,FALSE,1,10,10,10,10,10,10,yes,no,yes,no,no,no
+40,3,1,1,20,89,Tempelhof - Schöneberg,within a few hours,90,FALSE,1,9,9,10,9,10,9,yes,no,yes,yes,no,no
+95,2,1,1,35,82,Mitte,within a few hours,90,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,yes
+65,2,1,1,12,58,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,9,yes,yes,yes,no,yes,yes
+50,4,2,1,28,32,Mitte,within an hour,92,FALSE,0,10,9,10,10,10,9,yes,yes,no,no,yes,no
+90,2,1,1,50,12,Tempelhof - Schöneberg,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,no,no,no,no
+99,4,0,1,29,86,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,no,yes,no,no,no
+99,6,2,1,39,68,Pankow,within an hour,100,FALSE,1,9,9,10,10,9,9,yes,yes,yes,no,yes,no
+22,2,1,1,0,20,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,9,no,no,no,no,no,no
+99,4,1,1,36,67,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,yes,yes,no,no,no
+199,7,3,1,40,64,Mitte,within an hour,100,FALSE,1,9,9,9,8,10,8,yes,yes,yes,yes,no,no
+49,2,1,1,10,81,Mitte,within an hour,100,FALSE,2,10,9,9,10,10,9,yes,no,yes,yes,no,no
+23,2,0,1,25,71,Neukölln,within an hour,100,FALSE,1,10,10,10,10,10,9,yes,yes,yes,no,no,no
+75,2,1,1,65,50,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+47,3,1,1,13,36,Neukölln,within a few hours,100,TRUE,1,10,10,10,10,9,9,yes,no,no,no,no,no
+40,2,1,1,30,3,Mitte,within an hour,100,FALSE,2,9,9,9,9,9,9,yes,no,no,no,no,no
+35,2,1,1,0,0,Lichtenberg,within an hour,100,FALSE,2,10,10,10,10,9,9,yes,no,yes,no,yes,yes
+48,2,1,1,25,50,Mitte,within an hour,100,FALSE,1,10,10,10,10,10,9,no,no,no,no,no,no
+90,4,1,1,15,41,Friedrichshain-Kreuzberg,within an hour,100,FALSE,2,10,9,9,10,10,9,yes,yes,yes,yes,yes,yes
+100,5,3,2,0,48,Tempelhof - Schöneberg,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,no,no,no,no
+50,2,1,1,5,5,Neukölln,within an hour,90,FALSE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+100,2,1,1,50,29,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,9,10,yes,yes,yes,yes,no,no
+99,5,1,1,36,86,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,no,no,no,no,yes
+32,2,0,1,0,87,Tempelhof - Schöneberg,within an hour,100,FALSE,9,10,10,10,10,9,9,yes,yes,yes,no,yes,no
+29,2,1,1,0,0,Tempelhof - Schöneberg,within an hour,96,FALSE,2,10,10,10,10,10,10,yes,yes,yes,no,no,no
+99,3,0,1,29,76,Pankow,within an hour,100,TRUE,1,9,10,9,9,10,9,yes,no,yes,no,no,no
+32,2,0,1,0,17,Mitte,within an hour,100,FALSE,9,10,10,10,10,10,9,yes,yes,yes,no,yes,no
+126,5,2,2.5,70,15,Pankow,within a few hours,100,FALSE,1,10,9,10,10,9,9,yes,no,yes,yes,no,no
+62,2,1,1,15,16,Pankow,within an hour,100,TRUE,1,10,10,10,10,9,10,yes,no,yes,no,no,no
+85,2,1,1,25,85,Neukölln,within a few hours,100,FALSE,2,10,9,10,10,10,9,yes,no,no,no,yes,no
+120,5,2,1,22,8,Neukölln,within a day,100,FALSE,1,10,10,10,10,10,9,yes,no,yes,no,no,no
+48,2,1,1,35,49,Tempelhof - Schöneberg,within an hour,100,FALSE,5,9,8,9,9,10,9,yes,yes,yes,no,no,no
+80,4,2,1,45,20,Mitte,within an hour,100,FALSE,1,10,9,10,10,10,9,yes,no,no,no,no,no
+99,4,1,1.5,35,87,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,no,no,yes,no,no
+130,4,1,1,25,7,Pankow,within an hour,100,FALSE,3,9,9,10,10,10,9,yes,yes,no,yes,no,no
+78,3,2,1,0,64,Charlottenburg-Wilm.,within an hour,100,TRUE,0,9,9,9,9,9,9,yes,yes,yes,yes,yes,no
+49,4,1,1.5,26,0,Friedrichshain-Kreuzberg,within an hour,100,FALSE,2,9,8,9,9,9,9,yes,no,no,no,no,no
+45,2,1,1,5,24,Mitte,within an hour,94,FALSE,1,9,10,10,9,9,9,yes,yes,no,no,no,no
+49,1,1,1,9,9,Friedrichshain-Kreuzberg,within an hour,100,TRUE,3,10,10,10,10,9,9,no,no,no,yes,no,no
+48,2,1,1,35,24,Tempelhof - Schöneberg,within an hour,100,FALSE,5,9,8,10,10,10,9,yes,yes,yes,no,yes,no
+35,2,1,1,14,0,Mitte,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,yes,no,yes,yes,no
+40,2,1,1.5,0,53,Tempelhof - Schöneberg,within an hour,100,FALSE,1,10,10,10,9,10,10,yes,yes,yes,yes,no,no
+27,1,1,1.5,20,85,Mitte,within an hour,90,FALSE,3,9,9,9,10,9,9,yes,yes,no,no,no,no
+50,2,1,1,30,11,Spandau,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,no,no,no,no
+45,2,1,1,10,4,Neukölln,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,no,no
+65,2,0,1,20,39,Steglitz - Zehlendorf,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,no,no,no
+46,2,1,1,10,1,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,no,yes,yes,no
+55,2,1,1.5,25,32,Mitte,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,no,no
+40,3,1,1,20,69,Mitte,within an hour,70,FALSE,2,10,9,10,10,10,9,yes,yes,no,no,no,no
+45,3,1,1,30,16,Friedrichshain-Kreuzberg,within a day,100,FALSE,1,10,9,10,10,9,9,yes,yes,no,no,no,no
+150,4,1,1,35,82,Mitte,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,yes
+45,2,1,1.5,7,0,Pankow,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,no,no,no,no,no
+40,2,1,1,15,18,Charlottenburg-Wilm.,within a few hours,89,FALSE,1,8,9,10,9,9,8,yes,no,no,no,no,no
+22,2,1,1,20,71,Lichtenberg,within an hour,100,FALSE,1,10,10,10,10,9,9,yes,no,yes,no,yes,yes
+75,4,1,1,30,58,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+23,1,1,1,0,0,Pankow,within a day,67,FALSE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+30,1,1,1,0,8,Mitte,within an hour,100,FALSE,2,10,10,10,10,9,9,yes,no,no,yes,yes,yes
+54,2,1,1,34,28,Tempelhof - Schöneberg,within an hour,100,FALSE,5,9,9,10,10,10,9,yes,yes,yes,no,yes,no
+35,3,1,1,0,62,Tempelhof - Schöneberg,within an hour,100,FALSE,1,10,10,10,9,9,10,yes,yes,yes,yes,yes,no
+23,1,2,1,15,85,Pankow,within a day,80,FALSE,1,10,10,9,9,9,9,yes,no,no,no,no,no
+90,2,1,1,40,14,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,1,10,8,10,10,10,8,yes,no,no,no,no,no
+37,2,1,1,7,10,Friedrichshain-Kreuzberg,within a few hours,100,TRUE,2,10,9,10,10,10,9,yes,no,no,no,no,no
+75,4,1,1,20,0,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+48,2,1,1,35,39,Pankow,within an hour,100,FALSE,7,10,8,10,10,10,9,yes,yes,yes,no,no,no
+48,2,1,1,35,32,Pankow,within an hour,100,FALSE,7,9,8,10,10,10,9,yes,yes,yes,no,no,no
+54,2,1,1,35,26,Mitte,within an hour,100,FALSE,7,9,8,9,9,10,9,yes,yes,yes,no,no,no
+54,2,1,1,35,39,Mitte,within an hour,100,FALSE,7,9,9,9,9,10,9,yes,yes,yes,no,no,no
+68,3,1,1,45,39,Mitte,within an hour,100,FALSE,7,9,8,9,9,10,8,yes,yes,yes,no,no,no
+100,6,1,1,19,1,Neukölln,within a few hours,100,FALSE,1,9,8,10,10,10,8,yes,no,yes,no,no,no
+95,2,1,1,45,20,Mitte,within a day,100,FALSE,1,10,9,10,10,10,10,yes,yes,no,no,no,no
+150,12,4,2.5,150,72,Friedrichshain-Kreuzberg,within an hour,100,FALSE,3,9,9,9,9,9,8,yes,yes,yes,yes,no,no
+120,5,3,1,38,48,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,no,no,no
+80,4,3,1,30,67,Pankow,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,yes,yes,yes,yes
+99,4,1,1,35,75,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,no,no,no,yes
+111,2,1,1,30,83,Mitte,within a day,100,FALSE,1,10,10,10,10,10,9,yes,no,no,no,no,no
+40,2,1,1.5,0,7,Mitte,within an hour,100,TRUE,3,10,10,10,10,10,10,yes,no,yes,yes,yes,yes
+42,2,1,1,24,7,Friedrichshain-Kreuzberg,within a day,75,TRUE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+65,2,0,1,32,65,Pankow,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,yes,yes,no,no,no
+79,4,2,1,50,51,Mitte,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,no
+200,6,2,1,30,10,Pankow,within an hour,100,FALSE,1,9,10,10,9,10,9,yes,no,no,yes,yes,yes
+50,2,1,1,15,0,Mitte,within a day,50,FALSE,1,10,9,10,10,10,9,yes,no,no,no,no,no
+65,2,0,1.5,45,17,Neukölln,within an hour,100,FALSE,2,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+69,4,1,1,30,60,Tempelhof - Schöneberg,within an hour,100,FALSE,1,9,9,9,8,9,9,yes,no,no,no,no,no
+35,2,1,1,0,0,Neukölln,within a day,50,TRUE,1,10,10,10,10,10,10,yes,no,no,no,no,yes
+35,2,1,1,16,15,Charlottenburg-Wilm.,within an hour,100,FALSE,2,9,10,10,9,10,9,yes,yes,yes,yes,no,no
+60,2,1,1,55,0,Mitte,within an hour,100,TRUE,1,10,10,10,10,9,10,yes,no,yes,yes,no,no
+119,4,2,1.5,40,0,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,yes,yes,yes,yes,yes
+92,5,1,1,20,53,Mitte,within an hour,98,TRUE,9,9,10,10,10,10,10,yes,no,yes,no,yes,yes
+120,3,1,1,50,77,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,10,9,10,10,10,yes,yes,yes,yes,yes,no
+50,2,1,1,25,2,Pankow,within a day,50,FALSE,0,10,10,10,10,10,9,yes,yes,no,no,no,no
+50,3,1,1,0,15,Friedrichshain-Kreuzberg,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,no,no,yes,yes,yes
+60,2,1,1,10,49,Tempelhof - Schöneberg,within an hour,100,FALSE,1,9,10,10,10,10,10,yes,yes,no,no,no,no
+74,6,1,1,15,52,Charlottenburg-Wilm.,within an hour,100,FALSE,1,8,9,9,9,10,8,yes,yes,yes,no,yes,yes
+69,12,4,2,60,77,Pankow,within an hour,100,FALSE,1,9,9,10,10,9,9,yes,yes,yes,yes,no,no
+35,3,1,1.5,13,52,Friedrichshain-Kreuzberg,within a day,75,FALSE,1,10,10,10,10,10,10,yes,yes,yes,no,no,no
+65,2,1,1,10,0,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,9,10,10,10,10,yes,no,yes,no,no,no
+51,2,1,1,35,47,Mitte,within a few hours,100,FALSE,1,10,10,9,9,9,9,yes,yes,no,no,no,no
+99,5,2,1,30,33,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,no,yes,yes,no,no
+35,2,1,1,0,51,Mitte,within an hour,100,TRUE,1,10,9,10,10,10,9,no,no,no,no,no,no
+30,2,1,1,0,0,Friedrichshain-Kreuzberg,a few days or more,0,FALSE,2,10,9,10,10,10,10,yes,yes,no,no,no,no
+86,6,3,1,25,42,Neukölln,within a few hours,100,TRUE,4,10,10,10,10,10,10,yes,yes,yes,no,no,no
+32,3,1,1,30,86,Mitte,within an hour,86,FALSE,1,9,7,8,9,9,8,yes,yes,no,no,no,no
+50,2,1,1,0,6,Friedrichshain-Kreuzberg,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,no,no,no
+120,6,1,1,45,72,Pankow,within an hour,94,FALSE,10,10,9,10,10,10,9,yes,yes,yes,yes,no,no
+81,5,2,1,25,43,Neukölln,within a few hours,100,TRUE,4,10,9,10,10,10,9,yes,yes,no,no,no,no
+91,6,3,1,25,36,Neukölln,within a few hours,100,TRUE,4,10,10,10,10,10,10,yes,yes,no,no,no,no
+81,5,2,1,25,38,Neukölln,within a few hours,100,TRUE,4,10,10,10,10,10,10,yes,yes,yes,no,no,no
+69,2,1,1,20,45,Pankow,within an hour,100,TRUE,1,10,9,10,10,10,9,yes,yes,yes,no,no,no
+90,4,1,1,20,56,Friedrichshain-Kreuzberg,within an hour,100,FALSE,8,9,8,9,9,10,9,yes,yes,yes,no,no,no
+44,4,1,1,0,0,Neukölln,within a few hours,100,FALSE,1,10,9,10,10,10,10,yes,no,no,no,no,no
+24,1,1,1,14,18,Neukölln,within an hour,100,TRUE,1,10,10,10,10,10,10,no,no,yes,yes,no,no
+65,2,1,1,30,78,Friedrichshain-Kreuzberg,within a few hours,100,TRUE,3,10,10,10,10,10,10,yes,no,yes,yes,no,no
+35,2,1,1,16,55,Charlottenburg-Wilm.,within an hour,100,FALSE,2,10,10,10,10,10,9,yes,yes,yes,yes,no,no
+50,2,1,1,10,19,Neukölln,within an hour,100,FALSE,1,10,9,10,10,10,9,yes,no,yes,yes,yes,no
+18,3,1,1,9,67,Neukölln,within a few hours,100,FALSE,1,8,8,9,9,9,9,yes,no,no,no,yes,no
+35,1,1,1,25,12,Mitte,within an hour,100,TRUE,1,10,9,9,10,9,10,yes,no,no,yes,yes,no
+99,5,1,1,34,67,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,no,yes,no,no,yes
+50,2,1,1,15,0,Neukölln,within an hour,100,FALSE,2,10,9,10,10,10,9,yes,yes,no,no,no,no
+35,1,1,1,30,45,Charlottenburg-Wilm.,within a few hours,100,TRUE,2,10,10,10,10,10,10,yes,no,yes,no,no,no
+50,1,1,1,10,70,Neukölln,within a few hours,100,FALSE,1,10,10,10,10,10,10,yes,no,no,no,no,no
+66,2,1,1,40,89,Pankow,within an hour,100,TRUE,2,10,10,10,10,10,10,no,no,no,no,yes,no
+60,2,1,1,40,46,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,9,10,10,10,9,yes,no,yes,no,no,no
+50,2,1,1,0,54,Friedrichshain-Kreuzberg,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,yes,yes,no
+55,2,0,1,15,0,Friedrichshain-Kreuzberg,within a few hours,75,TRUE,1,10,9,10,10,10,10,yes,no,yes,no,yes,no
+80,2,1,1,20,33,Mitte,within a day,90,FALSE,1,10,9,9,9,10,9,yes,yes,yes,no,no,no
+65,2,1,1,0,64,Friedrichshain-Kreuzberg,within a few hours,80,TRUE,1,10,10,10,10,10,9,no,no,yes,no,no,no
+85,4,2,1,55,16,Charlottenburg-Wilm.,within an hour,100,FALSE,1,10,9,10,10,10,9,yes,yes,yes,yes,yes,yes
+85,2,1,1,25,85,Neukölln,within a day,75,FALSE,1,10,10,10,10,10,9,yes,no,no,no,no,no
+85,2,1,1,25,66,Mitte,within an hour,100,TRUE,3,10,9,10,10,10,9,yes,no,no,no,no,no
+17,1,1,1,0,3,Neukölln,within an hour,100,FALSE,1,9,10,9,9,10,10,yes,no,yes,no,no,no
+150,8,3,1,50,56,Mitte,within an hour,100,FALSE,10,8,8,9,9,9,8,yes,yes,yes,no,no,yes
+179,7,2,1.5,65,75,Mitte,within an hour,100,FALSE,13,9,9,9,9,10,9,yes,yes,yes,no,yes,yes
+20,2,1,1,25,14,Mitte,within an hour,100,TRUE,4,10,10,10,10,9,9,no,no,no,yes,no,no
+90,2,1,1,40,0,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,0,10,10,10,10,10,10,yes,yes,no,no,no,no
+75,2,1,1,20,0,Neukölln,within an hour,100,FALSE,1,10,9,10,10,9,10,yes,no,no,no,yes,no
+35,2,1,1,0,48,Neukölln,within an hour,100,FALSE,2,9,9,8,9,10,9,yes,no,no,yes,no,no
+29,2,1,1,25,81,Mitte,within an hour,100,TRUE,4,10,10,10,10,9,9,no,no,no,yes,no,no
+74,3,1,1,30,61,Mitte,within an hour,100,TRUE,1,10,10,10,9,10,9,yes,yes,yes,yes,yes,no
+26,2,1,1,9,56,Neukölln,within an hour,90,TRUE,1,10,10,10,10,10,10,yes,yes,yes,no,yes,no
+35,2,1,1,0,7,Charlottenburg-Wilm.,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,no,yes,no,no
+75,5,2,1,119,90,Mitte,within an hour,100,TRUE,5,10,10,10,10,10,9,yes,yes,yes,yes,no,no
+34,2,1,1,11,0,Pankow,within a few hours,100,FALSE,2,10,10,10,10,10,9,yes,no,yes,no,yes,no
+225,7,3,2,109,48,Friedrichshain-Kreuzberg,within an hour,100,TRUE,21,10,10,10,10,9,10,yes,yes,yes,yes,no,no
+127,8,2,1,60,83,Pankow,within an hour,100,FALSE,1,9,9,10,10,9,9,yes,yes,yes,no,no,no
+70,4,1,1,0,30,Pankow,within an hour,100,FALSE,1,10,8,10,10,10,9,yes,no,no,no,yes,yes
+225,6,2,2,60,86,Pankow,within an hour,100,TRUE,3,10,10,9,10,10,9,yes,yes,yes,no,no,no
+40,3,1,1,5,0,Neukölln,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,no,yes,no,no,no
+50,5,2,1,0,0,Neukölln,within an hour,100,FALSE,2,10,10,9,9,10,9,yes,no,no,yes,no,no
+55,2,1,1,60,0,Pankow,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,no,no,yes,no,no
+40,2,1,1,0,0,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,1,10,10,10,9,10,9,yes,no,yes,no,no,no
+30,1,0,0,25,43,Tempelhof - Schöneberg,within an hour,100,FALSE,1,10,8,10,10,10,9,yes,yes,no,no,no,no
+37,2,1,1,9,0,Tempelhof - Schöneberg,within an hour,100,FALSE,3,10,8,10,10,10,10,yes,no,yes,no,no,no
+55,4,1,1,35,54,Mitte,within an hour,100,FALSE,1,9,9,10,9,9,8,yes,yes,yes,no,no,no
+125,3,1,1,25,23,Mitte,within an hour,100,FALSE,1,9,8,9,9,10,8,yes,yes,no,yes,no,no
+50,3,1,1,27,75,Charlottenburg-Wilm.,within a few hours,90,FALSE,1,9,10,10,10,10,8,yes,yes,yes,no,no,no
+50,2,1,1,25,85,Neukölln,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,yes,yes,yes,yes,no
+50,3,0,1,0,0,Neukölln,within an hour,100,FALSE,3,9,8,9,9,9,8,yes,yes,yes,no,no,yes
+60,4,0,1,23,39,Pankow,within an hour,100,TRUE,8,10,10,10,10,9,9,yes,no,yes,no,no,no
+95,2,1,1.5,25,17,Pankow,within a few hours,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,no,no,no
+37,3,1,1,20,74,Neukölln,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,no,yes,no
+31,3,1,1,140,44,Lichtenberg,within a few hours,100,FALSE,0,10,10,7,8,10,10,yes,yes,yes,yes,no,no
+60,4,1,1,35,40,Friedrichshain-Kreuzberg,within an hour,89,FALSE,1,10,9,10,10,10,9,yes,yes,no,no,no,no
+85,3,2,2,35,87,Charlottenburg-Wilm.,within a few hours,100,FALSE,1,9,9,9,9,10,9,yes,no,yes,yes,yes,no
+89,2,1,1,45,85,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,no,no,yes,no
+55,2,1,1.5,10,22,Mitte,within an hour,100,TRUE,2,10,9,10,10,10,9,yes,no,yes,yes,no,no
+18,2,1,1,0,0,Steglitz - Zehlendorf,within an hour,100,TRUE,1,10,10,10,10,9,10,yes,yes,yes,yes,yes,no
+99,4,1,1,36,74,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,no,yes,no,no,yes
+69,2,1,1,29,57,Pankow,within an hour,100,FALSE,2,10,9,10,10,9,9,no,no,no,no,no,no
+69,2,1,1,25,61,Pankow,within an hour,100,FALSE,2,10,9,10,10,10,9,yes,no,yes,no,no,no
+40,2,1,1,20,0,Friedrichshain-Kreuzberg,within a few hours,100,FALSE,1,9,9,9,10,10,9,yes,no,yes,yes,no,yes
+150,4,1,1,40,88,Mitte,within a day,100,FALSE,1,10,10,10,10,10,9,yes,no,no,no,no,no
+40,2,1,1,0,14,Friedrichshain-Kreuzberg,within an hour,100,TRUE,2,10,10,10,10,10,10,yes,no,no,no,no,no
+46,2,1,1,0,3,Friedrichshain-Kreuzberg,within a day,83,FALSE,1,9,9,9,9,10,9,yes,no,no,no,no,no
+60,2,1,1,30,51,Mitte,within an hour,100,FALSE,1,9,10,10,10,10,10,yes,yes,no,yes,no,no
+45,2,0,1,20,43,Pankow,within an hour,100,TRUE,8,10,10,10,10,9,9,yes,no,yes,no,no,no
+95,3,1,1,45,60,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,9,10,yes,yes,no,no,no,no
+69,3,1,1,29,67,Friedrichshain-Kreuzberg,within an hour,92,FALSE,3,10,9,9,9,10,9,yes,yes,no,no,no,no
+69,3,1,1,29,63,Friedrichshain-Kreuzberg,within an hour,92,FALSE,3,10,9,9,9,10,9,yes,yes,no,no,no,no
+29,4,1,1,0,12,Mitte,within an hour,100,FALSE,1,8,8,9,9,9,8,yes,no,no,no,no,no
+120,2,0,1,50,8,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,9,9,9,9,9,8,yes,no,no,yes,no,no
+21,2,1,1,30,0,Pankow,within an hour,100,FALSE,2,10,10,10,10,9,10,yes,no,no,yes,yes,no
+100,4,2,1,60,55,Marzahn - Hellersdorf,within an hour,100,FALSE,2,10,10,10,10,8,9,yes,yes,yes,no,no,yes
+35,2,0,1,0,38,Charlottenburg-Wilm.,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,no,no,yes,yes,no
+69,2,1,1,36,43,Neukölln,within a few hours,75,TRUE,1,10,9,10,10,9,10,yes,no,yes,no,no,no
+35,2,1,1,35,41,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,no,yes,no,no,yes
+68,2,1,1,30,66,Pankow,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,yes,no,no,no,no
+25,4,1,1,39,57,Charlottenburg-Wilm.,within a few hours,90,TRUE,2,10,9,10,10,10,10,yes,no,no,yes,yes,no
+185,6,1,1,45,57,Pankow,within an hour,100,TRUE,18,10,9,10,10,10,9,yes,no,yes,no,no,no
+36,2,1,2,5,32,Spandau,within an hour,100,TRUE,1,10,9,10,10,9,10,yes,no,yes,yes,yes,yes
+50,4,2,1,10,0,Mitte,within an hour,100,FALSE,2,9,9,10,10,9,9,yes,yes,yes,no,yes,no
+44,2,1,1,8,14,Mitte,within an hour,100,FALSE,1,10,9,10,10,9,10,yes,no,no,no,no,no
+40,2,1,1,20,43,Mitte,within an hour,100,TRUE,2,10,9,10,10,10,10,yes,yes,yes,no,no,no
+35,2,1,1,10,0,Mitte,within an hour,100,FALSE,2,10,9,10,10,9,9,yes,yes,yes,no,yes,no
+100,5,2,1,25,57,Pankow,within an hour,100,FALSE,7,9,9,8,8,9,8,yes,yes,no,no,no,no
+32,2,1,1,70,74,Lichtenberg,within a few hours,100,FALSE,0,10,10,10,10,10,10,yes,no,yes,yes,no,no
+100,6,2,1,50,76,Friedrichshain-Kreuzberg,within a few hours,90,TRUE,2,10,9,9,10,10,9,yes,yes,yes,no,no,no
+37,2,1,1,15,55,Treptow - Köpenick,within an hour,100,TRUE,1,10,10,10,10,10,9,yes,no,yes,no,no,no
+70,3,1,1,25,15,Mitte,within a few hours,67,FALSE,0,9,9,10,10,9,9,yes,yes,yes,no,yes,no
+25,1,1,1,50,89,Friedrichshain-Kreuzberg,within a day,50,FALSE,2,8,7,10,9,8,7,yes,no,yes,no,no,no
+155,8,2,1,50,50,Pankow,within an hour,100,FALSE,2,10,10,10,10,10,10,yes,no,no,yes,yes,no
+100,4,1,1,40,0,Mitte,within an hour,100,TRUE,1,10,9,10,10,10,10,yes,yes,yes,yes,yes,yes
+50,2,1,1,30,0,Neukölln,within an hour,100,TRUE,2,10,10,10,10,9,10,yes,yes,yes,yes,no,no
+70,4,1,1,30,0,Neukölln,within a day,100,FALSE,1,10,10,10,10,10,9,yes,no,no,no,yes,no
+29,1,0,1,35,69,Tempelhof - Schöneberg,within an hour,100,FALSE,13,9,10,10,10,10,9,yes,yes,yes,no,no,no
+33,2,1,1,10,0,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,9,10,10,10,10,yes,no,yes,yes,no,no
+89,2,1,1,0,0,Treptow - Köpenick,within a day,100,TRUE,1,10,10,10,10,9,10,yes,yes,yes,no,no,no
+43,1,1,1,10,2,Tempelhof - Schöneberg,within an hour,100,FALSE,1,10,9,10,10,10,10,yes,no,yes,no,no,no
+180,4,2,1,60,0,Mitte,within an hour,100,FALSE,1,10,10,10,10,10,9,yes,no,yes,yes,no,no
+40,2,1,1,15,49,Mitte,within an hour,100,FALSE,2,9,7,9,9,9,9,yes,yes,yes,no,yes,no
+20,2,1,1,25,0,Friedrichshain-Kreuzberg,within a day,100,TRUE,2,10,10,10,10,10,10,yes,yes,yes,no,yes,no
+77,8,2,1,60,86,Neukölln,within an hour,100,FALSE,1,9,9,10,10,9,9,yes,yes,yes,yes,no,no
+79,4,1,1,50,60,Pankow,within an hour,100,FALSE,2,10,9,10,10,10,9,yes,yes,yes,no,no,no
+97,2,1,1,30,0,Pankow,within a few hours,100,FALSE,2,10,10,10,10,10,10,yes,no,yes,no,yes,no
+55,4,1,1,30,68,Tempelhof - Schöneberg,within an hour,90,FALSE,1,9,8,9,9,9,9,yes,no,yes,no,yes,yes
+70,4,1,1,50,39,Neukölln,within an hour,100,FALSE,1,10,9,10,10,9,9,yes,no,no,no,no,no
+65,2,1,1,15,87,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,yes,yes,no,yes
+50,3,0,1,15,15,Neukölln,within a day,60,FALSE,1,10,9,9,10,10,10,yes,no,no,no,no,no
+20,2,1,1,0,80,Neukölln,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,no,yes,no,yes,no
+75,6,2,1,9,65,Mitte,within an hour,100,FALSE,1,9,9,10,10,9,9,yes,no,yes,no,no,no
+45,2,1,1,0,0,Steglitz - Zehlendorf,within an hour,100,FALSE,1,10,10,10,10,10,10,yes,yes,no,yes,no,no
+39,4,1,1,20,23,Friedrichshain-Kreuzberg,within an hour,100,TRUE,1,10,10,10,10,10,9,no,no,no,no,yes,no
+45,2,1,1,10,6,Mitte,within a day,80,FALSE,1,9,9,9,10,9,9,yes,yes,yes,no,no,no
+20,2,1,1.5,10,0,Tempelhof - Schöneberg,within an hour,100,TRUE,1,10,10,9,10,9,10,yes,no,yes,no,yes,no
+65,2,1,1,15,0,Friedrichshain-Kreuzberg,within an hour,100,FALSE,1,10,10,10,10,9,9,yes,no,yes,no,no,no
+99,5,2,1,50,71,Pankow,within an hour,100,FALSE,7,9,10,10,10,10,9,yes,yes,yes,no,no,no
+29,2,1,1,12,0,Neukölln,within an hour,100,FALSE,1,9,9,9,10,10,9,yes,no,no,no,no,no
+60,2,1,1,20,4,Pankow,within an hour,100,FALSE,1,10,9,9,10,10,9,yes,no,no,no,no,no
+50,4,1,1,30,0,Reinickendorf,within an hour,100,TRUE,1,10,10,10,10,10,10,yes,yes,no,yes,no,no
+95,2,1,1,25,3,Friedrichshain-Kreuzberg,within a day,89,TRUE,1,10,10,10,10,10,10,yes,yes,yes,no,no,no
+60,4,2,1,12,0,Neukölln,within a few hours,100,FALSE,3,9,8,10,10,10,9,yes,no,no,no,no,no
+68,3,1,1,30,22,Neukölln,within a day,60,FALSE,1,10,9,10,9,10,9,yes,no,no,no,no,no
+32,2,1,1,30,30,Treptow - Köpenick,within an hour,100,FALSE,1,10,9,10,10,10,10,yes,no,yes,yes,no,yes
+44,4,1,1,20,31,Pankow,within an hour,100,TRUE,8,10,10,10,10,9,10,yes,no,yes,no,no,no
+28,2,1,1,15,87,Mitte,within a few hours,93,FALSE,5,9,8,10,10,9,8,yes,no,no,no,no,yes
+12,2,1,1,5,45,Mitte,within an hour,100,FALSE,2,9,9,10,10,9,9,yes,no,yes,no,no,no
+34,2,1,1,9,71,Charlottenburg-Wilm.,within an hour,100,TRUE,2,10,9,10,10,10,10,yes,no,no,no,no,no
+35,2,1,1,10,35,Pankow,within a day,100,FALSE,1,10,10,10,10,9,9,no,no,no,no,no,no
+50,2,1,1,15,0,Mitte,within an hour,100,TRUE,1,10,10,10,10,10,9,no,no,no,no,no,no
+36,2,1,1,15,0,Friedrichshain-Kreuzberg,within a few hours,100,TRUE,1,10,10,10,10,10,9,yes,no,yes,no,yes,no
+120,6,3,1,40,66,Tempelhof - Schöneberg,within an hour,100,FALSE,1,9,10,9,9,9,9,yes,yes,yes,yes,no,no
+110,4,1,1,15,66,Mitte,within an hour,100,FALSE,8,10,10,10,10,10,9,yes,yes,yes,yes,no,no

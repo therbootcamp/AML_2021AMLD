@@ -1083,6 +1083,12 @@ final_glmnet <-
 # Recap - Steps of model tuning
 
 
+MAKE 3 BLOCKS
+  Data
+  Workflow
+  Evaluation
+
+
 .pull-left4[
 
 <ul>
