@@ -218,10 +218,17 @@ airbnb &lt;- read_csv(file = &quot;1_Data/airbnb.csv&quot;)</code></pre>
 <div id="b---data-splitting" class="section level3">
 <h3>B - Data splitting</h3>
 <ol style="list-style-type: decimal">
-<li><p>Create an initial split of the data, where you allocate only 50% of the data to the training set (usually this proportion is higher, but then model fitting takes ages) and where you stratify for the <code>price</code> variable. Save it as <code>airbnb_split</code></p></li>
-<li><p>Using the <code>training()</code> function, create a training set and call it <code>airbnb_train</code>.</p></li>
-<li><p>Using the <code>testing()</code> function, create a training set and call it <code>airbnb_test</code>.</p></li>
+<li>Create an initial split of the data, where you allocate only 50% of the data to the training set (usually this proportion is higher, but then model fitting takes ages) and where you stratify for the <code>price</code> variable. Save it as <code>airbnb_split</code></li>
 </ol>
+<pre class="r"><code>airbnb_split &lt;- initial_split(airbnb, stata = price, prop = .75)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Using the <code>training()</code> function, create a training set and call it <code>airbnb_train</code>.</li>
+</ol>
+<pre class="r"><code>airbnb_train &lt;- training(airbnb_split)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Using the <code>testing()</code> function, create a training set and call it <code>airbnb_test</code>.</li>
+</ol>
+<pre class="r"><code>airbnb_test &lt;- testing(airbnb_split)</code></pre>
 </div>
 <div id="c---setup-resampling-scheme" class="section level3">
 <h3>C - Setup resampling scheme</h3>
@@ -230,6 +237,8 @@ airbnb &lt;- read_csv(file = &quot;1_Data/airbnb.csv&quot;)</code></pre>
 </ol>
 <pre class="r"><code># Use 10-fold cross validation
 airbnb_folds &lt;- XXX(XXX, XXX = XXX) </code></pre>
+<pre class="r"><code># Use 10-fold cross validation
+airbnb_folds &lt;- vfold_cv(airbnb_train, v = 10) </code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>To speed up the model tuning afterwards, execute the following code (this will parallelize the tuning process).</li>
 </ol>
@@ -240,52 +249,189 @@ airbnb_folds &lt;- XXX(XXX, XXX = XXX) </code></pre>
 <ol style="list-style-type: decimal">
 <li>Fit a standard regression model on the training data. By now you know how to do that =)</li>
 </ol>
+<pre class="r"><code># create recipe
+lm_recipe &lt;- 
+  recipe(price ~ ., data = airbnb_train) %&gt;% 
+  step_dummy(all_nominal_predictors())
+
+# set up the regression model
+lm_model &lt;- 
+  linear_reg() %&gt;% 
+  set_engine(&quot;lm&quot;) %&gt;% 
+  set_mode(&quot;regression&quot;)
+
+# lm workflow 
+lm_workflow &lt;- 
+  workflow() %&gt;% 
+  add_recipe(lm_recipe) %&gt;% 
+  add_model(lm_model)
+
+# Fit the regression model using resampling
+lm_res &lt;-
+  lm_workflow %&gt;% 
+  fit(airbnb_train)</code></pre>
 </div>
 <div id="e---ridge-regression" class="section level3">
 <h3>E - Ridge Regression</h3>
 <ol style="list-style-type: decimal">
-<li><p>Define a recipe called <code>ridge_recipe</code>. Use the same recipe as with the regression above (<code>lm_recipe</code>).</p></li>
-<li><p>To ensure that all parameters are penalized equally, let’s add an additional pre-processing step: <code>step_normalize(all_numeric_predictors())</code>. Add this step to the <code>ridge_recipe</code>.</p></li>
-<li><p>Create a ridge regression model, again using the <code>linear_reg()</code> model, but this time with the <code>glmnet</code> engine. Within <code>linear_reg()</code>, set the argument <code>mixture</code> to 0 and <code>penalty</code> to <code>tune()</code>. Save the output as <code>ridge_model</code></p></li>
+<li>Define a recipe called <code>ridge_recipe</code>. Use the same recipe as with the regression above (<code>lm_recipe</code>).</li>
+</ol>
+<pre class="r"><code># create recipe
+ridge_recipe &lt;- 
+  recipe(price ~ ., data = airbnb_train) %&gt;% 
+  step_normalize(all_numeric_predictors()) %&gt;%
+  step_dummy(all_nominal_predictors())</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>To ensure that all parameters are penalized equally, let’s add an additional pre-processing step: <code>step_normalize(all_numeric_predictors())</code>. Add this step to the <code>ridge_recipe</code>.</li>
+</ol>
+<pre class="r"><code># create recipe
+ridge_recipe &lt;- 
+  recipe(price ~ ., data = airbnb_train) %&gt;% 
+  step_dummy(all_nominal_predictors()) %&gt;% 
+  step_normalize(all_numeric_predictors())</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Create a ridge regression model, again using the <code>linear_reg()</code> model, but this time with the <code>glmnet</code> engine. Within <code>linear_reg()</code>, set the argument <code>mixture</code> to 0 and <code>penalty</code> to <code>tune()</code>. Save the output as <code>ridge_model</code></li>
 </ol>
 <pre class="r"><code># set up the ridge regression model
 XXX &lt;- 
   XXX(XXX = XXX, XXX = XXX) %&gt;% 
   set_engine(XXX) %&gt;% 
   set_mode(&quot;regression&quot;)</code></pre>
+<pre class="r"><code># set up the ridge regression model
+ridge_model &lt;- 
+  linear_reg(mixture = 0, penalty = tune()) %&gt;% 
+  set_engine(&quot;glmnet&quot;) %&gt;% 
+  set_mode(&quot;regression&quot;)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li><p>Create a workflow called <code>ridge_workflow</code> using <code>workflow()</code> and add the <code>ridge_recipe</code> and <code>ridge_model</code> objects.</p></li>
-<li><p>Set up a grid of tuning parameters. Here we only have one parameter <code>penalty</code>. Use <code>grid_regular()</code> to do so, and pass it <code>penalty()</code> as first argument and <code>levels = 50</code>as second argument. Call it <code>penalty_grid</code>.</p></li>
+<li>Create a workflow called <code>ridge_workflow</code> using <code>workflow()</code> and add the <code>ridge_recipe</code> and <code>ridge_model</code> objects.</li>
+</ol>
+<pre class="r"><code># ridge workflow 
+ridge_workflow &lt;- 
+  workflow() %&gt;% 
+  add_recipe(ridge_recipe) %&gt;% 
+  add_model(ridge_model)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Set up a grid of tuning parameters. Here we only have one parameter <code>penalty</code>. Use <code>grid_regular()</code> to do so, and pass it <code>penalty()</code> as first argument and <code>levels = 50</code>as second argument. Call it <code>penalty_grid</code>.</li>
 </ol>
 <pre class="r"><code>XXX &lt;- XXX(XXX, XXX = XXX)</code></pre>
+<pre class="r"><code>penalty_grid &lt;- grid_regular(penalty(), levels = 50)</code></pre>
 <ol start="6" style="list-style-type: decimal">
-<li><p>Tune the model on the training data. To do so using our resampling scheme, use the <code>tune_grid()</code> function instead of the <code>fit()</code> or <code>fit_resamples()</code> function. Pass it the defined workflow as first argument and set the <code>resamples</code> argument to <code>airbnb_folds</code>, and the <code>grid</code> argument to <code>penalty_grid</code>. Save the output as <code>ridge_grid</code>.</p></li>
-<li><p>Use <code>collect_metrics()</code> to evaluate the cross-validation performance of the model across the different values of the penalty parameter.</p></li>
-<li><p>OK, that’s kind of hard to interpret, given that we’d have to scan 100 rows. Instead, let’s plot the <code>penalty</code> value on the x axis, and the performance metrics on the y axis. Use the code below to do so.</p></li>
+<li>Tune the model on the training data. To do so using our resampling scheme, use the <code>tune_grid()</code> function instead of the <code>fit()</code> or <code>fit_resamples()</code> function. Pass it the defined workflow as first argument and set the <code>resamples</code> argument to <code>airbnb_folds</code>, and the <code>grid</code> argument to <code>penalty_grid</code>. Save the output as <code>ridge_grid</code>.</li>
+</ol>
+<pre class="r"><code># tune the penalty parameter
+ridge_grid &lt;-
+  ridge_workflow %&gt;% 
+  tune_grid(resamples = airbnb_folds,
+            grid = penalty_grid)</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Use <code>collect_metrics()</code> to evaluate the cross-validation performance of the model across the different values of the penalty parameter.</li>
+</ol>
+<pre class="r"><code>collect_metrics(ridge_grid)</code></pre>
+<pre><code># A tibble: 100 × 7
+    penalty .metric .estimator   mean     n std_err .config              
+      &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;                
+ 1 1   e-10 rmse    standard   61.1      10 19.7    Preprocessor1_Model01
+ 2 1   e-10 rsq     standard    0.522    10  0.0371 Preprocessor1_Model01
+ 3 1.60e-10 rmse    standard   61.1      10 19.7    Preprocessor1_Model02
+ 4 1.60e-10 rsq     standard    0.522    10  0.0371 Preprocessor1_Model02
+ 5 2.56e-10 rmse    standard   61.1      10 19.7    Preprocessor1_Model03
+ 6 2.56e-10 rsq     standard    0.522    10  0.0371 Preprocessor1_Model03
+ 7 4.09e-10 rmse    standard   61.1      10 19.7    Preprocessor1_Model04
+ 8 4.09e-10 rsq     standard    0.522    10  0.0371 Preprocessor1_Model04
+ 9 6.55e-10 rmse    standard   61.1      10 19.7    Preprocessor1_Model05
+10 6.55e-10 rsq     standard    0.522    10  0.0371 Preprocessor1_Model05
+# … with 90 more rows</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>OK, that’s kind of hard to interpret, given that we’d have to scan 100 rows. Instead, let’s plot the <code>penalty</code> value on the x axis, and the performance metrics on the y axis. Use the code below to do so.</li>
 </ol>
 <pre class="r"><code>ridge_grid %&gt;%
   collect_metrics() %&gt;%
   ggplot(aes(penalty, mean, color = .metric)) +
   geom_line(size = 1.5) +
   facet_wrap(~.metric, scales = &quot;free&quot;, nrow = 2) +
-  scale_x_log10() +
   theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="Tuning_practical_files/figure-html/unnamed-chunk-21-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="9" style="list-style-type: decimal">
 <li>Hm, the tuning did not seem to have a large effect. But the maximum penalty value automatically chosen by the <code>grid_regular</code> function was only 1. Specify your own grid of parameter values and repeat steps 5 to 7 above.</li>
 </ol>
-<pre class="r"><code>penalty_grid &lt;- tibble(penalty = seq(0, 50, length.out = 200))</code></pre>
+<pre class="r"><code>penalty_grid &lt;- tibble(penalty = seq(0, 250, length.out = 200))</code></pre>
+<pre class="r"><code>penalty_grid &lt;- tibble(penalty = seq(0, 250, length.out = 200))
+
+# step 5
+ridge_grid &lt;-
+  ridge_workflow %&gt;% 
+  tune_grid(resamples = airbnb_folds,
+            grid = penalty_grid)
+
+# step 6
+collect_metrics(ridge_grid)</code></pre>
+<pre><code># A tibble: 400 × 7
+   penalty .metric .estimator   mean     n std_err .config               
+     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;                 
+ 1    0    rmse    standard   61.1      10 19.7    Preprocessor1_Model001
+ 2    0    rsq     standard    0.522    10  0.0371 Preprocessor1_Model001
+ 3    1.26 rmse    standard   61.1      10 19.7    Preprocessor1_Model002
+ 4    1.26 rsq     standard    0.522    10  0.0371 Preprocessor1_Model002
+ 5    2.51 rmse    standard   61.1      10 19.7    Preprocessor1_Model003
+ 6    2.51 rsq     standard    0.522    10  0.0371 Preprocessor1_Model003
+ 7    3.77 rmse    standard   61.1      10 19.7    Preprocessor1_Model004
+ 8    3.77 rsq     standard    0.522    10  0.0371 Preprocessor1_Model004
+ 9    5.03 rmse    standard   61.2      10 19.8    Preprocessor1_Model005
+10    5.03 rsq     standard    0.521    10  0.0371 Preprocessor1_Model005
+# … with 390 more rows</code></pre>
+<pre class="r"><code># step 7
+ridge_grid %&gt;%
+  collect_metrics() %&gt;%
+  ggplot(aes(penalty, mean, color = .metric)) +
+  geom_line(size = 1.5) +
+  facet_wrap(~.metric, scales = &quot;free&quot;, nrow = 2) +
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="Tuning_practical_files/figure-html/unnamed-chunk-23-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="10" style="list-style-type: decimal">
 <li>Now we see a drop in the RMSE at higher <code>penalty</code> values. Select the best <code>penalty</code> value by passing <code>ridge_grid</code> into the <code>select_best()</code> function and save the output as <code>best_ridge</code>.</li>
 </ol>
 <pre class="r"><code>XXX &lt;- XXX(XXX, &quot;rmse&quot;)</code></pre>
+<pre class="r"><code>best_ridge &lt;- select_best(ridge_grid, &quot;rmse&quot;)</code></pre>
 <ol start="11" style="list-style-type: decimal">
-<li><p>Now let’s finalize our workflow using the <code>finalize_workflow()</code> function. Pass it the <code>ridge_workflow</code> and the <code>best_ridge</code> objects as first and second arguments. Save the output as <code>final_ridge</code>.</p></li>
-<li><p>Now we can fit the model using the final workflow. Use the <code>fit()</code> function to this end, by passing it the <code>final_ridge</code> workflow and <code>airbnb_train</code>. Save the output as <code>ridge_res</code>.</p></li>
-<li><p>Use the <code>tidy()</code> function to look at the parameter values of <code>ridge_res</code>.</p></li>
-<li><p>The <code>last_fit()</code> function, which you can use with the <code>final_ridge</code> workflow instead of the <code>fit()</code> function, let’s you directly evaluate the model performance. Pass the <code>final_ridge</code> and <code>airbnb_split</code> (! instead of the <code>airbnb_train</code>) objects into <code>last_fit()</code> and directly pipe the output into <code>collect_metrics()</code>.</p></li>
+<li>Now let’s finalize our workflow using the <code>finalize_workflow()</code> function. Pass it the <code>ridge_workflow</code> and the <code>best_ridge</code> objects as first and second arguments. Save the output as <code>final_ridge</code>.</li>
+</ol>
+<pre class="r"><code>final_ridge &lt;- 
+  ridge_workflow %&gt;% 
+  finalize_workflow(best_ridge)</code></pre>
+<ol start="12" style="list-style-type: decimal">
+<li>Now we can fit the model using the final workflow. Use the <code>fit()</code> function to this end, by passing it the <code>final_ridge</code> workflow and <code>airbnb_train</code>. Save the output as <code>ridge_res</code>.</li>
+</ol>
+<pre class="r"><code>ridge_res &lt;- fit(final_ridge, airbnb_train) </code></pre>
+<ol start="13" style="list-style-type: decimal">
+<li>Use the <code>tidy()</code> function to look at the parameter values of <code>ridge_res</code>.</li>
+</ol>
+<pre class="r"><code>tidy(ridge_res) </code></pre>
+<pre><code># A tibble: 35 × 3
+   term                   estimate penalty
+   &lt;chr&gt;                     &lt;dbl&gt;   &lt;dbl&gt;
+ 1 (Intercept)              69.9      96.7
+ 2 accommodates             19.7      96.7
+ 3 bedrooms                 13.0      96.7
+ 4 bathrooms                 7.47     96.7
+ 5 cleaning_fee              2.00     96.7
+ 6 availability_90_days      1.24     96.7
+ 7 host_response_rate       -0.479    96.7
+ 8 host_superhost            4.65     96.7
+ 9 host_listings_count       2.84     96.7
+10 review_scores_accuracy    1.03     96.7
+# … with 25 more rows</code></pre>
+<ol start="14" style="list-style-type: decimal">
+<li>The <code>last_fit()</code> function, which you can use with the <code>final_ridge</code> workflow instead of the <code>fit()</code> function, let’s you directly evaluate the model performance. Pass the <code>final_ridge</code> and <code>airbnb_split</code> (! instead of the <code>airbnb_train</code>) objects into <code>last_fit()</code> and directly pipe the output into <code>collect_metrics()</code>.</li>
 </ol>
 <pre class="r"><code>XXX(XXX, XXX) %&gt;% 
   XXX()</code></pre>
+<pre class="r"><code>last_fit(final_ridge, airbnb_split) %&gt;% 
+  collect_metrics()</code></pre>
+<pre><code># A tibble: 2 × 4
+  .metric .estimator .estimate .config             
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
+1 rmse    standard      49.6   Preprocessor1_Model1
+2 rsq     standard       0.465 Preprocessor1_Model1</code></pre>
 </div>
 <div id="f---lasso-regression" class="section level3">
 <h3>F - Lasso Regression</h3>
@@ -298,15 +444,52 @@ XXX &lt;-
   XXX(XXX = XXX, XXX = XXX) %&gt;% 
   set_engine(XXX) %&gt;% 
   set_mode(&quot;regression&quot;)</code></pre>
+<pre class="r"><code># set up the lasso regression model
+lasso_model &lt;- 
+  linear_reg(mixture = 1, penalty = tune()) %&gt;% 
+  set_engine(&quot;glmnet&quot;) %&gt;% 
+  set_mode(&quot;regression&quot;)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Create a workflow called <code>lasso_workflow</code> using <code>workflow()</code> and add the <code>ridge_recipe</code> and <code>lasso_model</code> objects.</p></li>
-<li><p>Set up a grid of tuning parameters. Here we will directly specify our own grid. We’ll use the same as with the ridge regression:</p></li>
+<li>Create a workflow called <code>lasso_workflow</code> using <code>workflow()</code> and add the <code>ridge_recipe</code> and <code>lasso_model</code> objects.</li>
 </ol>
-<pre class="r"><code>penalty_grid &lt;- tibble(penalty = seq(0, 10, length.out = 200))</code></pre>
+<pre class="r"><code># lasso workflow 
+lasso_workflow &lt;- 
+  workflow() %&gt;% 
+  add_recipe(ridge_recipe) %&gt;% 
+  add_model(lasso_model)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Set up a grid of tuning parameters. Here we will directly specify our own grid. We’ll use the same as with the ridge regression:</li>
+</ol>
+<pre class="r"><code>penalty_grid &lt;- tibble(penalty = seq(0, 20, length.out = 200))</code></pre>
+<pre class="r"><code>penalty_grid &lt;- tibble(penalty = seq(0, 20, length.out = 200))</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li><p>Tune the model on the training data. To do so using our resampling scheme, use the <code>tune_grid()</code> function instead of the <code>fit()</code> or <code>fit_resamples()</code> function. Pass it the defined workflow as first argument and set the <code>resamples</code> argument to <code>airbnb_folds</code>, and the <code>grid</code> argument to <code>penalty_grid</code>. Save the output as <code>lasso_grid</code>.</p></li>
-<li><p>Use <code>collect_metrics()</code> to evaluate the cross-validation performance of the model across the different values of the penalty parameter.</p></li>
-<li><p>Plot the <code>penalty</code> value on the x axis, and the performance metrics on the y axis. Use the code below to do so.</p></li>
+<li>Tune the model on the training data. To do so using our resampling scheme, use the <code>tune_grid()</code> function instead of the <code>fit()</code> or <code>fit_resamples()</code> function. Pass it the defined workflow as first argument and set the <code>resamples</code> argument to <code>airbnb_folds</code>, and the <code>grid</code> argument to <code>penalty_grid</code>. Save the output as <code>lasso_grid</code>.</li>
+</ol>
+<pre class="r"><code># tune the penalty parameter
+lasso_grid &lt;-
+  lasso_workflow %&gt;% 
+  tune_grid(resamples = airbnb_folds,
+            grid = penalty_grid)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Use <code>collect_metrics()</code> to evaluate the cross-validation performance of the model across the different values of the penalty parameter.</li>
+</ol>
+<pre class="r"><code>collect_metrics(lasso_grid)</code></pre>
+<pre><code># A tibble: 400 × 7
+   penalty .metric .estimator   mean     n std_err .config               
+     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;                 
+ 1   0     rmse    standard   62.7      10 19.4    Preprocessor1_Model001
+ 2   0     rsq     standard    0.511    10  0.0392 Preprocessor1_Model001
+ 3   0.101 rmse    standard   62.5      10 19.5    Preprocessor1_Model002
+ 4   0.101 rsq     standard    0.512    10  0.0392 Preprocessor1_Model002
+ 5   0.201 rmse    standard   62.3      10 19.5    Preprocessor1_Model003
+ 6   0.201 rsq     standard    0.513    10  0.0391 Preprocessor1_Model003
+ 7   0.302 rmse    standard   62.1      10 19.5    Preprocessor1_Model004
+ 8   0.302 rsq     standard    0.515    10  0.0389 Preprocessor1_Model004
+ 9   0.402 rmse    standard   62.0      10 19.6    Preprocessor1_Model005
+10   0.402 rsq     standard    0.516    10  0.0388 Preprocessor1_Model005
+# … with 390 more rows</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Plot the <code>penalty</code> value on the x axis, and the performance metrics on the y axis. Use the code below to do so.</li>
 </ol>
 <pre class="r"><code>lasso_grid %&gt;%
   collect_metrics() %&gt;%
@@ -314,29 +497,84 @@ XXX &lt;-
   geom_line(size = 1.5) +
   facet_wrap(~.metric, scales = &quot;free&quot;, nrow = 2) +
   theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="Tuning_practical_files/figure-html/unnamed-chunk-38-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="7" style="list-style-type: decimal">
 <li>Select the best <code>penalty</code> value by passing <code>lasso_grid</code> into the <code>select_best()</code> function and save the output as <code>best_lasso</code>.</li>
 </ol>
 <pre class="r"><code>XXX &lt;- XXX(XXX, &quot;rmse&quot;)</code></pre>
+<pre class="r"><code>best_lasso &lt;- select_best(lasso_grid, &quot;rmse&quot;)</code></pre>
 <ol start="8" style="list-style-type: decimal">
-<li><p>Finalize the workflow using the <code>finalize_workflow()</code> function. Pass it the <code>lasso_workflow</code> and the <code>best_lasso</code> objects as first and second arguments. Save the output as <code>final_lasso</code>.</p></li>
-<li><p>Fit the model using the final workflow. Use the <code>fit()</code> function to this end, by passing it the <code>final_lasso</code> workflow and <code>airbnb_train</code>. Save the output as <code>lasso_res</code>.</p></li>
-<li><p>Use the <code>tidy()</code> function to look at the parameter values of <code>lasso_res</code>. Which variables are important and which were set to 0?</p></li>
+<li>Finalize the workflow using the <code>finalize_workflow()</code> function. Pass it the <code>lasso_workflow</code> and the <code>best_lasso</code> objects as first and second arguments. Save the output as <code>final_lasso</code>.</li>
 </ol>
+<pre class="r"><code>final_lasso &lt;- 
+  lasso_workflow %&gt;% 
+  finalize_workflow(best_lasso)</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>Fit the model using the final workflow. Use the <code>fit()</code> function to this end, by passing it the <code>final_lasso</code> workflow and <code>airbnb_train</code>. Save the output as <code>lasso_res</code>.</li>
+</ol>
+<pre class="r"><code>lasso_res &lt;- fit(final_lasso, airbnb_train) </code></pre>
+<ol start="10" style="list-style-type: decimal">
+<li>Use the <code>tidy()</code> function to look at the parameter values of <code>lasso_res</code>. Which variables are important and which were set to 0?</li>
+</ol>
+<pre class="r"><code>tidy(lasso_res) </code></pre>
+<pre><code># A tibble: 35 × 3
+   term                   estimate penalty
+   &lt;chr&gt;                     &lt;dbl&gt;   &lt;dbl&gt;
+ 1 (Intercept)               71.7     14.9
+ 2 accommodates              37.4     14.9
+ 3 bedrooms                   4.53    14.9
+ 4 bathrooms                  0       14.9
+ 5 cleaning_fee               0       14.9
+ 6 availability_90_days       0       14.9
+ 7 host_response_rate         0       14.9
+ 8 host_superhost             0       14.9
+ 9 host_listings_count        0       14.9
+10 review_scores_accuracy     0       14.9
+# … with 25 more rows</code></pre>
 </div>
 <div id="g---decision-tree" class="section level3">
 <h3>G - Decision Tree</h3>
 <p>It’s time to fit an optimized decision tree model!</p>
 <ol style="list-style-type: decimal">
-<li><p>Decision trees don’t need categorical variables to be dummy coded. Create a new recipe called <code>tree_recipe</code> that uses all available predictors to predict the <code>price</code> of Airbnbs based on the <code>airbnb_train</code> data. In addition, use the pre-proccessing step <code>step_other(all_nominal_predictors(), threshold = 0.005)</code>. This will lump together all cases of categorical variables that make up less than 0.5% of the cases into an <code>other</code> category. This will prevent issues when assessing performance using the test set.</p></li>
-<li><p>Set up a decision tree model. Use the <code>decision_tree()</code> function to specify the model, and set the engine to <code>rpart</code>. Set the mode to <code>"regression"</code>. Call the output <code>dt_model</code>. Within <code>decision_tree()</code> specify the argument <code>cost_complexity = tune()</code>.</p></li>
-<li><p>Create a new workflow <code>dt_workflow</code>, where you add the newly created <code>tree_recipe</code> and the <code>dt_model</code>.</p></li>
-<li><p>Set up a grid of tuning parameters. Use the following code to do so:</p></li>
+<li>Decision trees don’t need categorical variables to be dummy coded. Create a new recipe called <code>tree_recipe</code> that uses all available predictors to predict the <code>price</code> of Airbnbs based on the <code>airbnb_train</code> data. In addition, use the pre-proccessing step <code>step_other(all_nominal_predictors(), threshold = 0.005)</code>. This will lump together all cases of categorical variables that make up less than 0.5% of the cases into an <code>other</code> category. This will prevent issues when assessing performance using the test set.</li>
 </ol>
-<pre class="r"><code>complexity_grid &lt;- tibble(cost_complexity =  seq(from = 0, to = .05, length.out = 100))</code></pre>
+<pre class="r"><code>tree_recipe &lt;-
+  recipe(price ~ ., data = airbnb_train) %&gt;% 
+  step_other(all_nominal_predictors(), threshold = 0.005)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Set up a decision tree model. Use the <code>decision_tree()</code> function to specify the model, and set the engine to <code>rpart</code>. Set the mode to <code>"regression"</code>. Call the output <code>dt_model</code>. Within <code>decision_tree()</code> specify the argument <code>cost_complexity = tune()</code>.</li>
+</ol>
+<pre class="r"><code># set up the decision tree model
+dt_model &lt;- 
+  decision_tree(cost_complexity = tune()) %&gt;% 
+  set_engine(&quot;rpart&quot;) %&gt;% 
+  set_mode(&quot;regression&quot;)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Create a new workflow <code>dt_workflow</code>, where you add the newly created <code>tree_recipe</code> and the <code>dt_model</code>.</li>
+</ol>
+<pre class="r"><code># decision tree workflow  
+dt_workflow &lt;- 
+  workflow() %&gt;% 
+  add_recipe(tree_recipe) %&gt;% 
+  add_model(dt_model)</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Set up a grid of tuning parameters. Use the following code to do so:</li>
+</ol>
+<pre class="r"><code>complexity_grid &lt;- tibble(cost_complexity =  seq(from = 0, to = .01, length = 100))</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li><p>Tune the model on the training data. To do so using our resampling scheme, use the <code>tune_grid()</code> function and pass it the defined workflow as first argument and set the <code>resamples</code> argument to <code>airbnb_folds</code>, and the <code>grid</code> argument to <code>complexity_grid</code>. Save the output as <code>dt_grid</code>. (Note: This will take some time…)</p></li>
-<li><p>Plot the <code>cost_complexity</code> value on the x axis, and the performance metrics on the y axis. Use the code below to do so.</p></li>
+<li>To speed up the model tuning, execute the following code (this will parallelize the tuning process).</li>
+</ol>
+<pre class="r"><code>doParallel::registerDoParallel()</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Tune the model on the training data. To do so using our resampling scheme, use the <code>tune_grid()</code> function and pass it the defined workflow as first argument and set the <code>resamples</code> argument to <code>airbnb_folds</code>, and the <code>grid</code> argument to <code>complexity_grid</code>. Save the output as <code>dt_grid</code>. (Note: This will take some time…)</li>
+</ol>
+<pre class="r"><code># tune the cost complexity parameter
+dt_grid &lt;-
+  dt_workflow %&gt;% 
+  tune_grid(resamples = airbnb_folds,
+            grid = complexity_grid)</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Plot the <code>cost_complexity</code> value on the x axis, and the performance metrics on the y axis. Use the code below to do so.</li>
 </ol>
 <pre class="r"><code>dt_grid %&gt;%
   collect_metrics() %&gt;%
@@ -344,27 +582,56 @@ XXX &lt;-
   geom_line(size = 1.5) +
   facet_wrap(~.metric, scales = &quot;free&quot;, nrow = 2) +
   theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="Tuning_practical_files/figure-html/unnamed-chunk-50-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="7" style="list-style-type: decimal">
 <li>Select the best <code>cost_complexity</code> value by passing <code>dt_grid</code> into the <code>select_best()</code> function and save the output as <code>best_dt</code>.</li>
 </ol>
 <pre class="r"><code>XXX &lt;- XXX(XXX, &quot;rmse&quot;)</code></pre>
+<pre class="r"><code>best_dt &lt;- select_best(dt_grid, &quot;rmse&quot;)</code></pre>
 <ol start="8" style="list-style-type: decimal">
-<li><p>Finalize the workflow using the <code>finalize_workflow()</code> function. Pass it the <code>dt_workflow</code> and the <code>best_dt</code> objects as first and second arguments. Save the output as <code>final_dt</code>.</p></li>
-<li><p>Fit the model using the final workflow. Use the <code>fit()</code> function to this end, by passing it the <code>final_dt</code> workflow and <code>airbnb_train</code>. Save the output as <code>dt_res</code>.</p></li>
+<li>Finalize the workflow using the <code>finalize_workflow()</code> function. Pass it the <code>dt_workflow</code> and the <code>best_dt</code> objects as first and second arguments. Save the output as <code>final_dt</code>.</li>
 </ol>
+<pre class="r"><code>final_dt &lt;- 
+  dt_workflow %&gt;% 
+  finalize_workflow(best_dt)</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>Fit the model using the final workflow. Use the <code>fit()</code> function to this end, by passing it the <code>final_dt</code> workflow and <code>airbnb_train</code>. Save the output as <code>dt_res</code>.</li>
+</ol>
+<pre class="r"><code>dt_res &lt;- fit(final_dt, airbnb_train) </code></pre>
 </div>
 <div id="h---random-forests" class="section level3">
 <h3>H - Random Forests</h3>
 <p>It’s time to fit an optimized random forest model!</p>
 <ol style="list-style-type: decimal">
-<li><p>As random forests are made up of many decision trees, we can use the recipe we defined for the decision tree, so we only have to set up a random forest model. Use the <code>rand_forest()</code> function to specify the model, and set the engine to <code>"ranger"</code>. Set the mode to <code>"regression"</code>. Call the output <code>rf_model</code>. In the <code>rand_forest()</code> function, set the <code>mtry</code> argument to <code>tune()</code>.</p></li>
-<li><p>Create a new workflow <code>rf_workflow</code>, where you add the <code>tree_recipe</code> and the newly created <code>rf_model</code>.</p></li>
-<li><p>Set up a grid of tuning parameters. Use the following code to do so:</p></li>
+<li>As random forests are made up of many decision trees, we can use the recipe we defined for the decision tree, so we only have to set up a random forest model. Use the <code>rand_forest()</code> function to specify the model, and set the engine to <code>"ranger"</code>. Set the mode to <code>"regression"</code>. Call the output <code>rf_model</code>. In the <code>rand_forest()</code> function, set the <code>mtry</code> argument to <code>tune()</code>.</li>
+</ol>
+<pre class="r"><code># set up the random forest model
+rf_model &lt;- 
+  rand_forest(mtry = tune()) %&gt;% 
+  set_engine(&quot;ranger&quot;) %&gt;% 
+  set_mode(&quot;regression&quot;)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Create a new workflow <code>rf_workflow</code>, where you add the <code>tree_recipe</code> and the newly created <code>rf_model</code>.</li>
+</ol>
+<pre class="r"><code># random forest workflow  
+rf_workflow &lt;- 
+  workflow() %&gt;% 
+  add_recipe(tree_recipe) %&gt;% 
+  add_model(rf_model)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Set up a grid of tuning parameters. Use the following code to do so:</li>
 </ol>
 <pre class="r"><code>mtry_grid &lt;- tibble(mtry = 1:15)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li><p>Tune the model on the training data. To do so using our resampling scheme, use the <code>tune_grid()</code> function and pass it the defined workflow as first argument and set the <code>resamples</code> argument to <code>airbnb_folds</code>, and the <code>grid</code> argument to <code>mtry_grid</code>. Save the output as <code>rf_grid</code>. (Note: This will again take some time… Actually even some more… Welcome in the world of machine learning…)</p></li>
-<li><p>Plot the <code>mtry</code> value on the x axis, and the performance metrics on the y axis. Use the code below to do so.</p></li>
+<li>Tune the model on the training data. To do so using our resampling scheme, use the <code>tune_grid()</code> function and pass it the defined workflow as first argument and set the <code>resamples</code> argument to <code>airbnb_folds</code>, and the <code>grid</code> argument to <code>mtry_grid</code>. Save the output as <code>rf_grid</code>. (Note: This will again take some time… Actually even some more… Welcome in the world of machine learning…)</li>
+</ol>
+<pre class="r"><code># tune the mtry parameter
+rf_grid &lt;-
+  rf_workflow %&gt;% 
+  tune_grid(resamples = airbnb_folds,
+            grid = mtry_grid)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Plot the <code>mtry</code> value on the x axis, and the performance metrics on the y axis. Use the code below to do so.</li>
 </ol>
 <pre class="r"><code>rf_grid %&gt;%
   collect_metrics() %&gt;%
@@ -372,11 +639,21 @@ XXX &lt;-
   geom_line(size = 1.5) +
   facet_wrap(~.metric, scales = &quot;free&quot;, nrow = 2) +
   theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="Tuning_practical_files/figure-html/unnamed-chunk-59-1.png" width="576" style="display: block; margin: auto;" /></p>
 <ol start="6" style="list-style-type: decimal">
-<li><p>Select the best <code>mtry</code> value by passing <code>rf_grid</code> into the <code>select_best()</code> function and save the output as <code>best_rf</code>.</p></li>
-<li><p>Finalize the workflow using the <code>finalize_workflow()</code> function. Pass it the <code>rf_workflow</code> and the <code>best_rf</code> objects as first and second arguments. Save the output as <code>final_rf</code>.</p></li>
-<li><p>Fit the model using the final workflow. Use the <code>fit()</code> function to this end, by passing it the <code>final_rf</code> workflow and <code>airbnb_train</code>. Save the output as <code>rf_res</code>.</p></li>
+<li>Select the best <code>mtry</code> value by passing <code>rf_grid</code> into the <code>select_best()</code> function and save the output as <code>best_rf</code>.</li>
 </ol>
+<pre class="r"><code>best_rf &lt;- select_best(rf_grid, &quot;rmse&quot;)</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Finalize the workflow using the <code>finalize_workflow()</code> function. Pass it the <code>rf_workflow</code> and the <code>best_rf</code> objects as first and second arguments. Save the output as <code>final_rf</code>.</li>
+</ol>
+<pre class="r"><code>final_rf &lt;- 
+  rf_workflow %&gt;% 
+  finalize_workflow(best_rf)</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>Fit the model using the final workflow. Use the <code>fit()</code> function to this end, by passing it the <code>final_rf</code> workflow and <code>airbnb_train</code>. Save the output as <code>rf_res</code>.</li>
+</ol>
+<pre class="r"><code>rf_res &lt;- fit(final_rf, airbnb_train) </code></pre>
 </div>
 <div id="i---estimate-prediction-accuracy-from-training-folds" class="section level3">
 <h3>I - Estimate prediction accuracy from training folds</h3>
@@ -387,11 +664,113 @@ XXX &lt;-
   predict(new_data = airbnb_train) %&gt;% 
   bind_cols(airbnb_train %&gt;% select(price)) %&gt;% 
   metrics(truth = price, estimate = .pred)</code></pre>
+<pre class="r"><code>lm_res %&gt;% 
+  predict(new_data = airbnb_train) %&gt;% 
+  bind_cols(airbnb_train %&gt;% select(price)) %&gt;% 
+  metrics(truth = price, estimate = .pred)</code></pre>
+<pre><code># A tibble: 3 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard      77.3  
+2 rsq     standard       0.370
+3 mae     standard      31.1  </code></pre>
+<pre class="r"><code>ridge_res %&gt;% 
+  predict(new_data = airbnb_train) %&gt;% 
+  bind_cols(airbnb_train %&gt;% select(price)) %&gt;% 
+  metrics(truth = price, estimate = .pred)</code></pre>
+<pre><code># A tibble: 3 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard      80.8  
+2 rsq     standard       0.344
+3 mae     standard      26.5  </code></pre>
+<pre class="r"><code>lasso_res %&gt;% 
+  predict(new_data = airbnb_train) %&gt;% 
+  bind_cols(airbnb_train %&gt;% select(price)) %&gt;% 
+  metrics(truth = price, estimate = .pred)</code></pre>
+<pre><code># A tibble: 3 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard      81.1  
+2 rsq     standard       0.331
+3 mae     standard      27.4  </code></pre>
+<pre class="r"><code>dt_res %&gt;% 
+  predict(new_data = airbnb_train) %&gt;% 
+  bind_cols(airbnb_train %&gt;% select(price)) %&gt;% 
+  metrics(truth = price, estimate = .pred)</code></pre>
+<pre><code># A tibble: 3 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard      77.3  
+2 rsq     standard       0.370
+3 mae     standard      25.0  </code></pre>
+<pre class="r"><code>rf_res %&gt;% 
+  predict(new_data = airbnb_train) %&gt;% 
+  bind_cols(airbnb_train %&gt;% select(price)) %&gt;% 
+  metrics(truth = price, estimate = .pred)</code></pre>
+<pre><code># A tibble: 3 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard      53.0  
+2 rsq     standard       0.805
+3 mae     standard      16.8  </code></pre>
 </div>
 <div id="j---calculate-prediction-accuracy" class="section level3">
 <h3>J - Calculate prediction accuracy</h3>
 <ol style="list-style-type: decimal">
-<li><p>Now, based on the same template, but this time using the test data, evaluate and compare the out-of-sample model performances.</p></li>
+<li>Now, based on the same template, but this time using the test data, evaluate and compare the out-of-sample model performances.</li>
+</ol>
+<pre class="r"><code>lm_res %&gt;% 
+  predict(new_data = airbnb_test) %&gt;% 
+  bind_cols(airbnb_test %&gt;% select(price)) %&gt;% 
+  metrics(truth = price, estimate = .pred)</code></pre>
+<pre><code># A tibble: 3 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard      48.7  
+2 rsq     standard       0.485
+3 mae     standard      29.9  </code></pre>
+<pre class="r"><code>ridge_res %&gt;% 
+  predict(new_data = airbnb_test) %&gt;% 
+  bind_cols(airbnb_test %&gt;% select(price)) %&gt;% 
+  metrics(truth = price, estimate = .pred)</code></pre>
+<pre><code># A tibble: 3 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard      49.6  
+2 rsq     standard       0.465
+3 mae     standard      24.0  </code></pre>
+<pre class="r"><code>lasso_res %&gt;% 
+  predict(new_data = airbnb_test) %&gt;% 
+  bind_cols(airbnb_test %&gt;% select(price)) %&gt;% 
+  metrics(truth = price, estimate = .pred)</code></pre>
+<pre><code># A tibble: 3 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard      50.0  
+2 rsq     standard       0.443
+3 mae     standard      26.1  </code></pre>
+<pre class="r"><code>dt_res %&gt;% 
+  predict(new_data = airbnb_test) %&gt;% 
+  bind_cols(airbnb_test %&gt;% select(price)) %&gt;% 
+  metrics(truth = price, estimate = .pred)</code></pre>
+<pre><code># A tibble: 3 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard      42.0  
+2 rsq     standard       0.610
+3 mae     standard      24.4  </code></pre>
+<pre class="r"><code>rf_res %&gt;% 
+  predict(new_data = airbnb_test) %&gt;% 
+  bind_cols(airbnb_test %&gt;% select(price)) %&gt;% 
+  metrics(truth = price, estimate = .pred)</code></pre>
+<pre><code># A tibble: 3 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard      28.4  
+2 rsq     standard       0.835
+3 mae     standard      20.1  </code></pre>
+<ol start="2" style="list-style-type: decimal">
 <li><p>Which of your models had the best performance in the true test data?</p></li>
 <li><p>How close were your models’ true prediction error to the values you estimated in the previous section based on the training data?</p></li>
 </ol>

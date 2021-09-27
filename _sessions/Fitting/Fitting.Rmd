@@ -378,103 +378,6 @@ bad_err + labs(title=element_blank(),subtitle = element_blank())
 
 ]
 
-
----
-
-.pull-left45[
-
-# Fitting
-
-<p style="margin-top:20px">
-
-<ul style="margin-bottom:-20px">
-  <li class="m1"><span><b>Analytically</b>
-  <br><br>
-  <ul class="level">
-    <li><span>In rare cases, the parameters can be <high>directly calculated</high>, e.g., using the <i>normal equation</i>.</span></li>
-  </ul>
-  </span></li>
-</ul>
-
-$$\boldsymbol \beta = (\boldsymbol X^T\boldsymbol X)^{-1}\boldsymbol X^T\boldsymbol y$$
-
-<ul>
-  <li class="m2"><span><b>Numerically</b>
-  <br><br>
-  <ul class="level">
-    <li><span>In most cases, parameters need to be found using a <high>directed trial and error</high>, e.g., <i>gradient descent</i>.</span></li>
-  </ul>
-  </span></li>
-</ul>
-
-$$\boldsymbol \beta_{n+1} = \boldsymbol \beta_{n}+\gamma \nabla F(\boldsymbol \beta_{n})$$
-
-</p>
-
-]
-
-.pull-right45[
-
-<br><br>
-
-<p align = "center">
-<img src="image/gradient.png" height=420px><br>
-<font style="font-size:10px">adapted from <a href="https://me.me/i/machine-learning-gradient-descent-machine-learning-machine-learning-behind-the-ea8fe9fc64054eda89232d7ffc9ba60e">me.me</a></font>
-</p>
-
-]
-
-
----
-
-.pull-left45[
-
-# Fitting
-
-
-<p style="margin-top:10px">
-
-<ul style="margin-bottom:-20px">
-  <li class="m1"><span><b>Analytically</b>
-  <br><br>
-  <ul class="level">
-    <li><span>In rare cases, the parameters can be <high>directly calculated</high>, e.g., using the <i>normal equation</i>.</span></li>
-  </ul>
-  </span></li>
-</ul>
-
-$$\boldsymbol \beta = (\boldsymbol X^T\boldsymbol X)^{-1}\boldsymbol X^T\boldsymbol y$$
-
-<ul>
-  <li class="m2"><span><b>Numerically</b>
-  <br><br>
-  <ul class="level">
-    <li><span>In most cases, parameters need to be found using a <high>directed trial and error</high>, e.g., <i>gradient descent</i>.</span></li>
-  </ul>
-  </span></li>
-</ul>
-
-$$\boldsymbol \beta_{n+1} = \boldsymbol \beta_{n}+\gamma \nabla F(\boldsymbol \beta_{n})$$
-
-</p>
-
-]
-
-.pull-right45[
-
-<br><br2>
-
-<p align = "center">
-<img src="image/gradient1.gif" height=250px><br>
-<font style="font-size:10px">adapted from <a href="https://dunglai.github.io/2017/12/21/gradient-descent/
-">dunglai.github.io</a></font><br>
-<img src="image/gradient2.gif" height=250px><br>
-<font style="font-size:10px">adapted from <a href="https://dunglai.github.io/2017/12/21/gradient-descent/
-">dunglai.github.io</a></font>
-</p>
-
-]
-
 ---
 
 # 2 types of supervised problems
@@ -593,8 +496,6 @@ logreg2
 </ul>
 
 $$\small LogLoss = -\frac{1}{n}\sum_{i}^{n}(log(\hat{y})y+log(1-\hat{y})(1-y))$$
-$$\small MSE = \frac{1}{n}\sum_{i}^{n}(y-\hat{y})^2, \: MAE = \frac{1}{n}\sum_{i}^{n} \lvert y-\hat{y} \rvert$$
-
 
 <ul> 
   <li class="m2"><span><b>Overlap</b>
@@ -605,7 +506,7 @@ $$\small MSE = \frac{1}{n}\sum_{i}^{n}(y-\hat{y})^2, \: MAE = \frac{1}{n}\sum_{i
   </span></li>
 </ul>
 
-$$\small Loss_{01}=\frac{1}{n}\sum_i^n I(y \neq \lfloor \hat{y} \rceil)$$
+$$\small  Loss_{01} = 1-Accuracy = \frac{1}{n}\sum_i^n I(y \neq \lfloor \hat{y} \rceil)$$
 
 ]
 
@@ -617,171 +518,9 @@ logreg2
 
 ]
 
----
-
-# Confusion matrix
-
-.pull-left45[
-
-
-<ul style="margin-bottom:-20px">
-  <li class="m1"><span>The confusion matrix <high>tabulates prediction matches and mismatches</high> as a function of the true class.</span></li>
-  <li class="m2"><span>The confusion matrix permits specification of a number of <high>helpful performance metrics</high>.</span></li>
-</ul>
-
-<br>
-
-<b> Confusion matrix </b>
-
-<font style="font-size:22px">
-<br>
-
-<table style="cellspacing:0; cellpadding:0; border:none;">
-<col width=20%>
-<col width=40%>
-<col width=40%>
-<tr>
-  <td>
-  </td>
-  <td>
-    <eq><b>y = 1</b></eq>
-  </td>
-  <td>
-    <eq><b>y = 0</b></eq>
-  </td>
-</tr>
-<tr>
-  <td bgcolor="white">
-    <eq><b>y&#770; = 1</b></eq>
-  </td>
-  <td bgcolor="white">
-    <font color="#6ABA9A"> True positive (TP)</font>
-  </td>
-  <td bgcolor="white">
-    <font color="#EA4B68"> False positive (FP)</font>
-  </td>
-</tr>
-<tr>
-  <td>
-    <eq><b>y&#770; = 0</b></eq>
-  </td>
-  <td>
-    <font color="#EA4B68"> False negative (FN)</font>
-  </td>
-  <td>
-    <font color="#6ABA9A"> True negative (TN)</font>
-  </td>
-</tr>
-</table>
-
-</font>
-]
-
-.pull-right45[
-
-
-<b>Accuracy</b>: Of all cases</i>, what percent of predictions are correct?
-
-$$\small Acc. = \frac{TP + TN}{ TP + TN + FN + FP} = 1-Loss_{01}$$
-
-<p style="padding-top:10px"></p>
-
-<b>Sensitivity</b>: Of the truly Positive cases</i>, what percent of predictions are correct?
-
-$$\small Sensitivity = \frac{TP}{ TP +FN }$$
-
-<b>Specificity</b>: Of the truly Negative cases</i>, what percent of predictions are correct?
-
-<p style="padding-top:10px"></p>
-
-$$\small Specificity = \frac{TN}{ TN + FP }$$
-
-]
-
 
 ---
 
-# Confusion matrix
-
-.pull-left45[
-
-<ul style="margin-bottom:-20px">
-  <li class="m1"><span>The confusion matrix <high>tabulates prediction matches and mismatches</high> as a function of the true class.</span></li>
-  <li class="m2"><span>The confusion matrix permits specification of a number of <high>helpful performance metrics</high>.</span></li>
-</ul>
-
-<br>
-
-<b> Confusion matrix </b>
-
-<font style="font-size:22px">
-<br>
-
-<table style="cellspacing:0; cellpadding:0; border:none;">
-<col width=20%>
-<col width=40%>
-<col width=40%>
-<tr>
-  <td>
-  </td>
-  <td>
-    <eq><b>Default</b></eq>
-  </td>
-  <td>
-    <eq><b>Repay</b></eq>
-  </td>
-</tr>
-<tr>
-  <td bgcolor="white">
-    <eq><b>"Default"</b></eq>
-  </td>
-  <td bgcolor="white">
-    <font color="#6ABA9A"> TP = 3</font>
-  </td>
-  <td bgcolor="white">
-    <font color="#EA4B68"> FP = 1</font>
-  </td>
-</tr>
-<tr>
-  <td>
-    <eq><b>"Repay"</b></eq>
-  </td>
-  <td>
-    <font color="#EA4B68"> FN = 1</font>
-  </td>
-  <td>
-    <font color="#6ABA9A"> TN = 2</font>
-  </td>
-</tr>
-</table>
-
-</font>
-
-]
-
-.pull-right45[
-
-
-<b>Accuracy</b>: Of all cases</i>, what percent of predictions are correct?
-
-$$\small Acc. = \frac{TP + TN}{ TP + TN + FN + FP} = 1-Loss_{01}$$
-
-<p style="padding-top:10px"></p>
-
-<b>Sensitivity</b>: Of the truly Positive cases</i>, what percent of predictions are correct?
-
-$$\small Sensitivity = \frac{TP}{ TP +FN }$$
-
-<b>Specificity</b>: Of the truly Negative cases</i>, what percent of predictions are correct?
-
-<p style="padding-top:10px"></p>
-
-$$\small Specificity = \frac{TN}{ TN + FP }$$
-
-]
-
-
----
 class: center,  middle
 
 <br><br>

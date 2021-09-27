@@ -374,23 +374,6 @@ Supervised learning uses <high>labeled data</high> to learn <high>a model</high>
 
 ---
 
-# Machine learning in R
-
-packages available
-
-mlr, caret, rtensorflow
-
----
-
-# tidymodels
-
-follow tidyverse style
-
-own verse
-
-
----
-
 # 2 types of supervised problems
 
 .pull-left5[
@@ -421,14 +404,49 @@ E.g., predicting the origin of chest pain as a function of age and heart attack 
 
 ]
 
+---
+
+# Machine learning in R
+
+packages available
+
+mlr, caret, rtensorflow
 
 ---
 
-# 3 key (supervised) models
+# tidymodels
 
-<p align = "center" style="padding-top:20px">
-<img src="image/models.png"><br>
-</p>
+follow tidyverse style
+
+own verse
+
+packages icons
+
+---
+
+# tidymodels flow
+
+flowchart of steps
+  
+  data
+    splitting
+    folding
+  
+  recipe
+    formula
+    preprocessing
+    
+  model
+    (tune)
+    
+  workflow
+
+  train/tune
+  
+  evaluation
+
+(maybe reference packages on the side)
+
 
 
 

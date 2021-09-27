@@ -121,37 +121,6 @@ present <- tibble(id = 91:95,
 
 ---
 
-# Why do we separate training from testing?
-
-<br><br>
-
-.pull-left45[
-
-
-<high>Training data</high>
-<br>
-
-```{r, results = 'asis', echo = FALSE}
-knitr::kable(past, format = "markdown")
-```
-
-]
-
-.pull-right45[
-
-
-<high> Test data</high>
-<br>
-
-```{r, echo = FALSE}
-knitr::kable(present, format = "markdown")
-```
-
-]
-
-
----
-
 .pull-left4[
 
 <br><br>

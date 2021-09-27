@@ -781,16 +781,16 @@ lm_workflow
 ```
 
 ```
-== Workflow ==================================================================================================
+══ Workflow ══════════════════════════════════════════════════════════════════════════════════════════════════
 Preprocessor: Recipe
 Model: linear_reg()
 
--- Preprocessor ----------------------------------------------------------------------------------------------
+── Preprocessor ──────────────────────────────────────────────────────────────────────────────────────────────
 1 Recipe Step
 
-* step_dummy()
+• step_dummy()
 
--- Model -----------------------------------------------------------------------------------------------------
+── Model ─────────────────────────────────────────────────────────────────────────────────────────────────────
 Linear Regression Model Specification (regression)
 
 Computational engine: lm 
@@ -823,7 +823,7 @@ tidy(income_lm)
 ```
 
 ```
-# A tibble: 25 x 5
+# A tibble: 25 × 5
    term           estimate std.error statistic   p.value
    &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
  1 (Intercept) -192.         631.     -0.304   7.61e-  1
@@ -836,7 +836,7 @@ tidy(income_lm)
  8 fitness        6.94        17.9     0.389   6.97e-  1
  9 food           2.50         0.142  17.6     2.33e- 60
 10 alcohol       26.1          2.47   10.6     8.05e- 25
-# ... with 15 more rows
+# … with 15 more rows
 ```
 
 ]
@@ -868,7 +868,7 @@ metrics(lm_pred, truth = income,
 ```
 
 ```
-# A tibble: 3 x 3
+# A tibble: 3 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 rmse    standard    1008.   
@@ -908,7 +908,7 @@ metrics(lm_pred, truth = income,
 ```
 
 ```
-# A tibble: 3 x 3
+# A tibble: 3 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 rmse    standard    1008.   
@@ -1053,7 +1053,7 @@ metrics(logistic_pred, truth = eyecor,
 ```
 
 ```
-# A tibble: 4 x 3
+# A tibble: 4 × 3
   .metric     .estimator .estimate
   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;
 1 accuracy    binary        0.647 
