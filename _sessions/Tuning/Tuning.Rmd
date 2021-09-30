@@ -837,22 +837,48 @@ rf_model <-
 
 
 ---
+
 class: center,  middle
 
-<br><br>
+<p align = "center">
+<img src="https://www.tidymodels.org/images/tidymodels.png" width=240px><br>
+<font style="font-size:10px">from <a href="https://www.tidymodels.org/packages/">tidymodels.org</a></font>
+</p>
 
-# Parameter tuning with v-fold cross-validation with <mono>tidymodels</mono>
 
-```{r, echo = FALSE, out.width = "30%"}
-knitr::include_graphics("image/tidymodels.svg")
-```
+---
+
+.pull-left4[
+
+# Fitting <mono>tidymodels</mono>
+
+<br>
+<ul>
+  <li class="m1"><span>Specify resampling</span></li><br>
+  <li class="m2"><span>Set up model tuning</span></li><br>
+  <li class="m3"><span>Define grid</span></li><br>
+  <li class="m4"><span>Tune model</span></li><br>
+  <li class="m5"><span>Select best model</span></li><br>
+  <li class="m5"><span>Retrain and evaluate</span></li><br>
+</ul>
+
+]
+
+.pull-right5[
+
+<p align = "center">
+<br>
+<img src="image/tidymodels_tune.png" height=560px><br>
+</p>
+
+]
 
 
 ---
 
 .pull-left45[
 
-# <i>v</i>-fold cross validation for Ridge and Lasso
+# <i>v</i>-fold cross validation
 
 <p style="padding-top:1px"></p>
 
@@ -886,10 +912,9 @@ knitr::include_graphics("image/tidymodels.svg")
 ]
 
 
-
 ---
 
-# <mono>vfold_cv()</mono>
+# Specify resampling
 
 .pull-left4[
 
@@ -897,7 +922,6 @@ knitr::include_graphics("image/tidymodels.svg")
   <li class="m1"><span>Specify the use of v-fold cross-validation using the <mono>vfold_cv()</mono> function.</span></li>
 </ul>
 
-<br>
 
 <table style="cellspacing:0; cellpadding:0; border:none;">
 <tr>
@@ -947,22 +971,22 @@ knitr::include_graphics("image/tidymodels.svg")
 
 .pull-right5[
 
-```{r, eval = FALSE}
-# Specify 10 fold cross-validation
-baselers_folds <- vfold_cv(baselers,
-                           v = 10)
+```{r}
+# split data
+baselers_split <- initial_split(baselers)
+baselers_train <- training(baselers_split)
+baselers_test <- testing(baselers_split)
 
-# Predict income using a workflow
-wf_res <- fit_resamples(workflow,
-                        baselers_folds)
-collect_metrics(wf_res)
+# specify 10 fold cross-validation
+baselers_folds <- vfold_cv(baselers_train,
+                           v = 10)
 ```
 
 ]
 
 ---
 
-# Parameter tuning
+# Set up model tuning
 
 .pull-left4[
 
@@ -976,6 +1000,12 @@ collect_metrics(wf_res)
 .pull-right5[
 
 ```{r}
+# define recipe
+recipe <- 
+  recipe(income ~ .,
+         data = baselers_train) %>%
+  step_dummy(all_nominal_predictors()) %>% 
+  step_normalize(all_numeric_predictors())
 
 # glmnet where mixture and penalty is tuned
 glmnet_model <- 
@@ -983,6 +1013,13 @@ glmnet_model <-
              penalty = tune()) %>% 
   set_engine("glmnet") %>% 
   set_mode("regression")
+
+# define workflow
+glmnet_workflow <- 
+  workflow() %>% 
+  add_recipe(recipe) %>% 
+  add_model(glmnet_model)
+
 ```
 
 ]
@@ -990,16 +1027,18 @@ glmnet_model <-
 
 ---
 
-# Specify a parameter grid
+# Define grid
 
 .pull-left4[
 
-Two ways to specify a grid of parameter values to try:
-<ul>
-  <li class="m1"><span>Use <mono>grid_regular()</mono> and respective parameter functions.</span></li>
-  <li class="m2"><span>Specify a <mono>tibble</mono> and enter specify values yourself.</span></li>
-</ul>
 
+<ul>
+  <li class="m1"><span>Two ways to specify a grid of parameter values:</span></li>
+<ul class="levels">
+  <li><span>Use <mono>grid_regular</mono> and similar functions automatically choose reasonable values.</span></li>
+  <li><span>Specify a <mono>tibble</mono> to define specific ranges and combinations.</span></li>
+</ul>
+</ul>
 ]
 
 .pull-right5[
@@ -1007,12 +1046,12 @@ Two ways to specify a grid of parameter values to try:
 ```{r}
 
 # using tidymodels to generate values
-parameters_grid <- grid_regular(mixture(),
-                                penalty(),
-                                levels = 50)
+parameter_grid <- grid_regular(mixture(),
+                               penalty(),
+                               levels = 50)
 
 # determine values yourself
-parameters_grid <-
+parameter_grid <-
   crossing(mixture = c(0, .5, 1),
            penalty = 1:100)
 ```
@@ -1027,23 +1066,29 @@ parameters_grid <-
 
 .pull-left4[
 
-<mono>tune_grid()</mono> needs
+
 <ul>
-  <li class="m1"><span>A <mono>workflow</mono>.</span></li>
-  <li class="m2"><span>A resampling scheme.</span></li>
-  <li class="m3"><span>A parameter grid.</span></li>
+  <li class="m1"><span>Supply <mono>tune_grid()</mono> with:</span></li>
+<ul class="levels">
+  <li><span>The <mono>workflow</mono></span></li>
+  <li><span>The resampling data</span></li>
+  <li><span>The parameter grid</span></li>
+</ul>
 </ul>
 
 ]
 
 .pull-right5[
 
-```{r, eval=F}
+```{r}
 # tune parameters using 10 fold CV
 glmnet_grid <- 
-  tune_grid(ridge_workflow,
+  tune_grid(glmnet_workflow,
             resamples = baselers_folds,
-            grid = penalty_grid)
+            grid = parameter_grid)
+
+# show output
+glmnet_grid
 ```
 
 ]
@@ -1051,25 +1096,29 @@ glmnet_grid <-
 
 ---
 
-# Select best hyper parameter
+# Select best tuning parameter
 
 
 .pull-left4[
 
 <ul>
-  <li class="m1"><span><mono>tune_grid()</mono> returns fit values of the models with the different hyper-parameter values.</span></li>
-  <li class="m2"><span><mono>select_best()</mono> selects the best hyper-parameter values.</span></li>
-  <li class="m3"><span>These values can then be added to the workflow using <mono>finalize_workflow</mono>.</span></li>
-  <li class="m4"><span>With this final workflow, the model can be fitted using <mono>fit()</mono> and evaluated.</span></li>
+  <li class="m1"><span><mono>tune_grid()</mono> returns fit values of the models with the different hyper-parameter values.</span></li><br>
+  <li class="m2"><span><mono>select_best()</mono> selects the best tuning-parameter values.</span></li><br>
+  <li class="m3"><span><mono>finalize_workflow</mono> sets the workflow to the best tuning parameters.</span></li><br>
 </ul>
 
 ]
 
 .pull-right5[
 
-```{r, eval=F}
+```{r}
+# extract best
 best_glmnet <- select_best(glmnet_grid)
 
+# show best model
+best_glmnet
+
+# set best tuning parameters
 final_glmnet <-
   finalize_workflow(glmnet_workflow,
                     best_glmnet)
@@ -1077,29 +1126,16 @@ final_glmnet <-
 
 ]
 
-
 ---
 
-# Recap - Steps of model tuning
-
-
-MAKE 3 BLOCKS
-  Data
-  Workflow
-  Evaluation
+# Retrain and evaluate
 
 
 .pull-left4[
 
 <ul>
- <li class="m1"><span><high>Split data.</high></span></li>
-  <li class="m2"><span>Set up resampling scheme.</span></li>
-  <li class="m3"><span>Set up workflow, using <mono>tune()</mono> in the model specification.</span></li>
-  <li class="m4"><span>Set up grid of hyper parameters.</span></li>
-  <li class="m5"><span>Tune the model with <mono>tune_grid()</mono>.</span></li>
-  <li class="m6"><span>Select best hyper-parameter values.</span></li>
-  <li class="m7"><span>Finalize workflow with best hyper-parameter values.</span></li>
-  <li class="m8"><span>Fit and evaluate final workflow as usual.</span></li>
+ <li class="m1"><span>The finalized model should be <high>retrained</high> to the training data.</span></li>
+  <li class="m2"><span>The retrained model can then be <high>evaluated on the test data</high>.</span></li>
 </ul>
 
 ]
@@ -1107,250 +1143,18 @@ MAKE 3 BLOCKS
 .pull-right5[
 
 ```{r}
-
-baselers_split <- initial_split(baselers)
-baselers_train <- training(baselers_split)
-baselers_test <- testing(baselers_split)
-
-```
-
-]
-
-
----
-
-
-# Recap - Steps of model tuning
-
-
-.pull-left4[
-
-<ul>
- <li class="m1"><span>Split data.</span></li>
-  <li class="m2"><span><high>Set up resampling scheme.</high></span></li>
-  <li class="m3"><span>Set up workflow, using <mono>tune()</mono> in the model specification.</span></li>
-  <li class="m4"><span>Set up grid of hyper parameters.</span></li>
-  <li class="m5"><span>Tune the model with <mono>tune_grid()</mono>.</span></li>
-  <li class="m6"><span>Select best hyper-parameter values.</span></li>
-  <li class="m7"><span>Finalize workflow with best hyper-parameter values.</span></li>
-  <li class="m8"><span>Fit and evaluate final workflow as usual.</span></li>
-</ul>
-
-]
-
-.pull-right5[
-
-```{r}
-baselers_folds <- vfold_cv(baselers,
-                           v = 10)
-  
-```
-
-]
-
-
----
-
-# Recap - Steps of model tuning
-
-
-.pull-left4[
-
-<ul>
- <li class="m1"><span>Split data.</span></li>
-  <li class="m2"><span>Set up resampling scheme.</span></li>
-  <li class="m3"><span><high>Set up workflow, using <mono>tune()</mono> in the model specification.</high></span></li>
-  <li class="m4"><span>Set up grid of hyper parameters.</span></li>
-  <li class="m5"><span>Tune the model with <mono>tune_grid()</mono>.</span></li>
-  <li class="m6"><span>Select best hyper-parameter values.</span></li>
-  <li class="m7"><span>Finalize workflow with best hyper-parameter values.</span></li>
-  <li class="m8"><span>Fit and evaluate final workflow as usual.</span></li>
-</ul>
-
-]
-
-.pull-right5[
-
-```{r}
-lasso_recipe <- 
-  recipe(income ~ .,
-         data = baselers) %>%
-  step_dummy(all_nominal_predictors()) %>% 
-  step_normalize(all_numeric_predictors())
-
-lasso_model <- 
-  linear_reg(mixture = 1,
-             penalty = tune()) %>% 
-  set_engine("glmnet") %>% 
-  set_mode("regression")
-
-lasso_workflow <- 
-  workflow() %>% 
-  add_recipe(lasso_recipe) %>% 
-  add_model(lasso_model)
-```
-
-]
-
-
----
-
-# Recap - Steps of model tuning
-
-
-.pull-left4[
-
-<ul>
- <li class="m1"><span>Split data.</span></li>
-  <li class="m2"><span>Set up resampling scheme.</span></li>
-  <li class="m3"><span>Set up workflow, using <mono>tune()</mono> in the model specification.</span></li>
-  <li class="m4"><span><high>Set up grid of hyper parameters.</high></span></li>
-  <li class="m5"><span>Tune the model with <mono>tune_grid()</mono>.</span></li>
-  <li class="m6"><span>Select best hyper-parameter values.</span></li>
-  <li class="m7"><span>Finalize workflow with best hyper-parameter values.</span></li>
-  <li class="m8"><span>Fit and evaluate final workflow as usual.</span></li>
-</ul>
-
-]
-
-.pull-right5[
-
-```{r}
-
-penalty_grid <-
-  tibble(penalty = seq(0, 10,
-                       length.out = 200))
-
-```
-
-]
-
-
----
-
-# Recap - Steps of model tuning
-
-
-.pull-left4[
-
-<ul>
- <li class="m1"><span>Split data.</span></li>
-  <li class="m2"><span>Set up resampling scheme.</span></li>
-  <li class="m3"><span>Set up workflow, using <mono>tune()</mono> in the model specification.</span></li>
-  <li class="m4"><span>Set up grid of hyper parameters.</span></li>
-  <li class="m5"><span><high>Tune the model with <mono>tune_grid()</mono>.</high></span></li>
-  <li class="m6"><span>Select best hyper-parameter values.</span></li>
-  <li class="m7"><span>Finalize workflow with best hyper-parameter values.</span></li>
-  <li class="m8"><span>Fit and evaluate final workflow as usual.</span></li>
-</ul>
-
-]
-
-.pull-right5[
-
-```{r}
-lasso_grid <-
-  lasso_workflow %>%
-  tune_grid(resamples = baselers_folds,
-            grid = penalty_grid)
-```
-
-]
-
-
----
-
-# Recap - Steps of model tuning
-
-
-.pull-left4[
-
-<ul>
- <li class="m1"><span>Split data.</span></li>
-  <li class="m2"><span>Set up resampling scheme.</span></li>
-  <li class="m3"><span>Set up workflow, using <mono>tune()</mono> in the model specification.</span></li>
-  <li class="m4"><span>Set up grid of hyper parameters.</span></li>
-  <li class="m5"><span>Tune the model with <mono>tune_grid()</mono>.</span></li>
-  <li class="m6"><span><high>Select best hyper-parameter values.</high></span></li>
-  <li class="m7"><span>Finalize workflow with best hyper-parameter values.</span></li>
-  <li class="m8"><span>Fit and evaluate final workflow as usual.</span></li>
-</ul>
-
-]
-
-.pull-right5[
-
-```{r}
-best_lasso <- select_best(lasso_grid)
-```
-
-]
-
-
----
-
-# Recap - Steps of model tuning
-
-
-.pull-left4[
-
-<ul>
- <li class="m1"><span>Split data.</span></li>
-  <li class="m2"><span>Set up resampling scheme.</span></li>
-  <li class="m3"><span>Set up workflow, using <mono>tune()</mono> in the model specification.</span></li>
-  <li class="m4"><span>Set up grid of hyper parameters.</span></li>
-  <li class="m5"><span>Tune the model with <mono>tune_grid()</mono>.</span></li>
-  <li class="m6"><span>Select best hyper-parameter values.</span></li>
-  <li class="m7"><span><high>Finalize workflow with best hyper-parameter values.</high></span></li>
-  <li class="m8"><span>Fit and evaluate final workflow as usual.</span></li>
-</ul>
-
-]
-
-.pull-right5[
-
-```{r}
-final_lasso <- 
-  finalize_workflow(lasso_workflow,
-                    best_lasso)
-```
-
-]
-
-
----
-
-# Recap - Steps of model tuning
-
-
-.pull-left4[
-
-<ul>
- <li class="m1"><span>Split data.</span></li>
-  <li class="m2"><span>Set up resampling scheme.</span></li>
-  <li class="m3"><span>Set up workflow, using <mono>tune()</mono> in the model specification.</span></li>
-  <li class="m4"><span>Set up grid of hyper parameters.</span></li>
-  <li class="m5"><span>Tune the model with <mono>tune_grid()</mono>.</span></li>
-  <li class="m6"><span>Select best hyper-parameter values.</span></li>
-  <li class="m7"><span>Finalize workflow with best hyper-parameter values.</span></li>
-  <li class="m8"><span><high>Fit and evaluate final workflow as usual.</high></span></li>
-</ul>
-
-]
-
-.pull-right5[
-
-```{r}
-
-lasso_res <- fit(final_lasso,
-                 baselers_train) 
-
-lasso_pred <- 
-  lasso_res %>%
+# retrain model
+final_glmnet_res <- fit(final_glmnet,
+                        baselers_train) 
+
+# evaluate prediction
+final_glmnet_pred <- 
+  final_glmnet_res %>%
   predict(baselers_test) %>% 
   bind_cols(baselers_test %>%select(income))
 
-metrics(lasso_pred, truth = income,
+# show metrics
+metrics(final_glmnet_pred, truth = income,
         estimate = .pred)
 ```
 

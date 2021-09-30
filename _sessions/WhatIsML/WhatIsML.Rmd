@@ -100,15 +100,27 @@ library(tidyverse)
 
 ]
 
+
+---
+
+# Origin of ML 
+
+<div align="center">
+<iframe width="800" height="450" src="https://www.youtube.com/embed/cNxadbrN_aI?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+
 ---
 
 .pull-left3[
 
 # Types of machine learning tasks
 
-There are many types of machine learning tasks, each of which call for different models.
 
-<high>We will focus on supervised machine learning</high>.
+<ul>
+  <li class="m1"><span>There are many types of machine learning tasks, each of which call for different models.</span></li>
+  <li class="m2"><span><high>We will focus on supervised machine learning</high>.</span></li>
+</ul>
 
 ]
 
@@ -130,7 +142,13 @@ There are many types of machine learning tasks, each of which call for different
 
 .pull-left5[
 
-Analyzes the relationships among cases (<high>clustering</high>) or among features (<high>dimensionality reduction</high>) to <high>discover structures</high> such as groups or meta-features. 
+<ul>
+  <li class="m1"><span>Analyzes the relationships to <high>discover structures</high> such as groups or meta-features.</span></li>
+  <ul class="level">
+    <li><span><high>Clustering</high> - similarity between cases.</span></li>
+    <li><span><high>Dimensionality reduction</high> - similarity between features.</span></li>
+  </ul>
+</ul>
 
 
 <table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px">
@@ -191,9 +209,10 @@ Analyzes the relationships among cases (<high>clustering</high>) or among featur
 
 .pull-left5[
 
-<high>Learns iteratively</high> from minimal supervision provided by <high>performance feedback</high>.   
-
-RL is closely <high>related to psychological theories of learning</high>. 
+<ul>
+  <li class="m1"><span><high>Learns iteratively</high> from minimal supervision provided by <high>performance feedback</high>.</span></li>
+  <li class="m2"><span>RL is closely related to <high>psychological theories of learning</high>.</span></li>
+</ul>
 
 <u>Examples</u>
 
@@ -254,9 +273,10 @@ RL is closely <high>related to psychological theories of learning</high>.
 
 .pull-left5[
 
-The <high>dominant type</high> of machine learning.  
-
-Supervised learning uses <high>labeled data</high> to learn <high>a model</high> that relates the criterion to the features.  
+<ul>
+  <li class="m1"><span><high>The <high>dominant type</high> of machine learning.</span></li>
+  <li class="m2"><span>Supervised learning uses <high>labeled data</high> to learn <high>a model</high> that relates the criterion to the features.</span></li>
+</ul>
 
 
 ]
@@ -303,47 +323,64 @@ E.g., predicting the origin of chest pain as a function of age and heart attack 
 
 ---
 
-# Machine learning in R
+# Three supervised models
 
-packages available
+```{r, echo = FALSE}
+knitr::include_graphics("image/models.png")
+```
 
-mlr, caret, rtensorflow
 
 ---
+
+.pull-left4[
+
+# ML in R
+
+<ul>
+  <li class="m1"><span>R has advanced tremendously with respect to ML.</span></li>
+  <li class="m2"><span>There exist <high>powerful and user-friendly</high> tools for all ML steps and algorithms.</span></li>
+</ul>
+
+
+]
+
+.pull-right5[
+
+<p align = "center">
+<br><br>
+<img src="image/ml.png" height=520px><br>
+</p>
+
+]
+
+
+---
+
+.pull-left4[
 
 # tidymodels
 
-follow tidyverse style
+<ul>
+  <li class="m1"><span><mono>tidymodels</mono> is a new meta-package for tidy ML in R.</span></li>
+  <li class="m2"><span>Multiple packages span every important step of ML.</span></li>
+</ul>
 
-own verse
+<br>
+<p align = "center">
+<img src="https://www.tidymodels.org/images/tidymodels.png" width=180px><br>
+<font style="font-size:10px">from <a href="https://www.tidymodels.org/packages/">tidymodels.org</a></font>
+</p>
 
-packages icons
+]
 
----
+.pull-right5[
 
-# tidymodels flow
+<p align = "center">
+<br>
+<img src="image/tidymodels.png" height=560px><br>
+</p>
 
-flowchart of steps
-  
-  data
-    splitting
-    folding
-  
-  recipe
-    formula
-    preprocessing
-    
-  model
-    (tune)
-    
-  workflow
-
-  train/tune
-  
-  evaluation
-
-(maybe reference packages on the side)
-
+]
 
 
 ---

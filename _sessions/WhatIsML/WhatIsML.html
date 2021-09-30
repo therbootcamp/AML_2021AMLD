@@ -84,15 +84,27 @@ layout: true
 
 ]
 
+
+---
+
+# Origin of ML 
+
+&lt;div align="center"&gt;
+&lt;iframe width="800" height="450" src="https://www.youtube.com/embed/cNxadbrN_aI?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+
 ---
 
 .pull-left3[
 
 # Types of machine learning tasks
 
-There are many types of machine learning tasks, each of which call for different models.
 
-&lt;high&gt;We will focus on supervised machine learning&lt;/high&gt;.
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;There are many types of machine learning tasks, each of which call for different models.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;high&gt;We will focus on supervised machine learning&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 ]
 
@@ -114,7 +126,13 @@ There are many types of machine learning tasks, each of which call for different
 
 .pull-left5[
 
-Analyzes the relationships among cases (&lt;high&gt;clustering&lt;/high&gt;) or among features (&lt;high&gt;dimensionality reduction&lt;/high&gt;) to &lt;high&gt;discover structures&lt;/high&gt; such as groups or meta-features. 
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Analyzes the relationships to &lt;high&gt;discover structures&lt;/high&gt; such as groups or meta-features.&lt;/span&gt;&lt;/li&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;Clustering&lt;/high&gt; - similarity between cases.&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;Dimensionality reduction&lt;/high&gt; - similarity between features.&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
 
 
 &lt;table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px"&gt;
@@ -175,9 +193,10 @@ Analyzes the relationships among cases (&lt;high&gt;clustering&lt;/high&gt;) or 
 
 .pull-left5[
 
-&lt;high&gt;Learns iteratively&lt;/high&gt; from minimal supervision provided by &lt;high&gt;performance feedback&lt;/high&gt;.   
-
-RL is closely &lt;high&gt;related to psychological theories of learning&lt;/high&gt;. 
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Learns iteratively&lt;/high&gt; from minimal supervision provided by &lt;high&gt;performance feedback&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;RL is closely related to &lt;high&gt;psychological theories of learning&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;u&gt;Examples&lt;/u&gt;
 
@@ -238,9 +257,10 @@ RL is closely &lt;high&gt;related to psychological theories of learning&lt;/high
 
 .pull-left5[
 
-The &lt;high&gt;dominant type&lt;/high&gt; of machine learning.  
-
-Supervised learning uses &lt;high&gt;labeled data&lt;/high&gt; to learn &lt;high&gt;a model&lt;/high&gt; that relates the criterion to the features.  
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;The &lt;high&gt;dominant type&lt;/high&gt; of machine learning.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Supervised learning uses &lt;high&gt;labeled data&lt;/high&gt; to learn &lt;high&gt;a model&lt;/high&gt; that relates the criterion to the features.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 
 ]
@@ -285,69 +305,71 @@ E.g., predicting the origin of chest pain as a function of age and heart attack 
 
 ]
 
+---
+
+# Three supervised models
+
+&lt;img src="image/models.png" width="3349" /&gt;
+
 
 ---
 
-# Machine learning in R
+.pull-left4[
 
-packages available
+# ML in R
 
-mlr, caret, rtensorflow
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;R has advanced tremendously with respect to ML.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;There exist &lt;high&gt;powerful and user-friendly&lt;/high&gt; tools for all ML steps and algorithms.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+]
+
+.pull-right5[
+
+&lt;p align = "center"&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;img src="image/ml.png" height=520px&gt;&lt;br&gt;
+&lt;/p&gt;
+
+]
+
 
 ---
+
+.pull-left4[
 
 # tidymodels
 
-follow tidyverse style
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;tidymodels&lt;/mono&gt; is a new meta-package for tidy ML in R.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Multiple packages span every important step of ML.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-own verse
-
-packages icons
-
----
-
-# tidymodels flow
-
-flowchart of steps
-  
-  data
-    splitting
-    folding
-  
-  recipe
-    formula
-    preprocessing
-    
-  model
-    (tune)
-    
-  workflow
-
-  train/tune
-  
-  evaluation
-
-(maybe reference packages on the side)
-
-
-
-
-
----
-
-# Machine learning is more than algorithms
-
+&lt;br&gt;
 &lt;p align = "center"&gt;
-&lt;img src="image/mlsteps.png" height=440px&gt;&lt;br&gt;
-&lt;font style="font-size:10px"&gt;from &lt;a href="https://www.houseofbots.com/images/news/11493/cover.png"&gt;houseofbots.com&lt;/a&gt;&lt;/font&gt;
+&lt;img src="https://www.tidymodels.org/images/tidymodels.png" width=180px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://www.tidymodels.org/packages/"&gt;tidymodels.org&lt;/a&gt;&lt;/font&gt;
 &lt;/p&gt;
 
+]
+
+.pull-right5[
+
+&lt;p align = "center"&gt;
+&lt;br&gt;
+&lt;img src="image/tidymodels.png" height=560px&gt;&lt;br&gt;
+&lt;/p&gt;
+
+]
 
 
 ---
+
 class: middle, center
 
-&lt;h1&gt;&lt;a href=https://therbootcamp.github.io/ML_2019Oct/index.html&gt;Schedule&lt;/a&gt;&lt;/h1&gt;
+&lt;h1&gt;&lt;a href=https://therbootcamp.github.io/AML_2021AMLD/index.html&gt;Schedule&lt;/a&gt;&lt;/h1&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

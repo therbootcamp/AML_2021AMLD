@@ -124,7 +124,7 @@ airbnb_test <- testing(airbnb_split)
 
 ```{r, eval = FALSE, echo = TRUE}
 # Use 10-fold cross validation
-airbnb_folds <- XXX(XXX, XXX = XXX) 
+airbnb_folds <- XX(XX, XX = XX) 
 ```
 
 ```{r}
@@ -197,9 +197,9 @@ ridge_recipe <-
 
 ```{r, eval = FALSE, echo = TRUE}
 # set up the ridge regression model
-XXX <- 
-  XXX(XXX = XXX, XXX = XXX) %>% 
-  set_engine(XXX) %>% 
+XX <- 
+  XX(XX = XX, XX = XX) %>% 
+  set_engine(XX) %>% 
   set_mode("regression")
 ```
 
@@ -224,7 +224,7 @@ ridge_workflow <-
 5. Set up a grid of tuning parameters. Here we only have one parameter `penalty`. Use `grid_regular()` to do so, and pass it `penalty()` as first argument and `levels = 50`as second argument. Call it `penalty_grid`.
 
 ```{r, eval = FALSE, echo = TRUE}
-XXX <- XXX(XXX, XXX = XXX)
+XX <- XX(XX, XX = XX)
 ```
 
 ```{r}
@@ -293,7 +293,7 @@ ridge_grid %>%
 
 
 ```{r, eval = FALSE, echo = TRUE}
-XXX <- XXX(XXX, "rmse")
+XX <- XX(XX, "rmse")
 ```
 
 ```{r}
@@ -324,8 +324,8 @@ tidy(ridge_res)
 14. The `last_fit()` function, which you can use with the `final_ridge` workflow instead of the `fit()` function, let's you directly evaluate the model performance. Pass the `final_ridge` and `airbnb_split` (! instead of the `airbnb_train`) objects into `last_fit()` and directly pipe the output into `collect_metrics()`.
 
 ```{r, eval = FALSE, echo = TRUE}
-XXX(XXX, XXX) %>% 
-  XXX()
+XX(XX, XX) %>% 
+  XX()
 ```
 
 ```{r}
@@ -342,9 +342,9 @@ Now it's time to fit a lasso regression. We can use the `ridge_recipe` from befo
 
 ```{r, eval = FALSE, echo = TRUE}
 # set up the lasso regression model
-XXX <- 
-  XXX(XXX = XXX, XXX = XXX) %>% 
-  set_engine(XXX) %>% 
+XX <- 
+  XX(XX = XX, XX = XX) %>% 
+  set_engine(XX) %>% 
   set_mode("regression")
 ```
 
@@ -411,7 +411,7 @@ lasso_grid %>%
 
 
 ```{r, eval = FALSE, echo = TRUE}
-XXX <- XXX(XXX, "rmse")
+XX <- XX(XX, "rmse")
 ```
 
 ```{r}
@@ -514,7 +514,7 @@ dt_grid %>%
 
 
 ```{r, eval = FALSE, echo = TRUE}
-XXX <- XXX(XXX, "rmse")
+XX <- XX(XX, "rmse")
 ```
 
 ```{r}
@@ -617,7 +617,7 @@ rf_res <- fit(final_rf, airbnb_train)
 1. Using the following code as template, evaluate and compare the model performances of the different models.
 
 ```{r, eval = FALSE, echo = TRUE}
-XXX_res %>% 
+XX_res %>% 
   predict(new_data = airbnb_train) %>% 
   bind_cols(airbnb_train %>% select(price)) %>% 
   metrics(truth = price, estimate = .pred)

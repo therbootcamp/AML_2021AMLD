@@ -78,16 +78,58 @@ layout: true
 
 ---
 
-# Which of these models is better? Why?
+# Loss function
+
+.pull-left45[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Possible &lt;high&gt;the most important concept&lt;/high&gt; in statistics and machine learning.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;The loss function defines some &lt;high&gt;summary of the errors committed by the model&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p style="padding-top:7px"&gt;
+
+`$$\Large Loss = f(Error)$$`
+
+&lt;p style="padding-top:7px"&gt;
+
+&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
+&lt;tr&gt;
+  &lt;td&gt;
+    &lt;b&gt;Purpose&lt;/b&gt;
+  &lt;/td&gt;
+  &lt;td&gt;
+    &lt;b&gt;Description&lt;/b&gt;
+  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td bgcolor="white"&gt;
+    Fitting
+  &lt;/td&gt;
+  &lt;td bgcolor="white"&gt;
+    Find parameters that minimize loss function.
+  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;
+    Evaluation
+  &lt;/td&gt;
+  &lt;td&gt;
+    Calculate loss function for fitted model.
+  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+
+.pull-right45[
 
 &lt;img src="Fitting_files/figure-html/unnamed-chunk-2-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 
----
-
-# Which of these models is better? Why?
-
-&lt;img src="Fitting_files/figure-html/unnamed-chunk-3-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
 
 
 ---
@@ -140,11 +182,10 @@ layout: true
 
 .pull-right45[
 
-&lt;img src="Fitting_files/figure-html/unnamed-chunk-4-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Fitting_files/figure-html/unnamed-chunk-3-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 
 ]
-
 ---
 
 class: center, middle
@@ -184,7 +225,7 @@ If `\(\beta_{i} = 0\)`, then `\(X_{i}\)` &lt;high&gt;does not help&lt;/high&gt; 
 
 .pull-right45[
 
-&lt;img src="Fitting_files/figure-html/unnamed-chunk-5-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Fitting_files/figure-html/unnamed-chunk-4-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 
 ]
@@ -227,105 +268,8 @@ $$ MAE = \frac{1}{n}\sum_{i \in 1,...,n} \lvert Y_{i} - \hat{Y}_{i} \rvert$$
 
 .pull-right45[
 
-&lt;img src="Fitting_files/figure-html/unnamed-chunk-6-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Fitting_files/figure-html/unnamed-chunk-5-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
-
-]
-
-
----
-
-.pull-left45[
-
-# Fitting
-
-&lt;p style="margin-top:20px"&gt;
-
-&lt;ul style="margin-bottom:-20px"&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Analytically&lt;/b&gt;
-  &lt;br&gt;&lt;br&gt;
-  &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;In rare cases, the parameters can be &lt;high&gt;directly calculated&lt;/high&gt;, e.g., using the &lt;i&gt;normal equation&lt;/i&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-`$$\boldsymbol \beta = (\boldsymbol X^T\boldsymbol X)^{-1}\boldsymbol X^T\boldsymbol y$$`
-
-&lt;ul&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Numerically&lt;/b&gt;
-  &lt;br&gt;&lt;br&gt;
-  &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;In most cases, parameters need to be found using a &lt;high&gt;directed trial and error&lt;/high&gt;, e.g., &lt;i&gt;gradient descent&lt;/i&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-`$$\boldsymbol \beta_{n+1} = \boldsymbol \beta_{n}+\gamma \nabla F(\boldsymbol \beta_{n})$$`
-
-&lt;/p&gt;
-
-]
-
-.pull-right45[
-
-&lt;br&gt;&lt;br&gt;
-
-&lt;p align = "center"&gt;
-&lt;img src="image/gradient.png" height=420px&gt;&lt;br&gt;
-&lt;font style="font-size:10px"&gt;adapted from &lt;a href="https://me.me/i/machine-learning-gradient-descent-machine-learning-machine-learning-behind-the-ea8fe9fc64054eda89232d7ffc9ba60e"&gt;me.me&lt;/a&gt;&lt;/font&gt;
-&lt;/p&gt;
-
-]
-
-
----
-
-.pull-left45[
-
-# Fitting
-
-
-&lt;p style="margin-top:10px"&gt;
-
-&lt;ul style="margin-bottom:-20px"&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;b&gt;Analytically&lt;/b&gt;
-  &lt;br&gt;&lt;br&gt;
-  &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;In rare cases, the parameters can be &lt;high&gt;directly calculated&lt;/high&gt;, e.g., using the &lt;i&gt;normal equation&lt;/i&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-`$$\boldsymbol \beta = (\boldsymbol X^T\boldsymbol X)^{-1}\boldsymbol X^T\boldsymbol y$$`
-
-&lt;ul&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Numerically&lt;/b&gt;
-  &lt;br&gt;&lt;br&gt;
-  &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;In most cases, parameters need to be found using a &lt;high&gt;directed trial and error&lt;/high&gt;, e.g., &lt;i&gt;gradient descent&lt;/i&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-`$$\boldsymbol \beta_{n+1} = \boldsymbol \beta_{n}+\gamma \nabla F(\boldsymbol \beta_{n})$$`
-
-&lt;/p&gt;
-
-]
-
-.pull-right45[
-
-&lt;br&gt;&lt;br2&gt;
-
-&lt;p align = "center"&gt;
-&lt;img src="image/gradient1.gif" height=250px&gt;&lt;br&gt;
-&lt;font style="font-size:10px"&gt;adapted from &lt;a href="https://dunglai.github.io/2017/12/21/gradient-descent/
-"&gt;dunglai.github.io&lt;/a&gt;&lt;/font&gt;&lt;br&gt;
-&lt;img src="image/gradient2.gif" height=250px&gt;&lt;br&gt;
-&lt;font style="font-size:10px"&gt;adapted from &lt;a href="https://dunglai.github.io/2017/12/21/gradient-descent/
-"&gt;dunglai.github.io&lt;/a&gt;&lt;/font&gt;
-&lt;/p&gt;
 
 ]
 
@@ -391,7 +335,7 @@ $$ Logistic(x) = \frac{1}{1+exp(-x)}$$
 
 .pull-right45[
 
-&lt;img src="Fitting_files/figure-html/unnamed-chunk-7-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Fitting_files/figure-html/unnamed-chunk-6-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -423,7 +367,7 @@ $$ Logistic(x) = \frac{1}{1+exp(-x)}$$
 
 .pull-right45[
 
-&lt;img src="Fitting_files/figure-html/unnamed-chunk-8-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Fitting_files/figure-html/unnamed-chunk-7-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -443,8 +387,6 @@ $$ Logistic(x) = \frac{1}{1+exp(-x)}$$
 &lt;/ul&gt;
 
 `$$\small LogLoss = -\frac{1}{n}\sum_{i}^{n}(log(\hat{y})y+log(1-\hat{y})(1-y))$$`
-`$$\small MSE = \frac{1}{n}\sum_{i}^{n}(y-\hat{y})^2, \: MAE = \frac{1}{n}\sum_{i}^{n} \lvert y-\hat{y} \rvert$$`
-
 
 &lt;ul&gt; 
   &lt;li class="m2"&gt;&lt;span&gt;&lt;b&gt;Overlap&lt;/b&gt;
@@ -455,229 +397,72 @@ $$ Logistic(x) = \frac{1}{1+exp(-x)}$$
   &lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-`$$\small Loss_{01}=\frac{1}{n}\sum_i^n I(y \neq \lfloor \hat{y} \rceil)$$`
+`$$\small  Loss_{01} = 1-Accuracy = \frac{1}{n}\sum_i^n I(y \neq \lfloor \hat{y} \rceil)$$`
 
 ]
 
 .pull-right45[
 
-&lt;img src="Fitting_files/figure-html/unnamed-chunk-9-1.png" width="90%" style="display: block; margin: auto;" /&gt;
-
-]
-
----
-
-# Confusion matrix
-
-.pull-left45[
-
-
-&lt;ul style="margin-bottom:-20px"&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;The confusion matrix &lt;high&gt;tabulates prediction matches and mismatches&lt;/high&gt; as a function of the true class.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;The confusion matrix permits specification of a number of &lt;high&gt;helpful performance metrics&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;br&gt;
-
-&lt;b&gt; Confusion matrix &lt;/b&gt;
-
-&lt;font style="font-size:22px"&gt;
-&lt;br&gt;
-
-&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
-&lt;col width=20%&gt;
-&lt;col width=40%&gt;
-&lt;col width=40%&gt;
-&lt;tr&gt;
-  &lt;td&gt;
-  &lt;/td&gt;
-  &lt;td&gt;
-    &lt;eq&gt;&lt;b&gt;y = 1&lt;/b&gt;&lt;/eq&gt;
-  &lt;/td&gt;
-  &lt;td&gt;
-    &lt;eq&gt;&lt;b&gt;y = 0&lt;/b&gt;&lt;/eq&gt;
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;eq&gt;&lt;b&gt;y&amp;#770; = 1&lt;/b&gt;&lt;/eq&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;font color="#6ABA9A"&gt; True positive (TP)&lt;/font&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;font color="#EA4B68"&gt; False positive (FP)&lt;/font&gt;
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;
-    &lt;eq&gt;&lt;b&gt;y&amp;#770; = 0&lt;/b&gt;&lt;/eq&gt;
-  &lt;/td&gt;
-  &lt;td&gt;
-    &lt;font color="#EA4B68"&gt; False negative (FN)&lt;/font&gt;
-  &lt;/td&gt;
-  &lt;td&gt;
-    &lt;font color="#6ABA9A"&gt; True negative (TN)&lt;/font&gt;
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-
-&lt;/font&gt;
-]
-
-.pull-right45[
-
-
-&lt;b&gt;Accuracy&lt;/b&gt;: Of all cases&lt;/i&gt;, what percent of predictions are correct?
-
-`$$\small Acc. = \frac{TP + TN}{ TP + TN + FN + FP} = 1-Loss_{01}$$`
-
-&lt;p style="padding-top:10px"&gt;&lt;/p&gt;
-
-&lt;b&gt;Sensitivity&lt;/b&gt;: Of the truly Positive cases&lt;/i&gt;, what percent of predictions are correct?
-
-`$$\small Sensitivity = \frac{TP}{ TP +FN }$$`
-
-&lt;b&gt;Specificity&lt;/b&gt;: Of the truly Negative cases&lt;/i&gt;, what percent of predictions are correct?
-
-&lt;p style="padding-top:10px"&gt;&lt;/p&gt;
-
-`$$\small Specificity = \frac{TN}{ TN + FP }$$`
+&lt;img src="Fitting_files/figure-html/unnamed-chunk-8-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ]
 
 
 ---
 
-# Confusion matrix
-
-.pull-left45[
-
-&lt;ul style="margin-bottom:-20px"&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;The confusion matrix &lt;high&gt;tabulates prediction matches and mismatches&lt;/high&gt; as a function of the true class.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;The confusion matrix permits specification of a number of &lt;high&gt;helpful performance metrics&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;br&gt;
-
-&lt;b&gt; Confusion matrix &lt;/b&gt;
-
-&lt;font style="font-size:22px"&gt;
-&lt;br&gt;
-
-&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
-&lt;col width=20%&gt;
-&lt;col width=40%&gt;
-&lt;col width=40%&gt;
-&lt;tr&gt;
-  &lt;td&gt;
-  &lt;/td&gt;
-  &lt;td&gt;
-    &lt;eq&gt;&lt;b&gt;Default&lt;/b&gt;&lt;/eq&gt;
-  &lt;/td&gt;
-  &lt;td&gt;
-    &lt;eq&gt;&lt;b&gt;Repay&lt;/b&gt;&lt;/eq&gt;
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;eq&gt;&lt;b&gt;"Default"&lt;/b&gt;&lt;/eq&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;font color="#6ABA9A"&gt; TP = 3&lt;/font&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;font color="#EA4B68"&gt; FP = 1&lt;/font&gt;
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;
-    &lt;eq&gt;&lt;b&gt;"Repay"&lt;/b&gt;&lt;/eq&gt;
-  &lt;/td&gt;
-  &lt;td&gt;
-    &lt;font color="#EA4B68"&gt; FN = 1&lt;/font&gt;
-  &lt;/td&gt;
-  &lt;td&gt;
-    &lt;font color="#6ABA9A"&gt; TN = 2&lt;/font&gt;
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-
-&lt;/font&gt;
-
-]
-
-.pull-right45[
-
-
-&lt;b&gt;Accuracy&lt;/b&gt;: Of all cases&lt;/i&gt;, what percent of predictions are correct?
-
-`$$\small Acc. = \frac{TP + TN}{ TP + TN + FN + FP} = 1-Loss_{01}$$`
-
-&lt;p style="padding-top:10px"&gt;&lt;/p&gt;
-
-&lt;b&gt;Sensitivity&lt;/b&gt;: Of the truly Positive cases&lt;/i&gt;, what percent of predictions are correct?
-
-`$$\small Sensitivity = \frac{TP}{ TP +FN }$$`
-
-&lt;b&gt;Specificity&lt;/b&gt;: Of the truly Negative cases&lt;/i&gt;, what percent of predictions are correct?
-
-&lt;p style="padding-top:10px"&gt;&lt;/p&gt;
-
-`$$\small Specificity = \frac{TN}{ TN + FP }$$`
-
-]
-
-
----
 class: center,  middle
 
-&lt;br&gt;&lt;br&gt;
-
-# Fitting regression models with `tidymodels`
-
-&lt;img src="image/tidymodels.svg" width="30%" style="display: block; margin: auto;" /&gt;
+&lt;p align = "center"&gt;
+&lt;img src="https://www.tidymodels.org/images/tidymodels.png" width=240px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://www.tidymodels.org/packages/"&gt;tidymodels.org&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
 
 ---
 
-# 5 Steps to fit a model in `tidymodels`
+.pull-left4[
 
-.pull-left45[
+# Fitting &lt;mono&gt;tidymodels&lt;/mono&gt;
 
+&lt;br&gt;
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Define the &lt;mono&gt;recipe&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Define the model.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m3"&gt;&lt;span&gt;Define the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m4"&gt;&lt;span&gt;Fit the &lt;mono&gt;workflow&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Define the &lt;mono&gt;recipe&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Define the model.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Define the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m4"&gt;&lt;span&gt;Fit the &lt;mono&gt;workflow&lt;/mono&gt;&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
   &lt;li class="m5"&gt;&lt;span&gt;Assess model performance.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 ]
 
-.pull-right45[
-&lt;img src="image/tidymodels_packages.png" width="90%" style="display: block; margin: auto;" /&gt;
+.pull-right5[
+
+&lt;p align = "center"&gt;
+&lt;br&gt;
+&lt;img src="image/tidymodels_fit.png" height=560px&gt;&lt;br&gt;
+&lt;/p&gt;
 
 ]
 
+
 ---
 
-# Step 1: Define the &lt;mono&gt;recipe&lt;/mono&gt;
+# Define the &lt;mono&gt;recipe&lt;/mono&gt;
 
 .pull-left45[
 
-The &lt;mono&gt;recipe&lt;/mono&gt; specifies two things: 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;The criterion and the features, i.e., the &lt;mono&gt;formula&lt;/mono&gt; to use.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;How the features should be pre-processed before the model fitting.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;The &lt;mono&gt;recipe&lt;/mono&gt; specifies two things:&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;The criterion and the features, i.e., the &lt;mono&gt;formula&lt;/mono&gt; to use.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;How the features should be pre-processed before the model fitting.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;/ul&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;To set up a &lt;mono&gt;recipe&lt;/mono&gt;:&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+  &lt;li&gt;&lt;span&gt;Initialize it with &lt;mono&gt;recipe()&lt;/mono&gt;, wherein the formula and data are specified.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li&gt;&lt;span&gt;Add pre-processing steps, using &lt;mono&gt;step_*()&lt;/mono&gt; functions and &lt;mono&gt;dplyr&lt;/mono&gt;-like selectors.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;/ul&gt;
 &lt;/ul&gt;
 
-&lt;br&gt;
-
-To set up a &lt;mono&gt;recipe&lt;/mono&gt;:
-&lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Initialize it with &lt;mono&gt;recipe()&lt;/mono&gt;, wherein the formula and data are specified.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Add pre-processing steps, using &lt;mono&gt;step_*()&lt;/mono&gt; functions and &lt;mono&gt;dplyr&lt;/mono&gt;-like selectors.&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
 ]
 
 .pull-right45[
@@ -710,25 +495,76 @@ Dummy variables from all_nominal_predictors()
 
 ---
 
-# Step 2: Define the model
+# Define the &lt;mono&gt;recipe&lt;/mono&gt;
 
 .pull-left45[
 
-The model specifies: 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Which model (e.g. linear regression) to use.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Which engine (underlying model-fitting algorithm) to use.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m3"&gt;&lt;span&gt;The problem mode, i.e., &lt;high&gt;regression vs. classification&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;The &lt;mono&gt;recipe&lt;/mono&gt; specifies two things:&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;The criterion and the features, i.e., the &lt;mono&gt;formula&lt;/mono&gt; to use.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;How the features should be pre-processed before the model fitting.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;/ul&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;To set up a &lt;mono&gt;recipe&lt;/mono&gt;:&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+  &lt;li&gt;&lt;span&gt;Initialize it with &lt;mono&gt;recipe()&lt;/mono&gt;, wherein the formula and data are specified.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li&gt;&lt;span&gt;Add pre-processing steps, using &lt;mono&gt;step_*()&lt;/mono&gt; functions and &lt;mono&gt;dplyr&lt;/mono&gt;-like selectors.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;/ul&gt;
 &lt;/ul&gt;
 
-&lt;br&gt;
+]
 
-To set up a model:
+.pull-right45[
+
+
+```r
+# set up recipe for logistic regression model
+logistic_recipe &lt;- 
+  recipe(eyecor ~., data = baselers) %&gt;% 
+  step_dummy(all_nominal_predictors())
+
+logistic_recipe
+```
+
+```
+Data Recipe
+
+Inputs:
+
+      role #variables
+   outcome          1
+ predictor         19
+
+Operations:
+
+Dummy variables from all_nominal_predictors()
+```
+
+]
+
+
+---
+
+# Define the model
+
+.pull-left45[
+
+
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Specify the model, e.g., using &lt;mono&gt;linear_reg()&lt;/mono&gt; or &lt;mono&gt;logistic_reg()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Specify the engine using &lt;mono&gt;set_engine()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m3"&gt;&lt;span&gt;Specify the problem mode using &lt;mono&gt;set_mode()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;The model specifies:&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Which model (e.g. linear regression) to use.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;Which engine (underlying model-fitting algorithm) to use.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;The problem mode, i.e., &lt;high&gt;regression vs. classification&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;/ul&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;To set up a model:&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+  &lt;li&gt;&lt;span&gt;Specify the model, e.g., using &lt;mono&gt;linear_reg()&lt;/mono&gt; or &lt;mono&gt;logistic_reg()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li&gt;&lt;span&gt;Specify the engine using &lt;mono&gt;set_engine()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li&gt;&lt;span&gt;Specify the problem mode using &lt;mono&gt;set_mode()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;/ul&gt;
 &lt;/ul&gt;
+
 ]
 
 .pull-right45[
@@ -754,17 +590,66 @@ Computational engine: lm
 
 ---
 
-# Step 3: Define the &lt;mono&gt;workflow&lt;/mono&gt;
+# Define the model
 
 .pull-left45[
 
-A &lt;mono&gt;workflow&lt;/mono&gt; combines the recipe and model and facilitates fitting the model. 
-To set up a &lt;mono&gt;workflow&lt;/mono&gt;:
+
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Initialize it using the &lt;mono&gt;workflow()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Add a recipe using &lt;mono&gt;add_recipe()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m3"&gt;&lt;span&gt;Add a model using &lt;mono&gt;add_model()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;The model specifies:&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Which model (e.g. linear regression) to use.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;Which engine (underlying model-fitting algorithm) to use.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;The problem mode, i.e., &lt;high&gt;regression vs. classification&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;/ul&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;To set up a model:&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+  &lt;li&gt;&lt;span&gt;Specify the model, e.g., using &lt;mono&gt;linear_reg()&lt;/mono&gt; or &lt;mono&gt;logistic_reg()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li&gt;&lt;span&gt;Specify the engine using &lt;mono&gt;set_engine()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li&gt;&lt;span&gt;Specify the problem mode using &lt;mono&gt;set_mode()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;/ul&gt;
 &lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+
+```r
+# set up model for logistic regression model
+logistic_model &lt;- 
+  logistic_reg() %&gt;% 
+  set_engine("glm") %&gt;% 
+  set_mode("classification")
+
+logistic_model
+```
+
+```
+Logistic Regression Model Specification (classification)
+
+Computational engine: glm 
+```
+
+]
+
+---
+
+# Define the &lt;mono&gt;workflow&lt;/mono&gt;
+
+.pull-left45[
+
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;A &lt;mono&gt;workflow&lt;/mono&gt; combines the recipe and model and facilitates fitting the model. 
+To set up a &lt;mono&gt;workflow&lt;/mono&gt;:&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Initialize it using the &lt;mono&gt;workflow()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;Add a recipe using &lt;mono&gt;add_recipe()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;Add a model using &lt;mono&gt;add_model()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
 ]
 
 .pull-right45[
@@ -800,15 +685,69 @@ Computational engine: lm
 
 ---
 
-# Step 4: Fit the &lt;mono&gt;workflow&lt;/mono&gt;
+# Define the &lt;mono&gt;workflow&lt;/mono&gt;
+
+.pull-left45[
+
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;A &lt;mono&gt;workflow&lt;/mono&gt; combines the recipe and model and facilitates fitting the model. 
+To set up a &lt;mono&gt;workflow&lt;/mono&gt;:&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Initialize it using the &lt;mono&gt;workflow()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;Add a recipe using &lt;mono&gt;add_recipe()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;Add a model using &lt;mono&gt;add_model()&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right45[
+
+
+```r
+# set up workflow for logistic regression model
+logistic_workflow &lt;- 
+  workflow() %&gt;% 
+  add_recipe(logistic_recipe) %&gt;% 
+  add_model(logistic_model)
+
+logistic_workflow
+```
+
+```
+══ Workflow ══════════════════════════════════════════════════════════════════════════════════════════════════
+Preprocessor: Recipe
+Model: logistic_reg()
+
+── Preprocessor ──────────────────────────────────────────────────────────────────────────────────────────────
+1 Recipe Step
+
+• step_dummy()
+
+── Model ─────────────────────────────────────────────────────────────────────────────────────────────────────
+Logistic Regression Model Specification (classification)
+
+Computational engine: glm 
+```
+
+]
+
+
+---
+
+# Fit the &lt;mono&gt;workflow&lt;/mono&gt;
 
 .pull-left35[
 
-A &lt;mono&gt;workflow&lt;/mono&gt; is fitted using the &lt;mono&gt;fit()&lt;/mono&gt; function. This will:
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Apply the recipe with the pre-processing steps.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Run the specified algorithm (i.e., model).&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;A &lt;mono&gt;workflow&lt;/mono&gt; is fitted using the &lt;mono&gt;fit()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Applies the recipe with the pre-processing steps..&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;Run the specified algorithm (i.e., model).&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;/ul&gt;
 &lt;/ul&gt;
+
 ]
 
 .pull-right55[
@@ -843,12 +782,58 @@ tidy(income_lm)
 
 ---
 
-# Step 5: Assess model fit
+# Fit the &lt;mono&gt;workflow&lt;/mono&gt;
+
+.pull-left35[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;A &lt;mono&gt;workflow&lt;/mono&gt; is fitted using the &lt;mono&gt;fit()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;Applies the recipe with the pre-processing steps..&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;Run the specified algorithm (i.e., model).&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right55[
+
+
+```r
+# fit the logistic regression workflow
+eyecor_glm &lt;- fit(logistic_workflow,
+                  data = baselers)
+
+tidy(eyecor_glm)
+```
+
+```
+# A tibble: 25 × 5
+   term          estimate std.error statistic p.value
+   &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+ 1 (Intercept) -3.04      1.32         -2.31   0.0211
+ 2 id           0.0000834 0.000236      0.354  0.723 
+ 3 age          0.00734   0.00973       0.755  0.451 
+ 4 height       0.00572   0.00630       0.907  0.364 
+ 5 weight       0.00446   0.00678       0.658  0.510 
+ 6 income      -0.0000395 0.0000666    -0.593  0.553 
+ 7 children     0.0329    0.0665        0.495  0.621 
+ 8 happiness    0.0386    0.0653        0.591  0.554 
+ 9 fitness     -0.0419    0.0372       -1.13   0.261 
+10 food        -0.0000755 0.000339     -0.222  0.824 
+# … with 15 more rows
+```
+
+]
+
+---
+
+# Assess model fit
 
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Use &lt;mono&gt;predict()&lt;/mono&gt; to obtain model predictions on specified data.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Use &lt;mono&gt;predict()&lt;/mono&gt; to obtain model predictions on specified data.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
   &lt;li class="m2"&gt;&lt;span&gt;Use &lt;mono&gt;metrics()&lt;/mono&gt; to obtain performance metrics, suited for the current problem mode.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 ]
@@ -880,16 +865,13 @@ metrics(lm_pred, truth = income,
 
 ---
 
-# Logistic regression model example
+# Assess model fit
 
 .pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Define the &lt;mono&gt;recipe&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Define the model.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m3"&gt;&lt;span&gt;Define the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m4"&gt;&lt;span&gt;Fit the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m5"&gt;&lt;span&gt;Assess model performance.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Use &lt;mono&gt;predict()&lt;/mono&gt; to obtain model predictions on specified data.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Use &lt;mono&gt;metrics()&lt;/mono&gt; to obtain performance metrics, suited for the current problem mode.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 ]
 
@@ -897,151 +879,7 @@ metrics(lm_pred, truth = income,
 
 
 ```r
-# generate predictions
-lm_pred &lt;-
-  income_lm %&gt;% 
-  predict(baselers) %&gt;% 
-  bind_cols(baselers %&gt;% select(income))
-
-metrics(lm_pred, truth = income,
-        estimate = .pred)
-```
-
-```
-# A tibble: 3 × 3
-  .metric .estimator .estimate
-  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 rmse    standard    1008.   
-2 rsq     standard       0.868
-3 mae     standard     792.   
-```
-
-]
-
----
-
-# Logistic regression model example
-
-.pull-left45[
-
-&lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;Define the &lt;mono&gt;recipe&lt;/mono&gt;.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Define the model.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m3"&gt;&lt;span&gt;Define the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m4"&gt;&lt;span&gt;Fit the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m5"&gt;&lt;span&gt;Assess model performance.&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-]
-
-.pull-right45[
-
-
-```r
-logistic_recipe &lt;- 
-  recipe(eyecor ~., data = baselers) %&gt;% 
-  step_dummy(all_nominal_predictors())
-```
-
-]
-
----
-
-# Logistic regression model example
-
-.pull-left45[
-
-&lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Define the &lt;mono&gt;recipe&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;&lt;high&gt;Define the model.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m3"&gt;&lt;span&gt;Define the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m4"&gt;&lt;span&gt;Fit the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m5"&gt;&lt;span&gt;Assess model performance.&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-]
-
-.pull-right45[
-
-
-```r
-logistic_model &lt;- 
-  logistic_reg() %&gt;% 
-  set_engine("glm") %&gt;% 
-  set_mode("classification")
-```
-
-]
-
----
-
-# Logistic regression model example
-
-.pull-left45[
-
-&lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Define the &lt;mono&gt;recipe&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Define the model.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m3"&gt;&lt;span&gt;&lt;high&gt;Define the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m4"&gt;&lt;span&gt;Fit the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m5"&gt;&lt;span&gt;Assess model performance.&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-]
-
-.pull-right45[
-
-
-```r
-logistic_workflow &lt;- 
-  workflow() %&gt;% 
-  add_recipe(logistic_recipe) %&gt;% 
-  add_model(logistic_model)
-```
-
-]
-
----
-
-# Logistic regression model example
-
-.pull-left45[
-
-&lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Define the &lt;mono&gt;recipe&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Define the model.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m3"&gt;&lt;span&gt;Define the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m4"&gt;&lt;span&gt;&lt;high&gt;Fit the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m5"&gt;&lt;span&gt;Assess model performance.&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-]
-
-.pull-right45[
-
-
-```r
-eyecor_glm &lt;- fit(logistic_workflow,
-                  data = baselers)
-```
-
-]
-
----
-
-# Logistic regression model example
-
-.pull-left4[
-
-&lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Define the &lt;mono&gt;recipe&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Define the model.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m3"&gt;&lt;span&gt;Define the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m4"&gt;&lt;span&gt;Fit the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m5"&gt;&lt;span&gt;&lt;high&gt;Assess model performance.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-]
-
-.pull-right5[
-
-
-```r
+# generate predictions logistic regression
 logistic_pred &lt;- 
   predict(eyecor_glm, baselers,
           type = "prob") %&gt;% 
@@ -1066,31 +904,31 @@ metrics(logistic_pred, truth = eyecor,
 
 ---
 
-# Logistic regression model example
+# Assess model fit
 
-.pull-left4[
+.pull-left45[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Define the &lt;mono&gt;recipe&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Define the model.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m3"&gt;&lt;span&gt;Define the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m4"&gt;&lt;span&gt;Fit the &lt;mono&gt;workflow&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m5"&gt;&lt;span&gt;&lt;high&gt;Assess model performance.&lt;/high&gt;&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Use &lt;mono&gt;predict()&lt;/mono&gt; to obtain model predictions on specified data.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Use &lt;mono&gt;metrics()&lt;/mono&gt; to obtain performance metrics, suited for the current problem mode.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 ]
 
-.pull-right5[
+.pull-right45[
 
 
 ```r
+# ROC curve for logistic model
 logistic_pred %&gt;% 
   roc_curve(truth = eyecor, .pred_yes) %&gt;% 
   autoplot()
 ```
 
-&lt;img src="Fitting_files/figure-html/unnamed-chunk-23-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Fitting_files/figure-html/unnamed-chunk-19-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ]
+
+
 
 ---
 

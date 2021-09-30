@@ -421,41 +421,6 @@ $$\large SSE = \sum_{i \in S_1}(y_i - \bar{y}_1)^2+\sum_{i \in S_2}(y_i - \bar{y
 
 ---
 
-# CART in <mono>tidymodels</mono>
-
-.pull-left4[
-
-<ul>
-  <li class="m1"><span>Fit <high>decision trees</high> in <mono>tidymodels</mono> using <mono>decision_tree()</mono> in the model definition.</span></li>
-  <li class="m2"><span>Set the engine to <mono>rpart</mono>.</span></li>
-</ul>
-
-]
-
-.pull-right45[
-
-```{r, eval = FALSE}
-
-# specify a CART in regression mode
-dt_model <- 
-  decision_tree() %>% 
-  set_engine("rpart") %>% 
-  set_mode("regression")
-
-# specify a CART in classification mode
-dt_model <- 
-  decision_tree() %>% 
-  set_engine("rpart") %>% 
-  set_mode("classification")
-
-```
-
-
-]
-
-
-
----
 class: center, middle
 
 <font color = "gray"><h1>Regression</h1></font>
@@ -555,87 +520,42 @@ class: center, middle
 ]
 
 
+---
+
+class: center,  middle
+
+<p align = "center">
+<img src="https://www.tidymodels.org/images/tidymodels.png" width=240px><br>
+<font style="font-size:10px">from <a href="https://www.tidymodels.org/packages/">tidymodels.org</a></font>
+</p>
 
 ---
 
-
-# Random forests in <mono>tidymodels</mono>
-
 .pull-left4[
 
+# Fitting <mono>tidymodels</mono>
+
+<br>
 <ul>
-  <li class="m1"><span>Fit <high>random forests</high> in <mono>tidymodels</mono> using <mono>rand_forest()</mono> in the model definition.</span></li>
-  <li class="m2"><span>Set the engine to, e.g., <mono>ranger</mono>.</span></li>
+  <li class="m1"><span>Split the data.</span></li><br>
+  <li class="m2"><span>Change the model.</span></li><br>
+  <li class="m3"><span>Predict.</span></li><br>
 </ul>
 
 ]
 
 .pull-right5[
 
-```{r, eval = FALSE}
-# specify a random forest in regression
-# mode
-rf_model <- 
-  rand_forest() %>% 
-  set_engine("ranger") %>% 
-  set_mode("regression")
-
-# specify a random forest in classification
-# mode
-rf_model <- 
-  rand_forest() %>% 
-  set_engine("ranger") %>% 
-  set_mode("classification")
-
-```
-
+<p align = "center">
+<br>
+<img src="image/tidymodels_pred.png" height=560px><br>
+</p>
 
 ]
 
-
-
 ---
 
-
-
-# Random forest engines in <mono>tidymodels</mono>
-
-.pull-left4[
-
-<ul>
-  <li class="m1"><span>Show all available engines with <mono>show_engines("rand_forest")</mono>.</span></li>
-</ul>
-
-]
-
-.pull-right45[
-
-
-```{r eval=T, echo=T}
-# show possible engines
-show_engines("rand_forest")
-```
-
-]
-
-
-
----
-class: center,  middle
-
-<br><br>
-
-# Evaluating model predictions with <mono>tidymodels</mono>
-
-```{r, echo = FALSE, out.width = "30%"}
-knitr::include_graphics("image/tidymodels.svg")
-```
-
-
-
----
-
-# Split data into training and test set
+# Split data into training and test
 
 .pull-left4[
 
@@ -700,12 +620,138 @@ baselers_train <- training(baselers_split)
 
 # Create test data
 baselers_test <- testing(baselers_split)
+
 ```
 
 
 ]
 
 
+---
+
+
+# Fit to training
+
+
+.pull-left4[
+
+<ul>    
+  <li class="m2"><span>To fit training rather than test simply replace <highm>data</highm> in the <mono>recipe</mono>.</span></li>
+</ul>
+
+]
+
+
+.pull-right5[
+
+```{r, eval = T}
+# fit regression model to training
+
+recipe <- 
+  recipe(income ~ ., data = baselers_train) %>% 
+  step_dummy(all_nominal_predictors())
+
+lm_model <- 
+  linear_reg() %>% 
+  set_engine("lm") %>% 
+  set_mode("regression")
+
+lm_workflow <- 
+  workflow() %>% 
+  add_recipe(recipe) %>% 
+  add_model(lm_model)
+
+income_lm <- fit(lm_workflow,
+                 data = baselers_train)
+
+```
+
+]
+
+---
+
+
+# Fit Decision tree
+
+
+.pull-left4[
+
+<ul>
+  <li class="m1"><span>Fit <high>decision trees</high> in <mono>tidymodels</mono> using <mono>decision_tree()</mono> in the model definition.</span></li>
+  <li class="m2"><span>Set the engine to <mono>rpart</mono>.</span></li>
+</ul>
+
+]
+
+.pull-right5[
+
+```{r, eval = FALSE}
+# fit decision tree to training
+
+recipe <- 
+  recipe(income ~ ., data = baselers_train) %>% 
+  step_dummy(all_nominal_predictors())
+
+dt_model <- 
+  decision_tree() %>% 
+  set_engine("rpart") %>% 
+  set_mode("regression") # or classification
+
+dt_workflow <- 
+  workflow() %>% 
+  add_recipe(recipe) %>% 
+  add_model(dt_model)
+
+income_dt <- fit(dt_workflow,
+                 data = baselers_train)
+
+```
+
+
+]
+
+
+---
+
+
+# Fit Decision tree
+
+
+.pull-left4[
+
+<ul>
+  <li class="m1"><span>Fit <high>random forests</high> in <mono>tidymodels</mono> using <mono>rand_forest()</mono> in the model definition.</span></li>
+  <li class="m2"><span>Set the engine to, e.g., <mono>ranger</mono>.</span></li>
+</ul>
+
+]
+
+.pull-right5[
+
+```{r, eval = FALSE}
+# fit decision tree to training
+
+recipe <- 
+  recipe(income ~ ., data = baselers_train) %>% 
+  step_dummy(all_nominal_predictors())
+
+rf_model <- 
+  rand_forest() %>% 
+  set_engine("ranger") %>% 
+  set_mode("regression") # or classification
+
+rf_workflow <- 
+  workflow() %>% 
+  add_recipe(recipe) %>% 
+  add_model(rf_model)
+
+income_rf <- fit(rf_workflow,
+                 data = baselers_train)
+
+```
+
+
+]
 
 
 ---
@@ -780,12 +826,35 @@ income_lm <- fit(lm_workflow,
 
 ---
 
+# Random forest engines
+
+.pull-left4[
+
+<ul>
+  <li class="m1"><span>Show all available engines with <mono>show_engines("rand_forest")</mono>.</span></li>
+</ul>
+
+]
+
+.pull-right5[
+
+
+```{r eval=T, echo=T}
+# show possible engines for random forest
+show_engines("rand_forest")
+```
+
+]
+
+
+---
+
 # <mono>predict(, newdata)</mono>
 
 .pull-left4[
 
 <ul>
-  <li class="m1"><span>To <high>test model predictions</high> with <mono>tidymodels</mono>, all you need to do is get a vector of predictions from a new dataframe <mono>newdata</mono> using the <mono>predict()</mono> function.</span></li>
+  <li class="m1"><span>To <high>test model predictions</high> with <mono>tidymodels</mono>, supply new data frame <mono>newdata</mono> to the <mono>predict()</mono> functionbaseler_train.</span></li>
 </ul>
 
 <br>

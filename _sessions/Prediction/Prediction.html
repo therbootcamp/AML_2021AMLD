@@ -71,47 +71,6 @@ layout: true
 
 ---
 
-# Why do we separate training from testing?
-
-&lt;br&gt;&lt;br&gt;
-
-.pull-left45[
-
-
-&lt;high&gt;Training data&lt;/high&gt;
-&lt;br&gt;
-
-
-| id|sex | age|fam_history |smoking | criterion|
-|--:|:---|---:|:-----------|:-------|---------:|
-|  1|f   |  45|No          |TRUE    |         0|
-|  2|m   |  43|No          |FALSE   |         0|
-|  3|f   |  40|Yes         |FALSE   |         1|
-|  4|f   |  51|Yes         |TRUE    |         1|
-|  5|m   |  44|Yes         |FALSE   |         0|
-
-]
-
-.pull-right45[
-
-
-&lt;high&gt; Test data&lt;/high&gt;
-&lt;br&gt;
-
-
-| id|sex | age|fam_history |smoking |criterion |
-|--:|:---|---:|:-----------|:-------|:---------|
-| 91|f   |  51|No          |FALSE   |?         |
-| 92|m   |  47|No          |TRUE    |?         |
-| 93|f   |  39|Yes         |TRUE    |?         |
-| 94|f   |  51|Yes         |TRUE    |?         |
-| 95|f   |  50|No          |TRUE    |?         |
-
-]
-
-
----
-
 .pull-left4[
 
 &lt;br&gt;&lt;br&gt;
@@ -140,7 +99,7 @@ layout: true
 
 # Overfitting
 
-&lt;img src="Prediction_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Prediction_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
 
 
 
@@ -335,40 +294,6 @@ $$
 
 ---
 
-# CART in &lt;mono&gt;tidymodels&lt;/mono&gt;
-
-.pull-left4[
-
-&lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Fit &lt;high&gt;decision trees&lt;/high&gt; in &lt;mono&gt;tidymodels&lt;/mono&gt; using &lt;mono&gt;decision_tree()&lt;/mono&gt; in the model definition.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Set the engine to &lt;mono&gt;rpart&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-]
-
-.pull-right45[
-
-
-```r
-# specify a CART in regression mode
-dt_model &lt;- 
-  decision_tree() %&gt;% 
-  set_engine("rpart") %&gt;% 
-  set_mode("regression")
-
-# specify a CART in classification mode
-dt_model &lt;- 
-  decision_tree() %&gt;% 
-  set_engine("rpart") %&gt;% 
-  set_mode("classification")
-```
-
-
-]
-
-
-
----
 class: center, middle
 
 &lt;font color = "gray"&gt;&lt;h1&gt;Regression&lt;/h1&gt;&lt;/font&gt;
@@ -468,98 +393,42 @@ class: center, middle
 ]
 
 
+---
+
+class: center,  middle
+
+&lt;p align = "center"&gt;
+&lt;img src="https://www.tidymodels.org/images/tidymodels.png" width=240px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://www.tidymodels.org/packages/"&gt;tidymodels.org&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
 
 ---
 
-
-# Random forests in &lt;mono&gt;tidymodels&lt;/mono&gt;
-
 .pull-left4[
 
+# Fitting &lt;mono&gt;tidymodels&lt;/mono&gt;
+
+&lt;br&gt;
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Fit &lt;high&gt;random forests&lt;/high&gt; in &lt;mono&gt;tidymodels&lt;/mono&gt; using &lt;mono&gt;rand_forest()&lt;/mono&gt; in the model definition.&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Set the engine to, e.g., &lt;mono&gt;ranger&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Split the data.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Change the model.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;li class="m3"&gt;&lt;span&gt;Predict.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
 &lt;/ul&gt;
 
 ]
 
 .pull-right5[
 
-
-```r
-# specify a random forest in regression
-# mode
-rf_model &lt;- 
-  rand_forest() %&gt;% 
-  set_engine("ranger") %&gt;% 
-  set_mode("regression")
-
-# specify a random forest in classification
-# mode
-rf_model &lt;- 
-  rand_forest() %&gt;% 
-  set_engine("ranger") %&gt;% 
-  set_mode("classification")
-```
-
+&lt;p align = "center"&gt;
+&lt;br&gt;
+&lt;img src="image/tidymodels_pred.png" height=560px&gt;&lt;br&gt;
+&lt;/p&gt;
 
 ]
 
-
-
 ---
 
-
-
-# Random forest engines in &lt;mono&gt;tidymodels&lt;/mono&gt;
-
-.pull-left4[
-
-&lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Show all available engines with &lt;mono&gt;show_engines("rand_forest")&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-]
-
-.pull-right45[
-
-
-
-```r
-# show possible engines
-show_engines("rand_forest")
-```
-
-```
-# A tibble: 6 × 2
-  engine       mode          
-  &lt;chr&gt;        &lt;chr&gt;         
-1 ranger       classification
-2 ranger       regression    
-3 randomForest classification
-4 randomForest regression    
-5 spark        classification
-6 spark        regression    
-```
-
-]
-
-
-
----
-class: center,  middle
-
-&lt;br&gt;&lt;br&gt;
-
-# Evaluating model predictions with &lt;mono&gt;tidymodels&lt;/mono&gt;
-
-&lt;img src="image/tidymodels.svg" width="30%" style="display: block; margin: auto;" /&gt;
-
-
-
----
-
-# Split data into training and test set
+# Split data into training and test
 
 .pull-left4[
 
@@ -630,6 +499,131 @@ baselers_test &lt;- testing(baselers_split)
 ]
 
 
+---
+
+
+# Fit to training
+
+
+.pull-left4[
+
+&lt;ul&gt;    
+  &lt;li class="m2"&gt;&lt;span&gt;To fit training rather than test simply replace &lt;highm&gt;data&lt;/highm&gt; in the &lt;mono&gt;recipe&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+
+.pull-right5[
+
+
+```r
+# fit regression model to training
+
+recipe &lt;- 
+  recipe(income ~ ., data = baselers_train) %&gt;% 
+  step_dummy(all_nominal_predictors())
+
+lm_model &lt;- 
+  linear_reg() %&gt;% 
+  set_engine("lm") %&gt;% 
+  set_mode("regression")
+
+lm_workflow &lt;- 
+  workflow() %&gt;% 
+  add_recipe(recipe) %&gt;% 
+  add_model(lm_model)
+
+income_lm &lt;- fit(lm_workflow,
+                 data = baselers_train)
+```
+
+]
+
+---
+
+
+# Fit Decision tree
+
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Fit &lt;high&gt;decision trees&lt;/high&gt; in &lt;mono&gt;tidymodels&lt;/mono&gt; using &lt;mono&gt;decision_tree()&lt;/mono&gt; in the model definition.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Set the engine to &lt;mono&gt;rpart&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+# fit decision tree to training
+
+recipe &lt;- 
+  recipe(income ~ ., data = baselers_train) %&gt;% 
+  step_dummy(all_nominal_predictors())
+
+dt_model &lt;- 
+  decision_tree() %&gt;% 
+  set_engine("rpart") %&gt;% 
+  set_mode("regression") # or classification
+
+dt_workflow &lt;- 
+  workflow() %&gt;% 
+  add_recipe(recipe) %&gt;% 
+  add_model(dt_model)
+
+income_dt &lt;- fit(dt_workflow,
+                 data = baselers_train)
+```
+
+
+]
+
+
+---
+
+
+# Fit Decision tree
+
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Fit &lt;high&gt;random forests&lt;/high&gt; in &lt;mono&gt;tidymodels&lt;/mono&gt; using &lt;mono&gt;rand_forest()&lt;/mono&gt; in the model definition.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Set the engine to, e.g., &lt;mono&gt;ranger&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right5[
+
+
+```r
+# fit decision tree to training
+
+recipe &lt;- 
+  recipe(income ~ ., data = baselers_train) %&gt;% 
+  step_dummy(all_nominal_predictors())
+
+rf_model &lt;- 
+  rand_forest() %&gt;% 
+  set_engine("ranger") %&gt;% 
+  set_mode("regression") # or classification
+
+rf_workflow &lt;- 
+  workflow() %&gt;% 
+  add_recipe(recipe) %&gt;% 
+  add_model(rf_model)
+
+income_rf &lt;- fit(rf_workflow,
+                 data = baselers_train)
+```
+
+
+]
 
 
 ---
@@ -704,12 +698,48 @@ income_lm &lt;- fit(lm_workflow,
 
 ---
 
+# Random forest engines
+
+.pull-left4[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Show all available engines with &lt;mono&gt;show_engines("rand_forest")&lt;/mono&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right5[
+
+
+
+```r
+# show possible engines for random forest
+show_engines("rand_forest")
+```
+
+```
+# A tibble: 6 × 2
+  engine       mode          
+  &lt;chr&gt;        &lt;chr&gt;         
+1 ranger       classification
+2 ranger       regression    
+3 randomForest classification
+4 randomForest regression    
+5 spark        classification
+6 spark        regression    
+```
+
+]
+
+
+---
+
 # &lt;mono&gt;predict(, newdata)&lt;/mono&gt;
 
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;To &lt;high&gt;test model predictions&lt;/high&gt; with &lt;mono&gt;tidymodels&lt;/mono&gt;, all you need to do is get a vector of predictions from a new dataframe &lt;mono&gt;newdata&lt;/mono&gt; using the &lt;mono&gt;predict()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;To &lt;high&gt;test model predictions&lt;/high&gt; with &lt;mono&gt;tidymodels&lt;/mono&gt;, supply new data frame &lt;mono&gt;newdata&lt;/mono&gt; to the &lt;mono&gt;predict()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;

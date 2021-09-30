@@ -103,7 +103,7 @@ airbnb <- read_csv(file = "1_Data/airbnb.csv")
 
 ```{r, echo = TRUE, eval = FALSE}
 # initialize split
-XXX <- XXX(XXX)
+XX <- XX(XX)
 ```
 
 ```{r}
@@ -114,7 +114,7 @@ airbnb_split <- initial_split(airbnb)
 
 ```{r, echo = TRUE, eval = FALSE}
 # training data
-XXX <- XXX(XXX)
+XX <- XX(XX)
 ```
 
 ```{r}
@@ -125,7 +125,7 @@ airbnb_train <- training(airbnb_split)
 
 ```{r, echo = TRUE, eval = FALSE}
 # test data
-XXX <- XXX(XXX)
+XX <- XX(XX)
 ```
 
 ```{r}
@@ -144,9 +144,9 @@ Your goal in this set of tasks is again to fit models predicting `price`, the pr
 
 ```{r, echo = TRUE, eval = FALSE}
 # create recipe
-XXX <- 
-  XXX(XXX, data = XXX) %>% 
-  XXX(XXX())
+XX <- 
+  XX(XX, data = XX) %>% 
+  XX(XX())
 ```
 
 ```{r}
@@ -172,10 +172,10 @@ lm_recipe
 
 ```{r, echo = TRUE, eval = FALSE}
 # set up the regression model
-XXX <- 
-  XXX() %>% 
-  XXX(XXX) %>% 
-  XXX(XXX)
+XX <- 
+  XX() %>% 
+  XX(XX) %>% 
+  XX(XX)
 ```
 
 ```{r}
@@ -197,9 +197,9 @@ lm_model
 ```{r, echo = TRUE, eval = FALSE}
 # lm workflow 
 lm_workflow <- 
-  XXX() %>% 
-  XXX(XXX) %>% 
-  XXX(XXX)
+  XX() %>% 
+  XX(XX) %>% 
+  XX(XX)
 ```
 
 ```{r}
@@ -220,9 +220,9 @@ lm_workflow
 
 ```{r}
 # Fit the regression model
-XXX <-
-  XXX %>% 
-  XXX(XXX)
+XX <-
+  XX %>% 
+  XX(XX)
 ```
 
 ```{r}
@@ -247,9 +247,9 @@ tidy(price_lm)
 ```{r, echo = TRUE, eval = FALSE}
 # get predicted values from training data
 lm_pred <-
-  XXX %>% 
-  XXX(XXX) %>% 
-  XXX(airbnb_train %>% select(price))
+  XX %>% 
+  XX(XX) %>% 
+  XX(airbnb_train %>% select(price))
 ```
 
 ```{r}
@@ -265,7 +265,7 @@ lm_pred <-
 
 ```{r, echo = TRUE, eval = FALSE}
 # evaluate performance
-XXX(lm_pred, truth = XXX, estimate = XXX)
+XX(lm_pred, truth = XX, estimate = XX)
 ```
 
 ```{r}
@@ -305,10 +305,10 @@ tree_recipe <-
 
 ```{r, echo = TRUE, eval = FALSE}
 # set up the decision tree model
-XXX <- 
-  XXX() %>% 
-  XXX(XXX) %>% 
-  XXX(XXX)
+XX <- 
+  XX() %>% 
+  XX(XX) %>% 
+  XX(XX)
 ```
 
 ```{r}
@@ -324,9 +324,9 @@ dt_model <-
 ```{r, echo = TRUE, eval = FALSE}
 # decision tree workflow 
 dt_workflow <- 
-  XXX() %>% 
-  XXX(XXX) %>% 
-  XXX(XXX)
+  XX() %>% 
+  XX(XX) %>% 
+  XX(XX)
 ```
 
 ```{r}
@@ -347,9 +347,9 @@ dt_workflow
 
 ```{r}
 # Fit the decision tree
-XXX <-
-  XXX %>% 
-  XXX(XXX)
+XX <-
+  XX %>% 
+  XX(XX)
 ```
 
 ```{r}
@@ -385,9 +385,9 @@ price_dt %>%
 ```{r, echo = TRUE, eval = FALSE}
 # get predicted values from training data
 dt_pred <-
-  XXX %>% 
-  XXX(XXX) %>% 
-  XXX(airbnb_train %>% select(price))
+  XX %>% 
+  XX(XX) %>% 
+  XX(airbnb_train %>% select(price))
 ```
 
 ```{r}
@@ -403,7 +403,7 @@ dt_pred <-
 
 ```{r, echo = TRUE, eval = FALSE}
 # evaluate performance
-XXX(dt_pred, truth = XXX, estimate = XXX)
+XX(dt_pred, truth = XX, estimate = XX)
 ```
 
 ```{r}
@@ -439,10 +439,10 @@ ggplot(dt_pred, aes(x = .pred, y = price)) +
 
 ```{r, echo = TRUE, eval = FALSE}
 # set up the random forest model
-XXX <- 
-  XXX() %>% 
-  XXX(XXX) %>% 
-  XXX(XXX)
+XX <- 
+  XX() %>% 
+  XX(XX) %>% 
+  XX(XX)
 ```
 
 ```{r}
@@ -458,9 +458,9 @@ rf_model <-
 ```{r, echo = TRUE, eval = FALSE}
 # random forest workflow 
 rf_workflow <- 
-  XXX() %>% 
-  XXX(XXX) %>% 
-  XXX(XXX)
+  XX() %>% 
+  XX(XX) %>% 
+  XX(XX)
 ```
 
 ```{r}
@@ -481,9 +481,9 @@ rf_workflow
 
 ```{r}
 # Fit the random forest
-XXX <-
-  XXX %>% 
-  XXX(XXX)
+XX <-
+  XX %>% 
+  XX(XX)
 ```
 
 ```{r}
@@ -509,9 +509,9 @@ price_rf %>%
 ```{r, echo = TRUE, eval = FALSE}
 # get predicted values from training data
 rf_pred <-
-  XXX %>% 
-  XXX(XXX) %>% 
-  XXX(airbnb_train %>% select(price))
+  XX %>% 
+  XX(XX) %>% 
+  XX(airbnb_train %>% select(price))
 ```
 
 ```{r}
@@ -527,7 +527,7 @@ rf_pred <-
 
 ```{r, echo = TRUE, eval = FALSE}
 # evaluate performance
-XXX(rf_pred, truth = XXX, estimate = XXX)
+XX(rf_pred, truth = XX, estimate = XX)
 ```
 
 ```{r}
@@ -563,9 +563,9 @@ ggplot(rf_pred, aes(x = .pred, y = price)) +
 ```{r, echo = TRUE, eval = FALSE}
 # get predicted values from test data
 lm_pred_test <-
-  XXX %>% 
-  XXX(XXX) %>% 
-  XXX(airbnb_test %>% select(price))
+  XX %>% 
+  XX(XX) %>% 
+  XX(airbnb_test %>% select(price))
 ```
 
 ```{r}
@@ -596,9 +596,9 @@ rf_pred_test <-
 
 ```{r, echo = TRUE, eval = FALSE}
 # evaluate performance
-XXX(XXX, truth = XXX, estimate = XXX)
-XXX(XXX, truth = XXX, estimate = XXX)
-XXX(XXX, truth = XXX, estimate = XXX)
+XX(XX, truth = XX, estimate = XX)
+XX(XX, truth = XX, estimate = XX)
+XX(XX, truth = XX, estimate = XX)
 ```
 
 ```{r}
@@ -644,7 +644,7 @@ airbnb <-
 2. Create a split that balances the proportion of the two levels of `host_superhost` and that uses 80% of the data for the training.
 
 ```{r, echo = TRUE, eval = FALSE}
-airbnb_split <- initial_split(XXX, prop = XXX, strata = XXX)
+airbnb_split <- initial_split(XX, prop = XX, strata = XX)
 ```
 
 ```{r}
@@ -654,8 +654,8 @@ airbnb_split <- initial_split(airbnb, prop = .8, strata = host_superhost)
 3. From the initial split object, creat a training and a test set, and save them as `airbnb_train` and `airbnb_test`.
 
 ```{r, echo = TRUE, eval = FALSE}
-XXX <- XXX(XXX)
-XXX <- XXX(XXX)
+XX <- XX(XX)
+XX <- XX(XX)
 ```
 
 ```{r}
@@ -678,9 +678,9 @@ airbnb_test <- testing(airbnb_split)
 
 ```{r, echo = TRUE, eval = FALSE}
 # create new recipe
-XXX <- 
-  XXX(XXX, data = XXX) %>% 
-  XXX(XXX())
+XX <- 
+  XX(XX, data = XX) %>% 
+  XX(XX())
 ```
 
 ```{r}
@@ -701,10 +701,10 @@ logistic_recipe
 
 ```{r, echo = TRUE, eval = FALSE}
 # create a logistic regression model 
-XXX_model <-
-  XXX() %>% 
-  set_XXX(XXX) %>% 
-  set_XXX(XXX)
+XX_model <-
+  XX() %>% 
+  set_XX(XX) %>% 
+  set_XX(XX)
 ```
 
 
@@ -757,7 +757,7 @@ logistic_pred <-
 8. Let's look at different performance metrics. Use the `metrics()` function and pass it the `host_superhost` variable as `truth`, the `.pred_class` variable as `estimate`, and `.pred_TRUE` as last argument.
 
 ```{r, echo = TRUE, eval = FALSE}
-XXX(logistic_pred, truth = XXX, estimate = XXX, XXX)
+XX(logistic_pred, truth = XX, estimate = XX, XX)
 ```
 
 ```{r}
@@ -768,7 +768,7 @@ metrics(logistic_pred, truth = host_superhost, estimate = .pred_class, .pred_TRU
 9. Plot the ROC-curve using the `roc_curve()` function, to create sensitivity and specificity values of different cut-offs, and pass this into the `autoplot()` function, to plot the curve. Add the `host_superhost` column as `truth`, and the `.pred_TRUE` column as third, unnamed argument, to the `roc_curve()` function and plot the curve.
 
 ```{r, echo = TRUE, eval = FALSE}
-XXX(logistic_pred, truth = XXX, XXX) %>% 
+XX(logistic_pred, truth = XX, XX) %>% 
   autoplot()
 ```
 

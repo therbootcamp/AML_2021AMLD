@@ -213,20 +213,60 @@ logreg2 = logreg1 +
 
 ---
 
-# Which of these models is better? Why?
+# Loss function
 
-```{r, echo = FALSE, fig.width = 6, fig.height = 3, dpi = 300, out.width = "90%"}
-ggarrange(bad_raw, great_raw, ncol = 2, nrow = 1)
+.pull-left45[
+
+<ul>
+  <li class="m1"><span>Possible <high>the most important concept</high> in statistics and machine learning.</span></li>
+  <li class="m2"><span>The loss function defines some <high>summary of the errors committed by the model</high>.</span></li>
+</ul>
+
+
+<p style="padding-top:7px">
+
+$$\Large Loss = f(Error)$$
+
+<p style="padding-top:7px">
+
+<table style="cellspacing:0; cellpadding:0; border:none;">
+<tr>
+  <td>
+    <b>Purpose</b>
+  </td>
+  <td>
+    <b>Description</b>
+  </td>
+</tr>
+<tr>
+  <td bgcolor="white">
+    Fitting
+  </td>
+  <td bgcolor="white">
+    Find parameters that minimize loss function.
+  </td>
+</tr>
+<tr>
+  <td>
+    Evaluation
+  </td>
+  <td>
+    Calculate loss function for fitted model.
+  </td>
+</tr>
+</table>
+
+]
+
+
+.pull-right45[
+
+```{r, echo = FALSE, fig.width = 3, fig.height = 3, dpi = 200, out.width = "90%"}
+bad_raw + labs(title=element_blank(),subtitle = element_blank())
 ```
 
 
----
-
-# Which of these models is better? Why?
-
-```{r, echo = FALSE, fig.width = 6, fig.height = 3, dpi = 300, out.width = "90%"}
-ggarrange(bad_err, great_err, ncol = 2, nrow = 1)
-```
+]
 
 
 ---
@@ -285,7 +325,6 @@ bad_err + labs(title=element_blank(),subtitle = element_blank())
 
 
 ]
-
 ---
 
 class: center, middle
@@ -523,56 +562,57 @@ logreg2
 
 class: center,  middle
 
-<br><br>
-
-# Fitting regression models with `tidymodels`
-
-```{r, echo = FALSE, out.width = "30%"}
-knitr::include_graphics("image/tidymodels.svg")
-```
+<p align = "center">
+<img src="https://www.tidymodels.org/images/tidymodels.png" width=240px><br>
+<font style="font-size:10px">from <a href="https://www.tidymodels.org/packages/">tidymodels.org</a></font>
+</p>
 
 ---
 
-# 5 Steps to fit a model in `tidymodels`
+.pull-left4[
 
-.pull-left45[
+# Fitting <mono>tidymodels</mono>
 
+<br>
 <ul>
-  <li class="m1"><span>Define the <mono>recipe</mono>.</span></li>
-  <li class="m2"><span>Define the model.</span></li>
-  <li class="m3"><span>Define the <mono>workflow</mono>.</span></li>
-  <li class="m4"><span>Fit the <mono>workflow</mono></span></li>
+  <li class="m1"><span>Define the <mono>recipe</mono>.</span></li><br>
+  <li class="m2"><span>Define the model.</span></li><br>
+  <li class="m3"><span>Define the <mono>workflow</mono>.</span></li><br>
+  <li class="m4"><span>Fit the <mono>workflow</mono></span></li><br>
   <li class="m5"><span>Assess model performance.</span></li>
 </ul>
 
 ]
 
-.pull-right45[
-```{r, echo = FALSE, out.width = "90%"}
-knitr::include_graphics("image/tidymodels_packages.png")
-```
+.pull-right5[
+
+<p align = "center">
+<br>
+<img src="image/tidymodels_fit.png" height=560px><br>
+</p>
 
 ]
 
+
 ---
 
-# Step 1: Define the <mono>recipe</mono>
+# Define the <mono>recipe</mono>
 
 .pull-left45[
 
-The <mono>recipe</mono> specifies two things: 
 <ul>
-  <li class="m1"><span>The criterion and the features, i.e., the <mono>formula</mono> to use.</span></li>
-  <li class="m2"><span>How the features should be pre-processed before the model fitting.</span></li>
+  <li class="m1"><span>The <mono>recipe</mono> specifies two things:</span></li><br>
+  <ul class="level">
+    <li><span>The criterion and the features, i.e., the <mono>formula</mono> to use.</span></li><br>
+    <li><span>How the features should be pre-processed before the model fitting.</span></li><br>
+  </ul>
+  <li class="m2"><span>To set up a <mono>recipe</mono>:</span></li><br>
+  <ul class="level">
+  <li><span>Initialize it with <mono>recipe()</mono>, wherein the formula and data are specified.</span></li><br>
+  <li><span>Add pre-processing steps, using <mono>step_*()</mono> functions and <mono>dplyr</mono>-like selectors.</span></li><br>
+  </ul>
 </ul>
 
-<br>
-
-To set up a <mono>recipe</mono>:
-<ul>
-  <li class="m1"><span>Initialize it with <mono>recipe()</mono>, wherein the formula and data are specified.</span></li>
-  <li class="m2"><span>Add pre-processing steps, using <mono>step_*()</mono> functions and <mono>dplyr</mono>-like selectors.</span></li>
-</ul>
 ]
 
 .pull-right45[
@@ -590,25 +630,61 @@ lm_recipe
 
 ---
 
-# Step 2: Define the model
+# Define the <mono>recipe</mono>
 
 .pull-left45[
 
-The model specifies: 
 <ul>
-  <li class="m1"><span>Which model (e.g. linear regression) to use.</span></li>
-  <li class="m2"><span>Which engine (underlying model-fitting algorithm) to use.</span></li>
-  <li class="m3"><span>The problem mode, i.e., <high>regression vs. classification</high>.</span></li>
+  <li class="m1"><span>The <mono>recipe</mono> specifies two things:</span></li><br>
+  <ul class="level">
+    <li><span>The criterion and the features, i.e., the <mono>formula</mono> to use.</span></li><br>
+    <li><span>How the features should be pre-processed before the model fitting.</span></li><br>
+  </ul>
+  <li class="m2"><span>To set up a <mono>recipe</mono>:</span></li><br>
+  <ul class="level">
+  <li><span>Initialize it with <mono>recipe()</mono>, wherein the formula and data are specified.</span></li><br>
+  <li><span>Add pre-processing steps, using <mono>step_*()</mono> functions and <mono>dplyr</mono>-like selectors.</span></li><br>
+  </ul>
 </ul>
 
-<br>
+]
 
-To set up a model:
+.pull-right45[
+
+```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
+# set up recipe for logistic regression model
+logistic_recipe <- 
+  recipe(eyecor ~., data = baselers) %>% 
+  step_dummy(all_nominal_predictors())
+
+logistic_recipe
+```
+
+]
+
+
+---
+
+# Define the model
+
+.pull-left45[
+
+
 <ul>
-  <li class="m1"><span>Specify the model, e.g., using <mono>linear_reg()</mono> or <mono>logistic_reg()</mono>.</span></li>
-  <li class="m2"><span>Specify the engine using <mono>set_engine()</mono>.</span></li>
-  <li class="m3"><span>Specify the problem mode using <mono>set_mode()</mono>.</span></li>
+  <li class="m1"><span>The model specifies:</span></li><br>
+  <ul class="level">
+    <li><span>Which model (e.g. linear regression) to use.</span></li><br>
+    <li><span>Which engine (underlying model-fitting algorithm) to use.</span></li><br>
+    <li><span>The problem mode, i.e., <high>regression vs. classification</high>.</span></li><br>
+  </ul>
+  <li class="m2"><span>To set up a model:</span></li><br>
+  <ul class="level">
+  <li><span>Specify the model, e.g., using <mono>linear_reg()</mono> or <mono>logistic_reg()</mono>.</span></li><br>
+  <li><span>Specify the engine using <mono>set_engine()</mono>.</span></li><br>
+  <li><span>Specify the problem mode using <mono>set_mode()</mono>.</span></li><br>
+  </ul>
 </ul>
+
 ]
 
 .pull-right45[
@@ -627,17 +703,59 @@ lm_model
 
 ---
 
-# Step 3: Define the <mono>workflow</mono>
+# Define the model
 
 .pull-left45[
 
-A <mono>workflow</mono> combines the recipe and model and facilitates fitting the model. 
-To set up a <mono>workflow</mono>:
+
 <ul>
-  <li class="m1"><span>Initialize it using the <mono>workflow()</mono> function.</span></li>
-  <li class="m2"><span>Add a recipe using <mono>add_recipe()</mono>.</span></li>
-  <li class="m3"><span>Add a model using <mono>add_model()</mono>.</span></li>
+  <li class="m1"><span>The model specifies:</span></li><br>
+  <ul class="level">
+    <li><span>Which model (e.g. linear regression) to use.</span></li><br>
+    <li><span>Which engine (underlying model-fitting algorithm) to use.</span></li><br>
+    <li><span>The problem mode, i.e., <high>regression vs. classification</high>.</span></li><br>
+  </ul>
+  <li class="m2"><span>To set up a model:</span></li><br>
+  <ul class="level">
+  <li><span>Specify the model, e.g., using <mono>linear_reg()</mono> or <mono>logistic_reg()</mono>.</span></li><br>
+  <li><span>Specify the engine using <mono>set_engine()</mono>.</span></li><br>
+  <li><span>Specify the problem mode using <mono>set_mode()</mono>.</span></li><br>
+  </ul>
 </ul>
+
+]
+
+.pull-right45[
+
+```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
+# set up model for logistic regression model
+logistic_model <- 
+  logistic_reg() %>% 
+  set_engine("glm") %>% 
+  set_mode("classification")
+
+logistic_model
+```
+
+]
+
+---
+
+# Define the <mono>workflow</mono>
+
+.pull-left45[
+
+
+<ul>
+  <li class="m1"><span>A <mono>workflow</mono> combines the recipe and model and facilitates fitting the model. 
+To set up a <mono>workflow</mono>:</span></li><br>
+  <ul class="level">
+    <li><span>Initialize it using the <mono>workflow()</mono> function.</span></li><br>
+    <li><span>Add a recipe using <mono>add_recipe()</mono>.</span></li><br>
+    <li><span>Add a model using <mono>add_model()</mono>.</span></li><br>
+  </ul>
+</ul>
+
 ]
 
 .pull-right45[
@@ -656,15 +774,52 @@ lm_workflow
 
 ---
 
-# Step 4: Fit the <mono>workflow</mono>
+# Define the <mono>workflow</mono>
+
+.pull-left45[
+
+
+<ul>
+  <li class="m1"><span>A <mono>workflow</mono> combines the recipe and model and facilitates fitting the model. 
+To set up a <mono>workflow</mono>:</span></li><br>
+  <ul class="level">
+    <li><span>Initialize it using the <mono>workflow()</mono> function.</span></li><br>
+    <li><span>Add a recipe using <mono>add_recipe()</mono>.</span></li><br>
+    <li><span>Add a model using <mono>add_model()</mono>.</span></li><br>
+  </ul>
+</ul>
+
+]
+
+.pull-right45[
+
+```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
+# set up workflow for logistic regression model
+logistic_workflow <- 
+  workflow() %>% 
+  add_recipe(logistic_recipe) %>% 
+  add_model(logistic_model)
+
+logistic_workflow
+```
+
+]
+
+
+---
+
+# Fit the <mono>workflow</mono>
 
 .pull-left35[
 
-A <mono>workflow</mono> is fitted using the <mono>fit()</mono> function. This will:
 <ul>
-  <li class="m1"><span>Apply the recipe with the pre-processing steps.</span></li>
-  <li class="m2"><span>Run the specified algorithm (i.e., model).</span></li>
+  <li class="m1"><span>A <mono>workflow</mono> is fitted using the <mono>fit()</mono> function.</span></li><br>
+  <ul class="level">
+    <li><span>Applies the recipe with the pre-processing steps..</span></li><br>
+    <li><span>Run the specified algorithm (i.e., model).</span></li><br>
+  </ul>
 </ul>
+
 ]
 
 .pull-right55[
@@ -681,12 +836,40 @@ tidy(income_lm)
 
 ---
 
-# Step 5: Assess model fit
+# Fit the <mono>workflow</mono>
+
+.pull-left35[
+
+<ul>
+  <li class="m1"><span>A <mono>workflow</mono> is fitted using the <mono>fit()</mono> function.</span></li><br>
+  <ul class="level">
+    <li><span>Applies the recipe with the pre-processing steps..</span></li><br>
+    <li><span>Run the specified algorithm (i.e., model).</span></li><br>
+  </ul>
+</ul>
+
+]
+
+.pull-right55[
+
+```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
+# fit the logistic regression workflow
+eyecor_glm <- fit(logistic_workflow,
+                  data = baselers)
+
+tidy(eyecor_glm)
+```
+
+]
+
+---
+
+# Assess model fit
 
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Use <mono>predict()</mono> to obtain model predictions on specified data.</span></li>
+  <li class="m1"><span>Use <mono>predict()</mono> to obtain model predictions on specified data.</span></li><br>
   <li class="m2"><span>Use <mono>metrics()</mono> to obtain performance metrics, suited for the current problem mode.</span></li>
 </ul>
 ]
@@ -708,153 +891,20 @@ metrics(lm_pred, truth = income,
 
 ---
 
-# Logistic regression model example
+# Assess model fit
 
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Define the <mono>recipe</mono>.</span></li>
-  <li class="m2"><span>Define the model.</span></li>
-  <li class="m3"><span>Define the <mono>workflow</mono>.</span></li>
-  <li class="m4"><span>Fit the <mono>workflow</mono>.</span></li>
-  <li class="m5"><span>Assess model performance.</span></li>
+  <li class="m1"><span>Use <mono>predict()</mono> to obtain model predictions on specified data.</span></li><br>
+  <li class="m2"><span>Use <mono>metrics()</mono> to obtain performance metrics, suited for the current problem mode.</span></li>
 </ul>
 ]
 
 .pull-right45[
 
 ```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
-# generate predictions
-lm_pred <-
-  income_lm %>% 
-  predict(baselers) %>% 
-  bind_cols(baselers %>% select(income))
-
-metrics(lm_pred, truth = income,
-        estimate = .pred)
-```
-
-]
-
----
-
-# Logistic regression model example
-
-.pull-left45[
-
-<ul>
-  <li class="m1"><span><high>Define the <mono>recipe</mono>.</high></span></li>
-  <li class="m2"><span>Define the model.</span></li>
-  <li class="m3"><span>Define the <mono>workflow</mono>.</span></li>
-  <li class="m4"><span>Fit the <mono>workflow</mono>.</span></li>
-  <li class="m5"><span>Assess model performance.</span></li>
-</ul>
-]
-
-.pull-right45[
-
-```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
-logistic_recipe <- 
-  recipe(eyecor ~., data = baselers) %>% 
-  step_dummy(all_nominal_predictors())
-```
-
-]
-
----
-
-# Logistic regression model example
-
-.pull-left45[
-
-<ul>
-  <li class="m1"><span>Define the <mono>recipe</mono>.</span></li>
-  <li class="m2"><span><high>Define the model.</high></span></li>
-  <li class="m3"><span>Define the <mono>workflow</mono>.</span></li>
-  <li class="m4"><span>Fit the <mono>workflow</mono>.</span></li>
-  <li class="m5"><span>Assess model performance.</span></li>
-</ul>
-]
-
-.pull-right45[
-
-```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
-logistic_model <- 
-  logistic_reg() %>% 
-  set_engine("glm") %>% 
-  set_mode("classification")
-```
-
-]
-
----
-
-# Logistic regression model example
-
-.pull-left45[
-
-<ul>
-  <li class="m1"><span>Define the <mono>recipe</mono>.</span></li>
-  <li class="m2"><span>Define the model.</span></li>
-  <li class="m3"><span><high>Define the <mono>workflow</mono>.</high></span></li>
-  <li class="m4"><span>Fit the <mono>workflow</mono>.</span></li>
-  <li class="m5"><span>Assess model performance.</span></li>
-</ul>
-]
-
-.pull-right45[
-
-```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
-logistic_workflow <- 
-  workflow() %>% 
-  add_recipe(logistic_recipe) %>% 
-  add_model(logistic_model)
-```
-
-]
-
----
-
-# Logistic regression model example
-
-.pull-left45[
-
-<ul>
-  <li class="m1"><span>Define the <mono>recipe</mono>.</span></li>
-  <li class="m2"><span>Define the model.</span></li>
-  <li class="m3"><span>Define the <mono>workflow</mono>.</span></li>
-  <li class="m4"><span><high>Fit the <mono>workflow</mono>.</high></span></li>
-  <li class="m5"><span>Assess model performance.</span></li>
-</ul>
-]
-
-.pull-right45[
-
-```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
-eyecor_glm <- fit(logistic_workflow,
-                  data = baselers)
-```
-
-]
-
----
-
-# Logistic regression model example
-
-.pull-left4[
-
-<ul>
-  <li class="m1"><span>Define the <mono>recipe</mono>.</span></li>
-  <li class="m2"><span>Define the model.</span></li>
-  <li class="m3"><span>Define the <mono>workflow</mono>.</span></li>
-  <li class="m4"><span>Fit the <mono>workflow</mono>.</span></li>
-  <li class="m5"><span><high>Assess model performance.</high></span></li>
-</ul>
-]
-
-.pull-right5[
-
-```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
+# generate predictions logistic regression
 logistic_pred <- 
   predict(eyecor_glm, baselers,
           type = "prob") %>% 
@@ -869,28 +919,27 @@ metrics(logistic_pred, truth = eyecor,
 
 ---
 
-# Logistic regression model example
+# Assess model fit
 
-.pull-left4[
+.pull-left45[
 
 <ul>
-  <li class="m1"><span>Define the <mono>recipe</mono>.</span></li>
-  <li class="m2"><span>Define the model.</span></li>
-  <li class="m3"><span>Define the <mono>workflow</mono>.</span></li>
-  <li class="m4"><span>Fit the <mono>workflow</mono>.</span></li>
-  <li class="m5"><span><high>Assess model performance.</high></span></li>
+  <li class="m1"><span>Use <mono>predict()</mono> to obtain model predictions on specified data.</span></li><br>
+  <li class="m2"><span>Use <mono>metrics()</mono> to obtain performance metrics, suited for the current problem mode.</span></li>
 </ul>
 ]
 
-.pull-right5[
+.pull-right45[
 
 ```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE, fig.height = 4, dpi = 300}
+# ROC curve for logistic model
 logistic_pred %>% 
   roc_curve(truth = eyecor, .pred_yes) %>% 
   autoplot()
 ```
 
 ]
+
 
 ---
 
