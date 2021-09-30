@@ -53,9 +53,6 @@ layout: true
 
 ---
 
-class: middle, center
-
-
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 options(width=110)
@@ -102,14 +99,6 @@ library(tidyverse)
 
 
 ]
-
----
-
-# ML's origin
-
-<div align="center">
-<iframe width="800" height="450" src="https://www.youtube.com/embed/cNxadbrN_aI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
 
 ---
 
@@ -259,13 +248,6 @@ RL is closely <high>related to psychological theories of learning</high>.
 ]
 
 
-
----
-
-# Supervised learning
-
-EXAMPLES
-
 ---
 
 # Supervised learning
@@ -275,13 +257,6 @@ EXAMPLES
 The <high>dominant type</high> of machine learning.  
 
 Supervised learning uses <high>labeled data</high> to learn <high>a model</high> that relates the criterion to the features.  
-
-<br>
-<u>Verbal model</u>
-
-<font style="font-size:24px"><mono>if cp (chest pain) is not a (asymptomatic) and age is larger than 60 then high probability of hearth attack, otherwise low probability.</mono></font>
-
-
 
 
 ]
@@ -296,89 +271,11 @@ Supervised learning uses <high>labeled data</high> to learn <high>a model</high>
 
 ---
 
-# Data terminology
-
-
-.pull-left5[
-<p>
-<table style="cellspacing:0; cellpadding:0; border:none; padding-top:10px">
-
-<tr>
-  <td bgcolor="white">
-    <b>Term</b>
-  </td>
-  <td bgcolor="white">
-    <b>Definition</b>
-  </td>  
-  <td bgcolor="white">
-    <b>Example</b>
-  </td>  
-</tr>
-<tr>
-  <td bgcolor="white">
-    <i>Case</i>
-  </td>
-  <td bgcolor="white">
-   A specific <high>observation</high> of data.
-  </td>  
-  <td bgcolor="white">
-   A patient, a site, etc.
-  </td>  
-</tr>
-<tr>
-  <td bgcolor="white">
-    <i>Feature</i>
-  </td>
-  <td bgcolor="white">
-   An measurable <high>property</high> of cases. Also called predictors. 
-  </td>  
-  <td bgcolor="white">
-   Age, temperature, country, etc.
-  </td>  
-</tr>
-<tr>
-  <td bgcolor="white">
-    <i>Criterion</i>
-  </td>
-  <td bgcolor="white">
-   The <high>feature</high> that you want to <high>predict</high>.
-  </td>  
-  <td bgcolor="white">
-   Heart attack, sales, etc.
-  </td>  
-</tr>
-<tr>
-  <td bgcolor="white">
-    <i>Data</i>
-  </td>
-  <td bgcolor="white">
-   Typically <high>rectangular</high> representation of cases (rows) and features (columns).
-  </td>  
-  <td bgcolor="white">
-   <mono>.csv</mono>, <mono>.xls</mono>, <mono>.sav</mono>, etc.
-  </td>  
-</tr>
-</table>
-</p>
-]
-
-
-.pull-right4[
-
-<p align = "center">
-<img src="image/terminology.png"><br>
-</p>
-
-]
-
-
----
-
 # 2 types of supervised problems
 
 .pull-left5[
 
-There are two types of supervised learning problems that can often be approached using the same model.
+There are two types of supervised learning problems typically can be approached <high>using the same model</high>.
 
 <font style="font-size:24px"><b>Regression</b></font>
 
@@ -449,20 +346,8 @@ flowchart of steps
 
 
 
-
-
 ---
 
-# Machine learning is more than algorithms
-
-<p align = "center">
-<img src="image/mlsteps.png" height=440px><br>
-<font style="font-size:10px">from <a href="https://www.houseofbots.com/images/news/11493/cover.png">houseofbots.com</a></font>
-</p>
-
-
-
----
 class: middle, center
 
-<h1><a href=https://therbootcamp.github.io/ML_2019Oct/index.html>Schedule</a></h1>
+<h1><a href=https://therbootcamp.github.io/AML_2021AMLD/index.html>Schedule</a></h1>
