@@ -586,7 +586,7 @@ income_dt &lt;- fit(dt_workflow,
 ---
 
 
-# Fit Decision tree
+# Fit Random Forest
 
 
 .pull-left4[
@@ -625,77 +625,6 @@ income_rf &lt;- fit(rf_workflow,
 
 ]
 
-
----
-
-# &lt;mono&gt;predict(, newdata)&lt;/mono&gt;
-
-.pull-left4[
-
-&lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;To &lt;high&gt;test model predictions&lt;/high&gt; with &lt;mono&gt;tidymodels&lt;/mono&gt;, all you need to do is get a vector of predictions from a new dataframe &lt;mono&gt;newdata&lt;/mono&gt; using the &lt;mono&gt;predict()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;br&gt;
-
-&lt;table style="cellspacing:0; cellpadding:0; border:none;"&gt;
-  &lt;col width="30%"&gt;
-  &lt;col width="70%"&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Argument&lt;/b&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;b&gt;Description&lt;/b&gt;
-  &lt;/td&gt;  
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;object&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;tidymodels&lt;/mono&gt; fit object.  
-  &lt;/td&gt;  
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td bgcolor="white"&gt;
-    &lt;mono&gt;newdata&lt;/mono&gt;
-  &lt;/td&gt;
-  &lt;td bgcolor="white"&gt;
-    Test data sest. Must contain same features as provided in &lt;mono&gt;object&lt;/mono&gt;.    
-  &lt;/td&gt;  
-&lt;/tr&gt;
-&lt;/table&gt;
-
-]
-
-.pull-right5[
-
-
-```r
-# fit regression model
-
-lm_recipe &lt;- 
-  recipe(income ~ ., data = baselers_train) %&gt;% 
-  step_dummy(all_nominal_predictors())
-
-lm_model &lt;- 
-  linear_reg() %&gt;% 
-  set_engine("lm") %&gt;% 
-  set_mode("regression")
-
-lm_workflow &lt;- 
-  workflow() %&gt;% 
-  add_recipe(lm_recipe) %&gt;% 
-  add_model(lm_model)
-
-income_lm &lt;- fit(lm_workflow,
-                 data = baselers_train)
-```
-
-]
-
-
 ---
 
 # Random forest engines
@@ -718,7 +647,7 @@ show_engines("rand_forest")
 ```
 
 ```
-# A tibble: 6 × 2
+# A tibble: 6 x 2
   engine       mode          
   &lt;chr&gt;        &lt;chr&gt;         
 1 ranger       classification
@@ -739,7 +668,7 @@ show_engines("rand_forest")
 .pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;To &lt;high&gt;test model predictions&lt;/high&gt; with &lt;mono&gt;tidymodels&lt;/mono&gt;, supply new data frame &lt;mono&gt;newdata&lt;/mono&gt; to the &lt;mono&gt;predict()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;To &lt;high&gt;test model predictions&lt;/high&gt; with &lt;mono&gt;tidymodels&lt;/mono&gt;, supply new data frame &lt;mono&gt;newdata&lt;/mono&gt; to the &lt;mono&gt;predict()&lt;/mono&gt; functionbaseler_train.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;br&gt;
@@ -790,7 +719,7 @@ metrics(lm_pred, truth = income,
 ```
 
 ```
-# A tibble: 3 × 3
+# A tibble: 3 x 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 rmse    standard    1024.   

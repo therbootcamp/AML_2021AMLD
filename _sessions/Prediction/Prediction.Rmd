@@ -714,7 +714,7 @@ income_dt <- fit(dt_workflow,
 ---
 
 
-# Fit Decision tree
+# Fit Random Forest
 
 
 .pull-left4[
@@ -752,77 +752,6 @@ income_rf <- fit(rf_workflow,
 
 
 ]
-
-
----
-
-# <mono>predict(, newdata)</mono>
-
-.pull-left4[
-
-<ul>
-  <li class="m1"><span>To <high>test model predictions</high> with <mono>tidymodels</mono>, all you need to do is get a vector of predictions from a new dataframe <mono>newdata</mono> using the <mono>predict()</mono> function.</span></li>
-</ul>
-
-<br>
-
-<table style="cellspacing:0; cellpadding:0; border:none;">
-  <col width="30%">
-  <col width="70%">
-<tr>
-  <td bgcolor="white">
-    <b>Argument</b>
-  </td>
-  <td bgcolor="white">
-    <b>Description</b>
-  </td>  
-</tr>
-<tr>
-  <td bgcolor="white">
-    <mono>object</mono>
-  </td>
-  <td bgcolor="white">
-    <mono>tidymodels</mono> fit object.  
-  </td>  
-</tr>
-<tr>
-  <td bgcolor="white">
-    <mono>newdata</mono>
-  </td>
-  <td bgcolor="white">
-    Test data sest. Must contain same features as provided in <mono>object</mono>.    
-  </td>  
-</tr>
-</table>
-
-]
-
-.pull-right5[
-
-```{r, eval = T}
-# fit regression model
-
-lm_recipe <- 
-  recipe(income ~ ., data = baselers_train) %>% 
-  step_dummy(all_nominal_predictors())
-
-lm_model <- 
-  linear_reg() %>% 
-  set_engine("lm") %>% 
-  set_mode("regression")
-
-lm_workflow <- 
-  workflow() %>% 
-  add_recipe(lm_recipe) %>% 
-  add_model(lm_model)
-
-income_lm <- fit(lm_workflow,
-                 data = baselers_train)
-
-```
-
-]
-
 
 ---
 
