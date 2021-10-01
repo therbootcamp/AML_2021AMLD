@@ -81,12 +81,7 @@ tidymodels_prefer() # to resolve common conflicts
 
 ```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
 # airbnb data
-airbnb <- read_csv(file = "1_Data/airbnb.csv") %>% 
-  filter(room_type == "Apartment") %>% 
-  select(-neighbourhood, -room_type, 
-         -review_scores_rating, -host_since, 
-         -wifi) %>% 
-  sample_n(1500)
+airbnb <- read_csv(file = "1_Data/airbnb.csv")
 ```
 
 
