@@ -71,7 +71,7 @@ In this practical, we will again predict the `price` of Airbnbs located in Berli
 
 ### A - Setup
 
-1. Open your `RBootcamp_AMLD2021` R project. It should already have the folders `1_Data` and `2_Code`.
+1. Open your `TheRBootcamp` R project. It should already have the folders `1_Data` and `2_Code`.
 
 2. Open a new R script and save it as a new file called `Tuning_practical.R` in the `2_Code` folder.  
 

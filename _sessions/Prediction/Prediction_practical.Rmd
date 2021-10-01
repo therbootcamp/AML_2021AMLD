@@ -63,7 +63,7 @@ By the end of this practical you will know how to:
 
 ### A - Setup
 
-1. Open your `RBootcamp_AMLD2021` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data file(s) listed in the `Datasets` section are in your `1_Data` folder.
+1. Open your `TheRBootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data file(s) listed in the `Datasets` section are in your `1_Data` folder.
 
 2. Open a new R script and save it as a new file called `Prediction_practical.R` in the `2_Code` folder.
 
@@ -213,7 +213,7 @@ lm_workflow
 
 7. Fit the model on the training data by passing the `lm_workflow` and the `aribnb_train` data to the `fit()` function and save the output as `price_lm`.
 
-```{r}
+```{r, echo = TRUE, eval = FALSE}
 # Fit the regression model
 XX <-
   XX %>% 
@@ -340,7 +340,7 @@ dt_workflow
 
 16. Fit the model on the training data by passing the `dt_workflow` and the `aribnb_train` data to the `fit()` function and save the output as `price_dt`.
 
-```{r}
+```{r, echo = TRUE, eval = FALSE}
 # Fit the decision tree
 XX <-
   XX %>% 
@@ -474,7 +474,7 @@ rf_workflow
 
 25. Fit the model on the training data by passing the `rf_workflow` and the `aribnb_train` data to the `fit()` function and save the output as `price_rf`.
 
-```{r}
+```{r, echo = TRUE, eval = FALSE}
 # Fit the random forest
 XX <-
   XX %>% 

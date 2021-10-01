@@ -201,7 +201,7 @@ pre code {
 <div id="a---setup" class="section level3">
 <h3>A - Setup</h3>
 <ol style="list-style-type: decimal">
-<li><p>Open your <code>RBootcamp_AMLD2021</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data file(s) listed in the <code>Datasets</code> section are in your <code>1_Data</code> folder.</p></li>
+<li><p>Open your <code>TheRBootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data file(s) listed in the <code>Datasets</code> section are in your <code>1_Data</code> folder.</p></li>
 <li><p>Open a new R script and save it as a new file called <code>Prediction_practical.R</code> in the <code>2_Code</code> folder.</p></li>
 <li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
 </ol>
@@ -276,6 +276,12 @@ lm_workflow &lt;-
 <ol start="6" style="list-style-type: decimal">
 <li><p>Print the workflow.</p></li>
 <li><p>Fit the model on the training data by passing the <code>lm_workflow</code> and the <code>aribnb_train</code> data to the <code>fit()</code> function and save the output as <code>price_lm</code>.</p></li>
+</ol>
+<pre class="r"><code># Fit the regression model
+XX &lt;-
+  XX %&gt;% 
+  XX(XX)</code></pre>
+<ol start="8" style="list-style-type: decimal">
 <li><p>Using the <code>tidy()</code> function on the <code>price_lm</code> object, take a look at the parameter estimates.</p></li>
 <li><p>Using the <code>predict()</code> function, to extract the model predictions from <code>price_lm</code> and bind them together with the true values from <code>airbnb_train</code> using <code>bind_cols()</code>.</p></li>
 </ol>
@@ -327,6 +333,12 @@ dt_workflow &lt;-
 <ol start="15" style="list-style-type: decimal">
 <li><p>Print the workflow.</p></li>
 <li><p>Fit the model on the training data by passing the <code>dt_workflow</code> and the <code>aribnb_train</code> data to the <code>fit()</code> function and save the output as <code>price_dt</code>.</p></li>
+</ol>
+<pre class="r"><code># Fit the decision tree
+XX &lt;-
+  XX %&gt;% 
+  XX(XX)</code></pre>
+<ol start="17" style="list-style-type: decimal">
 <li><p>The <code>tidy()</code> function won’t work with decision tree fit objects, but we can print the output using the following code:</p></li>
 <li><p>Alternatively, we can pass the object you printed in the previous task in the <code>rpart.plot</code> function. This will create a visualization of the decision tree (in this case, the plot does not look very usefull, but depending on the variables used by the model it can be).</p></li>
 <li><p>Using the <code>predict()</code> function, to extract the model predictions from <code>price_dt</code> and bind them together with the true values from <code>airbnb_train</code> using <code>bind_cols()</code>.</p></li>
@@ -379,6 +391,12 @@ rf_workflow &lt;-
 <ol start="24" style="list-style-type: decimal">
 <li><p>Print the workflow.</p></li>
 <li><p>Fit the model on the training data by passing the <code>rf_workflow</code> and the <code>aribnb_train</code> data to the <code>fit()</code> function and save the output as <code>price_rf</code>.</p></li>
+</ol>
+<pre class="r"><code># Fit the random forest
+XX &lt;-
+  XX %&gt;% 
+  XX(XX)</code></pre>
+<ol start="26" style="list-style-type: decimal">
 <li><p>The <code>tidy()</code> function won’t work with random forest fit objects, but we can print the output using the following code:</p></li>
 <li><p>Using the <code>predict()</code> function, to extract the model predictions from <code>price_rf</code> and bind them together with the true values from <code>airbnb_train</code> using <code>bind_cols()</code>.</p></li>
 </ol>
