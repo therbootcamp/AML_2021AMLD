@@ -652,7 +652,8 @@ lm_recipe
 .pull-right45[
 
 ```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
-# set up recipe for logistic regression model
+# set up recipe for logistic regression
+# model
 logistic_recipe <- 
   recipe(eyecor ~., data = baselers) %>% 
   step_dummy(all_nominal_predictors())
@@ -728,7 +729,8 @@ lm_model
 .pull-right45[
 
 ```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
-# set up model for logistic regression model
+# set up model for logistic regression
+# model
 logistic_model <- 
   logistic_reg() %>% 
   set_engine("glm") %>% 
@@ -794,7 +796,8 @@ To set up a <mono>workflow</mono>:</span></li><br>
 .pull-right45[
 
 ```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
-# set up workflow for logistic regression model
+# set up workflow for logistic regression
+# model
 logistic_workflow <- 
   workflow() %>% 
   add_recipe(logistic_recipe) %>% 
@@ -815,7 +818,7 @@ logistic_workflow
 <ul>
   <li class="m1"><span>A <mono>workflow</mono> is fitted using the <mono>fit()</mono> function.</span></li><br>
   <ul class="level">
-    <li><span>Applies the recipe with the pre-processing steps..</span></li><br>
+    <li><span>Applies the recipe with the pre-processing steps.</span></li><br>
     <li><span>Run the specified algorithm (i.e., model).</span></li><br>
   </ul>
 </ul>
@@ -843,7 +846,7 @@ tidy(income_lm)
 <ul>
   <li class="m1"><span>A <mono>workflow</mono> is fitted using the <mono>fit()</mono> function.</span></li><br>
   <ul class="level">
-    <li><span>Applies the recipe with the pre-processing steps..</span></li><br>
+    <li><span>Applies the recipe with the pre-processing steps.</span></li><br>
     <li><span>Run the specified algorithm (i.e., model).</span></li><br>
   </ul>
 </ul>
@@ -866,7 +869,7 @@ tidy(eyecor_glm)
 
 # Assess model fit
 
-.pull-left45[
+.pull-left4[
 
 <ul>
   <li class="m1"><span>Use <mono>predict()</mono> to obtain model predictions on specified data.</span></li><br>
@@ -874,7 +877,7 @@ tidy(eyecor_glm)
 </ul>
 ]
 
-.pull-right45[
+.pull-right5[
 
 ```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
 # generate predictions
@@ -893,7 +896,7 @@ metrics(lm_pred, truth = income,
 
 # Assess model fit
 
-.pull-left45[
+.pull-left4[
 
 <ul>
   <li class="m1"><span>Use <mono>predict()</mono> to obtain model predictions on specified data.</span></li><br>
@@ -901,7 +904,7 @@ metrics(lm_pred, truth = income,
 </ul>
 ]
 
-.pull-right45[
+.pull-right5[
 
 ```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
 # generate predictions logistic regression
@@ -921,15 +924,19 @@ metrics(logistic_pred, truth = eyecor,
 
 # Assess model fit
 
-.pull-left45[
+.pull-left4[
 
 <ul>
-  <li class="m1"><span>Use <mono>predict()</mono> to obtain model predictions on specified data.</span></li><br>
-  <li class="m2"><span>Use <mono>metrics()</mono> to obtain performance metrics, suited for the current problem mode.</span></li>
+  <li class="m1"><span>Use <mono>roc_curve()</mono> to obtain sensitivity and specificity for every unique value of the predicted probabilities.</span></li><br>
+  <ul class="level">
+    <li><span><high>Sensitivity</high> = Of the truly positive cases, what proportion is classified as positive.</span></li><br>
+    <li><span><high>Specificity</high> = Of the truly negative cases, what proportion is classified as negative.</span></li><br>
+  </ul>
+  <li class="m2"><span>Use <mono>autoplot()</mono> to plot the ROC-curve based on the different combinations of sensitivity and specificity.</span></li>
 </ul>
 ]
 
-.pull-right45[
+.pull-right5[
 
 ```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE, fig.height = 4, dpi = 300}
 # ROC curve for logistic model

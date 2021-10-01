@@ -518,7 +518,8 @@ Dummy variables from all_nominal_predictors()
 
 
 ```r
-# set up recipe for logistic regression model
+# set up recipe for logistic regression
+# model
 logistic_recipe &lt;- 
   recipe(eyecor ~., data = baselers) %&gt;% 
   step_dummy(all_nominal_predictors())
@@ -616,7 +617,8 @@ Computational engine: lm
 
 
 ```r
-# set up model for logistic regression model
+# set up model for logistic regression
+# model
 logistic_model &lt;- 
   logistic_reg() %&gt;% 
   set_engine("glm") %&gt;% 
@@ -666,16 +668,16 @@ lm_workflow
 ```
 
 ```
-══ Workflow ══════════════════════════════════════════════════════════════════════════════════════════════════
+== Workflow ==================================================================================================
 Preprocessor: Recipe
 Model: linear_reg()
 
-── Preprocessor ──────────────────────────────────────────────────────────────────────────────────────────────
+-- Preprocessor ----------------------------------------------------------------------------------------------
 1 Recipe Step
 
-• step_dummy()
+* step_dummy()
 
-── Model ─────────────────────────────────────────────────────────────────────────────────────────────────────
+-- Model -----------------------------------------------------------------------------------------------------
 Linear Regression Model Specification (regression)
 
 Computational engine: lm 
@@ -706,7 +708,8 @@ To set up a &lt;mono&gt;workflow&lt;/mono&gt;:&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
 
 
 ```r
-# set up workflow for logistic regression model
+# set up workflow for logistic regression
+# model
 logistic_workflow &lt;- 
   workflow() %&gt;% 
   add_recipe(logistic_recipe) %&gt;% 
@@ -716,16 +719,16 @@ logistic_workflow
 ```
 
 ```
-══ Workflow ══════════════════════════════════════════════════════════════════════════════════════════════════
+== Workflow ==================================================================================================
 Preprocessor: Recipe
 Model: logistic_reg()
 
-── Preprocessor ──────────────────────────────────────────────────────────────────────────────────────────────
+-- Preprocessor ----------------------------------------------------------------------------------------------
 1 Recipe Step
 
-• step_dummy()
+* step_dummy()
 
-── Model ─────────────────────────────────────────────────────────────────────────────────────────────────────
+-- Model -----------------------------------------------------------------------------------------------------
 Logistic Regression Model Specification (classification)
 
 Computational engine: glm 
@@ -743,7 +746,7 @@ Computational engine: glm
 &lt;ul&gt;
   &lt;li class="m1"&gt;&lt;span&gt;A &lt;mono&gt;workflow&lt;/mono&gt; is fitted using the &lt;mono&gt;fit()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
   &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;Applies the recipe with the pre-processing steps..&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;Applies the recipe with the pre-processing steps.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
     &lt;li&gt;&lt;span&gt;Run the specified algorithm (i.e., model).&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
   &lt;/ul&gt;
 &lt;/ul&gt;
@@ -762,7 +765,7 @@ tidy(income_lm)
 ```
 
 ```
-# A tibble: 25 × 5
+# A tibble: 25 x 5
    term           estimate std.error statistic   p.value
    &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
  1 (Intercept) -192.         631.     -0.304   7.61e-  1
@@ -775,7 +778,7 @@ tidy(income_lm)
  8 fitness        6.94        17.9     0.389   6.97e-  1
  9 food           2.50         0.142  17.6     2.33e- 60
 10 alcohol       26.1          2.47   10.6     8.05e- 25
-# … with 15 more rows
+# ... with 15 more rows
 ```
 
 ]
@@ -789,7 +792,7 @@ tidy(income_lm)
 &lt;ul&gt;
   &lt;li class="m1"&gt;&lt;span&gt;A &lt;mono&gt;workflow&lt;/mono&gt; is fitted using the &lt;mono&gt;fit()&lt;/mono&gt; function.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
   &lt;ul class="level"&gt;
-    &lt;li&gt;&lt;span&gt;Applies the recipe with the pre-processing steps..&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;Applies the recipe with the pre-processing steps.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
     &lt;li&gt;&lt;span&gt;Run the specified algorithm (i.e., model).&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
   &lt;/ul&gt;
 &lt;/ul&gt;
@@ -808,7 +811,7 @@ tidy(eyecor_glm)
 ```
 
 ```
-# A tibble: 25 × 5
+# A tibble: 25 x 5
    term          estimate std.error statistic p.value
    &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
  1 (Intercept) -3.04      1.32         -2.31   0.0211
@@ -821,7 +824,7 @@ tidy(eyecor_glm)
  8 happiness    0.0386    0.0653        0.591  0.554 
  9 fitness     -0.0419    0.0372       -1.13   0.261 
 10 food        -0.0000755 0.000339     -0.222  0.824 
-# … with 15 more rows
+# ... with 15 more rows
 ```
 
 ]
@@ -830,7 +833,7 @@ tidy(eyecor_glm)
 
 # Assess model fit
 
-.pull-left45[
+.pull-left4[
 
 &lt;ul&gt;
   &lt;li class="m1"&gt;&lt;span&gt;Use &lt;mono&gt;predict()&lt;/mono&gt; to obtain model predictions on specified data.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
@@ -838,7 +841,7 @@ tidy(eyecor_glm)
 &lt;/ul&gt;
 ]
 
-.pull-right45[
+.pull-right5[
 
 
 ```r
@@ -853,7 +856,7 @@ metrics(lm_pred, truth = income,
 ```
 
 ```
-# A tibble: 3 × 3
+# A tibble: 3 x 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 rmse    standard    1008.   
@@ -867,7 +870,7 @@ metrics(lm_pred, truth = income,
 
 # Assess model fit
 
-.pull-left45[
+.pull-left4[
 
 &lt;ul&gt;
   &lt;li class="m1"&gt;&lt;span&gt;Use &lt;mono&gt;predict()&lt;/mono&gt; to obtain model predictions on specified data.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
@@ -875,7 +878,7 @@ metrics(lm_pred, truth = income,
 &lt;/ul&gt;
 ]
 
-.pull-right45[
+.pull-right5[
 
 
 ```r
@@ -891,7 +894,7 @@ metrics(logistic_pred, truth = eyecor,
 ```
 
 ```
-# A tibble: 4 × 3
+# A tibble: 4 x 3
   .metric     .estimator .estimate
   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;
 1 accuracy    binary        0.647 
@@ -906,15 +909,19 @@ metrics(logistic_pred, truth = eyecor,
 
 # Assess model fit
 
-.pull-left45[
+.pull-left4[
 
 &lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Use &lt;mono&gt;predict()&lt;/mono&gt; to obtain model predictions on specified data.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Use &lt;mono&gt;metrics()&lt;/mono&gt; to obtain performance metrics, suited for the current problem mode.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;Use &lt;mono&gt;roc_curve()&lt;/mono&gt; to obtain sensitivity and specificity for every unique value of the predicted probabilities.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;ul class="level"&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;Sensitivity&lt;/high&gt; = Of the truly positive cases, what proportion is classified as positive.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+    &lt;li&gt;&lt;span&gt;&lt;high&gt;Specificity&lt;/high&gt; = Of the truly negative cases, what proportion is classified as negative.&lt;/span&gt;&lt;/li&gt;&lt;br&gt;
+  &lt;/ul&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Use &lt;mono&gt;autoplot()&lt;/mono&gt; to plot the ROC-curve based on the different combinations of sensitivity and specificity.&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
 ]
 
-.pull-right45[
+.pull-right5[
 
 
 ```r
@@ -927,7 +934,6 @@ logistic_pred %&gt;%
 &lt;img src="Fitting_files/figure-html/unnamed-chunk-19-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ]
-
 
 
 ---
