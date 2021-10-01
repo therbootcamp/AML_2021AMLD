@@ -35,8 +35,8 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = TRUE, 
-                      eval = TRUE, 
+                      echo = FALSE, 
+                      eval = FALSE, 
                       warning = FALSE,
                       message = FALSE)
 
@@ -374,11 +374,11 @@ metrics(lm_pred, truth = price, estimate = .pred)
 5. How do you interpret these values?
 
 ```{r}
-# On average, the model commits a prediction error of 34.9 when predicting the 
+# On average, the model commits a prediction error of 29.5 when predicting the 
 # price of an airbnb. The large difference between the MAE and the RMSE indicates
 # That the prediction errors vary very strongly. This is also apparent in the 
 # plot we created before.
-# The R^2 value is 0.0458, that is, only about 5% of the variation in the data
+# The R^2 value is 0.338, that is, about 34% of the variation in the data
 # can be captured by our model.
 ```
 
@@ -522,12 +522,12 @@ metrics(lm_pred, truth = price, estimate = .pred)
 10. How do you interpret these values? How do they compare to the ones you obtained previously?
 
 ```{r}
-# On average, the model commits a prediction error of 35.7 when predicting the 
+# On average, the model commits a prediction error of 28.7 when predicting the 
 # price of an airbnb. This is even larger than with only the one predictor.
 # The large difference between the MAE and the RMSE indicates
 # that the prediction errors vary very strongly. This is also apparent in the 
 # plot we created before.
-# The R^2 value is 0.124, that is, about 12% of the variation in the data
+# The R^2 value is 0.365, that is, about 37% of the variation in the data
 # can be captured by our model, which is more than twice of what the model with
 # only one feature explained.
 ```
@@ -644,12 +644,12 @@ metrics(lm_pred, truth = price, estimate = .pred)
 8. How do you interpret these values? How do they compare to the ones you obtained previously?
 
 ```{r}
-# On average, the model commits a prediction error of 37.9 when predicting the 
+# On average, the model commits a prediction error of 29.7 when predicting the 
 # price of an airbnb. This is again larger than with only the one predictor.
 # The large difference between the MAE and the RMSE indicates
 # that the prediction errors vary very strongly. This is also apparent in the 
 # plot we created before.
-# The R^2 value is 0.196, that is, about 20% of the variation in the data
+# The R^2 value is 0.38, that is, about 38% of the variation in the data
 # can be captured by our model.
 ```
 
@@ -826,10 +826,10 @@ logistic_pred %>%
   table() %>% 
   prop.table() %>% 
   round(2)
-# Just by predicting always FALSE, the model could reach an accuracy of 68%.
-# By using all the features available, the model can do about 10 percentage points
+# Just by predicting always FALSE, the model could reach an accuracy of 60%.
+# By using all the features available, the model can do about 15 percentage points
 # better than that. According to some, completely arbitrary, guidelines, the 
-# kappa value of .48 can be considered moderate or fair to good.
+# kappa value of .49 can be considered moderate or fair to good.
 # Whether such values are acceptable depends on the use case.
 ```
 
