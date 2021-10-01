@@ -405,26 +405,8 @@ airbnb_recipe <-
                         data = airbnb)
 ```
 
-2. Because we now have a categorical predictor (`room_type`), we also have to update the recipe by adding a pre-processing step that ensures that categorical predictors are dummy-coded. Add a pipe (`%>%`) to the recipe definition of the previous task and call `step_dummy(all_nominal_predictors())` to define this pre-processing step.
 
-```{r, echo = TRUE, eval = FALSE}
-# updated recipe
-airbnb_recipe <- 
-  recipe(price ~ accommodates + bedrooms + bathrooms,
-                        data = airbnb) %>% 
-  XXX(XXX())
-```
-
-```{r}
-# updated recipe
-airbnb_recipe <- 
-  recipe(price ~ accommodates + bedrooms + bathrooms,
-                        data = airbnb) %>% 
-  step_dummy(all_nominal_predictors())
-```
-
-
-3. Update the recipe in the workflow using the `update_recipe()` function. Pass the new `airbnb_recipe` to `update_recipe()`.
+2. Update the recipe in the workflow using the `update_recipe()` function. Pass the new `airbnb_recipe` to `update_recipe()`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # update lm workflow with new recipe
@@ -440,13 +422,13 @@ lm_workflow <-
   update_recipe(airbnb_recipe)
 ```
 
-4. Print the `lm_workflow` object to view a summary of how the modeling will be done. The recipe should now be updated, which you can see by the new section *Preprocessor*.
+3. Print the `lm_workflow` object to view a summary of how the modeling will be done. The recipe should now be updated, which you can see by the new section *Preprocessor*.
 
 ```{r}
 lm_workflow
 ```
 
-5. Refit the model as you have done above, and call it `price_lm`.
+4. Refit the model as you have done above, and call it `price_lm`.
 
 ```{r}
 # Fit the regression model
@@ -455,7 +437,7 @@ price_lm <-
   fit(airbnb)
 ```
 
-6. Using the `tidy()` function on the `price_lm` object, take a look at the parameter estimates.
+5. Using the `tidy()` function on the `price_lm` object, take a look at the parameter estimates.
 
 
 ```{r}
@@ -463,7 +445,7 @@ price_lm <-
 tidy(price_lm)
 ```
 
-7. Using the `predict()` function, to extract the model predictions and bind them together with the true values using `bind_cols()`.
+6. Using the `predict()` function, to extract the model predictions and bind them together with the true values using `bind_cols()`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # generate predictions
@@ -482,7 +464,7 @@ lm_pred <-
 ```
 
 
-8. Using the following code, plot the fitted against the true value, to judge how well our model performed. What do you think, is this performance good or bad? And how does it compare to the model with only one feature we fitted before?
+7. Using the following code, plot the fitted against the true value, to judge how well our model performed. What do you think, is this performance good or bad? And how does it compare to the model with only one feature we fitted before?
 
 ```{r, echo = TRUE, eval = FALSE}
 # use the lm_pred object to generate the plot
@@ -504,7 +486,7 @@ ggplot(lm_pred, aes(x = .pred, y = price)) +
 # really fall on the line, which indicates a poor model fit.
 ```
 
-9. Using the `metrics()` function, evaluate the model performance. Pass it the `price` variable as `truth` and the `.pred` variable as `estimate`.
+8. Using the `metrics()` function, evaluate the model performance. Pass it the `price` variable as `truth` and the `.pred` variable as `estimate`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # evaluate performance
@@ -517,7 +499,7 @@ metrics(lm_pred, truth = price, estimate = .pred)
 
 ```
 
-10. How do you interpret these values? How do they compare to the ones you obtained previously?
+9. How do you interpret these values? How do they compare to the ones you obtained previously?
 
 ```{r}
 # On average, the model commits a prediction error of 35.7 when predicting the 

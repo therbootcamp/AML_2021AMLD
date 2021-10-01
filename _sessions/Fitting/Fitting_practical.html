@@ -355,21 +355,13 @@ XXX(lm_pred, truth = XXX, estimate = XXX)</code></pre>
 airbnb_recipe &lt;- 
   recipe(XXX ~ XXX +  XXX + XXX, data = XXX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Because we now have a categorical predictor (<code>room_type</code>), we also have to update the recipe by adding a pre-processing step that ensures that categorical predictors are dummy-coded. Add a pipe (<code>%&gt;%</code>) to the recipe definition of the previous task and call <code>step_dummy(all_nominal_predictors())</code> to define this pre-processing step.</li>
-</ol>
-<pre class="r"><code># updated recipe
-airbnb_recipe &lt;- 
-  recipe(price ~ accommodates + bedrooms + bathrooms,
-                        data = airbnb) %&gt;% 
-  XXX(XXX())</code></pre>
-<ol start="3" style="list-style-type: decimal">
 <li>Update the recipe in the workflow using the <code>update_recipe()</code> function. Pass the new <code>airbnb_recipe</code> to <code>update_recipe()</code>.</li>
 </ol>
 <pre class="r"><code># update lm workflow with new recipe
 lm_workflow &lt;- 
   lm_workflow 
   XXX(XXX) %&gt;% </code></pre>
-<ol start="4" style="list-style-type: decimal">
+<ol start="3" style="list-style-type: decimal">
 <li><p>Print the <code>lm_workflow</code> object to view a summary of how the modeling will be done. The recipe should now be updated, which you can see by the new section <em>Preprocessor</em>.</p></li>
 <li><p>Refit the model as you have done above, and call it <code>price_lm</code>.</p></li>
 <li><p>Using the <code>tidy()</code> function on the <code>price_lm</code> object, take a look at the parameter estimates.</p></li>
@@ -380,7 +372,7 @@ lm_pred &lt;-
   XXX %&gt;% 
   XXX(XXX) %&gt;% 
   XXX(airbnb %&gt;% select(price))</code></pre>
-<ol start="8" style="list-style-type: decimal">
+<ol start="7" style="list-style-type: decimal">
 <li>Using the following code, plot the fitted against the true value, to judge how well our model performed. What do you think, is this performance good or bad? And how does it compare to the model with only one feature we fitted before?</li>
 </ol>
 <pre class="r"><code># use the lm_pred object to generate the plot
@@ -395,12 +387,12 @@ ggplot(lm_pred, aes(x = .pred, y = price)) +
        y = &quot;True Airbnb Prices in $&quot;) +
   # Scale and size the x- and y-axis uniformly:
   coord_obs_pred()</code></pre>
-<ol start="9" style="list-style-type: decimal">
+<ol start="8" style="list-style-type: decimal">
 <li>Using the <code>metrics()</code> function, evaluate the model performance. Pass it the <code>price</code> variable as <code>truth</code> and the <code>.pred</code> variable as <code>estimate</code>.</li>
 </ol>
 <pre class="r"><code># evaluate performance
 XXX(lm_pred, truth = XXX, estimate = XXX)</code></pre>
-<ol start="10" style="list-style-type: decimal">
+<ol start="9" style="list-style-type: decimal">
 <li>How do you interpret these values? How do they compare to the ones you obtained previously?</li>
 </ol>
 </div>
