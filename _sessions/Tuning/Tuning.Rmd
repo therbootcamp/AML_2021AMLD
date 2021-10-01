@@ -385,7 +385,7 @@ class: center, middle
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Penalizes regression loss for having large <font style="font-size:22px">&beta</font>; values using the <high>lambda &lambda; tuning parameter</high> and one of several penalty functions.</span></li>
+  <li class="m1"><span>Penalizes regression loss for having large <font style="font-size:22px">&beta;</font> values using the <high>lambda &lambda; tuning parameter</high> and one of several penalty functions.</span></li>
 </ul>
 
 
