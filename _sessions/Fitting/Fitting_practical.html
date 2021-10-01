@@ -316,7 +316,7 @@ lm_pred &lt;-
   predict(new_data = airbnb) %&gt;% 
   bind_cols(airbnb %&gt;% select(price))</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Take a look at the <code>lm_pred</code> object and make sure you understand the meaning of these variables.</p></li>
+<li><p>Take a look at the <code>lm_pred</code> object and make sure you understand the meaning of these variables. What is contained in the <code>.pred</code> variable and what in the <code>price</code> variable? Which part of the code in the previous task generated the <code>.pred</code> and which the <code>price</code> variable? (<a href="https://www.tmwr.org/models.html#parsnip-predictions">This page here</a> also provides an overview of the naming convention introduced by the <code>tidymodels</code> predict methods.)</p></li>
 <li><p>Using the following code, plot the fitted against the true value, to judge how well our model performed. What do you think, is this performance good or bad?</p></li>
 </ol>
 <pre class="r"><code># use the lm_pred object to generate the plot

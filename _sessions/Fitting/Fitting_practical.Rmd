@@ -310,7 +310,7 @@ tidy(price_lm)
 
 ### E - Evaluate accuracy
 
-1. Now it's time to evaluate the model's fitted values! Use the `predict()` function to extract the model predictions. This returns them as a column named `.pred`. Then, using `bind_cols()` add the true values.
+1. Now it's time to evaluate the model's fitted values! Use the `predict()` function to extract the model predictions. This returns them as a column named `.pred`. Then, using `bind_cols()` add the true values. 
 
 ```{r, echo = TRUE, eval = FALSE}
 # generate predictions
@@ -328,7 +328,7 @@ lm_pred <-
   bind_cols(airbnb %>% select(price))
 ```
 
-2. Take a look at the `lm_pred` object and make sure you understand the meaning of these variables.
+2. Take a look at the `lm_pred` object and make sure you understand the meaning of these variables. What is contained in the `.pred` variable and what in the `price` variable? Which part of the code in the previous task generated the `.pred` and which the `price` variable? ([This page here](https://www.tmwr.org/models.html#parsnip-predictions) also provides an overview of the naming convention introduced by the `tidymodels` predict methods.)
 
 ```{r}
 # The first variable, .pred,  was created in the call to the predict() function. 
