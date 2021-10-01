@@ -358,7 +358,7 @@ price_dt <-
 17. The `tidy()` function won't work with decision tree fit objects, but we can print the output using the following code:
 
 
-```{r}
+```{r, echo=TRUE}
 # print the decision tree output
 price_dt %>% 
   extract_fit_parsnip() %>% 
@@ -367,7 +367,7 @@ price_dt %>%
 
 18. Alternatively, we can pass the object you printed in the previous task in the `rpart.plot` function. This will create a visualization of the decision tree (in this case, the plot does not look very usefull, but depending on the variables used by the model it can be).
 
-```{r}
+```{r, echo=TRUE}
 price_dt %>% 
   extract_fit_parsnip() %>% 
   pluck("fit") %>% 
@@ -492,7 +492,7 @@ price_rf <-
 26. The `tidy()` function won't work with random forest fit objects, but we can print the output using the following code:
 
 
-```{r}
+```{r, echo = TRUE}
 # print the random forest output
 price_rf %>% 
   extract_fit_parsnip() %>% 

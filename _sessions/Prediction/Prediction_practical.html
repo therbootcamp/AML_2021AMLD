@@ -339,9 +339,21 @@ XX &lt;-
   XX %&gt;% 
   XX(XX)</code></pre>
 <ol start="17" style="list-style-type: decimal">
-<li><p>The <code>tidy()</code> function won’t work with decision tree fit objects, but we can print the output using the following code:</p></li>
-<li><p>Alternatively, we can pass the object you printed in the previous task in the <code>rpart.plot</code> function. This will create a visualization of the decision tree (in this case, the plot does not look very usefull, but depending on the variables used by the model it can be).</p></li>
-<li><p>Using the <code>predict()</code> function, to extract the model predictions from <code>price_dt</code> and bind them together with the true values from <code>airbnb_train</code> using <code>bind_cols()</code>.</p></li>
+<li>The <code>tidy()</code> function won’t work with decision tree fit objects, but we can print the output using the following code:</li>
+</ol>
+<pre class="r"><code># print the decision tree output
+price_dt %&gt;% 
+  extract_fit_parsnip() %&gt;% 
+  pluck(&quot;fit&quot;)</code></pre>
+<ol start="18" style="list-style-type: decimal">
+<li>Alternatively, we can pass the object you printed in the previous task in the <code>rpart.plot</code> function. This will create a visualization of the decision tree (in this case, the plot does not look very usefull, but depending on the variables used by the model it can be).</li>
+</ol>
+<pre class="r"><code>price_dt %&gt;% 
+  extract_fit_parsnip() %&gt;% 
+  pluck(&quot;fit&quot;) %&gt;% 
+  rpart.plot()</code></pre>
+<ol start="19" style="list-style-type: decimal">
+<li>Using the <code>predict()</code> function, to extract the model predictions from <code>price_dt</code> and bind them together with the true values from <code>airbnb_train</code> using <code>bind_cols()</code>.</li>
 </ol>
 <pre class="r"><code># get predicted values from training data
 dt_pred &lt;-
@@ -397,8 +409,14 @@ XX &lt;-
   XX %&gt;% 
   XX(XX)</code></pre>
 <ol start="26" style="list-style-type: decimal">
-<li><p>The <code>tidy()</code> function won’t work with random forest fit objects, but we can print the output using the following code:</p></li>
-<li><p>Using the <code>predict()</code> function, to extract the model predictions from <code>price_rf</code> and bind them together with the true values from <code>airbnb_train</code> using <code>bind_cols()</code>.</p></li>
+<li>The <code>tidy()</code> function won’t work with random forest fit objects, but we can print the output using the following code:</li>
+</ol>
+<pre class="r"><code># print the random forest output
+price_rf %&gt;% 
+  extract_fit_parsnip() %&gt;% 
+  pluck(&quot;fit&quot;)</code></pre>
+<ol start="27" style="list-style-type: decimal">
+<li>Using the <code>predict()</code> function, to extract the model predictions from <code>price_rf</code> and bind them together with the true values from <code>airbnb_train</code> using <code>bind_cols()</code>.</li>
 </ol>
 <pre class="r"><code># get predicted values from training data
 rf_pred &lt;-
