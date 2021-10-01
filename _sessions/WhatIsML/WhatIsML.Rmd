@@ -66,6 +66,25 @@ library(tidyverse)
 
 .pull-left45[
 
+]
+
+
+.pull-right45[
+
+<p align = "center">
+<img src="image/ml_robot.jpg" height=380px><br>
+<font style="font-size:10px">from <a href="https://medium.com/@dkwok94/machine-learning-for-my-grandma-ca242e97ef62">medium.com</a></font>
+</p>
+
+
+]
+
+---
+
+# What is machine learning?
+
+.pull-left45[
+
 <b>Machine learning is</b>...
 
 <p style="padding-left:20px">
