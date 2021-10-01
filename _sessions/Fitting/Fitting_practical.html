@@ -342,10 +342,9 @@ XXX(lm_pred, truth = XXX, estimate = XXX)</code></pre>
 </div>
 <div id="f---add-more-features" class="section level3">
 <h3>F - Add more features</h3>
-<p>So far we have only used one feature (<code>accommodates</code>), to predict <code>price</code>. Let’s try again, but now we’ll use a total of four features:</p>
+<p>So far we have only used one feature (<code>accommodates</code>), to predict <code>price</code>. Let’s try again, but now we’ll use a total of three features:</p>
 <ul>
 <li><code>accommodates</code> - the number of people the airbnb accommodates.</li>
-<li>`room_type`` - type of the room (e.g., “Loft” or “Apartment”).</li>
 <li><code>bedrooms</code> - number of bedrooms.</li>
 <li><code>bathrooms</code> - number of bathrooms.</li>
 </ul>
@@ -354,13 +353,13 @@ XXX(lm_pred, truth = XXX, estimate = XXX)</code></pre>
 </ol>
 <pre class="r"><code># updated recipe
 airbnb_recipe &lt;- 
-  recipe(XXX ~ XXX + XXX + XXX + XXX, data = XXX)</code></pre>
+  recipe(XXX ~ XXX +  XXX + XXX, data = XXX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Because we now have a categorical predictor (<code>room_type</code>), we also have to update the recipe by adding a pre-processing step that ensures that categorical predictors are dummy-coded. Add a pipe (<code>%&gt;%</code>) to the recipe definition of the previous task and call <code>step_dummy(all_nominal_predictors())</code> to define this pre-processing step.</li>
 </ol>
 <pre class="r"><code># updated recipe
 airbnb_recipe &lt;- 
-  recipe(price ~ accommodates + room_type + bedrooms + bathrooms,
+  recipe(price ~ accommodates + bedrooms + bathrooms,
                         data = airbnb) %&gt;% 
   XXX(XXX())</code></pre>
 <ol start="3" style="list-style-type: decimal">

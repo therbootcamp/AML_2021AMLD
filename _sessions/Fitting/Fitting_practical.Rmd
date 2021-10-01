@@ -384,10 +384,9 @@ metrics(lm_pred, truth = price, estimate = .pred)
 
 ### F - Add more features
 
-So far we have only used one feature (`accommodates`), to predict `price`. Let's try again, but now we'll use a total of four features: 
+So far we have only used one feature (`accommodates`), to predict `price`. Let's try again, but now we'll use a total of three features: 
 
 - `accommodates` - the number of people the airbnb accommodates.
-- `room_type`` - type of the room (e.g., "Loft" or "Apartment").
 - `bedrooms` - number of bedrooms.
 - `bathrooms` - number of bathrooms.
 
@@ -396,13 +395,13 @@ So far we have only used one feature (`accommodates`), to predict `price`. Let's
 ```{r, echo = TRUE, eval = FALSE}
 # updated recipe
 airbnb_recipe <- 
-  recipe(XXX ~ XXX + XXX + XXX + XXX, data = XXX)
+  recipe(XXX ~ XXX +  XXX + XXX, data = XXX)
 ```
 
 ```{r}
 # updated recipe
 airbnb_recipe <- 
-  recipe(price ~ accommodates + room_type + bedrooms + bathrooms,
+  recipe(price ~ accommodates + bedrooms + bathrooms,
                         data = airbnb)
 ```
 
@@ -411,7 +410,7 @@ airbnb_recipe <-
 ```{r, echo = TRUE, eval = FALSE}
 # updated recipe
 airbnb_recipe <- 
-  recipe(price ~ accommodates + room_type + bedrooms + bathrooms,
+  recipe(price ~ accommodates + bedrooms + bathrooms,
                         data = airbnb) %>% 
   XXX(XXX())
 ```
@@ -419,7 +418,7 @@ airbnb_recipe <-
 ```{r}
 # updated recipe
 airbnb_recipe <- 
-  recipe(price ~ accommodates + room_type + bedrooms + bathrooms,
+  recipe(price ~ accommodates + bedrooms + bathrooms,
                         data = airbnb) %>% 
   step_dummy(all_nominal_predictors())
 ```
