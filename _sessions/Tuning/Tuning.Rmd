@@ -1080,7 +1080,7 @@ parameter_grid <-
 
 .pull-right5[
 
-```{r}
+```{r eval = FALSE}
 # tune parameters using 10 fold CV
 glmnet_grid <- 
   tune_grid(glmnet_workflow,
@@ -1089,6 +1089,17 @@ glmnet_grid <-
 
 # show output
 glmnet_grid
+```
+
+```{r echo = FALSE}
+# tune parameters using 10 fold CV
+glmnet_grid <- 
+  tune_grid(glmnet_workflow,
+            resamples = baselers_folds,
+            grid = parameter_grid)
+
+# show output
+print(glmnet_grid, n = 7, width  = 43)
 ```
 
 ]
