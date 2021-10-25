@@ -271,7 +271,7 @@ metrics(lm_pred, truth = price, estimate = .pred)
 
 11. Using the following code, plot the fitted against the true value, to judge how well our model performed.
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE}
 # use the lm_pred object to generate the plot
 ggplot(lm_pred, aes(x = .pred, y = price)) + 
   # Create a diagonal line:
@@ -412,7 +412,7 @@ metrics(dt_pred, truth = price, estimate = .pred)
 
 22. Using the following code, plot the fitted against the true value, to judge how well our model performed.
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE}
 # use the dt_pred object to generate the plot
 ggplot(dt_pred, aes(x = .pred, y = price)) + 
   # Create a diagonal line:
@@ -536,7 +536,7 @@ metrics(rf_pred, truth = price, estimate = .pred)
 
 30. Using the following code, plot the fitted against the true value, to judge how well our model performed.
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE}
 # use the rf_pred object to generate the plot
 ggplot(rf_pred, aes(x = .pred, y = price)) + 
   # Create a diagonal line:
@@ -732,7 +732,7 @@ superhost_glm <-
 
 7. Evaluate the training performance with the `metrics()` function to do so. First, we again create a dataset containing the predicted and true values. This time, we call the `predict()` function twice: once to obtain the predicted classes, and once to obtain the probabilities, with which the classes are predicted.
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE}
 # Get fitted values from the Private_glm object
 logistic_pred <- 
   predict(superhost_glm, airbnb_train, type = "prob") %>% 
@@ -740,13 +740,6 @@ logistic_pred <-
   bind_cols(airbnb_train %>% select(host_superhost))
 ```
 
-```{r}
-# Get fitted values from the Private_glm object
-logistic_pred <- 
-  predict(superhost_glm, airbnb_train, type = "prob") %>% 
-  bind_cols(predict(superhost_glm, airbnb_train)) %>% 
-  bind_cols(airbnb_train %>% select(host_superhost))
-```
 
 
 8. Let's look at different performance metrics. Use the `metrics()` function and pass it the `host_superhost` variable as `truth`, the `.pred_class` variable as `estimate`, and `.pred_TRUE` as last argument.

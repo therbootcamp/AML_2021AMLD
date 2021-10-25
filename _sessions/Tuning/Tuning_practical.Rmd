@@ -162,7 +162,7 @@ lm_workflow <-
   add_recipe(lm_recipe) %>% 
   add_model(lm_model)
 
-# Fit the regression model using resampling
+# Fit the regression model (no resampling as there's no tuning involved)
 lm_res <-
   lm_workflow %>% 
   fit(airbnb_train)
@@ -176,7 +176,6 @@ lm_res <-
 # create recipe
 ridge_recipe <- 
   recipe(price ~ ., data = airbnb_train) %>% 
-  step_normalize(all_numeric_predictors()) %>%
   step_dummy(all_nominal_predictors())
   
 ```
@@ -481,13 +480,8 @@ dt_workflow <-
 complexity_grid <- tibble(cost_complexity =  seq(from = 0, to = .01, length = 100))
 ```
 
-5. To speed up the model tuning, execute the following code (this will parallelize the tuning process).
 
-```{r echo=TRUE}
-doParallel::registerDoParallel()
-```
-
-6. Tune the model on the training data. To do so using our resampling scheme, use the `tune_grid()` function and pass it the defined workflow as first argument and set the `resamples` argument to `airbnb_folds`, and the `grid` argument to `complexity_grid`. Save the output as `dt_grid`. (Note: This will take some time...)
+5. Tune the model on the training data. To do so using our resampling scheme, use the `tune_grid()` function and pass it the defined workflow as first argument and set the `resamples` argument to `airbnb_folds`, and the `grid` argument to `complexity_grid`. Save the output as `dt_grid`. (Note: This will take some time...)
 
 
 ```{r}

@@ -303,7 +303,7 @@ tidy(price_lm)
 
 ```{r}
 # For every additional person a flat accommodates, the price of an airbnb is
-# predicted to rise by 18$s.
+# predicted to rise by 27.6$s.
 ```
 
 
@@ -339,7 +339,7 @@ lm_pred <-
 
 3. Using the following code, plot the fitted against the true value, to judge how well our model performed. What do you think, is this performance good or bad?
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE}
 # use the lm_pred object to generate the plot
 ggplot(lm_pred, aes(x = .pred, y = price)) + 
   # Create a diagonal line:
@@ -355,8 +355,9 @@ ggplot(lm_pred, aes(x = .pred, y = price)) +
 ```
 
 ```{r}
-# The points do not fall on the line, which indicates
-# a poor model fit.
+# The points do not fall on the line, which indicates that the model fit
+# is not great. Also there are two outliers that cannot be captured by the
+# model.
 ```
 
 4. Let's quantify our model's fitting results. In a regression-problem setting, the `metrics()` function returns the MAE, RMSE, and the $R^2$ of a model. Compute these indices by passing the `price` variable as `truth` and the `.pred` variable as `estimate` to the `metrics()` function.
@@ -486,7 +487,7 @@ lm_pred <-
 
 8. Using the following code, plot the fitted against the true value, to judge how well our model performed. What do you think, is this performance good or bad? And how does it compare to the model with only one feature we fitted before?
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE}
 # use the lm_pred object to generate the plot
 ggplot(lm_pred, aes(x = .pred, y = price)) + 
   # Create a diagonal line:
@@ -503,7 +504,8 @@ ggplot(lm_pred, aes(x = .pred, y = price)) +
 
 ```{r}
 # The model seems to do a little better than before, but the points still do not
-# really fall on the line, which indicates a poor model fit.
+# really fall on the line. Also, the model still cannot account for the two
+# price outliers.
 ```
 
 9. Using the `metrics()` function, evaluate the model performance. Pass it the `price` variable as `truth` and the `.pred` variable as `estimate`.
@@ -609,7 +611,7 @@ lm_pred <-
 
 6. Using the following code, plot the fitted against the true value, to judge how well our model performed. What do you think, is this performance good or bad? And how does it compare to the model with only one feature we fitted before?
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE}
 # use the lm_pred object to generate the plot
 ggplot(lm_pred, aes(x = .pred, y = price)) + 
   # Create a diagonal line:
@@ -775,15 +777,7 @@ superhost_glm <-
 
 1. Now it's time to evaluate the classification models' performance. We can again use the `metrics()` function to do so. First, we again create a dataset containing the predicted and true values. This time, we call the `predict()` function twice: once to obtain the predicted classes, and once to obtain the probabilities, with which the classes are predicted.
 
-```{r, echo = TRUE, eval = FALSE}
-# Get fitted values from the Private_glm object
-logistic_pred <- 
-  predict(superhost_glm, airbnb, type = "prob") %>% 
-  bind_cols(predict(superhost_glm, airbnb)) %>% 
-  bind_cols(airbnb %>% select(host_superhost))
-```
-
-```{r}
+```{r, echo = TRUE}
 # Get fitted values from the Private_glm object
 logistic_pred <- 
   predict(superhost_glm, airbnb, type = "prob") %>% 
