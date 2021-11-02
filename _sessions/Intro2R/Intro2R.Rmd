@@ -1,11 +1,11 @@
 ---
-title: "Intro to R"
+title: "R Basics"
 author: "Applied Machine Learning with R<br>
   <a href='https://therbootcamp.github.io'>
     The R Bootcamp @ AMLD
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/AML_2020AMLD/'>
+  <a href='https://therbootcamp.github.io/AML_2021AMLD/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "Applied Machine Learning with R<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "January 2020"
+date: "November 2021"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -72,81 +72,10 @@ require(tidyverse)
 ```
 
 
-# Why R?
-
-.pull-left3[
-R steadily **grows in popularity**. 
-
-Today, R is one of the **most popular languages for data science** and overall. 
-
-In terms of the number of data science jobs, **R beats SAS and Matlab**, and is on par with Python.
-
-<p style="font-size:10px;float:bottom">
-  Image source: https://i0.wp.com/r4stats.com/
-<p>
-
-
-]
-
-.pull-right6[
-<p align="center">
-  <img src="https://i0.wp.com/r4stats.com/wp-content/uploads/2017/02/Fig-1a-IndeedJobs-2017.png" height="450">
-</p>
-]
-
-
----
-
-# R is great for ML
-
-...because of high-performance R packages (extensions) downloaded and used millions of times.
-
-<p align="center"><img src="image/ml_package_dl.png" width="620"></p>
-
----
-
-# R is so popular because
-
-There are many good reasons to prefer R over superficially more user friendly software such as **Excel** or **SPSS** or more complex programming languages like **C++** or **Python**. 
-
-.pull-left45[
-### Pro
-1. **It's free**
-2. Relatively **easy**
-3. **Extensibility** ([CRAN](https://cran.r-project.org/), packages)
-4. **User base** (e.g., [stackoverflow](https://stackoverflow.com/))
-5. [**Tidyverse**](https://www.tidyverse.org/) (`dplyr`, `ggplot`, etc.)
-6. [**RStudio**](https://www.rstudio.com/)
-7. **Productivity** options: [Latex](https://www.latex-project.org/), [Markdown](https://daringfireball.net/projects/markdown/), [GitHub](https://github.com/)
-]
-
-.pull-right45[
-### Con (?)
-It's slow, but... 
-
-[Tidyverse](https://www.tidyverse.org/)
-[Rcpp](http://www.rcpp.org/), [BH](https://cran.r-project.org/web/packages/BH/index.html): Links R to C++ and high-performance C++ libraries<br>
-[rPython](http://rpython.r-forge.r-project.org/): Links R to Python<br>
-[RHadoop](https://github.com/RevolutionAnalytics/RHadoop/wiki): Links R to Hadoop for big data applications.<br>
-]
-
-
----
-
-<div class="center_text">
-  <span>
-  10 basic R lessons
-  </span>
-</div> 
-
-
----
-
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
 <ul>
   <li class="m1"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2"><span><mono><-</mono> creates/changes objects</span></li>
@@ -154,25 +83,21 @@ It's slow, but...
   <li class="m4"><span>Functions have (default) arguments</span></li>
   <li class="m5"><span>Arguments expect classes</span></li>
   <li class="m6"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7"><span>Functions exist in Packages</span></li>
-  <li class="m8"><span>Data lives in data frames</span></li>  
-  <li class="m9"><span>Three+ data types</span></li>  
-  <li class="m10"><span>Formulae</span></li>  
+  <li class="m7"><span>Chain functions with the pipe</span></li>
+  <li class="m8"><span>Functions exist in Packages</span></li>
+  <li class="m9"><span>Data lives in data frames</span></li>  
+  <li class="m10"><span>Three+ data types</span></li>  
+  <li class="m11"><span>Formulae</span></li>  
 </ul>
 
 ]
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
 <ul>
   <li class="m1"><span><high>The assignment operator <mono><-</mono></high></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</span></li>
@@ -180,14 +105,11 @@ It's slow, but...
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li>  
 </ul>
 
 ]
@@ -207,11 +129,10 @@ It's slow, but...
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2"><span><high><mono><-</mono> creates/changes objects</high></span></li>
@@ -219,14 +140,11 @@ It's slow, but...
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li>  
 </ul>
 
 ]
@@ -248,11 +166,10 @@ one_two_three
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2"><span><high><mono><-</mono> creates/changes objects</high></span></li>
@@ -260,14 +177,11 @@ one_two_three
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
 </ul>
 
 ]
@@ -286,11 +200,10 @@ mean(one_two_three)
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2"><span><high><mono><-</mono> creates/changes objects</high></span></li>
@@ -298,14 +211,11 @@ mean(one_two_three)
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
 </ul>
 
 ]
@@ -327,11 +237,10 @@ result * 10
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2"><span><high><mono><-</mono> creates/changes objects</high></span></li>
@@ -339,14 +248,11 @@ result * 10
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
 </ul>
 
 ]
@@ -372,11 +278,10 @@ one_two_three
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2"><span><high><mono><-</mono> creates/changes objects</high></span></li>
@@ -384,14 +289,11 @@ one_two_three
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li>   
 </ul>
 
 ]
@@ -418,11 +320,10 @@ one_two_three
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
@@ -430,14 +331,11 @@ one_two_three
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li>  
 </ul>
 
 ]
@@ -452,11 +350,10 @@ one_two_three
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
@@ -464,14 +361,11 @@ one_two_three
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
 </ul>
 
 ]
@@ -496,11 +390,10 @@ mean(one_two_three)
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
@@ -508,14 +401,11 @@ mean(one_two_three)
   <li class="m4"><span><high>Functions have (default) arguments</high></span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li>  
 </ul>
 
 ]
@@ -537,11 +427,10 @@ mean(c(1, 2, 3, NA))
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
@@ -549,14 +438,11 @@ mean(c(1, 2, 3, NA))
   <li class="m4"><span><high>Functions have (default) arguments</high></span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
 </ul>
 
 ]
@@ -578,11 +464,10 @@ mean(c(1, 2, 3, NA), na.rm = TRUE)
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
@@ -590,14 +475,11 @@ mean(c(1, 2, 3, NA), na.rm = TRUE)
   <li class="m4"><span><high>Functions have (default) arguments</high></span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
 </ul>
 
 ]
@@ -615,11 +497,10 @@ mean(c("1", "2", "3"))
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
@@ -627,14 +508,11 @@ mean(c("1", "2", "3"))
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5"><span><high>Arguments expect classes</high></span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li>  
 </ul>
 
 ]
@@ -652,11 +530,11 @@ class(c("1", "2", "3"))
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
+
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
@@ -664,14 +542,11 @@ class(c("1", "2", "3"))
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6"><span><high>Find help using <mono>?</mono></high></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
 </ul>
 
 ]
@@ -686,11 +561,11 @@ class(c("1", "2", "3"))
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
+
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
@@ -698,14 +573,11 @@ class(c("1", "2", "3"))
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6"><span><high>Find help using <mono>?</mono></high></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
 </ul>
 
 ]
@@ -720,11 +592,11 @@ class(c("1", "2", "3"))
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
+
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
@@ -732,14 +604,11 @@ class(c("1", "2", "3"))
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6"><span><high>Find help using <mono>?</mono></high></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
 </ul>
 
 ]
@@ -759,14 +628,13 @@ mean(c("1", "2", "3"))
 
 ]
 
-
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
+
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
@@ -774,14 +642,119 @@ mean(c("1", "2", "3"))
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
+  <li class="m7"><span><high>Chain functions with the pipe</high></span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
 </ul>
 
-<b>Analysis</b>
+]
+
+.pull-right5[
+```{r}
+# 
+score <- c(8, 4, 6, 3, 7, 3)
+score
+
+# Mittelwert: Base-R-style
+mean(score)
+
+# Mittelwert: dplyr-style
+score %>%  
+  mean()  
+```
+
+]
+
+---
+
+# 11 basic R lessons
+
+.pull-left4[
+
+
 <ul>
-  <li class="m7"><span><high>Functions exist in Packages</high></span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
+  <li class="m3g"><span>Everythings happens through functions</span></li>
+  <li class="m4g"><span>Functions have (default) arguments</span></li>
+  <li class="m5g"><span>Arguments expect classes</span></li>
+  <li class="m6g"><span>Find help using <mono>?</mono></span></li>
+  <li class="m7"><span><high>Chain functions with the pipe</high></span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
+</ul>
+
+]
+
+.pull-right5[
+```{r}
+# 
+score <- c(8, 4, 6, 3, 7, 3)
+score
+
+# Mittelwert: Base-R-style
+round(mean(score), 2)
+
+# Mittelwert: dplyr-style
+score %>%  
+  mean() %>% 
+  round(2)
+```
+
+]
+
+
+---
+
+# 11 basic R lessons
+
+.pull-left4[
+
+
+<ul>
+  <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
+  <li class="m3g"><span>Everythings happens through functions</span></li>
+  <li class="m4g"><span>Functions have (default) arguments</span></li>
+  <li class="m5g"><span>Arguments expect classes</span></li>
+  <li class="m6g"><span>Find help using <mono>?</mono></span></li>
+  <li class="m7"><span><high>Chain functions with the pipe</high></span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
+</ul>
+
+]
+
+.pull-right5[
+<p align="center"><img src="image/pipe_explanation_kn.png" width="500"></p>
+]
+
+
+
+---
+
+# 11 basic R lessons
+
+.pull-left4[
+
+<ul>
+  <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
+  <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
+  <li class="m3g"><span>Everythings happens through functions</span></li>
+  <li class="m4g"><span>Functions have (default) arguments</span></li>
+  <li class="m5g"><span>Arguments expect classes</span></li>
+  <li class="m6g"><span>Find help using <mono>?</mono></span></li>
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8"><span><high>Functions exist in Packages</high></span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
 </ul>
 
 ]
@@ -793,11 +766,11 @@ mean(c("1", "2", "3"))
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
+
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
@@ -805,14 +778,11 @@ mean(c("1", "2", "3"))
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7"><span><high>Functions exist in Packages</high></span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8"><span><high>Functions exist in Packages</high></span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
 </ul>
 
 ]
@@ -840,11 +810,11 @@ library(tidyverse)
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
+
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
@@ -852,14 +822,11 @@ library(tidyverse)
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8"><span><high>Data lives in data frames</high></span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span><high>Data lives in data frames</high></span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
 </ul>
 
 ]
@@ -870,11 +837,11 @@ library(tidyverse)
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
+
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
@@ -882,14 +849,11 @@ library(tidyverse)
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9"><span><high>Three+ data types</high></span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10"><span><high>Three+ data types</high></span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
 </ul>
 
 ]
@@ -902,11 +866,11 @@ library(tidyverse)
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
+
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
@@ -914,14 +878,11 @@ library(tidyverse)
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9"><span><high>Three+ data types</high></span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10"><span><high>Three+ data types</high></span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
 </ul>
 
 ]
@@ -940,11 +901,11 @@ print(baselers)
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
+
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
@@ -952,14 +913,11 @@ print(baselers)
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9"><span><high>Three+ data types</high></span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10"><span><high>Three+ data types</high></span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
 </ul>
 
 ]
@@ -990,11 +948,11 @@ options(max.print=100,width=110)
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
+
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
@@ -1002,14 +960,11 @@ options(max.print=100,width=110)
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9"><span><high>Three+ data types</high></span></li>  
-  <li class="m10g"><span>Formulae</span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10"><span><high>Three+ data types</high></span></li>  
+  <li class="m11g"><span>Formulae</span></li> 
 </ul>
 
 ]
@@ -1036,11 +991,11 @@ options(max.print=100,width=110)
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
+
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
@@ -1048,14 +1003,11 @@ options(max.print=100,width=110)
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10"><span><high>Formulae</high></span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11"><span><high>Formulae</high></span></li> 
 </ul>
 
 ]
@@ -1076,11 +1028,11 @@ my_lm <- lm(formula = income ~ age + height,
 
 ---
 
-# 10 basic R lessons
+# 11 basic R lessons
 
 .pull-left4[
 
-<b>Syntax</b>
+
 <ul>
   <li class="m1g"><span>The assignment operator <mono><-</mono></span></li>
   <li class="m2g"><span><mono><-</mono> creates/changes objects</high></span></li>
@@ -1088,14 +1040,11 @@ my_lm <- lm(formula = income ~ age + height,
   <li class="m4g"><span>Functions have (default) arguments</span></li>
   <li class="m5g"><span>Arguments expect classes</span></li>
   <li class="m6g"><span>Find help using <mono>?</mono></span></li>
-</ul>
-
-<b>Analysis</b>
-<ul>
-  <li class="m7g"><span>Functions exist in Packages</span></li>
-  <li class="m8g"><span>Data lives in data frames</span></li>  
-  <li class="m9g"><span>Three+ data types</span></li>  
-  <li class="m10"><span><high>Formulae</high></span></li>  
+  <li class="m7g"><span>Chain functions with the pipe</span></li>
+  <li class="m8g"><span>Functions exist in Packages</span></li>
+  <li class="m9g"><span>Data lives in data frames</span></li>  
+  <li class="m10g"><span>Three+ data types</span></li>  
+  <li class="m11"><span><high>Formulae</high></span></li> 
 </ul>
 
 ]

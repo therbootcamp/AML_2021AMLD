@@ -77,7 +77,7 @@ Find our Materials under:
 
 &lt;br&gt;
 
-&gt; &lt;font style='font-size:40px;font-family:"Yanone Kaffeesatz";font-weight:500'&gt;The aim of this workshop is enable you to thoughtfully implement machine learning methods, using R and tidymodels, to make data-driven decisions.&lt;/font&gt;
+&gt; &lt;font style='font-size:40px;font-family:"Yanone Kaffeesatz";font-weight:500'&gt;The aim of this workshop is enable you to thoughtfully implement supervised machine learning methods, using R and tidymodels, to make data-driven decisions.&lt;/font&gt;
 
 ]
 
@@ -85,6 +85,186 @@ Find our Materials under:
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 &lt;p align="center"&gt;&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/target.png" height="350"&gt;&lt;/p&gt;
+
+]
+
+
+---
+
+# What is machine learning?
+
+.pull-left45[
+
+&lt;b&gt;Machine learning is&lt;/b&gt;...
+
+&lt;p style="padding-left:20px"&gt;
+
+...a &lt;high&gt;field of artificial intelligence&lt;/high&gt;...&lt;br&gt;&lt;br&gt; 
+
+...that uses &lt;high&gt;statistical techniques&lt;/high&gt;... &lt;br&gt;&lt;br&gt;
+
+...to allow computer systems to &lt;high&gt;"learn"&lt;/high&gt;,...&lt;br&gt;&lt;br&gt;
+
+...i.e., to progressively &lt;high&gt;improve performance&lt;/high&gt; on a specific task...&lt;br&gt;&lt;br&gt;
+
+...from small or large amounts of &lt;high&gt;data&lt;/high&gt;,... &lt;br&gt;&lt;br&gt;
+
+....&lt;high&gt;without being explicitly programmed&lt;/high&gt;....&lt;br&gt;&lt;br&gt;
+
+....with the goal to &lt;high&gt;discover structure&lt;/high&gt; or &lt;/high&gt;improve decision making and predictions&lt;/high&gt;.
+
+&lt;/p&gt;
+
+
+]
+
+
+.pull-right45[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/ml_robot.jpg" height=380px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://medium.com/@dkwok94/machine-learning-for-my-grandma-ca242e97ef62"&gt;medium.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+
+]
+
+
+---
+
+.pull-left3[
+
+# Types of machine learning tasks
+
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;There are many types of machine learning tasks, each of which call for different models.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;&lt;high&gt;We will focus on supervised machine learning&lt;/high&gt;.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+]
+
+.pull-right65[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;p align = "center"&gt;
+&lt;img src="image/mltypes.png" height=500px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="image/mltypes.png"&gt;amazonaws.com&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+]
+
+
+---
+
+# Supervised learning
+
+.pull-left5[
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;high&gt;The &lt;high&gt;dominant type&lt;/high&gt; of machine learning.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Supervised learning uses &lt;high&gt;labeled data&lt;/high&gt; to learn &lt;high&gt;a model&lt;/high&gt; that relates the criterion to the features.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+]
+
+.pull-right4[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/supervised.png"&gt;&lt;br&gt;
+&lt;/p&gt;
+]
+
+
+---
+
+# 2 types of supervised problems
+
+.pull-left5[
+
+There are two types of supervised learning problems typically can be approached &lt;high&gt;using the same model&lt;/high&gt;.
+
+&lt;font style="font-size:24px"&gt;&lt;b&gt;Regression&lt;/b&gt;&lt;/font&gt;
+
+Regression problems involve the &lt;high&gt;prediction of a quantitative feature&lt;/high&gt;. 
+
+E.g., predicting the cholesterol level as a function of age. 
+
+&lt;font style="font-size:24px"&gt;&lt;b&gt;Classification&lt;/b&gt;&lt;/font&gt;
+
+Classification problems involve the &lt;high&gt;prediction of a categorical feature&lt;/high&gt;.   
+
+E.g., predicting the origin of chest pain as a function of age and heart attack risk. 
+
+
+
+]
+
+.pull-right4[
+
+&lt;p align = "center"&gt;
+&lt;img src="image/twotypes.png" height=440px&gt;&lt;br&gt;
+&lt;/p&gt;
+
+]
+
+---
+
+# Three supervised models
+
+&lt;img src="image/models.png" width="3349" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+.pull-left4[
+
+# ML in R
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;R has advanced tremendously with respect to ML.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;There exist &lt;high&gt;powerful and user-friendly&lt;/high&gt; tools for all ML steps and algorithms.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+]
+
+.pull-right5[
+
+&lt;p align = "center"&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;img src="image/ml.png" height=520px&gt;&lt;br&gt;
+&lt;/p&gt;
+
+]
+
+
+---
+
+.pull-left4[
+
+# tidymodels
+
+&lt;ul&gt;
+  &lt;li class="m1"&gt;&lt;span&gt;&lt;mono&gt;tidymodels&lt;/mono&gt; is a new meta-package for tidy ML in R.&lt;/span&gt;&lt;/li&gt;
+  &lt;li class="m2"&gt;&lt;span&gt;Multiple packages span every important step of ML.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
+&lt;p align = "center"&gt;
+&lt;img src="https://www.tidymodels.org/images/tidymodels.png" width=180px&gt;&lt;br&gt;
+&lt;font style="font-size:10px"&gt;from &lt;a href="https://www.tidymodels.org/packages/"&gt;tidymodels.org&lt;/a&gt;&lt;/font&gt;
+&lt;/p&gt;
+
+]
+
+.pull-right5[
+
+&lt;p align = "center"&gt;
+&lt;br&gt;
+&lt;img src="image/tidymodels.png" height=560px&gt;&lt;br&gt;
+&lt;/p&gt;
 
 ]
 
@@ -196,38 +376,23 @@ Find our Materials under:
 
 ]
 
-
 ---
 
-# Introductions
-
-.pull-left5[
-
-&lt;ul&gt;
-  &lt;li class="m1"&gt;&lt;span&gt;Who are you?&lt;/span&gt;&lt;/li&gt;
-  &lt;li class="m2"&gt;&lt;span&gt;Do you have experience with ML?&lt;/span&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
+.pull-left3[
+# Introduction
 ]
 
-.pull-right45[
-
-&lt;p align="center"&gt;
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/introductions.jpg" height="360px"&gt;
-&lt;br&gt;
-&lt;font style="font-size:10px"&gt;from &lt;a href="www.artofmanliness.com"&gt;artofmanliness.com&lt;/a&gt;&lt;/font&gt;
+.pull-right7[
+&lt;p align="left"&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;img src="image/dirk_markus.png" height="500" align="center"&gt;
 &lt;/p&gt;
-
 ]
-
-
 ---
 
 class: middle, center
 
-&lt;h1&gt;&lt;a href=https://therbootcamp.github.io/AML_2020AMLD/index.html&gt;Schedule&lt;/a&gt;&lt;/h1&gt;
-
+&lt;h1&gt;&lt;a href=https://therbootcamp.github.io/AML_2021AMLD/index.html&gt;Schedule&lt;/a&gt;&lt;/h1&gt;
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

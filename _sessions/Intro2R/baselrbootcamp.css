@@ -340,7 +340,7 @@ highm {
 
 ul {
  list-style-image:url("bullets/bcssss.png");
- display:block;	
+ display:block;
 }
 
 li {
@@ -374,6 +374,7 @@ li.m7 span {top: -9px;}
 li.m8 span {top: -9px;}
 li.m9 span {top: -9px;}
 li.m10 span {top: -9px;}
+li.m11 span {top: -9px;}
 
 li.m1g span {top: -9px;}
 li.m2g span {top: -9px;}
@@ -385,6 +386,7 @@ li.m7g span {top: -9px;}
 li.m8g span {top: -9px;}
 li.m9g span {top: -9px;}
 li.m10g span {top: -9px;}
+li.m11g span {top: -9px;}
 
 li.m1 {list-style-image:url("bullets/b1.png"); margin: -8px;}
 li.m2 {list-style-image:url("bullets/b2.png"); margin: -8px;}
@@ -396,6 +398,7 @@ li.m7 {list-style-image:url("bullets/b7.png"); margin: -8px;}
 li.m8 {list-style-image:url("bullets/b8.png"); margin: -8px;}
 li.m9 {list-style-image:url("bullets/b9.png"); margin: -8px;}
 li.m10 {list-style-image:url("bullets/b10.png"); margin: -8px;}
+li.m11 {list-style-image:url("bullets/b11.png"); margin: -8px;}
 
 li.m1g {list-style-image:url("bullets/b1g.png"); margin: -8px;}
 li.m2g {list-style-image:url("bullets/b2g.png"); margin: -8px;}
@@ -407,3 +410,4 @@ li.m7g {list-style-image:url("bullets/b7g.png"); margin: -8px;}
 li.m8g {list-style-image:url("bullets/b8g.png"); margin: -8px;}
 li.m9g {list-style-image:url("bullets/b9g.png"); margin: -8px;}
 li.m10g {list-style-image:url("bullets/b10g.png"); margin: -8px;}
+li.m11g {list-style-image:url("bullets/b11g.png"); margin: -8px;}
