@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-      Applied Machine Learning with R @ AMLD  | January 2020
+      Applied Machine Learning with R @ AMLD  | November 2021
       </font>
     </a>
     </span>
