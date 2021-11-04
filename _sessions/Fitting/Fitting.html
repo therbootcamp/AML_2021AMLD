@@ -668,16 +668,16 @@ lm_workflow
 ```
 
 ```
-══ Workflow ══════════════════════════════════════════════════════════════════════════════════════════════════
+== Workflow ==================================================================================================
 Preprocessor: Recipe
 Model: linear_reg()
 
-── Preprocessor ──────────────────────────────────────────────────────────────────────────────────────────────
+-- Preprocessor ----------------------------------------------------------------------------------------------
 1 Recipe Step
 
-• step_dummy()
+* step_dummy()
 
-── Model ─────────────────────────────────────────────────────────────────────────────────────────────────────
+-- Model -----------------------------------------------------------------------------------------------------
 Linear Regression Model Specification (regression)
 
 Computational engine: lm 
@@ -719,16 +719,16 @@ logistic_workflow
 ```
 
 ```
-══ Workflow ══════════════════════════════════════════════════════════════════════════════════════════════════
+== Workflow ==================================================================================================
 Preprocessor: Recipe
 Model: logistic_reg()
 
-── Preprocessor ──────────────────────────────────────────────────────────────────────────────────────────────
+-- Preprocessor ----------------------------------------------------------------------------------------------
 1 Recipe Step
 
-• step_dummy()
+* step_dummy()
 
-── Model ─────────────────────────────────────────────────────────────────────────────────────────────────────
+-- Model -----------------------------------------------------------------------------------------------------
 Logistic Regression Model Specification (classification)
 
 Computational engine: glm 
@@ -765,7 +765,7 @@ tidy(income_lm)
 ```
 
 ```
-# A tibble: 25 × 5
+# A tibble: 25 x 5
    term           estimate std.error statistic   p.value
    &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
  1 (Intercept) -192.         631.     -0.304   7.61e-  1
@@ -778,7 +778,7 @@ tidy(income_lm)
  8 fitness        6.94        17.9     0.389   6.97e-  1
  9 food           2.50         0.142  17.6     2.33e- 60
 10 alcohol       26.1          2.47   10.6     8.05e- 25
-# … with 15 more rows
+# ... with 15 more rows
 ```
 
 ]
@@ -811,7 +811,7 @@ tidy(eyecor_glm)
 ```
 
 ```
-# A tibble: 25 × 5
+# A tibble: 25 x 5
    term          estimate std.error statistic p.value
    &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
  1 (Intercept) -3.04      1.32         -2.31   0.0211
@@ -824,7 +824,7 @@ tidy(eyecor_glm)
  8 happiness    0.0386    0.0653        0.591  0.554 
  9 fitness     -0.0419    0.0372       -1.13   0.261 
 10 food        -0.0000755 0.000339     -0.222  0.824 
-# … with 15 more rows
+# ... with 15 more rows
 ```
 
 ]
@@ -851,12 +851,13 @@ lm_pred &lt;-
   predict(baselers) %&gt;% 
   bind_cols(baselers %&gt;% select(income))
 
-metrics(lm_pred, truth = income,
+metrics(lm_pred,
+        truth = income,
         estimate = .pred)
 ```
 
 ```
-# A tibble: 3 × 3
+# A tibble: 3 x 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 rmse    standard    1008.   
@@ -889,12 +890,14 @@ logistic_pred &lt;-
   bind_cols(predict(eyecor_glm, baselers)) %&gt;% 
   bind_cols(baselers %&gt;% select(eyecor))
 
-metrics(logistic_pred, truth = eyecor,
-        estimate = .pred_class, .pred_yes)
+metrics(logistic_pred,
+        truth = eyecor,
+        estimate = .pred_class,
+        .pred_yes)
 ```
 
 ```
-# A tibble: 4 × 3
+# A tibble: 4 x 3
   .metric     .estimator .estimate
   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;
 1 accuracy    binary        0.647 

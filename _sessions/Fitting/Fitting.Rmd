@@ -886,7 +886,8 @@ lm_pred <-
   predict(baselers) %>% 
   bind_cols(baselers %>% select(income))
 
-metrics(lm_pred, truth = income,
+metrics(lm_pred,
+        truth = income,
         estimate = .pred)
 ```
 
@@ -914,8 +915,10 @@ logistic_pred <-
   bind_cols(predict(eyecor_glm, baselers)) %>% 
   bind_cols(baselers %>% select(eyecor))
 
-metrics(logistic_pred, truth = eyecor,
-        estimate = .pred_class, .pred_yes)
+metrics(logistic_pred,
+        truth = eyecor,
+        estimate = .pred_class,
+        .pred_yes)
 ```
 
 ]

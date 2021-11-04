@@ -1128,7 +1128,11 @@ best_glmnet <- select_best(glmnet_grid)
 
 # show best model
 best_glmnet
+```
 
+<br>
+
+```{r}
 # set best tuning parameters
 final_glmnet <-
   finalize_workflow(glmnet_workflow,

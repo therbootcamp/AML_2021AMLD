@@ -220,16 +220,16 @@ airbnb &lt;- read_csv(file = &quot;1_Data/airbnb.csv&quot;)</code></pre>
 <li><p>Print the numbers of rows and columns using the <code>dim()</code> function.</p></li>
 </ol>
 <pre class="r"><code># Print number of rows and columns of airbnb
-dim(XXX)</code></pre>
+dim(XX)</code></pre>
 <ol start="7" style="list-style-type: decimal">
 <li>Open the dataset in a new window using <code>View()</code>. How does it look?</li>
 </ol>
-<pre class="r"><code>View(XXX)</code></pre>
+<pre class="r"><code>View(XX)</code></pre>
 <ol start="8" style="list-style-type: decimal">
 <li>Familiarize yourself with the names of the dataset by looking at the feature names using <code>names()</code>.</li>
 </ol>
 <pre class="r"><code># Print column names of airbnb
-names(XXX)</code></pre>
+names(XX)</code></pre>
 </div>
 <div id="b---set-up-the-recipe" class="section level3">
 <h3>B - Set up the recipe</h3>
@@ -241,7 +241,7 @@ names(XXX)</code></pre>
 <li>set the data to <code>airbnb</code></li>
 </ul>
 <pre class="r"><code># create basic recipe
-airbnb_recipe &lt;- recipe(XXX ~ XXX, data = XXX)</code></pre>
+airbnb_recipe &lt;- recipe(XX ~ XX, data = XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Print the created recipe.</li>
 </ol>
@@ -253,14 +253,14 @@ airbnb_recipe &lt;- recipe(XXX ~ XXX, data = XXX)</code></pre>
 </ol>
 <pre class="r"><code># set up our model
 lm_model &lt;- 
-  XXX()</code></pre>
+  XX()</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Next, we have to specify which engine to use. Here we will use the <code>stats</code> package’s engine. To do so, add a pipe (<code>%&gt;%</code>) to the code you specified above, and add the <code>set_engine(XXX)</code> function, with the engine <code>"lm"</code>.</li>
+<li>Next, we have to specify which engine to use. Here we will use the <code>stats</code> package’s engine. To do so, add a pipe (<code>%&gt;%</code>) to the code you specified above, and add the <code>set_engine(XX)</code> function, with the engine <code>"lm"</code>.</li>
 </ol>
 <pre class="r"><code># set up the engine
 lm_model &lt;- 
   linear_reg() %&gt;% 
-  XXX(XXX)</code></pre>
+  XX(XX)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li><p>To see which engines are available for a given model type, use <code>show_engines("MODEL_TYPE")</code>. Check which other engines would be available with the model type <code>linear_reg</code>.</p></li>
 <li><p>The third and last step is to specify the problem type, which in <code>tidymodels</code> is referred to as the problem <code>mode</code>. To do so, add yet another pipe to the definition of <code>lm_model</code> and call the <code>set_mode()</code> function. Pass <code>"regression"</code> as argument to this function.</p></li>
@@ -269,7 +269,7 @@ lm_model &lt;-
 lm_model &lt;- 
   linear_reg() %&gt;% 
   set_engine(&quot;lm&quot;) %&gt;% 
-  XXX(XXX)</code></pre>
+  XX(XX)</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li><p>Take a look at your model by printing <code>lm_model</code>.</p></li>
 <li><p>Using <code>translate()</code> we can view the function that will be called to fit our model. Arguments not yet specified (and thus, at this point, unknown), will be shown as <code>missing_arg()</code>. Use <code>translate()</code> and pass <code>lm_model</code> as argument.</p></li>
@@ -288,17 +288,17 @@ lm_model &lt;-
 </ul>
 <pre class="r"><code># lm workflow 
 lm_workflow &lt;- 
-  XXX() %&gt;% 
-  XXX(XXX) %&gt;% 
-  XXX(XXX)</code></pre>
+  XX() %&gt;% 
+  XX(XX) %&gt;% 
+  XX(XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Print the <code>lm_workflow</code> object to view a summary of how the modeling will be done.</p></li>
 <li><p>Now it’s time to actually fit the model with the <code>fit()</code> function. Pass the <code>lm_workflow</code> into the fit function and save it as <code>price_lm</code>. Also we have to provide the data to the fit function, by specifying the <code>data</code> argument. Set <code>data = airbnb</code>.</p></li>
 </ol>
 <pre class="r"><code># Fit the regression model
 price_lm &lt;-
-  XXX %&gt;% 
-  XXX(XXX = XXX)</code></pre>
+  XX %&gt;% 
+  XX(XX = XX)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li><p>Print the <code>price_lm</code> object.</p></li>
 <li><p>While this showed us the two parameters, the output is not very informative. To obtain a more detailed output, you can use the <code>tidy()</code> function on the <code>price_lm</code> object.</p></li>
@@ -312,7 +312,7 @@ price_lm &lt;-
 </ol>
 <pre class="r"><code># generate predictions
 lm_pred &lt;-
-  XXX %&gt;% 
+  XX %&gt;% 
   predict(new_data = airbnb) %&gt;% 
   bind_cols(airbnb %&gt;% select(price))</code></pre>
 <ol start="2" style="list-style-type: decimal">
@@ -335,7 +335,7 @@ ggplot(lm_pred, aes(x = .pred, y = price)) +
 <li>Let’s quantify our model’s fitting results. In a regression-problem setting, the <code>metrics()</code> function returns the MAE, RMSE, and the <span class="math inline">\(R^2\)</span> of a model. Compute these indices by passing the <code>price</code> variable as <code>truth</code> and the <code>.pred</code> variable as <code>estimate</code> to the <code>metrics()</code> function.</li>
 </ol>
 <pre class="r"><code># evaluate performance
-XXX(lm_pred, truth = XXX, estimate = XXX)</code></pre>
+XX(lm_pred, truth = XX, estimate = XX)</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>How do you interpret these values?</li>
 </ol>
@@ -354,7 +354,7 @@ XXX(lm_pred, truth = XXX, estimate = XXX)</code></pre>
 </ol>
 <pre class="r"><code># updated recipe
 airbnb_recipe &lt;- 
-  recipe(XXX ~ XXX +  XXX + XXX + XXX, data = XXX)</code></pre>
+  recipe(XX ~ XX +  XX + XX + XX, data = XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Because we now have a categorical predictor (<code>district</code>), we also have to update the recipe by adding a pre-processing step that ensures that categorical predictors are dummy-coded. Add a pipe (<code>%&gt;%</code>) to the recipe definition of the previous task and call <code>step_dummy(all_nominal_predictors())</code> to define this pre-processing step.</li>
 </ol>
@@ -362,14 +362,14 @@ airbnb_recipe &lt;-
 airbnb_recipe &lt;- 
   recipe(price ~ accommodates + bedrooms + bathrooms + district,
                         data = airbnb) %&gt;% 
-  XXX(XXX())</code></pre>
+  XX(XX())</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Update the recipe in the workflow using the <code>update_recipe()</code> function. Pass the new <code>airbnb_recipe</code> to <code>update_recipe()</code>.</li>
 </ol>
 <pre class="r"><code># update lm workflow with new recipe
 lm_workflow &lt;- 
   lm_workflow %&gt;%
-  XXX(XXX)  </code></pre>
+  XX(XX)  </code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li><p>Print the <code>lm_workflow</code> object to view a summary of how the modeling will be done. The recipe should now be updated, which you can see by the new section <em>Preprocessor</em>.</p></li>
 <li><p>Refit the model as you have done above, and call it <code>price_lm</code>.</p></li>
@@ -378,9 +378,9 @@ lm_workflow &lt;-
 </ol>
 <pre class="r"><code># generate predictions
 lm_pred &lt;-
-  XXX %&gt;% 
-  XXX(XXX) %&gt;% 
-  XXX(airbnb %&gt;% select(price))</code></pre>
+  XX %&gt;% 
+  XX(XX) %&gt;% 
+  XX(airbnb %&gt;% select(price))</code></pre>
 <ol start="8" style="list-style-type: decimal">
 <li>Using the following code, plot the fitted against the true value, to judge how well our model performed. What do you think, is this performance good or bad? And how does it compare to the model with only one feature we fitted before?</li>
 </ol>
@@ -400,7 +400,7 @@ ggplot(lm_pred, aes(x = .pred, y = price)) +
 <li>Using the <code>metrics()</code> function, evaluate the model performance. Pass it the <code>price</code> variable as <code>truth</code> and the <code>.pred</code> variable as <code>estimate</code>.</li>
 </ol>
 <pre class="r"><code># evaluate performance
-XXX(lm_pred, truth = XXX, estimate = XXX)</code></pre>
+XX(lm_pred, truth = XX, estimate = XX)</code></pre>
 <ol start="10" style="list-style-type: decimal">
 <li>How do you interpret these values? How do they compare to the ones you obtained previously?</li>
 </ol>
@@ -413,7 +413,7 @@ XXX(lm_pred, truth = XXX, estimate = XXX)</code></pre>
 </ol>
 <pre class="r"><code># updated recipe
 airbnb_recipe &lt;- 
-  recipe(XXX ~ XXX, data = XXX) %&gt;% 
+  recipe(XX ~ XX, data = XX) %&gt;% 
   step_dummy(all_nominal_predictors())</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Update the recipe in the workflow using the <code>update_recipe()</code> function. Pass the new <code>airbnb_recipe</code> to <code>update_recipe()</code>.</li>
@@ -421,7 +421,7 @@ airbnb_recipe &lt;-
 <pre class="r"><code># update lm workflow with new recipe
 lm_workflow &lt;- 
   lm_workflow %&gt;%
-  XXX(XXX)  </code></pre>
+  XX(XX)  </code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Refit the model as you have done above, and call it <code>price_lm</code>.</p></li>
 <li><p>Using the <code>tidy()</code> function on the <code>price_lm</code> object, take a look at the parameter estimates.</p></li>
@@ -429,9 +429,9 @@ lm_workflow &lt;-
 </ol>
 <pre class="r"><code># generate predictions
 lm_pred &lt;-
-  XXX %&gt;% 
-  XXX(XXX) %&gt;% 
-  XXX(airbnb %&gt;% select(price))</code></pre>
+  XX %&gt;% 
+  XX(XX) %&gt;% 
+  XX(airbnb %&gt;% select(price))</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li>Using the following code, plot the fitted against the true value, to judge how well our model performed. What do you think, is this performance good or bad? And how does it compare to the model with only one feature we fitted before?</li>
 </ol>
@@ -451,7 +451,7 @@ ggplot(lm_pred, aes(x = .pred, y = price)) +
 <li>Using the <code>metrics</code> function, evaluate the model performance. Pass it the <code>price</code> variable as <code>truth</code> and the <code>.pred</code> variable as <code>estimate</code>.</li>
 </ol>
 <pre class="r"><code># evaluate performance
-XXX(lm_pred, truth = XXX, estimate = XXX)</code></pre>
+XX(lm_pred, truth = XX, estimate = XX)</code></pre>
 <ol start="8" style="list-style-type: decimal">
 <li>How do you interpret these values? How do they compare to the ones you obtained previously?</li>
 </ol>
@@ -477,8 +477,8 @@ airbnb &lt;-
 <ol start="3" style="list-style-type: decimal">
 <li>Check again, whether <code>host_superhost</code> is now a factor, and check whether the order of the levels is as intended using <code>levels()</code> (the order should be <code>"TRUE", "FALSE"</code>).</li>
 </ol>
-<pre class="r"><code>XXX(airbnb$host_superhost)
-XXX(airbnb$host_superhost)</code></pre>
+<pre class="r"><code>XX(airbnb$host_superhost)
+XX(airbnb$host_superhost)</code></pre>
 </div>
 <div id="i---fit-a-classification-model" class="section level3">
 <h3>I - Fit a classification model</h3>
@@ -491,18 +491,18 @@ XXX(airbnb$host_superhost)</code></pre>
 <li>call the new object <code>logistic_recipe</code></li>
 </ul>
 <pre class="r"><code># create new recipe
-XXX &lt;- 
-  XXX(XXX, data = XXX) %&gt;% 
-  XXX(XXX())</code></pre>
+XX &lt;- 
+  XX(XX, data = XX) %&gt;% 
+  XX(XX())</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Print the new recipe.</p></li>
 <li><p>Create a new model called <code>logistic_model</code>, with the model type <code>logistic_reg</code>, the engine <code>"glm"</code>, and mode <code>"classification"</code>.</p></li>
 </ol>
 <pre class="r"><code># create a logistic regression model 
-XXX_model &lt;-
-  XXX() %&gt;% 
-  set_XXX(XXX) %&gt;% 
-  set_XXX(XXX)</code></pre>
+XX_model &lt;-
+  XX() %&gt;% 
+  set_XX(XX) %&gt;% 
+  set_XX(XX)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li><p>Print the <code>logistic_model</code> object. Using <code>translate()</code>, check out the underlying function that will be used to fit the model.</p></li>
 <li><p>Create a new workflow called <code>logistic_workflow</code>, where you add the <code>logistic_model</code> and the <code>logistic_recipe</code> together.</p></li>
@@ -524,18 +524,18 @@ logistic_pred &lt;-
 <li><p>Take a look at the <code>logistic_pred</code> object and make sure you understand what the variables mean.</p></li>
 <li><p>Now, get the confusion matrix using the <code>conf_mat()</code> function and passing it the <code>host_superhost</code> variable as <code>truth</code>, and th <code>.pred_class</code> variable as <code>estimate</code>. Just by looking at the confusion matrix, do you think the model is doing well?</p></li>
 </ol>
-<pre class="r"><code>XXX(logistic_pred, truth = XXX, estimate = XXX)</code></pre>
+<pre class="r"><code>XX(logistic_pred, truth = XX, estimate = XX)</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li><p>Let’s look at different performance metrics. Use the <code>metrics()</code> function, with exactly the same arguments as you used in the call to <code>conf_mat()</code> before, to obtain the accuracy and the kappa statistic (a chance-corrected measure of agreement between model prediction and true value).</p></li>
 <li><p>How do you interpret these values? Do you think the model performs well?</p></li>
 <li><p>The metrics we just looked at are based on the class predictions. We can also obtain additional metrics based on the predicted probabilities of class membership. Use the same code as in the last task, but add the name of the column containing the predictied <em>positive</em> class probability (<code>.pred_TRUE</code>) as an unnamed, fourth argument:</p></li>
 </ol>
-<pre class="r"><code>XXX(logistic_pred, truth = XXX, estimate = XXX, XXX)</code></pre>
+<pre class="r"><code>XX(logistic_pred, truth = XX, estimate = XX, XX)</code></pre>
 <ol start="7" style="list-style-type: decimal">
 <li><p>What does the <code>roc_auc</code> value indicate?</p></li>
 <li><p>To plot the ROC curve, we can use the <code>roc_curve()</code> function, to create sensitivity and specificity values of different cut-offs, and pass this into the <code>autoplot()</code> function, to plot the curve. Add the <code>host_superhost</code> column as <code>truth</code>, and the <code>.pred_TRUE</code> column as third, unnamed argument, to the <code>roc_curve()</code> function and plot the curve.</p></li>
 </ol>
-<pre class="r"><code>XXX(logistic_pred, truth = XXX, XXX) %&gt;% 
+<pre class="r"><code>XX(logistic_pred, truth = XX, XX) %&gt;% 
   autoplot()</code></pre>
 </div>
 </div>

@@ -115,7 +115,7 @@ airbnb
 
 ```{r, echo = TRUE, eval = FALSE}
 # Print number of rows and columns of airbnb
-dim(XXX)
+dim(XX)
 ```
 
 ```{r}
@@ -126,14 +126,14 @@ dim(airbnb)
 7. Open the dataset in a new window using `View()`. How does it look?
 
 ```{r, echo = TRUE, eval = FALSE}
-View(XXX)
+View(XX)
 ```
 
 8. Familiarize yourself with the names of the dataset by looking at the feature names using `names()`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Print column names of airbnb
-names(XXX)
+names(XX)
 ```
 
 ```{r}
@@ -150,7 +150,7 @@ names(airbnb)
 
 ```{r, echo = TRUE, eval = FALSE}
 # create basic recipe
-airbnb_recipe <- recipe(XXX ~ XXX, data = XXX)
+airbnb_recipe <- recipe(XX ~ XX, data = XX)
 ```
 
 ```{r}
@@ -172,7 +172,7 @@ airbnb_recipe
 ```{r, echo = TRUE, eval = FALSE}
 # set up our model
 lm_model <- 
-  XXX()
+  XX()
 ```
 
 ```{r}
@@ -181,13 +181,13 @@ lm_model <-
   linear_reg()
 ```
 
-2. Next, we have to specify which engine to use. Here we will use the `stats` package's engine. To do so, add a pipe (`%>%`) to the code you specified above, and add the `set_engine(XXX)` function, with the engine `"lm"`.
+2. Next, we have to specify which engine to use. Here we will use the `stats` package's engine. To do so, add a pipe (`%>%`) to the code you specified above, and add the `set_engine(XX)` function, with the engine `"lm"`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # set up the engine
 lm_model <- 
   linear_reg() %>% 
-  XXX(XXX)
+  XX(XX)
 ```
 
 ```{r}
@@ -211,7 +211,7 @@ show_engines("linear_reg")
 lm_model <- 
   linear_reg() %>% 
   set_engine("lm") %>% 
-  XXX(XXX)
+  XX(XX)
 ```
 
 ```{r}
@@ -250,9 +250,9 @@ translate(lm_model)
 ```{r, echo = TRUE, eval = FALSE}
 # lm workflow 
 lm_workflow <- 
-  XXX() %>% 
-  XXX(XXX) %>% 
-  XXX(XXX)
+  XX() %>% 
+  XX(XX) %>% 
+  XX(XX)
 ```
 
 ```{r}
@@ -274,8 +274,8 @@ lm_workflow
 ```{r, echo = TRUE, eval = FALSE}
 # Fit the regression model
 price_lm <-
-  XXX %>% 
-  XXX(XXX = XXX)
+  XX %>% 
+  XX(XX = XX)
 ```
 
 ```{r}
@@ -315,7 +315,7 @@ tidy(price_lm)
 ```{r, echo = TRUE, eval = FALSE}
 # generate predictions
 lm_pred <-
-  XXX %>% 
+  XX %>% 
   predict(new_data = airbnb) %>% 
   bind_cols(airbnb %>% select(price))
 ```
@@ -364,7 +364,7 @@ ggplot(lm_pred, aes(x = .pred, y = price)) +
 
 ```{r, echo = TRUE, eval = FALSE}
 # evaluate performance
-XXX(lm_pred, truth = XXX, estimate = XXX)
+XX(lm_pred, truth = XX, estimate = XX)
 ```
 
 ```{r}
@@ -397,7 +397,7 @@ So far we have only used one feature (`accommodates`), to predict `price`. Let's
 ```{r, echo = TRUE, eval = FALSE}
 # updated recipe
 airbnb_recipe <- 
-  recipe(XXX ~ XXX +  XXX + XXX + XXX, data = XXX)
+  recipe(XX ~ XX +  XX + XX + XX, data = XX)
 ```
 
 ```{r}
@@ -415,7 +415,7 @@ airbnb_recipe <-
 airbnb_recipe <- 
   recipe(price ~ accommodates + bedrooms + bathrooms + district,
                         data = airbnb) %>% 
-  XXX(XXX())
+  XX(XX())
 ```
 
 ```{r}
@@ -433,7 +433,7 @@ airbnb_recipe <-
 # update lm workflow with new recipe
 lm_workflow <- 
   lm_workflow %>%
-  XXX(XXX)  
+  XX(XX)  
 ```
 
 ```{r}
@@ -471,9 +471,9 @@ tidy(price_lm)
 ```{r, echo = TRUE, eval = FALSE}
 # generate predictions
 lm_pred <-
-  XXX %>% 
-  XXX(XXX) %>% 
-  XXX(airbnb %>% select(price))
+  XX %>% 
+  XX(XX) %>% 
+  XX(airbnb %>% select(price))
 ```
 
 ```{r}
@@ -512,7 +512,7 @@ ggplot(lm_pred, aes(x = .pred, y = price)) +
 
 ```{r, echo = TRUE, eval = FALSE}
 # evaluate performance
-XXX(lm_pred, truth = XXX, estimate = XXX)
+XX(lm_pred, truth = XX, estimate = XX)
 ```
 
 ```{r}
@@ -545,7 +545,7 @@ Alright, now it's time to use all features available!
 ```{r, echo = TRUE, eval = FALSE}
 # updated recipe
 airbnb_recipe <- 
-  recipe(XXX ~ XXX, data = XXX) %>% 
+  recipe(XX ~ XX, data = XX) %>% 
   step_dummy(all_nominal_predictors())
 ```
 
@@ -563,7 +563,7 @@ airbnb_recipe <-
 # update lm workflow with new recipe
 lm_workflow <- 
   lm_workflow %>%
-  XXX(XXX)  
+  XX(XX)  
 ```
 
 ```{r}
@@ -595,9 +595,9 @@ tidy(price_lm)
 ```{r, echo = TRUE, eval = FALSE}
 # generate predictions
 lm_pred <-
-  XXX %>% 
-  XXX(XXX) %>% 
-  XXX(airbnb %>% select(price))
+  XX %>% 
+  XX(XX) %>% 
+  XX(airbnb %>% select(price))
 ```
 
 ```{r}
@@ -634,7 +634,7 @@ ggplot(lm_pred, aes(x = .pred, y = price)) +
 
 ```{r, echo = TRUE, eval = FALSE}
 # evaluate performance
-XXX(lm_pred, truth = XXX, estimate = XXX)
+XX(lm_pred, truth = XX, estimate = XX)
 ```
 
 ```{r}
@@ -680,8 +680,8 @@ airbnb <-
 3. Check again, whether `host_superhost` is now a factor, and check whether the order of the levels is as intended using `levels()` (the order should be `"TRUE", "FALSE"`).
 
 ```{r, echo = TRUE, eval = FALSE}
-XXX(airbnb$host_superhost)
-XXX(airbnb$host_superhost)
+XX(airbnb$host_superhost)
+XX(airbnb$host_superhost)
 ```
 
 ```{r}
@@ -701,9 +701,9 @@ levels(airbnb$host_superhost)
 
 ```{r, echo = TRUE, eval = FALSE}
 # create new recipe
-XXX <- 
-  XXX(XXX, data = XXX) %>% 
-  XXX(XXX())
+XX <- 
+  XX(XX, data = XX) %>% 
+  XX(XX())
 ```
 
 ```{r}
@@ -724,10 +724,10 @@ logistic_recipe
 
 ```{r, echo = TRUE, eval = FALSE}
 # create a logistic regression model 
-XXX_model <-
-  XXX() %>% 
-  set_XXX(XXX) %>% 
-  set_XXX(XXX)
+XX_model <-
+  XX() %>% 
+  set_XX(XX) %>% 
+  set_XX(XX)
 ```
 
 
@@ -799,7 +799,7 @@ logistic_pred <-
 3. Now, get the confusion matrix using the `conf_mat()` function and passing it the `host_superhost` variable as `truth`, and th `.pred_class` variable as `estimate`. Just by looking at the confusion matrix, do you think the model is doing well?
 
 ```{r, echo = TRUE, eval = FALSE}
-XXX(logistic_pred, truth = XXX, estimate = XXX)
+XX(logistic_pred, truth = XX, estimate = XX)
 ```
 
 ```{r}
@@ -830,7 +830,7 @@ logistic_pred %>%
 6. The metrics we just looked at are based on the class predictions. We can also obtain additional metrics based on the predicted probabilities of class membership. Use the same code as in the last task, but add the name of the column containing the predictied *positive* class probability (`.pred_TRUE`) as an unnamed, fourth argument:
 
 ```{r, echo = TRUE, eval = FALSE}
-XXX(logistic_pred, truth = XXX, estimate = XXX, XXX)
+XX(logistic_pred, truth = XX, estimate = XX, XX)
 ```
 
 ```{r}
@@ -848,7 +848,7 @@ metrics(logistic_pred, truth = host_superhost, estimate = .pred_class, .pred_TRU
 8. To plot the ROC curve, we can use the `roc_curve()` function, to create sensitivity and specificity values of different cut-offs, and pass this into the `autoplot()` function, to plot the curve. Add the `host_superhost` column as `truth`, and the `.pred_TRUE` column as third, unnamed argument, to the `roc_curve()` function and plot the curve.
 
 ```{r, echo = TRUE, eval = FALSE}
-XXX(logistic_pred, truth = XXX, XXX) %>% 
+XX(logistic_pred, truth = XX, XX) %>% 
   autoplot()
 ```
 
