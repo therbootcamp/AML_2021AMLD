@@ -129,11 +129,7 @@ layout: true
 
 
 ---
-class: center, middle
 
-# Two new models enter the ring...
-
----
 class: center, middle
 
 &lt;font color = "gray"&gt;&lt;h1&gt;Regression&lt;/h1&gt;&lt;/font&gt;
@@ -462,7 +458,7 @@ class: center,  middle
     &lt;mono&gt;prop&lt;/mono&gt;
   &lt;/td&gt;
   &lt;td bgcolor="white"&gt;
-    The &lt;high&gt;proportion of data&lt;/high&gt; going into the training set. Often &lt;mono&gt;.75&lt;/mono&gt; (default) or &lt;mono&gt;.5&lt;/mono&gt;.    
+    The &lt;high&gt;proportion of data&lt;/high&gt; going into the training set. Often .8,  &lt;mono&gt;.75&lt;/mono&gt; (default) or &lt;mono&gt;.5&lt;/mono&gt;.    
   &lt;/td&gt;  
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -647,7 +643,7 @@ show_engines("rand_forest")
 ```
 
 ```
-# A tibble: 6 x 2
+# A tibble: 6 × 2
   engine       mode          
   &lt;chr&gt;        &lt;chr&gt;         
 1 ranger       classification
@@ -714,12 +710,13 @@ lm_pred &lt;-
   predict(baselers_test) %&gt;% 
   bind_cols(baselers_test %&gt;% select(income))
 
-metrics(lm_pred, truth = income,
+metrics(lm_pred, 
+        truth = income,
         estimate = .pred)
 ```
 
 ```
-# A tibble: 3 x 3
+# A tibble: 3 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 rmse    standard    1024.   

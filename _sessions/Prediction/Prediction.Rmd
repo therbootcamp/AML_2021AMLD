@@ -256,11 +256,7 @@ ggpubr::ggarrange(overfit_gg, fit_gg)
 
 
 ---
-class: center, middle
 
-# Two new models enter the ring...
-
----
 class: center, middle
 
 <font color = "gray"><h1>Regression</h1></font>
@@ -589,7 +585,7 @@ class: center,  middle
     <mono>prop</mono>
   </td>
   <td bgcolor="white">
-    The <high>proportion of data</high> going into the training set. Often <mono>.75</mono> (default) or <mono>.5</mono>.    
+    The <high>proportion of data</high> going into the training set. Often .8,  <mono>.75</mono> (default) or <mono>.5</mono>.    
   </td>  
 </tr>
 <tr>
@@ -829,7 +825,8 @@ lm_pred <-
   predict(baselers_test) %>% 
   bind_cols(baselers_test %>% select(income))
 
-metrics(lm_pred, truth = income,
+metrics(lm_pred, 
+        truth = income,
         estimate = .pred)
 ```
 

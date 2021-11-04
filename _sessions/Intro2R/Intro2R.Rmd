@@ -553,7 +553,7 @@ class(c("1", "2", "3"))
 
 
 .pull-right5[
-```{r}
+```{r, message = F, warnings = F}
 ?mean
 ```
 <p align="center"><img src="image/help_mean.png" width="500"></p>
