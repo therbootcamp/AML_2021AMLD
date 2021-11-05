@@ -204,7 +204,7 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
   <li class="m3"><span>Algorithm:
   <br><br>
   <ul class="level">
-    <li><span>1 - Create separate test set.</span></li>
+    <li><span>1 - Create separate validation set.</span></li>
     <li><span>2 - Fit model using various tuning parameters.</span></li>
     <li><span>3 - Select tuning leading to best prediction on validation set.</span></li>
     <li><span>4 - Refit model to entire training set (training + validation).</span></li>
