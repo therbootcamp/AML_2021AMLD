@@ -275,7 +275,7 @@ lm_workflow &lt;-
   XX(XX)</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li><p>Print the workflow.</p></li>
-<li><p>Fit the model on the training data by passing the <code>lm_workflow</code> and the <code>aribnb_train</code> data to the <code>fit()</code> function and save the output as <code>price_lm</code>.</p></li>
+<li><p>Fit the model on the training data by passing the <code>lm_workflow</code> and the <code>airbnb_train</code> data to the <code>fit()</code> function and save the output as <code>price_lm</code>.</p></li>
 </ol>
 <pre class="r"><code># Fit the regression model
 XX &lt;-
@@ -332,7 +332,7 @@ dt_workflow &lt;-
   XX(XX)</code></pre>
 <ol start="15" style="list-style-type: decimal">
 <li><p>Print the workflow.</p></li>
-<li><p>Fit the model on the training data by passing the <code>dt_workflow</code> and the <code>aribnb_train</code> data to the <code>fit()</code> function and save the output as <code>price_dt</code>.</p></li>
+<li><p>Fit the model on the training data by passing the <code>dt_workflow</code> and the <code>airbnb_train</code> data to the <code>fit()</code> function and save the output as <code>price_dt</code>.</p></li>
 </ol>
 <pre class="r"><code># Fit the decision tree
 XX &lt;-
@@ -402,7 +402,7 @@ rf_workflow &lt;-
   XX(XX)</code></pre>
 <ol start="24" style="list-style-type: decimal">
 <li><p>Print the workflow.</p></li>
-<li><p>Fit the model on the training data by passing the <code>rf_workflow</code> and the <code>aribnb_train</code> data to the <code>fit()</code> function and save the output as <code>price_rf</code>.</p></li>
+<li><p>Fit the model on the training data by passing the <code>rf_workflow</code> and the <code>airbnb_train</code> data to the <code>fit()</code> function and save the output as <code>price_rf</code>.</p></li>
 </ol>
 <pre class="r"><code># Fit the random forest
 XX &lt;-
@@ -542,7 +542,7 @@ logistic_pred &lt;-
 <li><p>Set up a decision tree model. Use the <code>decision_tree()</code> function to specify the model, and set the engine to <code>rpart</code>. Set the mode to <code>"classification"</code>. Call the output <code>dt_model</code>.</p></li>
 <li><p>Create a new workflow <code>dt_workflow</code>, where you add the newly created <code>tree_recipe</code> and the <code>dt_model</code>.</p></li>
 <li><p>Print the workflow.</p></li>
-<li><p>Fit the model on the training data by passing the <code>dt_workflow</code> and the <code>aribnb_train</code> data to the <code>fit()</code> function and save the output as <code>superhost_dt</code>.</p></li>
+<li><p>Fit the model on the training data by passing the <code>dt_workflow</code> and the <code>airbnb_train</code> data to the <code>fit()</code> function and save the output as <code>superhost_dt</code>.</p></li>
 <li><p>Evaluate the training performance with the <code>metrics()</code> function to do so. Use the code from the logistic regression above as template. Save the output as <code>dt_pred</code>.</p></li>
 <li><p>Let’s look at different performance metrics. Use the <code>metrics()</code> function and pass it the <code>host_superhost</code> variable as <code>truth</code>, the <code>.pred_class</code> variable as <code>estimate</code>, and <code>.pred_TRUE</code> as last argument.</p></li>
 <li><p>Plot the ROC-curve using the <code>roc_curve()</code> function, to create sensitivity and specificity values of different cut-offs, and pass this into the <code>autoplot()</code> function, to plot the curve. Add the <code>host_superhost</code> column as <code>truth</code>, and the <code>.pred_TRUE</code> column as third, unnamed argument, to the <code>roc_curve()</code> function and plot the curve.</p></li>
@@ -554,7 +554,7 @@ logistic_pred &lt;-
 <li><p>Set up a random forest classification model. Use the <code>rand_forest()</code> function to specify the model, and set the engine to <code>ranger</code>. Set the mode to <code>"classification"</code>. Call the output <code>rf_model</code>.</p></li>
 <li><p>Create a new workflow <code>rf_workflow</code>, where you add the previously created <code>tree_recipe</code> and the new <code>rf_model</code>.</p></li>
 <li><p>Print the workflow.</p></li>
-<li><p>Fit the model on the training data by passing the <code>rf_workflow</code> and the <code>aribnb_train</code> data to the <code>fit()</code> function and save the output as <code>superhost_rf</code>.</p></li>
+<li><p>Fit the model on the training data by passing the <code>rf_workflow</code> and the <code>airbnb_train</code> data to the <code>fit()</code> function and save the output as <code>superhost_rf</code>.</p></li>
 <li><p>Evaluate the training performance with the <code>metrics()</code> function to do so and save the output as <code>rf_pred</code>.</p></li>
 <li><p>Let’s look at different performance metrics. Use the <code>metrics()</code> function and pass it the <code>host_superhost</code> variable as <code>truth</code>, the <code>.pred_class</code> variable as <code>estimate</code>, and <code>.pred_TRUE</code> as last argument.</p></li>
 <li><p>Plot the ROC-curve using the <code>roc_curve()</code> function, to create sensitivity and specificity values of different cut-offs, and pass this into the <code>autoplot()</code> function, to plot the curve.</p></li>

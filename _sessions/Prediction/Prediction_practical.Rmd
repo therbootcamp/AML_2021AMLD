@@ -211,7 +211,7 @@ lm_workflow <-
 lm_workflow
 ```
 
-7. Fit the model on the training data by passing the `lm_workflow` and the `aribnb_train` data to the `fit()` function and save the output as `price_lm`.
+7. Fit the model on the training data by passing the `lm_workflow` and the `airbnb_train` data to the `fit()` function and save the output as `price_lm`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Fit the regression model
@@ -338,7 +338,7 @@ dt_workflow <-
 dt_workflow
 ```
 
-16. Fit the model on the training data by passing the `dt_workflow` and the `aribnb_train` data to the `fit()` function and save the output as `price_dt`.
+16. Fit the model on the training data by passing the `dt_workflow` and the `airbnb_train` data to the `fit()` function and save the output as `price_dt`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Fit the decision tree
@@ -472,7 +472,7 @@ rf_workflow <-
 rf_workflow
 ```
 
-25. Fit the model on the training data by passing the `rf_workflow` and the `aribnb_train` data to the `fit()` function and save the output as `price_rf`.
+25. Fit the model on the training data by passing the `rf_workflow` and the `airbnb_train` data to the `fit()` function and save the output as `price_rf`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Fit the random forest
@@ -803,7 +803,7 @@ dt_workflow <-
 dt_workflow
 ```
 
-14. Fit the model on the training data by passing the `dt_workflow` and the `aribnb_train` data to the `fit()` function and save the output as `superhost_dt`.
+14. Fit the model on the training data by passing the `dt_workflow` and the `airbnb_train` data to the `fit()` function and save the output as `superhost_dt`.
 
 ```{r}
 # Fit the decision tree
@@ -869,7 +869,7 @@ rf_workflow <-
 rf_workflow
 ```
 
-21. Fit the model on the training data by passing the `rf_workflow` and the `aribnb_train` data to the `fit()` function and save the output as `superhost_rf`.
+21. Fit the model on the training data by passing the `rf_workflow` and the `airbnb_train` data to the `fit()` function and save the output as `superhost_rf`.
 
 ```{r}
 # Fit the random forest
