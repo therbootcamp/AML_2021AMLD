@@ -1115,7 +1115,7 @@ print(glmnet_grid, n = 7, width  = 43)
 <ul>
   <li class="m1"><span><mono>tune_grid()</mono> returns fit values of the models with the different hyper-parameter values.</span></li><br>
   <li class="m2"><span><mono>select_best()</mono> selects the best tuning-parameter values.</span></li><br>
-  <li class="m3"><span><mono>finalize_workflow</mono> sets the workflow to the best tuning parameters.</span></li><br>
+  <li class="m3"><span><mono>finalize_workflow()</mono> sets the workflow to the best tuning parameters.</span></li><br>
 </ul>
 
 ]
