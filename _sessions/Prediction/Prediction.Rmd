@@ -686,7 +686,8 @@ income_lm <- fit(lm_workflow,
 
 recipe <- 
   recipe(income ~ ., data = baselers_train) %>% 
-  step_dummy(all_nominal_predictors())
+  step_other(all_nominal_predictors(),
+             threshold = 0.005)
 
 dt_model <- 
   decision_tree() %>% 
@@ -729,7 +730,8 @@ income_dt <- fit(dt_workflow,
 
 recipe <- 
   recipe(income ~ ., data = baselers_train) %>% 
-  step_dummy(all_nominal_predictors())
+  step_other(all_nominal_predictors(),
+             threshold = 0.005)
 
 rf_model <- 
   rand_forest() %>% 

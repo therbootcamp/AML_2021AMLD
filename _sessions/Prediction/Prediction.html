@@ -559,7 +559,8 @@ income_lm &lt;- fit(lm_workflow,
 
 recipe &lt;- 
   recipe(income ~ ., data = baselers_train) %&gt;% 
-  step_dummy(all_nominal_predictors())
+  step_other(all_nominal_predictors(),
+             threshold = 0.005)
 
 dt_model &lt;- 
   decision_tree() %&gt;% 
@@ -602,7 +603,8 @@ income_dt &lt;- fit(dt_workflow,
 
 recipe &lt;- 
   recipe(income ~ ., data = baselers_train) %&gt;% 
-  step_dummy(all_nominal_predictors())
+  step_other(all_nominal_predictors(),
+             threshold = 0.005)
 
 rf_model &lt;- 
   rand_forest() %&gt;% 
@@ -643,7 +645,7 @@ show_engines("rand_forest")
 ```
 
 ```
-# A tibble: 6 × 2
+# A tibble: 6 x 2
   engine       mode          
   &lt;chr&gt;        &lt;chr&gt;         
 1 ranger       classification
@@ -716,7 +718,7 @@ metrics(lm_pred,
 ```
 
 ```
-# A tibble: 3 × 3
+# A tibble: 3 x 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 rmse    standard    1024.   
