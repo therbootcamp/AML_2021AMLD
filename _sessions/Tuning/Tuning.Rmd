@@ -174,7 +174,7 @@ fit_gg <- ggplot(agg, aes(x = phase, y = Error, fill = Degree)) +
 <ul>
   <li class="m1"><span>When a model <high>fits the training data too well</high> on the expense of its performance in prediction, this is called overfitting.</span></li>
   <li class="m2"><span>Just because model A is better than model B in training, does not mean it will be better in testing! Extremely flexible models are <high>'wolves in sheep's clothing'</high>.</span></li>
-  <li class="m2"><span>But is there nothing we can do?.</span></li>
+  <li class="m3"><span>But is there nothing we can do?.</span></li>
 </ul>
 
 
@@ -859,7 +859,7 @@ class: center,  middle
   <li class="m3"><span>Define grid</span></li><br>
   <li class="m4"><span>Tune model</span></li><br>
   <li class="m5"><span>Select best model</span></li><br>
-  <li class="m5"><span>Retrain and evaluate</span></li><br>
+  <li class="m6"><span>Retrain and evaluate</span></li><br>
 </ul>
 
 ]
